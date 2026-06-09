@@ -1,22 +1,23 @@
-# Ashish's Portfolio Website
+# Dr. Ashish - Psychiatrist Website
 
-A modern, responsive portfolio website built with Vue.js and Vite.
+A professional, responsive psychiatric practice website built with Vue.js and Vite.
 
 ## Features
 
-- **Home Page**: Hero section with call-to-action buttons
-- **About Page**: Personal bio and skills listing
-- **Projects Page**: Showcase of your projects with technologies used
-- **Contact Page**: Contact form and social links
-- **Responsive Design**: Mobile-friendly layout
-- **Navigation**: Smooth navigation between pages with Vue Router
+- **Home Page**: Professional introduction with practice highlights
+- **About Page**: Doctor's qualifications, credentials, and philosophy
+- **Services Page**: Comprehensive overview of psychiatric services offered
+- **Appointment Page**: Appointment booking form with contact information
+- **Professional Design**: Clean, calming aesthetics appropriate for mental health practice
+- **Responsive Layout**: Mobile-friendly design for accessibility
+- **Client-Side Routing**: Smooth navigation between pages with Vue Router
 
 ## Tech Stack
 
 - **Vue.js 3**: Progressive JavaScript framework
 - **Vite**: Next generation frontend tooling
 - **Vue Router**: Client-side routing
-- **CSS3**: Modern styling
+- **CSS3**: Modern, professional styling
 
 ## Getting Started
 
@@ -59,13 +60,13 @@ npm run preview
 ```
 src/
 ├── main.js              # Application entry point
-├── App.vue              # Root component with navigation
-├── style.css            # Global styles
+├── App.vue              # Navigation and layout
+├── style.css            # Global styles and color scheme
 └── pages/
-    ├── Home.vue         # Home page
-    ├── About.vue        # About page
-    ├── Projects.vue     # Projects showcase
-    └── Contact.vue      # Contact form
+    ├── Home.vue         # Welcome page with highlights
+    ├── About.vue        # Doctor's bio and credentials
+    ├── Services.vue     # Psychiatric services offered
+    └── Contact.vue      # Appointment booking form
 
 index.html              # HTML template
 vite.config.js         # Vite configuration
@@ -74,10 +75,11 @@ package.json           # Project dependencies
 
 ## Customization
 
-1. **Update Personal Info**: Edit the content in each page component
-2. **Add Projects**: Modify the projects array in `src/pages/Projects.vue`
-3. **Styling**: Customize colors and styles in component `<style>` blocks or `src/style.css`
-4. **Social Links**: Update links in `src/pages/Contact.vue`
+1. **Doctor Information**: Update name and bio in `src/pages/About.vue`
+2. **Qualifications**: Edit credentials and specializations in `src/pages/About.vue`
+3. **Services**: Modify service offerings in `src/pages/Services.vue`
+4. **Contact Details**: Update phone, email, address, and hours in `src/pages/Contact.vue`
+5. **Colors & Styling**: Professional color scheme in component `<style>` blocks or `src/style.css`
 
 ## Deployment
 
@@ -87,11 +89,18 @@ Build the project for production:
 npm run build
 ```
 
-This creates a `dist` folder with the optimized production build ready to deploy to services like:
+This creates a `dist` folder with the optimized production build ready to deploy to:
 - Netlify
 - Vercel
-- GitHub Pages
+- AWS
 - Any static hosting service
+
+## Privacy & Security
+
+- Ensure all patient data handling complies with HIPAA regulations
+- Use secure connections (HTTPS) in production
+- Implement proper backend for form submission
+- Regular security audits recommended
 
 ## License
 
