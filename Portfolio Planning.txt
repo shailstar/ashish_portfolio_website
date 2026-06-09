@@ -1,0 +1,135 @@
+﻿Portfolio planning
+Domain Purchase (Ashish)
+1. drashishyadav.com
+2. drashishyadav.in
+Consistent Branding
+How To Build a YouTube Channel SO Premium They Beg To Buy
+1. Instagram Post
+2. Youtube
+3. LinkedIn
+4. Website
+Site background (Ashish)
+1. Some Mandala Art
+2.   3. Color palette:
+   
+
+
+A3B18A,
+C2A46F,
+FFFFFF,
+000000,
+
+
+Colors (Ashish & Shailendra)
+Fonts (Ashish & Shailendra)
+   1. Playfair + Inter 
+Home Page
+   1. Hero Section
+   1. Animation (Ashish & Shailendra)  
+      1. Breathing circle orb   
+      2. Slow brain wave pulse eeg style flow across then settles  
+      3. Floating particles: 4-5 dots drifting softly 
+         2. Copy: One liner, two liner (Ashish)....could be changing one by one
+         1. Where Neuroscience Meets Ancient Wisdom- and Your Story Shapes the Treatment
+         2. “Understand your mind, retrain your patterns.” small line: Structured treatment integrating Clinical Psychiatry with Yogic Sciences.
+         3. “Precision Psychiatry. Integrated Healing.” Tailored care combining modern medicine and yogic frameworks.        
+         3. CTAs (Call To actions): (Ashish) Copy
+         1. Primary CTA: Schedule a Consultation
+         2. Secondary (small fonts): Not Sure Yet? Take a 2-Min Self Assessment
+         2. About Me
+         1. Name (Ashish)
+         1. Dr Ashish Yadav
+         2. Qualifications & Certifications (Ashish)
+         1. Consultant Neuro-Psychiatrist
+         2.          3. Photo
+         4.            5.            6. Copy Research (Ashish)
+            1. Section Heading: “About Dr. Ashish” and in small fonts “The Approach Behind the Care”
+            2. Tagline :You’re not a diagnosis- you’re a person- and your care should reflect that
+            3. Body: I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns—biological, psychological, and behavioural—and addressing them in a structured, individualised way. With a background in psychiatry, research in behavioural patterns such as procrastination and binge behaviour, and formal training in yoga, my work focuses on bridging science with practical, real-world application.I primarily work with individuals who are looking for a deeper, structured approach—not just quick relief, but lasting change.Mental health care should be precise, personalised, and built to last.
+            4. Endline:Tum Akele nahi ho dost, Healing starts here.
+            5. CTA at end of About me
+            1. Schedule a Consultation
+            2. View Treatment Approach
+            6. Design:
+   
+  
+  
+
+            7. Another Idea: https://claude.ai/public/artifacts/c8380e86-6ecc-4745-91d5-15c6e86db907
+  
+
+  
+  
+  
+
+
+
+            7. Layouts (Shailendra)
+            3. Services (Ashish)
+            1. Per Service (Copy)
+            2. 5-7 different services
+            1. Personalised Psychiatric Consultation
+            1. “Comprehensive evaluation with a tailored treatment plan.”
+            2. Diagnosis + formulation
+            3. Medication when required
+            4. Clear roadmap
+            2. Anxiety & Stress Disorders
+            1. “Move from constant overthinking and tension to clarity and control.”
+            2. Generalised anxiety
+            3. Panic episodes
+            4. Work-related stress
+            3. Depression & Mood Disorders
+            1. Address low mood, fatigue, and loss of motivation at the root.”
+            2. Major depression
+            3. Burnout
+            4. Emotional numbness
+            4. Overthinking & Behavioural Patterns
+            1. “Break repetitive thought loops and unhelpful habits.”
+            2. Rumination
+            3. Procrastination
+            4. Binge behaviours (OTT, phone use)
+            5. Sleep & Lifestyle Regulation
+            1. Restore natural sleep and daily rhythm.”
+            2. Insomnia
+            3. Irregular routines
+            4. Bedtime procrastination
+            6.  Integrative Mind-Body Therapy
+            1. “Structured use of yogic practices alongside psychiatry.”
+            2. Breathwork (pranayama)
+            3. Awareness training
+            4. Nervous system regulation
+            7. Follow-up & Long-term Care
+            1. Ongoing refinement of treatment for sustained results.”
+            2. Progress tracking
+            3. Adjustments in plan
+            4. Relapse prevention
+            8. Executive & Specialised Programs
+            1. “High-touch, personalised care designed for complex needs and elevated expectations.”
+            2. “These programs are designed for individuals seeking a more personalised, high-engagement level of care.”
+            3. We’ll add certain things in it later on.
+            3. CTA at end of services
+            1. Schedule a Consultation
+            2. Begin Assessment
+            4. Another Idea: https://claude.ai/public/artifacts/280a8ea8-dea1-4726-98ab-b5ddd96839ac
+            4. Approach
+            1. Copy  (Ashish)
+            1. “Each treatment plan is tailored and may include:”
+            1. Clinical evaluation and diagnosis
+            2. Medication when required
+            3. Behavioural restructuring
+            4. Yogic practices (breathwork, awareness training, lifestyle correction)
+            5. Long-term relapse prevention strategies
+  
+
+            2. Layout (Shailendra)
+            5. Consultations / Bookings
+            1.               2. Layout (Ashish)
+               1. Q1  “How would you like to meet?" In-Person · Online · Home Visit
+               2. Then straight to calendar. 
+               3. A small reassurance line before the calendar loads: "Your information is confidential. This is a safe, judgment-free space."
+               6. FAQs
+               1. Copy (Ashish)
+               7. Footer  
+                  1. Privacy Policy
+                  2. Terms & Services
+                  3. Socials

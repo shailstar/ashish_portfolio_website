@@ -4,6 +4,8 @@ import App from './App.vue'
 import Home from './pages/Home.vue'
 import About from './pages/About.vue'
 import Services from './pages/Services.vue'
+import Approach from './pages/Approach.vue'
+import FAQ from './pages/FAQ.vue'
 import Contact from './pages/Contact.vue'
 import './style.css'
 
@@ -11,6 +13,8 @@ const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
   { path: '/services', component: Services },
+  { path: '/approach', component: Approach },
+  { path: '/faq', component: FAQ },
   { path: '/contact', component: Contact }
 ]
 
