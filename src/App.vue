@@ -19,17 +19,6 @@
     <main>
       <!-- Hero Section -->
       <section id="home" class="hero">
-        <div class="hero-background">
-          <div class="floating-particles">
-            <div class="particle" v-for="i in 5" :key="i" :style="{ '--delay': `${i * 0.3}s` }"></div>
-          </div>
-          <div class="orb-container">
-            <div class="breathing-orb"></div>
-            <svg class="brain-wave" viewBox="0 0 300 60" preserveAspectRatio="none">
-              <path class="wave-path" d="M0,30 Q7.5,20 15,30 T30,30 T45,30 T60,30 T75,30 T90,30 T105,30 T120,30 T135,30 T150,30 T165,30 T180,30 T195,30 T210,30 T225,30 T240,30 T255,30 T270,30 T285,30 T300,30" />
-            </svg>
-          </div>
-        </div>
 
         <div class="hero-content">
           <h1>{{ currentTagline }}</h1>
@@ -708,7 +697,7 @@ main {
 .hero {
   position: relative;
   padding: 5rem 2rem;
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  background: transparent;
   overflow: hidden;
   min-height: 80vh;
   display: flex;
@@ -739,8 +728,6 @@ main {
   height: 6px;
   background-color: var(--sage-green);
   border-radius: 50%;
-  animation: float 8s infinite ease-in-out;
-  animation-delay: var(--delay);
 }
 
 .particle:nth-child(1) { top: 20%; left: 10%; }
@@ -766,7 +753,6 @@ main {
   height: 120px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, rgba(163, 177, 138, 0.6), rgba(163, 177, 138, 0.2));
-  animation: breathe 4s infinite ease-in-out;
   box-shadow: 0 0 40px rgba(163, 177, 138, 0.3);
 }
 
@@ -786,7 +772,6 @@ main {
   stroke-width: 2;
   fill: none;
   stroke-linecap: round;
-  animation: wave-flow 3s linear infinite;
 }
 
 @keyframes wave-flow {
@@ -877,9 +862,10 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 4rem 2rem;
-  background-color: white;
+  background-color: #A3B18A;
   max-width: 1400px;
   margin: 0 auto;
+  color: white;
 }
 
 .feature-item {
@@ -893,13 +879,13 @@ main {
 }
 
 .feature-item h3 {
-  color: var(--text-dark);
+  color: white;
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
 }
 
 .feature-item p {
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -1063,7 +1049,7 @@ main {
   max-width: 1400px;
   margin: 0 auto;
   padding: 4rem 2rem;
-  background-color: white;
+  background-color: #C2A46F;
 }
 
 .services-header {
@@ -1074,12 +1060,12 @@ main {
 .services-header h2 {
   font-size: 2.8rem;
   margin-bottom: 1rem;
-  color: var(--text-dark);
+  color: white;
 }
 
 .services-header .intro {
   font-size: 1.05rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 0;
   line-height: 1.7;
   max-width: 700px;
@@ -1095,12 +1081,13 @@ main {
 }
 
 .service-card {
-  border: 1px solid #E8E8E8;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   padding: 2rem;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #2c2c2c;
 }
 
 .service-card:hover {
@@ -1159,6 +1146,7 @@ main {
   max-width: 1400px;
   margin: 0 auto;
   padding: 4rem 2rem;
+  background-color: #A3B18A;
 }
 
 .approach-header {
@@ -1169,27 +1157,28 @@ main {
 .approach-header h2 {
   font-size: 2.8rem;
   margin-bottom: 0.5rem;
-  color: var(--text-dark);
+  color: white;
 }
 
 .approach-header .subtitle {
   font-size: 1.2rem;
-  color: var(--sage-green);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
 }
 
 .approach-intro {
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  background: rgba(255, 255, 255, 0.95);
   padding: 2rem;
   border-radius: 8px;
   margin-bottom: 3rem;
   text-align: center;
-  border-left: 4px solid var(--sage-green);
+  border-left: 4px solid white;
+  color: #2c2c2c;
 }
 
 .approach-intro p {
   font-size: 1.05rem;
-  color: var(--text-light);
+  color: #4a4a4a;
   line-height: 1.7;
   margin: 0;
 }
@@ -1202,12 +1191,13 @@ main {
 }
 
 .component-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   padding: 2rem;
   border-radius: 8px;
-  border: 1px solid #E8E8E8;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   text-align: center;
   transition: all 0.3s ease;
+  color: #2c2c2c;
 }
 
 .component-card:hover {
@@ -1235,18 +1225,19 @@ main {
 }
 
 .philosophy-section {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   padding: 3rem;
   border-radius: 8px;
-  border-top: 4px solid var(--sage-green);
+  border-top: 4px solid white;
   margin-bottom: 3rem;
+  color: #2c2c2c;
 }
 
 .philosophy-section h3 {
   font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
-  color: var(--text-dark);
+  color: #2c2c2c;
 }
 
 .principles {
@@ -1281,7 +1272,7 @@ main {
   max-width: 1400px;
   margin: 0 auto;
   padding: 4rem 2rem;
-  background-color: white;
+  background-color: #C2A46F;
 }
 
 .faq-header {
@@ -1292,12 +1283,12 @@ main {
 .faq-header h2 {
   font-size: 2.8rem;
   margin-bottom: 1rem;
-  color: var(--text-dark);
+  color: white;
 }
 
 .faq-header p {
   font-size: 1.1rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .faqs-container {
@@ -1309,18 +1300,18 @@ main {
   margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid #E8E8E8;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 12px rgba(163, 177, 138, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .faq-question {
   width: 100%;
   padding: 1.5rem;
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   cursor: pointer;
   display: flex;
@@ -1328,19 +1319,19 @@ main {
   align-items: center;
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: #2c2c2c;
   transition: all 0.3s ease;
   text-align: left;
   font-family: 'Inter', sans-serif;
 }
 
 .faq-question:hover {
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 .faq-question.active {
-  background-color: var(--sage-green);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #2c2c2c;
 }
 
 .faq-question .icon {
@@ -1352,9 +1343,10 @@ main {
 
 .faq-answer {
   padding: 1.5rem;
-  background-color: #fafafa;
-  border-top: 1px solid #E8E8E8;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   animation: slideDown 0.3s ease;
+  color: #2c2c2c;
 }
 
 @keyframes slideDown {

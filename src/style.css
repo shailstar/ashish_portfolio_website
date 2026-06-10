@@ -12,6 +12,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c2c2c;
   background-color: #ffffff;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('/deepak-black-bg-50-compressed.png');
+  background-size: auto, 750px 375px;
+  background-repeat: repeat, repeat;
 }
 
 html {
