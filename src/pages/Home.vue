@@ -67,7 +67,11 @@ onMounted(() => {
 .hero {
   position: relative;
   padding: 5rem 2rem;
-  background: url('/illustrations/brain-bloom-hands.jpeg') center / cover no-repeat, linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  background-image: url('/illustrations/brain-bloom-hands.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   overflow: hidden;
   min-height: 80vh;
   display: flex;
@@ -83,7 +87,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   z-index: 0;
-  opacity: 0.3;
+  display: none;
 }
 
 .floating-particles {
@@ -155,7 +159,7 @@ onMounted(() => {
 
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   text-align: left;
   max-width: 600px;
   margin-left: 0;
@@ -164,7 +168,7 @@ onMounted(() => {
 .hero-content h1 {
   font-size: 2.8rem;
   margin-bottom: 0.5rem;
-  color: var(--text-dark);
+  color: var(--text-strong);
   font-weight: 700;
   line-height: 1.3;
   min-height: 3.5em;
@@ -173,14 +177,14 @@ onMounted(() => {
 
 .subtitle {
   font-size: 1.3rem;
-  color: var(--sage-green);
+  color: var(--brand);
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 .tagline {
   font-size: 1.05rem;
-  color: var(--text-light);
+  color: var(--text-body);
   margin-bottom: 2.5rem;
   line-height: 1.7;
   min-height: 2.1em;
@@ -205,25 +209,25 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background-color: var(--sage-green);
-  color: white;
-  box-shadow: 0 4px 12px rgba(163, 177, 138, 0.3);
+  background-color: var(--brand);
+  color: var(--text-on-brand);
+  box-shadow: var(--shadow-brand);
 }
 
 .btn-primary:hover {
-  background-color: #8fa876;
+  background-color: var(--brand-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(163, 177, 138, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn-secondary {
-  background-color: white;
-  color: var(--sage-green);
-  border: 2px solid var(--sage-green);
+  background-color: var(--white);
+  color: var(--brand);
+  border: 2px solid var(--brand-ink);
 }
 
 .btn-secondary:hover {
-  background-color: #f5f5f5;
+  background-color: var(--surface-tint);
   transform: translateY(-2px);
 }
 
