@@ -30,16 +30,6 @@
       <h3>Precision Psychiatry</h3>
       <p>Modern medicine meets ancient wisdom for comprehensive care</p>
     </div>
-    <div class="feature-item">
-      <div class="feature-icon">🔒</div>
-      <h3>Confidential & Safe</h3>
-      <p>Your privacy is sacred. A judgment-free space for healing</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">🎯</div>
-      <h3>Outcome-Driven</h3>
-      <p>Personalized treatment focused on lasting change, not quick fixes</p>
-    </div>
   </section>
 </template>
 
@@ -77,12 +67,13 @@ onMounted(() => {
 .hero {
   position: relative;
   padding: 5rem 2rem;
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  background: url('/illustrations/brain-bloom-hands.jpeg') center / cover no-repeat, linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
   overflow: hidden;
   min-height: 80vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .hero-background {
@@ -165,8 +156,9 @@ onMounted(() => {
 .hero-content {
   position: relative;
   z-index: 10;
-  text-align: center;
-  max-width: 700px;
+  text-align: left;
+  max-width: 600px;
+  margin-left: 0;
 }
 
 .hero-content h1 {
@@ -198,7 +190,7 @@ onMounted(() => {
 .cta-buttons {
   display: flex;
   gap: 1.5rem;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
