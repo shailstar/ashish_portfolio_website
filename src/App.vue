@@ -19,7 +19,6 @@
     <main>
       <!-- Hero Section -->
       <section id="home" class="hero">
-
         <div class="hero-content">
           <h1>{{ currentTagline }}</h1>
           <p class="subtitle">Consultant Neuro-Psychiatrist</p>
@@ -29,6 +28,9 @@
             <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
             <a href="#contact" class="btn btn-secondary">Take a 2-Min Self Assessment</a>
           </div>
+        </div>
+        <div class="hero-illustration">
+          <img src="/illustrations/meditation-lotus.jpeg" alt="Person meditating in a calm, blooming environment" />
         </div>
       </section>
 
@@ -58,22 +60,27 @@
         </div>
 
         <div class="doctor-intro">
-          <div class="intro-text">
-            <p class="intro-emphasis">
-              You're not a diagnosis—you're a person, and your care should reflect that.
-            </p>
-            <p>
-              I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns—biological, psychological, and behavioural—and addressing them in a structured, individualised way.
-            </p>
-            <p>
-              With a background in psychiatry, research in behavioural patterns such as procrastination and binge behaviour, and formal training in yoga, my work focuses on bridging science with practical, real-world application.
-            </p>
-            <p>
-              I primarily work with individuals who are looking for a deeper, structured approach—not just quick relief, but lasting change.
-            </p>
-            <p class="philosophy-line">
-              <strong>Mental health care should be precise, personalised, and built to last.</strong>
-            </p>
+          <div class="doctor-intro-flex">
+            <div class="intro-text">
+              <p class="intro-emphasis">
+                You're not a diagnosis—you're a person, and your care should reflect that.
+              </p>
+              <p>
+                I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns—biological, psychological, and behavioural—and addressing them in a structured, individualised way.
+              </p>
+              <p>
+                With a background in psychiatry, research in behavioural patterns such as procrastination and binge behaviour, and formal training in yoga, my work focuses on bridging science with practical, real-world application.
+              </p>
+              <p>
+                I primarily work with individuals who are looking for a deeper, structured approach—not just quick relief, but lasting change.
+              </p>
+              <p class="philosophy-line">
+                <strong>Mental health care should be precise, personalised, and built to last.</strong>
+              </p>
+            </div>
+            <div class="doctor-illustration">
+              <img src="/illustrations/profile-brain-heart.jpeg" alt="Dr. Ashish - mind and heart integration" />
+            </div>
           </div>
         </div>
 
@@ -155,9 +162,14 @@
 
       <!-- Approach Section -->
       <section id="approach" class="approach">
-        <div class="approach-header">
-          <h2>Treatment Approach</h2>
-          <p class="subtitle">Precision Psychiatry with Integrated Healing</p>
+        <div class="approach-header-flex">
+          <div class="approach-header">
+            <h2>Treatment Approach</h2>
+            <p class="subtitle">Precision Psychiatry with Integrated Healing</p>
+          </div>
+          <div class="approach-header-illustration">
+            <img src="/illustrations/brain-bloom-hands.jpeg" alt="Brain blooming with care and healing" />
+          </div>
         </div>
 
         <div class="approach-intro">
@@ -210,12 +222,19 @@
 
       <!-- Contact/Booking Section -->
       <section id="contact" class="contact">
-        <h2>Book an Appointment</h2>
+        <div class="contact-header-flex">
+          <div class="contact-header">
+            <h2>Book an Appointment</h2>
+            <p class="intro">
+              Let's take the first step toward your healing. Select your preferred meeting format below.
+            </p>
+          </div>
+          <div class="contact-illustration">
+            <img src="/illustrations/gratitude-pair.jpeg" alt="Two people sharing gratitude and connection" />
+          </div>
+        </div>
 
         <div class="contact-content">
-          <p class="intro">
-            Let's take the first step toward your healing. Select your preferred meeting format below.
-          </p>
 
           <!-- Meeting Format Selection -->
           <div class="meeting-format-section">
@@ -705,8 +724,10 @@ main {
   min-height: 80vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: var(--space-8);
   max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .hero-background {
@@ -789,6 +810,27 @@ main {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  flex: 1;
+}
+
+.hero-illustration {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  margin-top: var(--space-8);
+}
+
+.hero-illustration img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: var(--border-w) solid var(--border-brand);
 }
 
 .hero-content h1 {
@@ -927,6 +969,26 @@ main {
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-9);
   border-left: var(--border-w-ink) solid var(--brand);
+}
+
+.doctor-intro-flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.doctor-illustration {
+  width: 100%;
+  max-width: 300px;
+  justify-self: end;
+}
+
+.doctor-illustration img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .intro-text p {
@@ -1167,9 +1229,16 @@ main {
   background: linear-gradient(135deg, var(--peri-50) 0%, var(--lav-100) 100%);
 }
 
+.approach-header-flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-9);
+}
+
 .approach-header {
-  text-align: center;
-  margin-bottom: var(--space-8);
+  text-align: left;
 }
 
 .approach-header h2 {
@@ -1182,6 +1251,19 @@ main {
   font-size: var(--fs-md);
   color: var(--text-muted);
   font-weight: var(--fw-medium);
+}
+
+.approach-header-illustration {
+  width: 100%;
+  max-width: 350px;
+}
+
+.approach-header-illustration img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: var(--border-w) solid var(--border-brand);
 }
 
 .approach-intro {
@@ -1398,6 +1480,18 @@ main {
   padding: clamp(2.5rem, 6vw, 5.5rem) var(--gutter);
 }
 
+.contact-header-flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-9);
+}
+
+.contact-header {
+  flex: 1;
+}
+
 .contact h2 {
   font-size: var(--fs-h2);
   margin-bottom: var(--space-4);
@@ -1407,9 +1501,22 @@ main {
 
 .contact .intro {
   color: var(--text-muted);
-  margin-bottom: var(--space-8);
+  margin-bottom: 0;
   font-size: var(--fs-md);
   line-height: var(--lh-relaxed);
+}
+
+.contact-illustration {
+  width: 100%;
+  max-width: 350px;
+}
+
+.contact-illustration img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: var(--border-w) solid var(--border-brand);
 }
 
 .meeting-format-section {
@@ -1714,6 +1821,16 @@ main {
     font-size: var(--fs-h2);
   }
 
+  .hero {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero-illustration {
+    max-width: 100%;
+    margin-top: var(--space-6);
+  }
+
   .orb-container {
     display: none;
   }
@@ -1750,6 +1867,32 @@ main {
   .services-grid,
   .components-grid {
     grid-template-columns: 1fr;
+  }
+
+  .doctor-intro-flex,
+  .approach-header-flex,
+  .contact-header-flex {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .doctor-illustration,
+  .approach-header-illustration,
+  .contact-illustration {
+    max-width: 100%;
+    justify-self: auto;
+  }
+
+  .approach-header {
+    text-align: center;
+  }
+
+  .contact-header {
+    text-align: center;
+  }
+
+  .contact .intro {
+    margin-bottom: var(--space-6);
   }
 }
 </style>

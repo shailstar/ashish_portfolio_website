@@ -1,0 +1,57 @@
+<!-- @dsCard group="Colors" viewport="700x186" name="Accents — Coral, Lavender & Plum" subtitle="Warm flowers, soft washes, ink" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--bg-page); font-family: var(--font-sans); }
+  .wrap { padding: 20px 22px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .col { }
+  .col-title { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 7px; }
+  .stack { display: flex; gap: 6px; }
+  .sw { flex: 1; height: 64px; border-radius: var(--radius-sm); display: flex; align-items: flex-end; padding: 6px; box-shadow: var(--shadow-xs); }
+  .sw span { font-size: 10px; font-weight: 600; }
+  .hex { margin-top: 7px; font-size: 10.5px; color: var(--text-strong); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="grid">
+      <div class="col">
+        <div class="col-title">Coral</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--coral-300)"><span style="color:#fff">300</span></div>
+          <div class="sw" style="background:var(--coral-500)"><span style="color:#fff">500</span></div>
+        </div>
+        <div class="hex">--accent · #E8623E</div>
+      </div>
+      <div class="col">
+        <div class="col-title">Lavender</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--lav-200)"><span style="color:var(--plum-800)">200</span></div>
+          <div class="sw" style="background:var(--lav-400)"><span style="color:#fff">400</span></div>
+        </div>
+        <div class="hex">--lav-400 · #A98BE0</div>
+      </div>
+      <div class="col">
+        <div class="col-title">Plum / Ink</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--plum-700)"><span style="color:#fff">700</span></div>
+          <div class="sw" style="background:var(--plum-900)"><span style="color:#fff">900</span></div>
+        </div>
+        <div class="hex">--text-strong · #3D1A47</div>
+      </div>
+      <div class="col">
+        <div class="col-title">Signal Pops</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--heart)"><span style="color:#fff">♥</span></div>
+          <div class="sw" style="background:var(--gold)"><span style="color:var(--plum-900)">★</span></div>
+        </div>
+        <div class="hex">heart · gold</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

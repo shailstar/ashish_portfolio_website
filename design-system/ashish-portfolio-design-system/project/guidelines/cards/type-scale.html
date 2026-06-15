@@ -1,0 +1,29 @@
+<!-- @dsCard group="Type" viewport="700x290" name="Type Scale" subtitle="Display serif headings → sans body" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--bg-page); font-family: var(--font-sans); }
+  .wrap { padding: 22px 26px; display: flex; flex-direction: column; gap: 12px; }
+  .line { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px dashed var(--border); padding-bottom: 11px; }
+  .line:last-child { border-bottom: none; }
+  .tag { width: 60px; flex: none; font-size: 10.5px; color: var(--text-muted); font-weight: 600; }
+  .serif { font-family: var(--font-display); color: var(--text-strong); font-weight: 600; line-height: 1.05; white-space: nowrap; }
+  .sans { white-space: nowrap; }
+  .sans { font-family: var(--font-sans); color: var(--text-strong); }
+  .spec { margin-left: auto; font-size: 10.5px; color: var(--text-faint); flex: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="line"><span class="tag">H1</span><span class="serif" style="font-size:40px">Quiet confidence</span><span class="spec">60 / Playfair</span></div>
+    <div class="line"><span class="tag">H2</span><span class="serif" style="font-size:30px">Quiet confidence</span><span class="spec">44 / Playfair</span></div>
+    <div class="line"><span class="tag">H3</span><span class="serif" style="font-size:24px">Quiet confidence</span><span class="spec">28 / Playfair</span></div>
+    <div class="line"><span class="tag">H4</span><span class="sans" style="font-size:20px;font-weight:600">Quiet confidence</span><span class="spec">22 / Inter 600</span></div>
+    <div class="line"><span class="tag">Body</span><span class="sans" style="font-size:16px;color:var(--text-body)">Considered work, made with care.</span><span class="spec">16 / Inter 400</span></div>
+    <div class="line"><span class="tag">Small</span><span class="sans" style="font-size:14px;color:var(--text-muted)">Considered work, made with care.</span><span class="spec">14 / Inter 400</span></div>
+  </div>
+</body>
+</html>

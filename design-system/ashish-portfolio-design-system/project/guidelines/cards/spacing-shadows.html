@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Shadows" subtitle="Warm, low, diffuse — tinted toward plum" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--bg-page); font-family: var(--font-sans); }
+  .wrap { padding: 26px; display: flex; gap: 22px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .box { width: 96px; height: 72px; background: var(--surface-card); border-radius: var(--radius-md); }
+  .n { font-size: 11px; color: var(--text-strong); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-sm)"></div><div class="n">sm</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-md)"></div><div class="n">md</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-lg)"></div><div class="n">lg</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-brand)"></div><div class="n">brand</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-peri)"></div><div class="n">peri</div></div>
+  </div>
+</body>
+</html>
