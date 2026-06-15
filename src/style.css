@@ -1,20 +1,197 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap");
 
-* {
+/* ============================================================
+   DESIGN SYSTEM TOKENS — Ashish Portfolio
+   Warm, illustrative palette: rose, periwinkle, coral, lavender
+   ============================================================ */
+
+:root {
+  /* ---- Colors ---- */
+  --rose-50:  #FFF2F6;
+  --rose-100: #FCE0E9;
+  --rose-200: #F8C4D7;
+  --rose-300: #F29EBC;
+  --rose-400: #EC7B9F;
+  --rose-500: #E25C84;
+  --rose-600: #C8456C;
+  --rose-700: #A23455;
+
+  --peri-50:  #EFF0FE;
+  --peri-100: #E0E2FD;
+  --peri-200: #C5C8FA;
+  --peri-300: #A3A7F3;
+  --peri-400: #8488EE;
+  --peri-500: #6E72E6;
+  --peri-600: #5559CE;
+  --peri-700: #4044A8;
+
+  --coral-200: #F8C4B2;
+  --coral-300: #F4A085;
+  --coral-400: #EE7D5E;
+  --coral-500: #E8623E;
+  --coral-600: #CF4E2C;
+
+  --lav-100: #EFE6FA;
+  --lav-200: #DCC9F2;
+  --lav-300: #C2A4E6;
+  --lav-400: #A98BE0;
+  --lav-500: #9472CE;
+
+  --plum-700: #6F3B7D;
+  --plum-800: #5A2A66;
+  --plum-900: #3D1A47;
+
+  --heart: #E63946;
+  --gold:  #F2C94C;
+
+  --cream:    #FFF8F3;
+  --sand-50:  #FBF3EE;
+  --sand-100: #F4E8E1;
+  --sand-200: #E8D8CF;
+  --sand-300: #D8C3B8;
+  --warm-400: #B7A6A0;
+  --warm-500: #948079;
+  --warm-600: #74615B;
+  --warm-700: #533F3A;
+  --white:    #FFFFFF;
+
+  /* Semantic aliases */
+  --bg-page:        var(--cream);
+  --bg-subtle:      var(--sand-50);
+  --bg-sunken:      var(--rose-50);
+  --surface-card:   var(--white);
+  --surface-raised: var(--white);
+  --surface-tint:   var(--rose-100);
+  --surface-ink:    var(--plum-900);
+
+  --text-strong:  var(--plum-900);
+  --text-body:    var(--warm-700);
+  --text-muted:   var(--warm-500);
+  --text-faint:   var(--warm-400);
+  --text-on-dark: var(--rose-50);
+  --text-on-brand:#FFFFFF;
+
+  --brand:        var(--rose-500);
+  --brand-hover:  var(--rose-600);
+  --brand-ink:    var(--rose-700);
+  --secondary:    var(--peri-500);
+  --secondary-hover: var(--peri-600);
+  --accent:       var(--coral-500);
+  --accent-soft:  var(--coral-300);
+
+  --border:        var(--sand-200);
+  --border-strong: var(--sand-300);
+  --border-brand:  var(--rose-200);
+  --line-ink:      var(--plum-900);
+
+  --focus-ring: var(--peri-400);
+
+  --success: #4FA877;
+  --warning: var(--gold);
+  --danger:  var(--heart);
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-display:  600;
+  --fw-display-bold: 800;
+
+  --fs-display:  clamp(3rem, 6vw, 5.25rem);
+  --fs-h1:       clamp(2.5rem, 4.5vw, 3.75rem);
+  --fs-h2:       clamp(2rem, 3.2vw, 2.75rem);
+  --fs-h3:       1.75rem;
+  --fs-h4:       1.375rem;
+
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.125rem;
+  --fs-lg:   1.25rem;
+
+  --lh-tight:   1.08;
+  --lh-snug:    1.25;
+  --lh-normal:  1.55;
+  --lh-relaxed: 1.7;
+
+  --ls-tighter: -0.03em;
+  --ls-tight:   -0.015em;
+  --ls-normal:  0;
+  --ls-wide:    0.04em;
+  --ls-wider:   0.14em;
+
+  /* Spacing */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+
+  --container-sm: 640px;
+  --container-md: 880px;
+  --container-lg: 1120px;
+  --container-xl: 1320px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+
+  /* Radii */
+  --radius-xs:   6px;
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-2xl:  44px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-xs:  0 1px 2px rgba(61, 26, 71, 0.06);
+  --shadow-sm:  0 2px 8px rgba(61, 26, 71, 0.07);
+  --shadow-md:  0 8px 24px rgba(61, 26, 71, 0.10);
+  --shadow-lg:  0 18px 48px rgba(61, 26, 71, 0.14);
+  --shadow-brand: 0 12px 32px rgba(226, 92, 132, 0.28);
+  --shadow-peri:  0 12px 32px rgba(110, 114, 230, 0.26);
+
+  --border-w: 1px;
+  --border-w-ink: 2px;
+
+  /* Motion */
+  --ease-soft:   cubic-bezier(0.33, 0, 0.2, 1);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:    150ms;
+  --dur-base:    260ms;
+  --dur-slow:    480ms;
+
+  /* Z-index */
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-overlay: 1000;
+  --z-toast: 1100;
+}
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c2c2c;
-  background-color: #ffffff;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('/deepak-black-bg-50-compressed.png');
-  background-size: auto, 750px 375px;
-  background-repeat: repeat, repeat;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+  background-color: var(--bg-page);
 }
 
 html {
@@ -22,35 +199,50 @@ html {
 }
 
 a {
-  color: inherit;
+  color: var(--brand-ink);
   text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-soft);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
-  color: #2c2c2c;
-  font-weight: 600;
+a:hover {
+  color: var(--brand-hover);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-strong);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  margin: 0 0 0.5em;
 }
 
 p {
-  line-height: 1.7;
-  color: #4a4a4a;
+  margin: 0 0 1em;
+  line-height: var(--lh-relaxed);
 }
 
 button {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
+  transition: all var(--dur-base) var(--ease-soft);
 }
 
 input,
 textarea,
 select {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
 }
 
 #app {
@@ -63,17 +255,38 @@ main {
   flex: 1;
 }
 
-/* Color Variables */
-:root {
-  --sage-green: #A3B18A;
-  --tan: #C2A46F;
-  --white: #FFFFFF;
-  --black: #000000;
-  --text-dark: #2c2c2c;
-  --text-light: #4a4a4a;
+::selection {
+  background: var(--rose-200);
+  color: var(--plum-900);
 }
 
-/* Smooth transitions for better UX */
-* {
-  transition: color 0.2s, background-color 0.2s;
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Text helpers */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-strong);
+}
+
+.lead {
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--text-body);
 }
