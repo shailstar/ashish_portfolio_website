@@ -67,7 +67,7 @@ onMounted(() => {
 .hero {
   position: relative;
   padding: 5rem 2rem;
-  background-image: url('/illustrations/brain-bloom-hands.jpeg');
+  background-image: url('/brain-bloom-hands.jpeg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
