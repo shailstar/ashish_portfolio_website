@@ -1,12 +1,6 @@
 <template>
   <section class="treatment-process">
     <div class="process-container">
-      <div class="process-left">
-        <div class="process-illustration">
-          <img src="/image4.jpeg" alt="Mind blooming with healing flowers and butterflies" class="illustration-image" />
-        </div>
-      </div>
-
       <div class="process-right">
         <h2 class="process-title">Treatment Approach</h2>
         <p class="process-subtitle">Each treatment plan is tailored and may include:</p>
@@ -65,44 +59,23 @@ const steps = [
 .treatment-process {
   padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
   background: linear-gradient(120deg, var(--sage-100) 0%, var(--camel-100) 55%, var(--stone-100) 100%);
+  background-image: url('/image4.jpeg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-attachment: scroll;
 }
 
 .process-container {
   max-width: var(--container-xl);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-
-.process-left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.process-illustration {
-  width: 100%;
-  max-width: 250px;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.illustration-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  filter: drop-shadow(var(--shadow-md));
 }
 
 .process-right {
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  max-width: 55%;
 }
 
 .process-title {
@@ -216,14 +189,14 @@ const steps = [
 }
 
 @media (max-width: 768px) {
-  .process-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .treatment-process {
+    background-position: center bottom;
+    background-size: 150%;
   }
 
-  .process-left {
-    max-width: 200px;
-    margin: 0 auto;
+  .process-right {
+    max-width: 100%;
+    margin-left: 0;
   }
 
   .timeline-marker {
