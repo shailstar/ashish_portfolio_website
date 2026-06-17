@@ -1,0 +1,105 @@
+/* ============================================================
+   COLORS — Ashish Portfolio
+   Natural, editorial palette: sage green + warm camel,
+   grounded on black & white with stone neutrals + a clay accent.
+   Built from brand seeds: sage #A3B18A, camel #C2A46F.
+   ============================================================ */
+
+:root {
+  /* ---- Sage (primary) — the brand's calm green ---- */
+  --sage-50:  #F3F5EE;
+  --sage-100: #E7EBDD;
+  --sage-200: #D2D9BF;
+  --sage-300: #BCC6A1;
+  --sage-400: #A3B18A;   /* brand identity seed */
+  --sage-500: #8A9A70;
+  --sage-600: #6F7E57;   /* primary action (legible w/ white) */
+  --sage-700: #566242;
+  --sage-800: #3E472F;
+
+  /* ---- Camel (secondary) — warm tan / wheat ---- */
+  --camel-50:  #F9F5EC;
+  --camel-100: #F2E9D6;
+  --camel-200: #E5D4B1;
+  --camel-300: #D5BD8C;
+  --camel-400: #C2A46F;   /* secondary identity seed */
+  --camel-500: #A98A54;
+  --camel-600: #8A6F40;   /* secondary action (legible w/ white) */
+  --camel-700: #69552F;
+
+  /* ---- Clay (accent) — terracotta to bridge sage & camel ---- */
+  --clay-200: #E9C7B3;
+  --clay-300: #DBA284;
+  --clay-400: #CA7E59;
+  --clay-500: #B5663F;
+  --clay-600: #934E2C;
+
+  /* ---- Stone — warm greige neutrals (replaces cold gray) ---- */
+  --stone-50:  #F7F6F1;
+  --stone-100: #EDEBE2;
+  --stone-200: #DCD8CB;
+  --stone-300: #C5C0AF;
+  --stone-400: #A39E8C;
+  --stone-500: #7D7868;
+  --stone-600: #5C584B;
+  --stone-700: #403D33;
+
+  /* ---- Ink — warm near-black, plus true black / white ---- */
+  --ink-700: #33322B;
+  --ink-800: #201F1A;
+  --ink-900: #121210;
+  --black:   #000000;
+  --white:   #FFFFFF;
+  --paper:   #FAF9F3;   /* soft off-white page (lets white cards lift) */
+
+  /* ---- Signal pops ---- */
+  --leaf: #4E7A4A;
+  --amber:#C2922F;
+  --rust: #B5503C;
+
+  /* =========================================================
+     SEMANTIC ALIASES — reference these in components
+     ========================================================= */
+
+  /* Surfaces */
+  --bg-page:        var(--paper);
+  --bg-subtle:      var(--stone-50);
+  --bg-sunken:      var(--sage-50);
+  --surface-card:   var(--white);
+  --surface-raised: var(--white);
+  --surface-tint:   var(--sage-100);
+  --surface-ink:    var(--ink-900);     /* dark sections */
+
+  /* Text */
+  --text-strong:  var(--ink-900);
+  --text-body:    var(--stone-700);
+  --text-muted:   var(--stone-500);
+  --text-faint:   var(--stone-400);
+  --text-on-dark: var(--stone-50);
+  --text-on-brand:#FFFFFF;
+
+  /* Brand roles */
+  --brand:           var(--sage-600);
+  --brand-hover:     var(--sage-700);
+  --brand-ink:       var(--sage-700);
+  --secondary:       var(--camel-600);
+  --secondary-hover: var(--camel-700);
+  --accent:          var(--clay-500);
+  --accent-soft:     var(--clay-300);
+  --info:            var(--camel-600);
+
+  /* Lines & borders */
+  --border:        var(--stone-200);
+  --border-strong: var(--stone-300);
+  --border-brand:  var(--sage-300);
+  --line-ink:      var(--ink-900);      /* the signature hand-drawn outline */
+
+  /* Focus & states */
+  --focus-ring:      var(--sage-500);
+  --focus-ring-soft: var(--sage-100);
+
+  /* Feedback */
+  --success: var(--leaf);
+  --warning: var(--amber);
+  --danger:  var(--rust);
+}

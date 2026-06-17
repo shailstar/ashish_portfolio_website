@@ -1,81 +1,130 @@
 <template>
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-section">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#privacy">Privacy Policy</a></li>
-          <li><a href="#terms">Terms & Services</a></li>
-        </ul>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          Ashish<span class="dot">.</span>
+        </div>
+        <p class="footer-tagline">Designing for calm, clear minds. © 2026</p>
       </div>
-      <div class="footer-section">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-          <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
-          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <p>&copy; 2024 Dr. Ashish Yadav. All rights reserved.</p>
-        <p class="confidential">Your information is confidential. This is a safe, judgment-free space.</p>
+
+      <nav class="footer-nav">
+        <button
+          v-for="route in ['home', 'work', 'about', 'contact']"
+          :key="route"
+          class="footer-nav-link"
+          @click="$emit('navigate', route)"
+        >
+          {{ route }}
+        </button>
+      </nav>
+
+      <div class="footer-social">
+        <a href="#" class="social-link" @click.prevent>Dribbble</a>
+        <a href="#" class="social-link" @click.prevent>LinkedIn</a>
+        <a href="#" class="social-link" @click.prevent>Email</a>
       </div>
     </div>
   </footer>
 </template>
 
+<script setup>
+defineEmits(['navigate'])
+</script>
+
 <style scoped>
 .footer {
-  background-color: var(--surface-tint);
-  margin-top: var(--space-9);
-  padding: var(--space-8) var(--gutter);
-  border-top: var(--border-w) solid var(--border);
+  background: var(--bg-page);
+  border-top: 1px solid var(--border);
 }
 
 .footer-content {
   max-width: var(--container-xl);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--space-6);
-  text-align: center;
+  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.footer-section h4 {
-  margin-bottom: var(--space-4);
-  font-size: var(--fs-h4);
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
   color: var(--text-strong);
 }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
+.dot {
+  color: var(--brand);
 }
 
-.footer-section li {
-  margin-bottom: var(--space-2);
-}
-
-.footer-section a {
+.footer-tagline {
+  font-size: 0.875rem;
   color: var(--text-muted);
-  transition: color var(--dur-base) var(--ease-soft);
+  margin: 6px 0 0;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footer-nav-link {
+  border: none;
+  background: none;
   cursor: pointer;
-  font-size: var(--fs-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-body);
+  padding: 6px 10px;
+  text-transform: capitalize;
+  transition: color var(--dur-fast) var(--ease-soft);
 }
 
-.footer-section a:hover {
+.footer-nav-link:hover {
   color: var(--brand);
 }
 
-.footer-section p {
-  font-size: var(--fs-sm);
-  color: var(--text-muted);
+.footer-social {
+  display: flex;
+  gap: 10px;
 }
 
-.confidential {
-  font-size: var(--fs-xs);
-  color: var(--brand);
-  font-style: italic;
-  margin-top: var(--space-2) !important;
+.social-link {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+  padding: 8px 14px;
+  border: 1.5px solid var(--border-brand);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: all var(--dur-fast) var(--ease-soft);
+}
+
+.social-link:hover {
+  background: var(--sage-100);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-nav,
+  .footer-social {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

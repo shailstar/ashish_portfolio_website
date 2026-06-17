@@ -1,0 +1,57 @@
+<!-- @dsCard group="Colors" viewport="700x186" name="Accent, Ink & Signals" subtitle="Clay terracotta, warm ink, feedback pops" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--bg-page); font-family: var(--font-sans); }
+  .wrap { padding: 20px 22px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .col-title { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 7px; }
+  .stack { display: flex; gap: 6px; }
+  .sw { flex: 1; height: 64px; border-radius: var(--radius-sm); display: flex; align-items: flex-end; padding: 6px; box-shadow: var(--shadow-xs); }
+  .sw span { font-size: 10px; font-weight: 600; }
+  .hex { margin-top: 7px; font-size: 10.5px; color: var(--text-strong); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="grid">
+      <div class="col">
+        <div class="col-title">Clay (accent)</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--clay-300)"><span style="color:#fff">300</span></div>
+          <div class="sw" style="background:var(--clay-500)"><span style="color:#fff">500</span></div>
+        </div>
+        <div class="hex">--accent · #B5663F</div>
+      </div>
+      <div class="col">
+        <div class="col-title">Ink / Black</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--ink-700)"><span style="color:#fff">700</span></div>
+          <div class="sw" style="background:var(--ink-900)"><span style="color:#fff">900</span></div>
+        </div>
+        <div class="hex">--text-strong · #121210</div>
+      </div>
+      <div class="col">
+        <div class="col-title">Base</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--white); border:1px solid var(--border)"><span style="color:var(--ink-900)">FFF</span></div>
+          <div class="sw" style="background:var(--black)"><span style="color:#fff">000</span></div>
+        </div>
+        <div class="hex">white · black</div>
+      </div>
+      <div class="col">
+        <div class="col-title">Signals</div>
+        <div class="stack">
+          <div class="sw" style="background:var(--success)"><span style="color:#fff">ok</span></div>
+          <div class="sw" style="background:var(--warning)"><span style="color:#fff">!</span></div>
+          <div class="sw" style="background:var(--danger)"><span style="color:#fff">x</span></div>
+        </div>
+        <div class="hex">leaf · amber · rust</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

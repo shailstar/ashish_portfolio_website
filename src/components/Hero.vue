@@ -1,146 +1,128 @@
 <template>
-  <section class="hero" id="home">
+  <section class="hero">
     <div class="hero-content">
-      <h1>{{ currentTagline }}</h1>
-      <p class="subtitle">Consultant Neuro-Psychiatrist</p>
-      <p class="tagline">{{ currentSubtitle }}</p>
-
-      <div class="cta-buttons">
-        <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
-        <a href="#contact" class="btn btn-secondary">Take a 2-Min Self Assessment</a>
+      <div class="hero-text">
+        <div class="eyebrow">Consultant Neuro-Psychiatrist</div>
+        <h1 class="hero-headline">
+          Precision Psychiatry. <span class="italic-accent">Integrated</span> Healing.
+        </h1>
+        <p class="hero-subheading">
+          Tailored care combining modern medicine and yogic frameworks.
+        </p>
+        <div class="hero-buttons">
+          <Button variant="primary" size="lg" @click="$emit('navigate', 'work')">
+            View selected work
+          </Button>
+          <Button variant="outline" size="lg" @click="$emit('navigate', 'contact')">
+            Get in touch
+          </Button>
+        </div>
+        <div class="hero-badge">
+          <Badge tone="success">Available for projects · Summer 2026</Badge>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-const currentTagline = "Precision Psychiatry. Integrated Healing."
-const currentSubtitle = "Structured treatment integrating Clinical Psychiatry with Yogic Sciences."
+import { defineEmits } from 'vue'
+import Button from './Button.vue'
+import Badge from './Badge.vue'
+
+defineEmits(['navigate'])
 </script>
 
 <style scoped>
 .hero {
   position: relative;
-  padding: clamp(2.5rem, 6vw, 5.5rem) var(--gutter);
-  background-image: url('/illustrations/brain-bloom-hands.jpeg');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
   overflow: hidden;
-  aspect-ratio: 1934 / 1111;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--space-8);
-  max-width: 100%;
+  background: linear-gradient(120deg, var(--sage-100) 0%, var(--camel-100) 55%, var(--stone-100) 100%);
+  background-image: url('/image1.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: fixed;
 }
-
 
 .hero-content {
-  position: relative;
-  z-index: 10;
-  text-align: left;
-  max-width: 600px;
-  margin-left: 0;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
-.hero-content h1 {
-  font-size: var(--fs-display);
-  margin-bottom: var(--space-3);
-  color: var(--text-strong);
-  font-weight: var(--fw-display);
-  line-height: var(--lh-tight);
-  min-height: 3.5em;
-  transition: all var(--dur-slow) var(--ease-soft);
-}
-
-.hero-content .subtitle {
-  font-size: var(--fs-lg);
-  color: var(--brand);
-  margin-bottom: var(--space-4);
-  font-weight: var(--fw-semibold);
-}
-
-.hero-content .tagline {
-  font-size: var(--fs-md);
-  color: var(--text-muted);
-  margin-bottom: var(--space-8);
-  line-height: var(--lh-relaxed);
-  min-height: 2.1em;
-  transition: all var(--dur-slow) var(--ease-soft);
-}
-
-.cta-buttons {
+.hero-text {
   display: flex;
-  gap: 1.5rem;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  flex-direction: column;
+  grid-column: 1;
 }
 
-.btn {
-  padding: var(--space-4) var(--space-6);
-  border-radius: var(--radius-pill);
-  text-decoration: none;
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
-  transition: all var(--dur-base) var(--ease-soft);
-  display: inline-block;
-  font-size: var(--fs-sm);
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background-color: var(--brand);
-  color: var(--text-on-brand);
-  box-shadow: var(--shadow-brand);
-  scale: 0.97;
-}
-
-.btn-primary:hover {
-  background-color: var(--brand-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  scale: 1;
-}
-
-.btn-secondary {
-  background-color: var(--surface-card);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
   color: var(--brand);
-  border: var(--border-w) solid var(--border-brand);
+  margin-bottom: 18px;
 }
 
-.btn-secondary:hover {
-  background-color: var(--surface-tint);
-  transform: translateY(-2px);
-  scale: 1.02;
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  margin: 0 0 22px;
 }
+
+.italic-accent {
+  font-style: italic;
+  color: var(--brand);
+}
+
+.hero-subheading {
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  max-width: 44ch;
+  margin: 0 0 32px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.hero-badge {
+  display: flex;
+  align-items: center;
+}
+
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 60vh;
-    justify-content: center;
-  }
-
-  .hero::before {
-    background: linear-gradient(180deg, rgba(255, 248, 243, 0.95) 0%, rgba(255, 248, 243, 0.85) 50%, rgba(255, 248, 243, 0.7) 100%);
+    background-attachment: scroll;
+    background-position: right bottom;
   }
 
   .hero-content {
-    text-align: center;
-    max-width: 100%;
+    grid-template-columns: 1fr;
   }
 
-  .hero-content h1 {
-    font-size: var(--fs-h2);
+  .hero-text {
+    grid-column: auto;
   }
 
-  .cta-buttons {
-    justify-content: center;
+  .hero-buttons {
     flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
   }
 }
 </style>

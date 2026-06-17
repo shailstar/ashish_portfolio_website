@@ -1,0 +1,79 @@
+/* ============================================================
+   BASE — light resets + brand defaults for raw elements.
+   Optional, but gives specimen cards & kits a sensible floor.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings default to the display serif */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  margin: 0 0 0.5em;
+}
+h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-strong);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  margin: 0 0 0.5em;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+
+a { color: var(--brand-ink); text-decoration: none; }
+a:hover { color: var(--brand-hover); }
+
+::selection { background: var(--sage-200); color: var(--ink-900); }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* ---- A few semantic text helpers used across cards & kits ---- */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.display {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-strong);
+}
+.lead {
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--text-body);
+}
+.serif-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: var(--fw-display);
+}

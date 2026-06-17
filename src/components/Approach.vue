@@ -6,7 +6,7 @@
         <p class="subtitle">Precision Psychiatry with Integrated Healing</p>
       </div>
       <div class="approach-header-illustration">
-        <img src="/illustrations/brain-bloom-hands.jpeg" alt="Brain blooming with care and healing" />
+        <img src="/image4.jpeg" alt="Brain blooming with care and healing" />
       </div>
     </div>
 

@@ -1,0 +1,59 @@
+/* ============================================================
+   SPACING, RADII, SHADOWS, MOTION — Ashish Portfolio
+   ============================================================ */
+
+:root {
+  /* Spacing scale (4px base) */
+  --space-0:  0;
+  --space-1:  0.25rem;  /* 4  */
+  --space-2:  0.5rem;   /* 8  */
+  --space-3:  0.75rem;  /* 12 */
+  --space-4:  1rem;     /* 16 */
+  --space-5:  1.5rem;   /* 24 */
+  --space-6:  2rem;     /* 32 */
+  --space-7:  3rem;     /* 48 */
+  --space-8:  4rem;     /* 64 */
+  --space-9:  6rem;     /* 96 */
+  --space-10: 8rem;     /* 128 */
+
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 880px;
+  --container-lg: 1120px;
+  --container-xl: 1320px;
+  --gutter: clamp(1.25rem, 5vw, 4rem); /* @kind spacing */
+
+  /* Radii — soft, generous; the brand is rounded & gentle */
+  --radius-xs:   6px;
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-2xl:  44px;
+  --radius-pill: 999px;
+
+  /* Shadows — warm, low, diffuse (tinted toward ink/sage) */
+  --shadow-xs:  0 1px 2px rgba(18, 18, 16, 0.05);
+  --shadow-sm:  0 2px 8px rgba(18, 18, 16, 0.07);
+  --shadow-md:  0 8px 24px rgba(18, 18, 16, 0.10);
+  --shadow-lg:  0 18px 48px rgba(18, 18, 16, 0.14);
+  --shadow-brand:     0 12px 32px rgba(111, 126, 87, 0.30);
+  --shadow-secondary: 0 12px 32px rgba(138, 111, 64, 0.28);
+
+  /* Borders */
+  --border-w: 1px;
+  --border-w-ink: 2px;   /* the hand-drawn outline weight */
+
+  /* Motion — calm, soft ease; nothing snappy or bouncy */
+  --ease-soft:   cubic-bezier(0.33, 0, 0.2, 1); /* @kind other */
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --dur-fast:    150ms; /* @kind other */
+  --dur-base:    260ms; /* @kind other */
+  --dur-slow:    480ms; /* @kind other */
+
+  /* Z-index */
+  --z-base: 1; /* @kind other */
+  --z-sticky: 100; /* @kind other */
+  --z-overlay: 1000; /* @kind other */
+  --z-toast: 1100; /* @kind other */
+}

@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Buttons, Tags, Badges & Avatars" subtitle="Core interactive primitives" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--bg-page); font-family: var(--font-sans); }
+  #root { padding: 24px 26px; }
+  .group { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .lbl { width: 100%; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, Tag, Badge, Avatar } = window.AshishPortfolioDesignSystem_48f8eb;
+  function Demo() {
+    return (
+      <React.Fragment>
+        <div className="group">
+          <span className="lbl">Buttons</span>
+          <Button variant="primary">View work</Button>
+          <Button variant="secondary">Get in touch</Button>
+          <Button variant="outline">Read more</Button>
+          <Button variant="ghost">Skip</Button>
+          <Button variant="ink">Download CV</Button>
+          <Button variant="primary" disabled>Disabled</Button>
+        </div>
+        <div className="group">
+          <span className="lbl">Tags</span>
+          <Tag tone="sage">Branding</Tag>
+          <Tag tone="camel">UX Design</Tag>
+          <Tag tone="clay">Illustration</Tag>
+          <Tag tone="stone">Strategy</Tag>
+          <Tag tone="ink">Featured</Tag>
+        </div>
+        <div className="group">
+          <span className="lbl">Badges &amp; Avatars</span>
+          <Badge tone="success">Available for work</Badge>
+          <Badge tone="info">In progress</Badge>
+          <Badge tone="neutral" dot={false}>Archived</Badge>
+          <span style={{flex:1}}></span>
+          <Avatar name="Ashish R" size={44} />
+          <Avatar name="Maya K" size={44} ring={false} />
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

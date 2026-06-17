@@ -1,0 +1,47 @@
+/* ============================================================
+   TYPOGRAPHY — Ashish Portfolio
+   Playfair Display — expressive serif for display & headings.
+   Inter — clean grotesque for UI, body & labels.
+   ============================================================ */
+
+:root {
+  /* Families */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Weights */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+  --fw-display:  600; /* @kind font */
+  --fw-display-bold: 800; /* @kind font */
+
+  /* Fluid display sizes (clamp for responsive heroes) */
+  --fs-display:  clamp(3rem, 6vw, 5.25rem);     /* @kind font */
+  --fs-h1:       clamp(2.5rem, 4.5vw, 3.75rem); /* @kind font */
+  --fs-h2:       clamp(2rem, 3.2vw, 2.75rem);   /* @kind font */
+  --fs-h3:       1.75rem;   /* @kind font */
+  --fs-h4:       1.375rem;  /* @kind font */
+
+  /* Static UI / body scale */
+  --fs-xs:   0.75rem;   /* @kind font */
+  --fs-sm:   0.875rem;  /* @kind font */
+  --fs-base: 1rem;      /* @kind font */
+  --fs-md:   1.125rem;  /* @kind font */
+  --fs-lg:   1.25rem;   /* @kind font */
+
+  /* Line heights */
+  --lh-tight:   1.08;  /* @kind font */
+  --lh-snug:    1.25;  /* @kind font */
+  --lh-normal:  1.55;  /* @kind font */
+  --lh-relaxed: 1.7;   /* @kind font */
+
+  /* Letter spacing */
+  --ls-tighter: -0.03em; /* @kind font */
+  --ls-tight:   -0.015em;/* @kind font */
+  --ls-normal:  0;       /* @kind font */
+  --ls-wide:    0.04em;  /* @kind font */
+  --ls-wider:   0.14em;  /* @kind font */
+}
