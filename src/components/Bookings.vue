@@ -41,7 +41,7 @@
                 </div>
               </div>
 
-              <button class="cta-button">Schedule Consultation</button>
+              <a href="https://calendar.google.com/calendar/u/0/r" target="_blank" class="cta-button">Schedule Consultation</a>
             </div>
           </transition>
         </div>
@@ -308,6 +308,7 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 }
 
 .cta-button {
+  display: inline-block;
   width: 100%;
   padding: clamp(0.875rem, 1.5vw, 1.125rem) clamp(1.5rem, 3vw, 2.5rem);
   background-color: var(--brand);
@@ -321,6 +322,8 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   text-transform: uppercase;
   letter-spacing: var(--ls-wide);
   box-shadow: var(--shadow-brand);
+  text-decoration: none;
+  text-align: center;
 }
 
 .cta-button:hover {
