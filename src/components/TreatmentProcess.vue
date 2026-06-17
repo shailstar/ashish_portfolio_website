@@ -5,12 +5,12 @@
         <div class="process-illustration">
           <div class="illustration-placeholder">
             <svg viewBox="0 0 200 300" class="illustration-icon">
-              <rect x="30" y="20" width="140" height="220" rx="15" fill="#f0e6ff" stroke="#6b46c1" stroke-width="2"/>
-              <circle cx="100" cy="45" r="5" fill="#6b46c1"/>
-              <rect x="50" y="70" width="100" height="15" rx="3" fill="#d1d5db"/>
-              <rect x="50" y="95" width="100" height="60" rx="3" fill="#e9d5ff"/>
-              <rect x="50" y="165" width="80" height="15" rx="3" fill="#d1d5db"/>
-              <circle cx="100" cy="255" r="25" fill="#6b46c1"/>
+              <rect x="30" y="20" width="140" height="220" rx="15" fill="var(--sage-100)" stroke="var(--brand)" stroke-width="2"/>
+              <circle cx="100" cy="45" r="5" fill="var(--brand)"/>
+              <rect x="50" y="70" width="100" height="15" rx="3" fill="var(--border)"/>
+              <rect x="50" y="95" width="100" height="60" rx="3" fill="var(--camel-100)"/>
+              <rect x="50" y="165" width="80" height="15" rx="3" fill="var(--border)"/>
+              <circle cx="100" cy="255" r="25" fill="var(--brand)"/>
               <text x="100" y="263" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Start</text>
             </svg>
           </div>
@@ -23,7 +23,7 @@
 
         <div class="process-timeline">
           <div v-for="(step, index) in steps" :key="index" class="timeline-item">
-            <div class="timeline-marker" :style="{ '--step-color': step.color }">
+            <div class="timeline-marker">
               <span class="step-icon">{{ step.icon }}</span>
             </div>
             <div class="timeline-content">
@@ -46,32 +46,27 @@ const steps = [
   {
     icon: '🔍',
     title: 'Clinical Evaluation & Diagnosis',
-    description: 'Comprehensive assessment to understand your condition and establish an accurate diagnosis.',
-    color: '#6b46c1'
+    description: 'Comprehensive assessment to understand your condition and establish an accurate diagnosis.'
   },
   {
     icon: '💊',
     title: 'Medication When Required',
-    description: 'Carefully prescribed and monitored psychiatric medications tailored to your needs.',
-    color: '#7c3aed'
+    description: 'Carefully prescribed and monitored psychiatric medications tailored to your needs.'
   },
   {
     icon: '🔄',
     title: 'Behavioural Restructuring',
-    description: 'Targeted interventions to address unhelpful patterns and build resilience.',
-    color: '#a78bfa'
+    description: 'Targeted interventions to address unhelpful patterns and build resilience.'
   },
   {
     icon: '🧘',
     title: 'Yogic Practices',
-    description: 'Breathwork (pranayama), awareness training, and lifestyle correction for holistic healing.',
-    color: '#c4b5fd'
+    description: 'Breathwork (pranayama), awareness training, and lifestyle correction for holistic healing.'
   },
   {
     icon: '🛡️',
     title: 'Long-term Relapse Prevention',
-    description: 'Ongoing strategies and support to maintain progress and ensure lasting change.',
-    color: '#e9d5ff'
+    description: 'Ongoing strategies and support to maintain progress and ensure lasting change.'
   }
 ]
 </script>
@@ -79,7 +74,7 @@ const steps = [
 <style scoped>
 .treatment-process {
   padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
-  background: linear-gradient(135deg, #f3f0ff 0%, #faf5ff 100%);
+  background: linear-gradient(120deg, var(--sage-100) 0%, var(--camel-100) 55%, var(--stone-100) 100%);
 }
 
 .process-container {
@@ -114,7 +109,7 @@ const steps = [
 .illustration-icon {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 10px 25px rgba(107, 70, 193, 0.15));
+  filter: drop-shadow(var(--shadow-md));
 }
 
 .process-right {
@@ -160,21 +155,21 @@ const steps = [
   top: 50px;
   width: 2px;
   height: calc(100% + 0px);
-  background: linear-gradient(180deg, var(--step-color) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--brand) 0%, transparent 100%);
 }
 
 .timeline-marker {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--step-color);
+  background: var(--brand);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
-  box-shadow: 0 4px 12px rgba(107, 70, 193, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .step-icon {
@@ -193,7 +188,7 @@ const steps = [
 .step-title {
   font-family: var(--font-sans);
   font-size: clamp(0.9375rem, 1.2vw, 1.125rem);
-  font-weight: 700;
+  font-weight: var(--fw-semibold);
   margin: 0 0 0.375rem;
   color: var(--text-strong);
   text-transform: uppercase;
@@ -204,17 +199,17 @@ const steps = [
   font-size: clamp(0.8125rem, 1vw, 0.9375rem);
   color: var(--text-body);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .process-cta {
   display: flex;
-  gap: 1rem;
+  gap: clamp(0.75rem, 2vw, 1rem);
 }
 
 .cta-button {
   padding: clamp(0.875rem, 1.5vw, 1.125rem) clamp(1.5rem, 3vw, 2.5rem);
-  background-color: #6b46c1;
+  background-color: var(--brand);
   color: white;
   border: none;
   border-radius: var(--radius-lg);
@@ -224,13 +219,12 @@ const steps = [
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: var(--ls-wide);
-  box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+  box-shadow: var(--shadow-brand);
 }
 
 .cta-button:hover {
-  background-color: #5a3a9a;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(107, 70, 193, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 @media (max-width: 768px) {
