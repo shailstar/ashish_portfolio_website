@@ -58,7 +58,7 @@ const steps = [
 <style scoped>
 .treatment-process {
   padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
-  background: linear-gradient(120deg, var(--sage-100) 0%, var(--camel-100) 55%, var(--stone-100) 100%);
+  background-color: white;
   background-image: url('/image4.jpeg');
   background-size: contain;
   background-repeat: no-repeat;
