@@ -6,6 +6,7 @@
       <template v-if="route === 'home'">
         <Hero @navigate="route = $event" />
         <AboutHero />
+        <TreatmentProcess />
         <Services />
         <WorkGrid heading="Selected work" blurb="A few recent projects across wellness, health, and the quieter corners of tech." :limit="3" />
         <Contact />
@@ -27,6 +28,7 @@ import { ref } from 'vue'
 import Nav from './components/Nav.vue'
 import Hero from './components/Hero.vue'
 import AboutHero from './components/AboutHero.vue'
+import TreatmentProcess from './components/TreatmentProcess.vue'
 import Services from './components/Services.vue'
 import WorkGrid from './components/WorkGrid.vue'
 import Contact from './components/Contact.vue'
