@@ -5,21 +5,27 @@
         <h2 class="bookings-title">Consultations / Bookings</h2>
       </div>
 
-      <div class="bookings-card">
+      <div class="meeting-type-section">
+        <h3 class="meeting-question">How would you like to meet?</h3>
+        <div class="meeting-cards-grid">
+          <button
+            v-for="option in meetingOptions"
+            :key="option.id"
+            class="meeting-card"
+            :class="{ active: selectedOption === option.id }"
+            @click="selectedOption = option.id"
+          >
+            <div class="card-icon-wrapper">
+              <span class="card-icon">{{ option.icon }}</span>
+            </div>
+            <h4 class="card-title">{{ option.label }}</h4>
+            <p class="card-subtitle">{{ option.description }}</p>
+          </button>
+        </div>
+      </div>
+
+      <div v-if="selectedOption" class="bookings-card">
         <div class="card-inner">
-          <h3 class="meeting-question">How would you like to meet?</h3>
-          <div class="meeting-options">
-            <button
-              v-for="option in meetingOptions"
-              :key="option.id"
-              class="meeting-option"
-              :class="{ active: selectedOption === option.id }"
-              @click="selectedOption = option.id"
-            >
-              <span class="option-icon">{{ option.icon }}</span>
-              <span class="option-label">{{ option.label }}</span>
-            </button>
-          </div>
 
           <transition name="fade">
             <div v-if="selectedOption" class="calendar-wrapper">
@@ -59,17 +65,20 @@ const meetingOptions = [
   {
     id: 'in-person',
     label: 'In-Person',
-    icon: '🏢'
+    icon: '🏢',
+    description: 'Visit our clinic'
   },
   {
     id: 'online',
     label: 'Online',
-    icon: '💻'
+    icon: '💻',
+    description: 'Video consultation'
   },
   {
     id: 'home',
     label: 'Home Visit',
-    icon: '🏠'
+    icon: '🏠',
+    description: 'At your place'
   }
 ]
 
@@ -109,6 +118,95 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   letter-spacing: -0.015em;
 }
 
+.meeting-type-section {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.meeting-question {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  color: var(--text-strong);
+}
+
+.meeting-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: 2rem;
+}
+
+.meeting-card {
+  padding: clamp(1.5rem, 3vw, 2rem) 1rem;
+  background: linear-gradient(135deg, var(--sage-100) 0%, var(--camel-100) 100%);
+  border: none;
+  border-radius: var(--radius-2xl);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-sans);
+  color: var(--text-body);
+}
+
+.meeting-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+.meeting-card.active {
+  background: linear-gradient(135deg, var(--brand) 0%, #7c3aed 100%);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+}
+
+.card-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.meeting-card.active .card-icon-wrapper {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.card-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.card-title {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-strong);
+}
+
+.meeting-card.active .card-title {
+  color: white;
+}
+
+.card-subtitle {
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  margin: 0;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.meeting-card.active .card-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .bookings-card {
   background: white;
   border-radius: var(--radius-2xl);
@@ -121,62 +219,6 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 
 .card-inner {
   padding: clamp(2rem, 5vw, 3.5rem);
-}
-
-.meeting-question {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 600;
-  margin: 0 0 2rem;
-  color: var(--text-strong);
-  text-align: center;
-}
-
-.meeting-options {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.meeting-option {
-  padding: clamp(1.25rem, 3vw, 1.5rem) 1rem;
-  border: 2px solid var(--border);
-  border-radius: var(--radius-xl);
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-sans);
-  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
-  font-weight: 600;
-  color: var(--text-body);
-}
-
-.meeting-option:hover {
-  border-color: var(--brand);
-  background-color: var(--bg-subtle);
-  transform: translateY(-4px);
-}
-
-.meeting-option.active {
-  border-color: var(--brand);
-  background-color: var(--brand);
-  color: white;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-.option-icon {
-  font-size: 2rem;
-  line-height: 1;
-}
-
-.option-label {
-  display: block;
 }
 
 .calendar-wrapper {
@@ -332,20 +374,26 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 }
 
 @media (max-width: 768px) {
+  .meeting-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+
+  .card-icon-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
   .bookings-card {
     border-radius: var(--radius-xl);
   }
 
   .card-inner {
     padding: clamp(1.5rem, 4vw, 2rem);
-  }
-
-  .meeting-options {
-    gap: 0.75rem;
-  }
-
-  .meeting-question {
-    margin-bottom: 1.5rem;
   }
 }
 </style>
