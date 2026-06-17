@@ -5,14 +5,14 @@
     <main>
       <template v-if="route === 'home'">
         <Hero @navigate="route = $event" />
+        <AboutHero />
         <WorkGrid heading="Selected work" blurb="A few recent projects across wellness, health, and the quieter corners of tech." :limit="3" />
-        <About />
         <Contact />
       </template>
 
       <WorkGrid v-else-if="route === 'work'" heading="All work" blurb="Brand identities, product design, illustration systems and the occasional campaign." />
 
-      <About v-else-if="route === 'about'" />
+      <AboutHero v-else-if="route === 'about'" />
 
       <Contact v-else-if="route === 'contact'" />
     </main>
@@ -26,7 +26,7 @@ import { ref } from 'vue'
 import Nav from './components/Nav.vue'
 import Hero from './components/Hero.vue'
 import WorkGrid from './components/WorkGrid.vue'
-import About from './components/About.vue'
+import AboutHero from './components/AboutHero.vue'
 import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
 
