@@ -3,17 +3,7 @@
     <div class="process-container">
       <div class="process-left">
         <div class="process-illustration">
-          <div class="illustration-placeholder">
-            <svg viewBox="0 0 200 300" class="illustration-icon">
-              <rect x="30" y="20" width="140" height="220" rx="15" fill="var(--sage-100)" stroke="var(--brand)" stroke-width="2"/>
-              <circle cx="100" cy="45" r="5" fill="var(--brand)"/>
-              <rect x="50" y="70" width="100" height="15" rx="3" fill="var(--border)"/>
-              <rect x="50" y="95" width="100" height="60" rx="3" fill="var(--camel-100)"/>
-              <rect x="50" y="165" width="80" height="15" rx="3" fill="var(--border)"/>
-              <circle cx="100" cy="255" r="25" fill="var(--brand)"/>
-              <text x="100" y="263" text-anchor="middle" fill="white" font-size="12" font-weight="bold">Start</text>
-            </svg>
-          </div>
+          <img src="/image4.jpeg" alt="Mind blooming with healing flowers and butterflies" class="illustration-image" />
         </div>
       </div>
 
@@ -101,14 +91,12 @@ const steps = [
   justify-content: center;
 }
 
-.illustration-placeholder {
+.illustration-image {
   width: 100%;
   height: 100%;
-}
-
-.illustration-icon {
-  width: 100%;
-  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
   filter: drop-shadow(var(--shadow-md));
 }
 
