@@ -1,7 +1,7 @@
 <template>
   <section class="work-grid">
     <div class="work-header">
-      <div class="eyebrow">Portfolio</div>
+      <div class="eyebrow">Clinical Work</div>
       <h2 class="work-title">{{ heading }}</h2>
       <p v-if="blurb" class="work-blurb">{{ blurb }}</p>
     </div>
@@ -24,7 +24,7 @@ import { computed } from 'vue'
 import ProjectCard from './ProjectCard.vue'
 
 const props = defineProps({
-  heading: { type: String, default: 'Selected work' },
+  heading: { type: String, default: 'Clinical Work' },
   blurb: String,
   limit: Number,
 })
@@ -32,45 +32,45 @@ const props = defineProps({
 const PROJECTS = [
   {
     image: '/image2.jpeg',
-    category: 'Brand Identity',
+    category: 'Anxiety Disorders',
     year: '2025',
-    title: 'Bloom — a calmer mental-health app',
-    tags: ['Branding', 'UX', 'Illustration'],
+    title: 'Generalized Anxiety & Work Stress Management',
+    tags: ['Medication', 'Therapy', 'Lifestyle'],
   },
   {
     image: '/image3.jpeg',
-    category: 'Product Design',
+    category: 'Depression & Mood',
     year: '2025',
-    title: 'Stillness — guided meditation, redesigned',
-    tags: ['Mobile', 'Motion'],
+    title: 'Major Depression with Burnout Recovery',
+    tags: ['Assessment', 'Treatment', 'Follow-up'],
   },
   {
     image: '/image4.jpeg',
-    category: 'Illustration',
+    category: 'Behavioral Patterns',
     year: '2024',
-    title: 'Gratitude — an illustration system',
-    tags: ['Illustration', 'System'],
+    title: 'Procrastination & Binge Behavior Protocol',
+    tags: ['Restructuring', 'Mindfulness', 'Prevention'],
   },
   {
     image: '/image1.jpeg',
-    category: 'Web Design',
+    category: 'Sleep & Wellness',
     year: '2024',
-    title: 'Mindful Co. — marketing site',
-    tags: ['Web', 'Branding'],
+    title: 'Chronic Insomnia with Lifestyle Integration',
+    tags: ['Sleep Science', 'Yogic Practices', 'Recovery'],
   },
   {
     image: '/image2.jpeg',
-    category: 'Campaign',
+    category: 'Mental Health',
     year: '2023',
-    title: 'It\'s okay to not be okay',
-    tags: ['Campaign', 'Social'],
+    title: 'Emotional Resilience & Wellness Building',
+    tags: ['Integrated Care', 'Support', 'Healing'],
   },
   {
     image: '/image3.jpeg',
     category: 'Research',
     year: '2023',
-    title: 'Heart & Mind — a wellbeing study',
-    tags: ['Research', 'Strategy'],
+    title: 'Behavioral Patterns & Treatment Outcomes',
+    tags: ['Evidence-Based', 'Research', 'Outcomes'],
   },
 ]
 

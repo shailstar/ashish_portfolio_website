@@ -11,7 +11,7 @@
         <Bookings />
       </template>
 
-      <WorkGrid v-else-if="route === 'work'" heading="All work" blurb="Brand identities, product design, illustration systems and the occasional campaign." />
+      <WorkGrid v-else-if="route === 'work'" heading="Clinical Experience" blurb="Comprehensive mental health consultations and treatment across diverse presentations and complexities." />
 
       <AboutHero v-else-if="route === 'about'" />
     </main>

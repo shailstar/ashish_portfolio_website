@@ -18,7 +18,7 @@
           </Button>
         </div>
         <div class="hero-badge">
-          <Badge tone="success">Available for projects · Summer 2026</Badge>
+          <Badge tone="success">Accepting new patients · Summer 2026</Badge>
         </div>
       </div>
     </div>
