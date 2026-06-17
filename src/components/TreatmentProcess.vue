@@ -74,8 +74,7 @@ const steps = [
 .process-right {
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  max-width: 55%;
+  max-width: 100%;
 }
 
 .process-title {
@@ -85,6 +84,7 @@ const steps = [
   margin: 0 0 0.5rem;
   color: var(--text-strong);
   letter-spacing: -0.015em;
+  text-align: left;
 }
 
 .process-subtitle {
@@ -92,6 +92,7 @@ const steps = [
   color: var(--text-body);
   margin: 0 0 2rem;
   font-weight: 500;
+  text-align: left;
 }
 
 .process-timeline {
