@@ -9,14 +9,11 @@
         <TreatmentProcess />
         <Services />
         <Bookings />
-        <Contact />
       </template>
 
       <WorkGrid v-else-if="route === 'work'" heading="All work" blurb="Brand identities, product design, illustration systems and the occasional campaign." />
 
       <AboutHero v-else-if="route === 'about'" />
-
-      <Contact v-else-if="route === 'contact'" />
     </main>
 
     <Footer @navigate="route = $event" />
@@ -31,7 +28,6 @@ import AboutHero from './components/AboutHero.vue'
 import TreatmentProcess from './components/TreatmentProcess.vue'
 import Services from './components/Services.vue'
 import Bookings from './components/Bookings.vue'
-import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
 
 const route = ref('home')
