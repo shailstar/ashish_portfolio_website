@@ -8,6 +8,7 @@
 
       <div class="services-grid">
         <div v-for="service in services" :key="service.id" class="service-card">
+          <div class="service-icon">{{ service.icon }}</div>
           <h3 class="service-title">{{ service.title }}</h3>
           <p class="service-description">{{ service.description }}</p>
           <ul v-if="service.points" class="service-points">
@@ -28,48 +29,56 @@
 const services = [
   {
     id: 1,
+    icon: '🔍',
     title: 'Personalised Psychiatric Consultation',
     description: 'Comprehensive evaluation with a tailored treatment plan.',
     points: ['Diagnosis + formulation', 'Medication when required', 'Clear roadmap']
   },
   {
     id: 2,
+    icon: '😰',
     title: 'Anxiety & Stress Disorders',
     description: 'Move from constant overthinking and tension to clarity and control.',
     points: ['Generalised anxiety', 'Panic episodes', 'Work-related stress']
   },
   {
     id: 3,
+    icon: '😔',
     title: 'Depression & Mood Disorders',
     description: 'Address low mood, fatigue, and loss of motivation at the root.',
     points: ['Major depression', 'Burnout', 'Emotional numbness']
   },
   {
     id: 4,
+    icon: '🔄',
     title: 'Overthinking & Behavioural Patterns',
     description: 'Break repetitive thought loops and unhelpful habits.',
     points: ['Rumination', 'Procrastination', 'Binge behaviours (OTT, phone use)']
   },
   {
     id: 5,
+    icon: '😴',
     title: 'Sleep & Lifestyle Regulation',
     description: 'Restore natural sleep and daily rhythm.',
     points: ['Insomnia', 'Irregular routines', 'Bedtime procrastination']
   },
   {
     id: 6,
+    icon: '🧘',
     title: 'Integrative Mind-Body Therapy',
     description: 'Structured use of yogic practices alongside psychiatry.',
     points: ['Breathwork (pranayama)', 'Awareness training', 'Nervous system regulation']
   },
   {
     id: 7,
+    icon: '🛡️',
     title: 'Follow-up & Long-term Care',
     description: 'Ongoing refinement of treatment for sustained results.',
     points: ['Progress tracking', 'Adjustments in plan', 'Relapse prevention']
   },
   {
     id: 8,
+    icon: '⭐',
     title: 'Executive & Specialised Programs',
     description: 'High-touch, personalised care designed for complex needs and elevated expectations.',
     points: ['Personalised engagement', 'Complex case management', 'Premium support']
@@ -130,6 +139,12 @@ const services = [
   border-color: var(--brand);
   box-shadow: var(--shadow-md);
   transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+  line-height: 1;
 }
 
 .service-title {
