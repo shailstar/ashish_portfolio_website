@@ -60,7 +60,7 @@ const steps = [
   padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
   background-color: white;
   background-image: url('/image4.jpeg');
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: left center;
   background-attachment: scroll;
