@@ -1,199 +1,231 @@
 <template>
-  <section class="services" id="services">
-    <div class="services-header">
-      <h2>Services Offered</h2>
-      <p class="intro">
-        Comprehensive psychiatric care tailored to your individual needs. Each treatment plan integrates clinical expertise with a holistic approach to lasting healing.
-      </p>
-    </div>
+  <section class="services">
+    <div class="services-container">
+      <div class="services-header">
+        <h2 class="services-title">Services</h2>
+        <p class="services-subtitle">Comprehensive mental health care tailored to your needs</p>
+      </div>
 
-    <div class="services-grid">
-      <div class="service-card" v-for="service in services" :key="service.id">
-        <div class="service-icon">{{ service.icon }}</div>
-        <h3>{{ service.name }}</h3>
-        <p class="tagline">{{ service.tagline }}</p>
-        <p class="description">{{ service.description }}</p>
-        <ul class="conditions">
-          <li v-for="condition in service.conditions" :key="condition">
-            {{ condition }}
-          </li>
-        </ul>
+      <div class="services-grid">
+        <div v-for="service in services" :key="service.id" class="service-card">
+          <h3 class="service-title">{{ service.title }}</h3>
+          <p class="service-description">{{ service.description }}</p>
+          <ul v-if="service.points" class="service-points">
+            <li v-for="(point, index) in service.points" :key="index">{{ point }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="services-cta">
+        <button class="cta-button primary">Schedule a Consultation</button>
+        <button class="cta-button secondary">Begin Assessment</button>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const services = ref([
+const services = [
   {
     id: 1,
-    icon: '🧠',
-    name: 'Personalised Psychiatric Consultation',
-    tagline: 'Comprehensive evaluation with a tailored treatment plan.',
-    description: 'A thorough assessment to understand your unique situation, leading to a clear, personalised treatment roadmap.',
-    conditions: ['Comprehensive evaluation', 'Diagnosis + formulation', 'Medication when required', 'Clear treatment roadmap']
+    title: 'Personalised Psychiatric Consultation',
+    description: 'Comprehensive evaluation with a tailored treatment plan.',
+    points: ['Diagnosis + formulation', 'Medication when required', 'Clear roadmap']
   },
   {
     id: 2,
-    icon: '😰',
-    name: 'Anxiety & Stress Disorders',
-    tagline: 'Move from constant overthinking and tension to clarity and control.',
-    description: 'Evidence-based treatment for anxiety disorders affecting your daily functioning and quality of life.',
-    conditions: ['Generalised anxiety', 'Panic episodes', 'Work-related stress', 'Specific phobias']
+    title: 'Anxiety & Stress Disorders',
+    description: 'Move from constant overthinking and tension to clarity and control.',
+    points: ['Generalised anxiety', 'Panic episodes', 'Work-related stress']
   },
   {
     id: 3,
-    icon: '💔',
-    name: 'Depression & Mood Disorders',
-    tagline: 'Address low mood, fatigue, and loss of motivation at the root.',
-    description: 'Comprehensive treatment addressing the underlying patterns of depression and emotional challenges.',
-    conditions: ['Major depression', 'Burnout', 'Emotional numbness', 'Persistent low mood']
+    title: 'Depression & Mood Disorders',
+    description: 'Address low mood, fatigue, and loss of motivation at the root.',
+    points: ['Major depression', 'Burnout', 'Emotional numbness']
   },
   {
     id: 4,
-    icon: '🔄',
-    name: 'Overthinking & Behavioural Patterns',
-    tagline: 'Break repetitive thought loops and unhelpful habits.',
-    description: 'Structured approach to address rumination, procrastination, and compulsive behaviours.',
-    conditions: ['Rumination patterns', 'Procrastination', 'Binge behaviours (OTT, phone use)', 'Perfectionism']
+    title: 'Overthinking & Behavioural Patterns',
+    description: 'Break repetitive thought loops and unhelpful habits.',
+    points: ['Rumination', 'Procrastination', 'Binge behaviours (OTT, phone use)']
   },
   {
     id: 5,
-    icon: '😴',
-    name: 'Sleep & Lifestyle Regulation',
-    tagline: 'Restore natural sleep and daily rhythm.',
-    description: 'Structured interventions to improve sleep quality and establish healthy daily routines.',
-    conditions: ['Insomnia', 'Irregular sleep patterns', 'Bedtime procrastination', 'Circadian rhythm issues']
+    title: 'Sleep & Lifestyle Regulation',
+    description: 'Restore natural sleep and daily rhythm.',
+    points: ['Insomnia', 'Irregular routines', 'Bedtime procrastination']
   },
   {
     id: 6,
-    icon: '🧘',
-    name: 'Integrative Mind-Body Therapy',
-    tagline: 'Structured use of yogic practices alongside psychiatry.',
-    description: 'Combine clinical psychiatry with yogic sciences for comprehensive nervous system healing.',
-    conditions: ['Breathwork (pranayama)', 'Awareness training', 'Nervous system regulation', 'Lifestyle restructuring']
+    title: 'Integrative Mind-Body Therapy',
+    description: 'Structured use of yogic practices alongside psychiatry.',
+    points: ['Breathwork (pranayama)', 'Awareness training', 'Nervous system regulation']
   },
   {
     id: 7,
-    icon: '📈',
-    name: 'Follow-up & Long-term Care',
-    tagline: 'Ongoing refinement of treatment for sustained results.',
-    description: 'Continuous support to track progress, refine treatment, and prevent relapse.',
-    conditions: ['Progress monitoring', 'Treatment adjustments', 'Relapse prevention', 'Sustained wellness']
+    title: 'Follow-up & Long-term Care',
+    description: 'Ongoing refinement of treatment for sustained results.',
+    points: ['Progress tracking', 'Adjustments in plan', 'Relapse prevention']
   },
   {
     id: 8,
-    icon: '⭐',
-    name: 'Executive & Specialised Programs',
-    tagline: 'High-touch, personalised care for complex needs and elevated expectations.',
-    description: 'Customised programs designed for individuals seeking deeper engagement and personalised attention.',
-    conditions: ['High-engagement care', 'Complex presentations', 'Performance optimization', 'Custom protocols']
+    title: 'Executive & Specialised Programs',
+    description: 'High-touch, personalised care designed for complex needs and elevated expectations.',
+    points: ['Personalised engagement', 'Complex case management', 'Premium support']
   }
-])
+]
 </script>
 
 <style scoped>
 .services {
+  padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
+  background: white;
+}
+
+.services-container {
   max-width: var(--container-xl);
   margin: 0 auto;
-  padding: clamp(2.5rem, 6vw, 5.5rem) var(--gutter);
-  background: linear-gradient(135deg, var(--rose-50) 0%, var(--coral-200) 100%);
 }
 
 .services-header {
-  text-align: center;
-  margin-bottom: var(--space-9);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 600px;
 }
 
-.services-header h2 {
-  font-size: var(--fs-h2);
-  margin-bottom: var(--space-4);
+.services-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
   color: var(--text-strong);
+  letter-spacing: -0.015em;
 }
 
-.services-header .intro {
-  font-size: var(--fs-md);
-  color: var(--text-muted);
-  margin-bottom: 0;
-  line-height: var(--lh-relaxed);
-  max-width: var(--container-md);
-  margin-left: auto;
-  margin-right: auto;
+.services-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+  color: var(--text-body);
+  margin: 0;
+  line-height: 1.6;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-6);
-  margin-bottom: var(--space-9);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(3rem, 6vw, 4rem);
 }
 
 .service-card {
-  border: var(--border-w) solid var(--border);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  transition: all var(--dur-base) var(--ease-soft);
-  box-shadow: var(--shadow-sm);
-  background-color: var(--surface-card);
-  color: var(--text-body);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-6px);
   border-color: var(--brand);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
-.service-icon {
-  font-size: 2.8rem;
-  margin-bottom: var(--space-4);
-}
-
-.service-card h3 {
-  font-size: var(--fs-h4);
-  margin-bottom: var(--space-2);
+.service-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+  margin: 0 0 0.75rem;
   color: var(--text-strong);
+  line-height: 1.3;
 }
 
-.service-card .tagline {
-  font-size: var(--fs-sm);
-  color: var(--brand);
-  font-weight: var(--fw-semibold);
-  margin-bottom: var(--space-4) !important;
+.service-description {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  color: var(--text-body);
+  margin: 0 0 1rem;
+  line-height: 1.6;
 }
 
-.service-card .description {
-  color: var(--text-muted);
-  margin-bottom: var(--space-5);
-  line-height: var(--lh-relaxed);
-  font-size: var(--fs-sm);
-}
-
-.conditions {
+.service-points {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
 }
 
-.conditions li {
-  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+.service-points li {
+  font-size: clamp(0.8125rem, 1vw, 0.9375rem);
   color: var(--text-muted);
-  font-size: var(--fs-sm);
+  padding-left: 1.25rem;
   position: relative;
 }
 
-.conditions li:before {
-  content: "✓";
+.service-points li:before {
+  content: '✓';
   position: absolute;
   left: 0;
   color: var(--brand);
   font-weight: bold;
 }
 
+.services-cta {
+  display: flex;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.cta-button {
+  padding: clamp(0.875rem, 1.5vw, 1.125rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+.cta-button.primary {
+  background-color: var(--brand);
+  color: white;
+  box-shadow: var(--shadow-brand);
+}
+
+.cta-button.primary:hover {
+  background-color: var(--brand-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-button.secondary {
+  background-color: white;
+  color: var(--brand);
+  border: 2px solid var(--brand);
+}
+
+.cta-button.secondary:hover {
+  background-color: var(--surface-tint);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .services-cta {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    width: 100%;
   }
 }
 </style>
