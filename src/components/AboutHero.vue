@@ -1,57 +1,36 @@
 <template>
   <section class="about-hero">
-    <div class="about-hero-header">
-      <h1 class="hero-name">Dr Ashish Yadav</h1>
-      <p class="hero-title">Consultant Neuro-Psychiatrist</p>
-    </div>
-
-    <div class="about-hero-image">
-      <img src="/ashish-portrait.jpeg" alt="Dr Ashish Yadav" />
-    </div>
-
-    <div class="about-hero-content">
+    <div class="about-hero-wrapper">
       <div class="about-hero-left">
-        <p class="tagline">
-          You're not a diagnosis— you're a person— and your care should reflect that
-        </p>
+        <p class="intro-text">Hi, I'm Dr Ashish Yadav.</p>
+        <h2 class="about-headline">
+          You're not a diagnosis— you're a person— <span class="italic-text">and your care should reflect that</span>
+        </h2>
+
         <p class="body-text">
-          I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns—biological, psychological, and behavioural—and addressing them in a structured, individualised way. With a background in psychiatry, research in behavioural patterns such as procrastination and binge behaviour, and formal training in yoga, my work focuses on bridging science with practical, real-world application.
+          I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns—biological, psychological, and behavioural—and addressing them in a structured, individualised way.
         </p>
+
+        <p class="body-text">
+          With a background in psychiatry, research in behavioural patterns such as procrastination and binge behaviour, and formal training in yoga, my work focuses on bridging science with practical, real-world application.
+        </p>
+
         <p class="body-text">
           I primarily work with individuals who are looking for a deeper, structured approach—not just quick relief, but lasting change. Mental health care should be precise, personalised, and built to last.
         </p>
+
+        <div class="about-footer-text">
+          <p class="endline">
+            Tum Akele nahi ho dost, <span class="endline-accent">Healing starts here.</span>
+          </p>
+        </div>
       </div>
 
       <div class="about-hero-right">
-        <div class="about-section-header">
-          <h3>About Dr. Ashish</h3>
-          <p class="about-subtitle">The Approach Behind the Care</p>
-        </div>
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <span class="highlight-label">Precision</span>
-            <p>Structured, outcome-driven care</p>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-label">Integration</span>
-            <p>Psychiatry + Yogic Science</p>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-label">Personalization</span>
-            <p>Tailored to your patterns</p>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-label">Lasting Change</span>
-            <p>Beyond symptom control</p>
-          </div>
+        <div class="portrait-container">
+          <img src="/ashish-portrait.jpeg" alt="Dr Ashish Yadav" />
         </div>
       </div>
-    </div>
-
-    <div class="about-hero-footer">
-      <p class="endline">
-        Tum Akele nahi ho dost, <span class="endline-accent">Healing starts here.</span>
-      </p>
     </div>
   </section>
 </template>
@@ -61,147 +40,63 @@
 
 <style scoped>
 .about-hero {
+  padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 4rem);
   background: white;
-  border-top: 2px solid var(--text-strong);
-  border-bottom: 2px solid var(--text-strong);
 }
 
-.about-hero-header {
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
-  max-width: var(--container-xl);
-  margin: 0 auto;
-}
-
-.hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 700;
-  margin: 0;
-  color: var(--text-strong);
-  line-height: 1.1;
-}
-
-.hero-title {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  margin: 0.5rem 0 0;
-  color: var(--text-body);
-  font-weight: 500;
-}
-
-.about-hero-image {
-  width: 100%;
-  max-height: 300px;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--sage-100) 0%, var(--camel-100) 100%);
-}
-
-.about-hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-.about-hero-content {
+.about-hero-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  gap: clamp(2rem, 6vw, 4rem);
   max-width: var(--container-xl);
   margin: 0 auto;
-  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 4rem);
-  border-top: 1px solid var(--border);
+  align-items: center;
 }
 
 .about-hero-left {
-  padding-right: clamp(1.5rem, 3vw, 2.5rem);
-  border-right: 2px solid var(--text-strong);
+  display: flex;
+  flex-direction: column;
 }
 
-.tagline {
+.intro-text {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+  font-weight: 500;
+}
+
+.about-headline {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
   font-weight: 600;
   line-height: 1.3;
   color: var(--text-strong);
   margin: 0 0 1.5rem;
 }
 
+.italic-text {
+  font-style: italic;
+  color: var(--text-body);
+}
+
 .body-text {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
   line-height: 1.8;
   color: var(--text-body);
   margin: 0 0 1.25rem;
 }
 
 .body-text:last-of-type {
-  margin-bottom: 0;
-}
-
-.about-hero-right {
-  padding-left: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.about-section-header {
   margin-bottom: 2rem;
 }
 
-.about-section-header h3 {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
-  color: var(--text-body);
-  margin: 0 0 0.5rem;
-}
-
-.about-subtitle {
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  margin: 0;
-  font-weight: 500;
-}
-
-.about-highlights {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.highlight-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.highlight-label {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: var(--fw-semibold);
-  color: var(--brand);
-  text-transform: uppercase;
-  letter-spacing: var(--ls-wide);
-  margin-bottom: 0.5rem;
-}
-
-.highlight-item p {
-  font-size: 0.875rem;
-  color: var(--text-body);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.about-hero-footer {
-  background: var(--bg-subtle);
-  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 5vw, 4rem);
-  text-align: center;
-  max-width: var(--container-xl);
-  margin: 0 auto;
+.about-footer-text {
+  margin-top: 1.5rem;
 }
 
 .endline {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1rem, 2vw, 1.375rem);
   font-weight: 600;
   color: var(--text-strong);
   margin: 0;
@@ -212,30 +107,47 @@
   color: var(--brand);
 }
 
+.about-hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portrait-container {
+  width: 100%;
+  max-width: 400px;
+  border-radius: clamp(1.5rem, 3vw, 2.5rem);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-lg);
+}
+
+.portrait-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 @media (max-width: 768px) {
-  .about-hero-content {
-    grid-template-columns: 1fr;
+  .about-hero {
+    padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
   }
 
-  .about-hero-left {
-    padding-right: 0;
-    padding-bottom: 2rem;
-    border-right: none;
-    border-bottom: 2px solid var(--text-strong);
+  .about-hero-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .about-hero-right {
-    padding-left: 0;
-    padding-top: 2rem;
+    order: -1;
   }
 
-  .about-highlights {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .about-section-header {
-    margin-bottom: 1.5rem;
+  .portrait-container {
+    max-width: 100%;
+    aspect-ratio: auto;
+    max-height: 400px;
   }
 }
 </style>
