@@ -2,7 +2,7 @@
   <header class="header">
     <div class="nav-container">
       <button class="logo" @click="$emit('navigate', 'home')">
-        Ashish<span class="dot">.</span>
+        Dr. Ashish Yadav
       </button>
 
       <nav class="nav-links">
@@ -85,19 +85,12 @@ const links = [
   cursor: pointer;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   letter-spacing: -0.01em;
   color: var(--text-strong);
   padding: 0;
   transition: color var(--dur-fast) var(--ease-soft);
-}
-
-.logo:hover {
-  color: var(--brand);
-}
-
-.dot {
-  color: var(--brand);
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -153,5 +146,86 @@ const links = [
 
 .button-link:hover {
   background: var(--brand-hover);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 14px clamp(1rem, 4vw, 3rem);
+  }
+
+  .nav-container {
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+  }
+
+  .button-link {
+    padding: 6px 14px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 12px clamp(1rem, 3vw, 2rem);
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.8125rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .button-link {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .nav-container {
+    gap: 0.5rem;
+  }
+
+  .logo {
+    font-size: clamp(0.875rem, 2vw, 1.1rem);
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .button-link {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
 }
 </style>
