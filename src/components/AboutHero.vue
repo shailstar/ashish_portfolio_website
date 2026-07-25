@@ -28,7 +28,7 @@
 
       <div class="about-hero-right">
         <div class="portrait-container">
-          <img src="/ashish-portrait.jpeg" alt="Dr Ashish Yadav" />
+          <img src="/profile_about.png" alt="Dr Ashish Yadav" />
         </div>
       </div>
     </div>

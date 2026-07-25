@@ -6,17 +6,32 @@
       </button>
 
       <nav class="nav-links">
-        <button
-          v-for="link in links"
-          :key="link.id"
-          :class="['nav-link', { active: route === link.id }]"
-          @click="$emit('navigate', link.id)"
+        <template v-for="link in links" :key="link.id">
+          <a
+            v-if="link.url"
+            :href="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            :class="['nav-link', 'nav-link-external']"
+          >
+            {{ link.label }}
+          </a>
+          <button
+            v-else
+            :class="['nav-link', { active: route === link.id }]"
+            @click="$emit('navigate', link.id)"
+          >
+            {{ link.label }}
+          </button>
+        </template>
+        <a
+          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button-link"
         >
-          {{ link.label }}
-        </button>
-        <Button variant="primary" size="sm" @click="$emit('navigate', 'contact')">
           Let's talk
-        </Button>
+        </a>
       </nav>
     </div>
   </header>
@@ -34,9 +49,9 @@ defineEmits(['navigate'])
 
 const links = [
   { id: 'home', label: 'Home' },
-  { id: 'work', label: 'Work' },
+  { id: 'work', label: 'Approach', url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j' },
   { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'contact', label: 'Contact', url: 'https://wa.me/message/75HLOF6Q7MV4A1' },
 ]
 </script>
 
@@ -102,6 +117,8 @@ const links = [
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: background var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .nav-link:hover {
@@ -112,5 +129,29 @@ const links = [
 .nav-link.active {
   background: var(--sage-100);
   color: var(--sage-700);
+}
+
+.nav-link-external {
+  border: none;
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: var(--brand);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-soft);
+}
+
+.button-link:hover {
+  background: var(--brand-hover);
 }
 </style>

@@ -18,7 +18,14 @@
         </div>
 
         <div class="process-cta">
-          <button class="cta-button">Start Your Journey</button>
+          <a
+            href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta-button"
+          >
+            Start Your Journey
+          </a>
         </div>
       </div>
     </div>
@@ -170,6 +177,7 @@ const steps = [
 }
 
 .cta-button {
+  display: inline-block;
   padding: clamp(0.875rem, 1.5vw, 1.125rem) clamp(1.5rem, 3vw, 2.5rem);
   background-color: var(--brand);
   color: white;
@@ -182,6 +190,7 @@ const steps = [
   text-transform: uppercase;
   letter-spacing: var(--ls-wide);
   box-shadow: var(--shadow-brand);
+  text-decoration: none;
 }
 
 .cta-button:hover {

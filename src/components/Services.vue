@@ -18,7 +18,14 @@
       </div>
 
       <div class="services-cta">
-        <button class="cta-button primary">Schedule a Consultation</button>
+        <a
+          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-button primary"
+        >
+          Schedule a Consultation
+        </a>
         <button class="cta-button secondary">Begin Assessment</button>
       </div>
     </div>
@@ -196,6 +203,7 @@ const services = [
 }
 
 .cta-button {
+  display: inline-block;
   padding: clamp(0.875rem, 1.5vw, 1.125rem) clamp(1.5rem, 3vw, 2.5rem);
   border-radius: var(--radius-lg);
   font-size: clamp(0.875rem, 1.2vw, 1rem);
@@ -205,6 +213,7 @@ const services = [
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: var(--ls-wide);
+  text-decoration: none;
 }
 
 .cta-button.primary {
