@@ -4,11 +4,11 @@
       <div class="about-hero-left">
         <p class="intro-text">Hi, I'm Dr Ashish Yadav.</p>
         <h2 class="about-headline">
-          You're not a diagnosis— you're a person— <span class="italic-text">and your care should reflect that</span>
+          You're Not a Diagnosis, you're a person, <span class="italic-text">and your care should reflect that</span>
         </h2>
 
         <p class="body-text">
-          I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns—biological, psychological, and behavioural—and addressing them in a structured, individualised way.
+          I work at the intersection of psychiatry and yogic science, focusing on personalised, outcome-driven mental health care. Most treatments focus on symptom control. My approach focuses on understanding the underlying patterns (biological, psychological, and behavioural) and addressing them in a structured, individualised way.
         </p>
 
         <p class="body-text">
@@ -16,7 +16,7 @@
         </p>
 
         <p class="body-text">
-          I primarily work with individuals who are looking for a deeper, structured approach—not just quick relief, but lasting change. Mental health care should be precise, personalised, and built to last.
+          I primarily work with individuals who are looking for a deeper, structured approach, not just quick relief, but lasting change. Mental health care should be precise, personalised, and built to last.
         </p>
 
         <div class="about-footer-text">

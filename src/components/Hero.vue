@@ -6,13 +6,15 @@
       <div class="hero-text">
         <span ref="eyebrowRef" class="eyebrow">Consultant Neuro-Psychiatrist</span>
 
-        <h1 ref="h1Ref" class="hero-headline">
-          Where Neuroscience Meets <em class="italic-accent">Ancient Wisdom</em>
-        </h1>
+        <div ref="textBlockRef" class="hero-text-block">
+          <h1 ref="h1Ref" class="hero-headline">
+            Where Neuroscience Meets <em class="italic-accent">Ancient Wisdom</em>
+          </h1>
 
-        <p ref="subRef" class="hero-subheading">
-          Precision psychiatry and yogic science, woven around your story.
-        </p>
+          <p ref="subRef" class="hero-subheading">
+            Precision psychiatry and yogic science, woven around your story.
+          </p>
+        </div>
 
         <div ref="ctaRef" class="hero-cta">
           <Button
@@ -43,6 +45,7 @@ defineEmits(['navigate'])
 const rootRef = ref(null)
 const canvasRef = ref(null)
 const eyebrowRef = ref(null)
+const textBlockRef = ref(null)
 const h1Ref = ref(null)
 const subRef = ref(null)
 const ctaRef = ref(null)
@@ -74,6 +77,41 @@ const PAIRS = [
 const handleAssessment = () => {
   // Placeholder for assessment link
   console.log('Assessment clicked')
+}
+
+// Locks the headline+subheading block to the tallest of the rotating text
+// pairs, so swapping between them never reflows the CTA row below it.
+// At a given viewport width this only ever grows the lock, never shrinks it,
+// since re-measuring can run while web fonts are still swapping in and
+// under-report the true height. A genuine width change (real resize, not
+// just the font-load re-measurements) resets the floor so it can shrink too.
+let lockedWidth = null
+const lockTextBlockHeight = () => {
+  const block = textBlockRef.value
+  const h1 = h1Ref.value
+  const sub = subRef.value
+  const wrap = rootRef.value
+  if (!block || !h1 || !sub || !wrap) return
+
+  const width = wrap.clientWidth
+  const widthChanged = lockedWidth !== null && Math.abs(width - lockedWidth) > 1
+  lockedWidth = width
+
+  const current = widthChanged ? 0 : parseFloat(block.style.minHeight) || 0
+  block.style.minHeight = ''
+  const originalH1 = h1.innerHTML
+  const originalSub = sub.innerHTML
+
+  let max = current
+  PAIRS.forEach((p) => {
+    h1.innerHTML = p.h
+    sub.innerHTML = p.s
+    max = Math.max(max, block.offsetHeight)
+  })
+
+  h1.innerHTML = originalH1
+  sub.innerHTML = originalSub
+  block.style.minHeight = `${max}px`
 }
 
 const entrance = () => {
@@ -126,6 +164,16 @@ const setPair = (idx) => {
   animationState.swapTimeout = setTimeout(() => {
     h1.innerHTML = p.h
     sub.innerHTML = p.s
+    // Safety net: grow the lock if this real render needs more room than
+    // predicted (e.g. web fonts were still swapping in when first measured).
+    // min-height only floors the box, so offsetHeight here already reflects
+    // whichever is taller: the actual content or the current lock.
+    const block = textBlockRef.value
+    if (block) {
+      const needed = block.offsetHeight
+      const current = parseFloat(block.style.minHeight) || 0
+      if (needed > current) block.style.minHeight = `${needed}px`
+    }
   }, 600)
 }
 
@@ -164,6 +212,7 @@ const initCanvas = () => {
   let HI = 22 + 18 * 0.35
 
   const rsz = () => {
+    lockTextBlockHeight()
     W = wrap.clientWidth
     H = wrap.clientHeight
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -393,9 +442,20 @@ const initCanvas = () => {
 }
 
 onMounted(() => {
+  lockTextBlockHeight()
   entrance()
   startRotation()
   initCanvas()
+
+  // Google Fonts load async (display=swap). `document.fonts.ready` can
+  // resolve before the browser finishes relaying out already-painted text
+  // with the swapped-in font, so re-measure again a little later too —
+  // comfortably before the first text rotation at 6.5s. setPair()'s own
+  // measurement is the final safety net if timing is ever still off.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => lockTextBlockHeight())
+  }
+  setTimeout(lockTextBlockHeight, 2000)
 })
 
 onUnmounted(() => {
@@ -444,6 +504,10 @@ onUnmounted(() => {
   width: 100%;
   max-width: 660px;
   margin: 0 auto;
+}
+
+.hero-text-block {
+  display: flow-root;
 }
 
 .eyebrow {
