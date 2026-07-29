@@ -9,14 +9,24 @@
       </div>
 
       <nav class="footer-nav">
-        <button
-          v-for="route in ['home', 'work', 'about', 'contact']"
-          :key="route"
-          class="footer-nav-link"
-          @click="$emit('navigate', route)"
-        >
-          {{ route }}
-        </button>
+        <template v-for="link in links" :key="link.id">
+          <a
+            v-if="link.url"
+            :href="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-nav-link"
+          >
+            {{ link.label }}
+          </a>
+          <button
+            v-else
+            class="footer-nav-link"
+            @click="$emit('navigate', link.id)"
+          >
+            {{ link.label }}
+          </button>
+        </template>
       </nav>
 
       <div class="footer-social">
@@ -30,6 +40,13 @@
 
 <script setup>
 defineEmits(['navigate'])
+
+const links = [
+  { id: 'home', label: 'Home' },
+  { id: 'work', label: 'Approach', url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
+]
 </script>
 
 <style scoped>
