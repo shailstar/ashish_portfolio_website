@@ -25,7 +25,7 @@ function About() {
           <img
             src="../../assets/illustrations/profile-brain-heart.jpeg"
             alt="Portrait illustration"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "78% center", display: "block" }}
           />
         </div>
         <div>
@@ -53,7 +53,7 @@ function About() {
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "30px" }}>
             {skills.map((s, i) => (
-              <Tag key={s} tone={["rose", "peri", "coral", "lav"][i % 4]}>{s}</Tag>
+              <Tag key={s} tone={["sage", "camel", "clay", "stone"][i % 4]}>{s}</Tag>
             ))}
           </div>
           <div style={{ display: "flex", gap: "40px" }}>

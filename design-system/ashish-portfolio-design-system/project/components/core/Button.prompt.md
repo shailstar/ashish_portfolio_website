@@ -5,6 +5,6 @@ Soft, pill-shaped call-to-action button — use for any primary or secondary act
 <Button variant="outline" iconRight={<ArrowIcon />}>Read more</Button>
 ```
 
-Variants: `primary` (rose), `secondary` (periwinkle), `outline`, `ghost`, `ink` (dark plum).
+Variants: `primary` (sage), `secondary` (camel), `outline`, `ghost`, `ink` (near-black).
 Sizes: `sm`, `md`, `lg`. Props: `full` (100% width), `iconLeft`/`iconRight`, `as="a"` for links.
 Motion is calm — a subtle press-scale and brightness lift, never a bounce.

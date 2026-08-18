@@ -5,4 +5,4 @@ Soft elevated surface — the base container for any content block.
 <Card tint elevation="none">Quiet, tinted block</Card>
 ```
 
-Props: `padding` (none/sm/md/lg), `elevation` (none/sm/md/lg), `tint` (rose surface).
+Props: `padding` (none/sm/md/lg), `elevation` (none/sm/md/lg), `tint` (sage surface).

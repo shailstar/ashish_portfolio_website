@@ -7,7 +7,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   padding?: "none" | "sm" | "md" | "lg";
   /** @default "sm" */
   elevation?: "none" | "sm" | "md" | "lg";
-  /** Use the rose tint surface instead of white. @default false */
+  /** Use the sage tint surface instead of white. @default false */
   tint?: boolean;
   style?: React.CSSProperties;
 }

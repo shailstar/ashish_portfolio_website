@@ -38,8 +38,8 @@ export function Textarea({ label = "", hint = "", rows = 4, id, style = {}, ...r
           width: "100%",
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = "var(--peri-400)";
-          e.currentTarget.style.boxShadow = "0 0 0 3px var(--peri-100)";
+          e.currentTarget.style.borderColor = "var(--focus-ring)";
+          e.currentTarget.style.boxShadow = "0 0 0 3px var(--focus-ring-soft)";
         }}
         onBlur={(e) => {
           e.currentTarget.style.borderColor = "var(--border)";

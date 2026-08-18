@@ -39,7 +39,7 @@ export function ProjectCard({
       }}
       {...rest}
     >
-      <div style={{ aspectRatio: "16 / 10", overflow: "hidden", background: "var(--rose-100)" }}>
+      <div style={{ aspectRatio: "16 / 10", overflow: "hidden", background: "var(--sage-100)" }}>
         {image && (
           <img
             src={image}
@@ -87,7 +87,7 @@ export function ProjectCard({
         {tags.length > 0 && (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
             {tags.map((t) => (
-              <Tag key={t} tone="sand" size="sm">
+              <Tag key={t} tone="stone" size="sm">
                 {t}
               </Tag>
             ))}

@@ -30,15 +30,15 @@ export function Button({
       boxShadow: "var(--shadow-brand)",
     },
     secondary: {
-      background: "var(--peri-500)",
+      background: "var(--secondary)",
       color: "#fff",
       border: "none",
-      boxShadow: "var(--shadow-peri)",
+      boxShadow: "var(--shadow-secondary)",
     },
     outline: {
       background: "transparent",
       color: "var(--brand-ink)",
-      border: "2px solid var(--rose-300)",
+      border: "2px solid var(--sage-300)",
       boxShadow: "none",
     },
     ghost: {
@@ -48,7 +48,7 @@ export function Button({
       boxShadow: "none",
     },
     ink: {
-      background: "var(--plum-900)",
+      background: "var(--ink-900)",
       color: "#fff",
       border: "none",
       boxShadow: "var(--shadow-md)",

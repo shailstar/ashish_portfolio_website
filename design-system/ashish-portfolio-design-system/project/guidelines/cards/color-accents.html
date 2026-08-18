@@ -1,4 +1,4 @@
-<!-- @dsCard group="Colors" viewport="700x186" name="Accents — Coral, Lavender & Plum" subtitle="Warm flowers, soft washes, ink" -->
+<!-- @dsCard group="Colors" viewport="700x186" name="Accent, Ink & Signals" subtitle="Clay terracotta, warm ink, feedback pops" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,6 @@
   body { margin: 0; background: var(--bg-page); font-family: var(--font-sans); }
   .wrap { padding: 20px 22px; }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .col { }
   .col-title { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 7px; }
   .stack { display: flex; gap: 6px; }
   .sw { flex: 1; height: 64px; border-radius: var(--radius-sm); display: flex; align-items: flex-end; padding: 6px; box-shadow: var(--shadow-xs); }
@@ -20,36 +19,37 @@
   <div class="wrap">
     <div class="grid">
       <div class="col">
-        <div class="col-title">Coral</div>
+        <div class="col-title">Clay (accent)</div>
         <div class="stack">
-          <div class="sw" style="background:var(--coral-300)"><span style="color:#fff">300</span></div>
-          <div class="sw" style="background:var(--coral-500)"><span style="color:#fff">500</span></div>
+          <div class="sw" style="background:var(--clay-300)"><span style="color:#fff">300</span></div>
+          <div class="sw" style="background:var(--clay-500)"><span style="color:#fff">500</span></div>
         </div>
-        <div class="hex">--accent · #E8623E</div>
+        <div class="hex">--accent · #B5663F</div>
       </div>
       <div class="col">
-        <div class="col-title">Lavender</div>
+        <div class="col-title">Ink / Black</div>
         <div class="stack">
-          <div class="sw" style="background:var(--lav-200)"><span style="color:var(--plum-800)">200</span></div>
-          <div class="sw" style="background:var(--lav-400)"><span style="color:#fff">400</span></div>
+          <div class="sw" style="background:var(--ink-700)"><span style="color:#fff">700</span></div>
+          <div class="sw" style="background:var(--ink-900)"><span style="color:#fff">900</span></div>
         </div>
-        <div class="hex">--lav-400 · #A98BE0</div>
+        <div class="hex">--text-strong · #121210</div>
       </div>
       <div class="col">
-        <div class="col-title">Plum / Ink</div>
+        <div class="col-title">Base</div>
         <div class="stack">
-          <div class="sw" style="background:var(--plum-700)"><span style="color:#fff">700</span></div>
-          <div class="sw" style="background:var(--plum-900)"><span style="color:#fff">900</span></div>
+          <div class="sw" style="background:var(--white); border:1px solid var(--border)"><span style="color:var(--ink-900)">FFF</span></div>
+          <div class="sw" style="background:var(--black)"><span style="color:#fff">000</span></div>
         </div>
-        <div class="hex">--text-strong · #3D1A47</div>
+        <div class="hex">white · black</div>
       </div>
       <div class="col">
-        <div class="col-title">Signal Pops</div>
+        <div class="col-title">Signals</div>
         <div class="stack">
-          <div class="sw" style="background:var(--heart)"><span style="color:#fff">♥</span></div>
-          <div class="sw" style="background:var(--gold)"><span style="color:var(--plum-900)">★</span></div>
+          <div class="sw" style="background:var(--success)"><span style="color:#fff">ok</span></div>
+          <div class="sw" style="background:var(--warning)"><span style="color:#fff">!</span></div>
+          <div class="sw" style="background:var(--danger)"><span style="color:#fff">x</span></div>
         </div>
-        <div class="hex">heart · gold</div>
+        <div class="hex">leaf · amber · rust</div>
       </div>
     </div>
   </div>

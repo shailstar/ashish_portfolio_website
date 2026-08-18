@@ -3,7 +3,8 @@
 A warm, illustrative design system for **Ashish**, a product & brand designer
 working at the intersection of **health, wellness, and the quieter corners of
 tech**. The brand voice is calm, human, and reassuring; the visual world is
-soft pink-and-periwinkle gradients, hand-drawn line illustration (blooming
+natural and editorial — soft **sage-green and warm-camel** tones grounded on
+**black & white** with stone neutrals, hand-drawn line illustration (blooming
 minds, butterflies, hearts), generous space, and an expressive serif paired
 with a quiet sans.
 
@@ -15,9 +16,10 @@ with a quiet sans.
 
 ## Sources
 
-- **Brand illustrations** — 7 supplied images, copied to
-  `assets/illustrations/` (mind-in-bloom line art, meditation, gratitude
-  scenes on rose/periwinkle washes). These are the visual heart of the brand.
+- **Brand illustrations** — supplied images, copied to
+  `assets/illustrations/` (sage/camel line art: blooming minds, brain-in-hands,
+  butterflies, gratitude figures on white). These are the visual heart of the
+  brand and match the palette directly.
 - **Fonts** — Inter + Playfair Display (requested), loaded from Google Fonts.
 - No GitHub repo, Figma URL, codebase path, or slide deck was provided.
 
@@ -57,15 +59,18 @@ seasoning, not a system.
 
 ## VISUAL FOUNDATIONS
 
-**Color.** A soft, warm palette pulled straight from the illustrations.
-- **Rose** (`--brand`, `#E25C84`) is primary — the signature pink of every
-  hero. **Periwinkle** (`--secondary`, `#6E72E6`) is the cool counterpoint
-  (butterflies, leaves, focus rings). **Coral** (`#E8623E`) and **lavender**
-  (`#A98BE0`) are accents. **Plum** (`#3D1A47`) is the ink / dark surface.
-- Signal pops — **heart red** and **gold star** — appear only as tiny accents,
-  echoing the artwork. Never as fields of color.
-- Neutrals are **warm and pink-tinted** (cream paper `#FFF8F3`, sand, warm
-  grays), never cold gray. See `tokens/colors.css`.
+**Color.** A natural, editorial palette built from two brand seeds.
+- **Sage** (`--brand`, seed `#A3B18A`, deepened to `sage-600 #6F7E57` for
+  legible actions) is primary. **Camel** (`--secondary`, seed `#C2A46F`,
+  deepened to `camel-600 #8A6F40`) is the warm counterpoint. **Clay**
+  terracotta (`--accent`, `#B5663F`) bridges the two. **Ink** (`#121210`) plus
+  true **black/white** anchor the system.
+- Signal pops — **leaf** green, **amber**, and **rust** — appear only as small
+  feedback accents, never as fields of color.
+- Neutrals are **warm greige "stone"** (off-white paper `#FAF9F3`, stone grays),
+  never cold gray. See `tokens/colors.css`.
+- Primary/secondary identity tints (`-400`) match the exact seeds; the `-600`
+  steps exist so white text stays legible on buttons.
 
 **Type.** **Playfair Display** (serif) for display & headings — set at 600–700,
 tight leading (1.04–1.15), slight negative tracking, with the occasional
@@ -77,25 +82,28 @@ scale between headline and body creates the calm, editorial rhythm.
 640 / 880 / 1120 / 1320px with a fluid gutter.
 
 **Backgrounds.** Three modes: (1) **soft multi-stop gradient washes**
-(rose → lavender → periwinkle) behind heroes; (2) **plain warm paper**
-(`--bg-page`) for content; (3) **plum ink** for the contact / dark moment.
+(sage → camel → stone) behind heroes; (2) **plain warm paper**
+(`--bg-page`) for content; (3) **near-black ink** for the contact / dark moment.
 Full-bleed illustration imagery is a primary background device — framed in
 soft, very-rounded cards rather than bled to the page edge.
 
-**Imagery vibe.** Warm, soft, hand-drawn line art with watercolor-style fills.
-Pink/coral/periwinkle, gentle, optimistic. Always on a tinted wash; never
-photographic, never cold, never high-contrast.
+**Imagery vibe.** Warm, soft, hand-drawn line art — sage-green and camel fills
+with fine black outlines on white (blooming minds, butterflies, leaves, hearts,
+gratitude figures). Gentle and optimistic; never photographic, never cold,
+never high-contrast. The illustrations match the sage/camel palette directly
+and are the visual heart of the brand — use full-bleed behind heroes or framed
+in soft, very-rounded cards.
 
 **Corner radii.** Soft and generous — cards `--radius-lg` (24px), hero panels
 `--radius-2xl` (44px), all buttons & tags fully **pill** (999px). Nothing is
 sharp-cornered.
 
 **Cards.** White surface, 1px warm border, low diffuse shadow (`--shadow-sm`),
-large radius. A **tinted** variant uses the rose wash with no border for quiet
+large radius. A **tinted** variant uses the sage wash with no border for quiet
 callouts. Project tiles add a cover image and lift 6px on hover.
 
-**Shadows.** Warm and low, tinted toward plum/rose — never neutral black.
-`--shadow-sm/md/lg`, plus colored `--shadow-brand` / `--shadow-peri` for
+**Shadows.** Warm and low, tinted toward ink/sage — never neutral black.
+`--shadow-sm/md/lg`, plus colored `--shadow-brand` / `--shadow-secondary` for
 floating CTAs.
 
 **Borders & lines.** Hairline warm `--border` for separation. The illustrations
@@ -106,7 +114,7 @@ don't over-apply it to UI chrome.
 press-scale to 0.97 and brighten slightly; cards translate up gently. **No**
 bounce, no spring, no aggressive snapping. Respect reduced-motion.
 
-**Hover / press states.** Hover = subtle brightness lift (or rose-tint
+**Hover / press states.** Hover = subtle brightness lift (or sage-tint
 background on nav links); press = a small scale-down. Quiet, never flashy.
 
 **Transparency & blur.** Used sparingly: the sticky nav is translucent cream

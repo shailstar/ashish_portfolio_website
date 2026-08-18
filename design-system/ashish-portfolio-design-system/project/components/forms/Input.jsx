@@ -28,18 +28,18 @@ export function Input({ label = "", hint = "", error = "", id, style = {}, ...re
           color: "var(--text-strong)",
           padding: "12px 16px",
           background: "var(--surface-card)",
-          border: `1.5px solid ${error ? "var(--heart)" : "var(--border)"}`,
+          border: `1.5px solid ${error ? "var(--danger)" : "var(--border)"}`,
           borderRadius: "var(--radius-md)",
           outline: "none",
           transition: "border-color var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft)",
           width: "100%",
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = "var(--peri-400)";
-          e.currentTarget.style.boxShadow = "0 0 0 3px var(--peri-100)";
+          e.currentTarget.style.borderColor = "var(--focus-ring)";
+          e.currentTarget.style.boxShadow = "0 0 0 3px var(--focus-ring-soft)";
         }}
         onBlur={(e) => {
-          e.currentTarget.style.borderColor = error ? "var(--heart)" : "var(--border)";
+          e.currentTarget.style.borderColor = error ? "var(--danger)" : "var(--border)";
           e.currentTarget.style.boxShadow = "none";
         }}
         {...rest}
@@ -48,7 +48,7 @@ export function Input({ label = "", hint = "", error = "", id, style = {}, ...re
         <span
           style={{
             fontSize: "0.75rem",
-            color: error ? "var(--heart)" : "var(--text-muted)",
+            color: error ? "var(--danger)" : "var(--text-muted)",
           }}
         >
           {error || hint}

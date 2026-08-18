@@ -3,14 +3,13 @@ import React from "react";
 /**
  * Tag — soft pill label for skills, categories, filters.
  */
-export function Tag({ children, tone = "rose", size = "md", style = {}, ...rest }) {
+export function Tag({ children, tone = "sage", size = "md", style = {}, ...rest }) {
   const tones = {
-    rose:  { bg: "var(--rose-100)",  fg: "var(--rose-700)" },
-    peri:  { bg: "var(--peri-100)",  fg: "var(--peri-700)" },
-    coral: { bg: "var(--coral-200)", fg: "var(--coral-600)" },
-    lav:   { bg: "var(--lav-100)",   fg: "var(--plum-800)" },
-    sand:  { bg: "var(--sand-100)",  fg: "var(--warm-700)" },
-    ink:   { bg: "var(--plum-900)",  fg: "var(--rose-100)" },
+    sage:  { bg: "var(--sage-100)",  fg: "var(--sage-700)" },
+    camel: { bg: "var(--camel-100)", fg: "var(--camel-700)" },
+    clay:  { bg: "var(--clay-200)",  fg: "var(--clay-600)" },
+    stone: { bg: "var(--stone-100)", fg: "var(--stone-700)" },
+    ink:   { bg: "var(--ink-900)",   fg: "var(--stone-50)" },
   };
   const sizes = {
     sm: { padding: "3px 10px", fontSize: "0.75rem" },

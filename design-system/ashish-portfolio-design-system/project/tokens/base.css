@@ -42,7 +42,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 a { color: var(--brand-ink); text-decoration: none; }
 a:hover { color: var(--brand-hover); }
 
-::selection { background: var(--rose-200); color: var(--plum-900); }
+::selection { background: var(--sage-200); color: var(--ink-900); }
 
 :focus-visible {
   outline: 2px solid var(--focus-ring);

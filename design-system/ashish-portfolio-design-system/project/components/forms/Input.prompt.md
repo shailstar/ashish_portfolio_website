@@ -1,4 +1,4 @@
-Soft rounded text field with label, hint, and error states. Periwinkle focus ring.
+Soft rounded text field with label, hint, and error states. Sage focus ring.
 
 ```jsx
 <Input label="Email" type="email" placeholder="you@studio.com" hint="I reply within a day." />

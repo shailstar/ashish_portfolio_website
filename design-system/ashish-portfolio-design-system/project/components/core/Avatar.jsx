@@ -21,14 +21,14 @@ export function Avatar({ src = "", name = "", size = 48, ring = true, style = {}
         width: `${size}px`,
         height: `${size}px`,
         borderRadius: "999px",
-        background: "var(--rose-200)",
-        color: "var(--rose-700)",
+        background: "var(--sage-100)",
+        color: "var(--sage-700)",
         fontFamily: "var(--font-sans)",
         fontWeight: 700,
         fontSize: `${Math.round(size * 0.36)}px`,
         overflow: "hidden",
         flex: "none",
-        boxShadow: ring ? "0 0 0 3px var(--bg-page), 0 0 0 5px var(--rose-300)" : "none",
+        boxShadow: ring ? "0 0 0 3px var(--bg-page), 0 0 0 5px var(--sage-300)" : "none",
         ...style,
       }}
       {...rest}

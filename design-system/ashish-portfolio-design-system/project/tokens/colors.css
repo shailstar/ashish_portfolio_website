@@ -1,106 +1,105 @@
 /* ============================================================
    COLORS — Ashish Portfolio
-   Palette derived from the brand's wellness illustrations:
-   soft roses, periwinkle blue, coral, lavender, plum ink.
+   Natural, editorial palette: sage green + warm camel,
+   grounded on black & white with stone neutrals + a clay accent.
+   Built from brand seeds: sage #A3B18A, camel #C2A46F.
    ============================================================ */
 
 :root {
-  /* ---- Rose (primary) — the dominant pink of every hero ---- */
-  --rose-50:  #FFF2F6;
-  --rose-100: #FCE0E9;
-  --rose-200: #F8C4D7;
-  --rose-300: #F29EBC;
-  --rose-400: #EC7B9F;
-  --rose-500: #E25C84;   /* primary brand */
-  --rose-600: #C8456C;
-  --rose-700: #A23455;
+  /* ---- Sage (primary) — the brand's calm green ---- */
+  --sage-50:  #F3F5EE;
+  --sage-100: #E7EBDD;
+  --sage-200: #D2D9BF;
+  --sage-300: #BCC6A1;
+  --sage-400: #A3B18A;   /* brand identity seed */
+  --sage-500: #8A9A70;
+  --sage-600: #6F7E57;   /* primary action (legible w/ white) */
+  --sage-700: #566242;
+  --sage-800: #3E472F;
 
-  /* ---- Periwinkle (secondary) — butterflies, leaves, frames ---- */
-  --peri-50:  #EFF0FE;
-  --peri-100: #E0E2FD;
-  --peri-200: #C5C8FA;
-  --peri-300: #A3A7F3;
-  --peri-400: #8488EE;
-  --peri-500: #6E72E6;   /* secondary brand */
-  --peri-600: #5559CE;
-  --peri-700: #4044A8;
+  /* ---- Camel (secondary) — warm tan / wheat ---- */
+  --camel-50:  #F9F5EC;
+  --camel-100: #F2E9D6;
+  --camel-200: #E5D4B1;
+  --camel-300: #D5BD8C;
+  --camel-400: #C2A46F;   /* secondary identity seed */
+  --camel-500: #A98A54;
+  --camel-600: #8A6F40;   /* secondary action (legible w/ white) */
+  --camel-700: #69552F;
 
-  /* ---- Coral (accent) — warm flowers & foliage ---- */
-  --coral-200: #F8C4B2;
-  --coral-300: #F4A085;
-  --coral-400: #EE7D5E;
-  --coral-500: #E8623E;
-  --coral-600: #CF4E2C;
+  /* ---- Clay (accent) — terracotta to bridge sage & camel ---- */
+  --clay-200: #E9C7B3;
+  --clay-300: #DBA284;
+  --clay-400: #CA7E59;
+  --clay-500: #B5663F;
+  --clay-600: #934E2C;
 
-  /* ---- Lavender — soft purple washes ---- */
-  --lav-100: #EFE6FA;
-  --lav-200: #DCC9F2;
-  --lav-300: #C2A4E6;
-  --lav-400: #A98BE0;
-  --lav-500: #9472CE;
+  /* ---- Stone — warm greige neutrals (replaces cold gray) ---- */
+  --stone-50:  #F7F6F1;
+  --stone-100: #EDEBE2;
+  --stone-200: #DCD8CB;
+  --stone-300: #C5C0AF;
+  --stone-400: #A39E8C;
+  --stone-500: #7D7868;
+  --stone-600: #5C584B;
+  --stone-700: #403D33;
 
-  /* ---- Plum — ink / deepest brand tone ---- */
-  --plum-700: #6F3B7D;
-  --plum-800: #5A2A66;
-  --plum-900: #3D1A47;
+  /* ---- Ink — warm near-black, plus true black / white ---- */
+  --ink-700: #33322B;
+  --ink-800: #201F1A;
+  --ink-900: #121210;
+  --black:   #000000;
+  --white:   #FFFFFF;
+  --paper:   #FAF9F3;   /* soft off-white page (lets white cards lift) */
 
-  /* ---- Signal pops — hearts & stars in the artwork ---- */
-  --heart: #E63946;
-  --gold:  #F2C94C;
-
-  /* ---- Warm neutrals — paper, sand, soft grays (pink-tinted) ---- */
-  --cream:    #FFF8F3;
-  --sand-50:  #FBF3EE;
-  --sand-100: #F4E8E1;
-  --sand-200: #E8D8CF;
-  --sand-300: #D8C3B8;
-  --warm-400: #B7A6A0;
-  --warm-500: #948079;
-  --warm-600: #74615B;
-  --warm-700: #533F3A;
-  --white:    #FFFFFF;
+  /* ---- Signal pops ---- */
+  --leaf: #4E7A4A;
+  --amber:#C2922F;
+  --rust: #B5503C;
 
   /* =========================================================
      SEMANTIC ALIASES — reference these in components
      ========================================================= */
 
   /* Surfaces */
-  --bg-page:        var(--cream);
-  --bg-subtle:      var(--sand-50);
-  --bg-sunken:      var(--rose-50);
+  --bg-page:        var(--paper);
+  --bg-subtle:      var(--stone-50);
+  --bg-sunken:      var(--sage-50);
   --surface-card:   var(--white);
   --surface-raised: var(--white);
-  --surface-tint:   var(--rose-100);
-  --surface-ink:    var(--plum-900);     /* dark sections */
+  --surface-tint:   var(--sage-100);
+  --surface-ink:    var(--ink-900);     /* dark sections */
 
   /* Text */
-  --text-strong:  var(--plum-900);
-  --text-body:    var(--warm-700);
-  --text-muted:   var(--warm-500);
-  --text-faint:   var(--warm-400);
-  --text-on-dark: var(--rose-50);
+  --text-strong:  var(--ink-900);
+  --text-body:    var(--stone-700);
+  --text-muted:   var(--stone-500);
+  --text-faint:   var(--stone-400);
+  --text-on-dark: var(--stone-50);
   --text-on-brand:#FFFFFF;
 
   /* Brand roles */
-  --brand:        var(--rose-500);
-  --brand-hover:  var(--rose-600);
-  --brand-ink:    var(--rose-700);
-  --secondary:    var(--peri-500);
-  --secondary-hover: var(--peri-600);
-  --accent:       var(--coral-500);
-  --accent-soft:  var(--coral-300);
+  --brand:           var(--sage-600);
+  --brand-hover:     var(--sage-700);
+  --brand-ink:       var(--sage-700);
+  --secondary:       var(--camel-600);
+  --secondary-hover: var(--camel-700);
+  --accent:          var(--clay-500);
+  --accent-soft:     var(--clay-300);
+  --info:            var(--camel-600);
 
   /* Lines & borders */
-  --border:        var(--sand-200);
-  --border-strong: var(--sand-300);
-  --border-brand:  var(--rose-200);
-  --line-ink:      var(--plum-900);      /* the signature hand-drawn outline */
+  --border:        var(--stone-200);
+  --border-strong: var(--stone-300);
+  --border-brand:  var(--sage-300);
+  --line-ink:      var(--ink-900);      /* the signature hand-drawn outline */
 
   /* Focus & states */
-  --focus-ring: var(--peri-400);
+  --focus-ring:      var(--sage-500);
+  --focus-ring-soft: var(--sage-100);
 
   /* Feedback */
-  --success: #4FA877;
-  --warning: var(--gold);
-  --danger:  var(--heart);
+  --success: var(--leaf);
+  --warning: var(--amber);
+  --danger:  var(--rust);
 }

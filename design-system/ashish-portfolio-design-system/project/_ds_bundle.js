@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"AshishPortfolioDesignSystem_48f8eb","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Card","sourcePath":"components/surface/Card.jsx"},{"name":"ProjectCard","sourcePath":"components/surface/ProjectCard.jsx"}],"sourceHashes":{"components/core/Avatar.jsx":"18a4914ac9bc","components/core/Badge.jsx":"5d246dcb3506","components/core/Button.jsx":"80576edca3b7","components/core/Tag.jsx":"7b19004eb561","components/forms/Input.jsx":"ceda226f04b4","components/forms/Textarea.jsx":"12fff825ab6b","components/surface/Card.jsx":"3bbe357a01ce","components/surface/ProjectCard.jsx":"2abd27ecc8e9","ui_kits/portfolio/About.jsx":"d22a352b97a8","ui_kits/portfolio/Contact.jsx":"303a7175a431","ui_kits/portfolio/Footer.jsx":"4d9b68c4f105","ui_kits/portfolio/Hero.jsx":"5fd2afdba6c0","ui_kits/portfolio/Nav.jsx":"5d9c81f8b497","ui_kits/portfolio/WorkGrid.jsx":"79bb0060ba0b"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"AshishPortfolioDesignSystem_48f8eb","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Card","sourcePath":"components/surface/Card.jsx"},{"name":"ProjectCard","sourcePath":"components/surface/ProjectCard.jsx"}],"sourceHashes":{"components/core/Avatar.jsx":"afbf0f8e3e51","components/core/Badge.jsx":"b20aafe4bfbe","components/core/Button.jsx":"634323b613c4","components/core/Tag.jsx":"0578c306a445","components/forms/Input.jsx":"7ccd9edc96ee","components/forms/Textarea.jsx":"39dec43ca6da","components/surface/Card.jsx":"3bbe357a01ce","components/surface/ProjectCard.jsx":"fa6f47ac3819","ui_kits/portfolio/About.jsx":"4ffaf28ca66d","ui_kits/portfolio/Contact.jsx":"d33c721b7cc1","ui_kits/portfolio/Footer.jsx":"32b27d32eddd","ui_kits/portfolio/Hero.jsx":"a8b4c158bd8e","ui_kits/portfolio/Nav.jsx":"648c1bfba3dd","ui_kits/portfolio/WorkGrid.jsx":"79bb0060ba0b"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -31,14 +31,14 @@ function Avatar({
       width: `${size}px`,
       height: `${size}px`,
       borderRadius: "999px",
-      background: "var(--rose-200)",
-      color: "var(--rose-700)",
+      background: "var(--sage-100)",
+      color: "var(--sage-700)",
       fontFamily: "var(--font-sans)",
       fontWeight: 700,
       fontSize: `${Math.round(size * 0.36)}px`,
       overflow: "hidden",
       flex: "none",
-      boxShadow: ring ? "0 0 0 3px var(--bg-page), 0 0 0 5px var(--rose-300)" : "none",
+      boxShadow: ring ? "0 0 0 3px var(--bg-page), 0 0 0 5px var(--sage-300)" : "none",
       ...style
     }
   }, rest), src ? /*#__PURE__*/React.createElement("img", {
@@ -69,10 +69,10 @@ function Badge({
 }) {
   const tones = {
     success: "var(--success)",
-    warning: "var(--gold)",
-    danger: "var(--heart)",
-    info: "var(--peri-500)",
-    neutral: "var(--warm-500)"
+    warning: "var(--warning)",
+    danger: "var(--danger)",
+    info: "var(--secondary)",
+    neutral: "var(--stone-500)"
   };
   return /*#__PURE__*/React.createElement("span", _extends({
     style: {
@@ -142,15 +142,15 @@ function Button({
       boxShadow: "var(--shadow-brand)"
     },
     secondary: {
-      background: "var(--peri-500)",
+      background: "var(--secondary)",
       color: "#fff",
       border: "none",
-      boxShadow: "var(--shadow-peri)"
+      boxShadow: "var(--shadow-secondary)"
     },
     outline: {
       background: "transparent",
       color: "var(--brand-ink)",
-      border: "2px solid var(--rose-300)",
+      border: "2px solid var(--sage-300)",
       boxShadow: "none"
     },
     ghost: {
@@ -160,7 +160,7 @@ function Button({
       boxShadow: "none"
     },
     ink: {
-      background: "var(--plum-900)",
+      background: "var(--ink-900)",
       color: "#fff",
       border: "none",
       boxShadow: "var(--shadow-md)"
@@ -216,35 +216,31 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
  */
 function Tag({
   children,
-  tone = "rose",
+  tone = "sage",
   size = "md",
   style = {},
   ...rest
 }) {
   const tones = {
-    rose: {
-      bg: "var(--rose-100)",
-      fg: "var(--rose-700)"
+    sage: {
+      bg: "var(--sage-100)",
+      fg: "var(--sage-700)"
     },
-    peri: {
-      bg: "var(--peri-100)",
-      fg: "var(--peri-700)"
+    camel: {
+      bg: "var(--camel-100)",
+      fg: "var(--camel-700)"
     },
-    coral: {
-      bg: "var(--coral-200)",
-      fg: "var(--coral-600)"
+    clay: {
+      bg: "var(--clay-200)",
+      fg: "var(--clay-600)"
     },
-    lav: {
-      bg: "var(--lav-100)",
-      fg: "var(--plum-800)"
-    },
-    sand: {
-      bg: "var(--sand-100)",
-      fg: "var(--warm-700)"
+    stone: {
+      bg: "var(--stone-100)",
+      fg: "var(--stone-700)"
     },
     ink: {
-      bg: "var(--plum-900)",
-      fg: "var(--rose-100)"
+      bg: "var(--ink-900)",
+      fg: "var(--stone-50)"
     }
   };
   const sizes = {
@@ -314,24 +310,24 @@ function Input({
       color: "var(--text-strong)",
       padding: "12px 16px",
       background: "var(--surface-card)",
-      border: `1.5px solid ${error ? "var(--heart)" : "var(--border)"}`,
+      border: `1.5px solid ${error ? "var(--danger)" : "var(--border)"}`,
       borderRadius: "var(--radius-md)",
       outline: "none",
       transition: "border-color var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft)",
       width: "100%"
     },
     onFocus: e => {
-      e.currentTarget.style.borderColor = "var(--peri-400)";
-      e.currentTarget.style.boxShadow = "0 0 0 3px var(--peri-100)";
+      e.currentTarget.style.borderColor = "var(--focus-ring)";
+      e.currentTarget.style.boxShadow = "0 0 0 3px var(--focus-ring-soft)";
     },
     onBlur: e => {
-      e.currentTarget.style.borderColor = error ? "var(--heart)" : "var(--border)";
+      e.currentTarget.style.borderColor = error ? "var(--danger)" : "var(--border)";
       e.currentTarget.style.boxShadow = "none";
     }
   }, rest)), (hint || error) && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: "0.75rem",
-      color: error ? "var(--heart)" : "var(--text-muted)"
+      color: error ? "var(--danger)" : "var(--text-muted)"
     }
   }, error || hint));
 }
@@ -386,8 +382,8 @@ function Textarea({
       width: "100%"
     },
     onFocus: e => {
-      e.currentTarget.style.borderColor = "var(--peri-400)";
-      e.currentTarget.style.boxShadow = "0 0 0 3px var(--peri-100)";
+      e.currentTarget.style.borderColor = "var(--focus-ring)";
+      e.currentTarget.style.boxShadow = "0 0 0 3px var(--focus-ring-soft)";
     },
     onBlur: e => {
       e.currentTarget.style.borderColor = "var(--border)";
@@ -485,7 +481,7 @@ function ProjectCard({
     style: {
       aspectRatio: "16 / 10",
       overflow: "hidden",
-      background: "var(--rose-100)"
+      background: "var(--sage-100)"
     }
   }, image && /*#__PURE__*/React.createElement("img", {
     src: image,
@@ -537,7 +533,7 @@ function ProjectCard({
     }
   }, tags.map(t => /*#__PURE__*/React.createElement(__ds_scope.Tag, {
     key: t,
-    tone: "sand",
+    tone: "stone",
     size: "sm"
   }, t)))));
 }
@@ -577,6 +573,7 @@ function About() {
       width: "100%",
       height: "100%",
       objectFit: "cover",
+      objectPosition: "78% center",
       display: "block"
     }
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -616,7 +613,7 @@ function About() {
     }
   }, skills.map((s, i) => /*#__PURE__*/React.createElement(Tag, {
     key: s,
-    tone: ["rose", "peri", "coral", "lav"][i % 4]
+    tone: ["sage", "camel", "clay", "stone"][i % 4]
   }, s))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
@@ -666,7 +663,7 @@ function Contact() {
     className: "eyebrow",
     style: {
       marginBottom: "14px",
-      color: "var(--rose-300)"
+      color: "var(--sage-300)"
     }
   }, "Contact"), /*#__PURE__*/React.createElement("h2", {
     style: {
@@ -680,16 +677,16 @@ function Contact() {
   }, "Let's make something ", /*#__PURE__*/React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--rose-300)"
+      color: "var(--camel-300)"
     }
   }, "gentle"), " together."), /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: "1.0625rem",
       lineHeight: 1.7,
-      color: "var(--rose-100)",
+      color: "var(--stone-50)",
       margin: "0 0 34px",
       maxWidth: "48ch",
-      opacity: 0.85
+      opacity: 0.82
     }
   }, "Have a project in mind, or just want to say hello? Tell me a little about it and I'll get back to you within a day."), sent ? /*#__PURE__*/React.createElement("div", {
     style: {
@@ -708,7 +705,7 @@ function Contact() {
     }
   }, "Thank you \u2014 message sent."), /*#__PURE__*/React.createElement("p", {
     style: {
-      color: "var(--rose-100)",
+      color: "var(--stone-50)",
       opacity: 0.8,
       margin: 0
     }
@@ -834,7 +831,7 @@ function Footer({
       fontWeight: 600,
       color: "var(--brand-ink)",
       padding: "8px 14px",
-      border: "1.5px solid var(--rose-200)",
+      border: "1.5px solid var(--border-brand)",
       borderRadius: "var(--radius-pill)",
       textDecoration: "none"
     }
@@ -853,7 +850,7 @@ function Hero({
     style: {
       position: "relative",
       overflow: "hidden",
-      background: "linear-gradient(120deg, var(--rose-100) 0%, var(--lav-100) 55%, var(--peri-100) 100%)"
+      background: "linear-gradient(120deg, var(--sage-100) 0%, var(--camel-100) 55%, var(--stone-100) 100%)"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -929,6 +926,7 @@ function Hero({
       width: "100%",
       height: "100%",
       objectFit: "cover",
+      objectPosition: "72% center",
       display: "block"
     }
   }))));
@@ -996,8 +994,8 @@ function Nav({
     onClick: () => setRoute(l.id),
     style: {
       border: "none",
-      background: route === l.id ? "var(--rose-100)" : "transparent",
-      color: route === l.id ? "var(--rose-700)" : "var(--text-body)",
+      background: route === l.id ? "var(--sage-100)" : "transparent",
+      color: route === l.id ? "var(--sage-700)" : "var(--text-body)",
       fontFamily: "var(--font-sans)",
       fontSize: "0.9375rem",
       fontWeight: 600,

@@ -46,7 +46,7 @@ function Footer({ setRoute }) {
               style={{
                 fontFamily: "var(--font-sans)", fontSize: "0.8125rem", fontWeight: 600,
                 color: "var(--brand-ink)", padding: "8px 14px",
-                border: "1.5px solid var(--rose-200)", borderRadius: "var(--radius-pill)",
+                border: "1.5px solid var(--border-brand)", borderRadius: "var(--radius-pill)",
                 textDecoration: "none",
               }}
             >

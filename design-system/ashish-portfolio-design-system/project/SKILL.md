@@ -11,8 +11,9 @@ If the user invokes this skill without any other guidance, ask them what they wa
 ## Quick reference
 - **Entry CSS:** `styles.css` (links every token + font). Link this one file.
 - **Fonts:** Playfair Display (display/headings, serif) + Inter (body/UI).
-- **Core colors:** rose `#E25C84` (brand), periwinkle `#6E72E6` (secondary),
-  coral `#E8623E`, lavender `#A98BE0`, plum ink `#3D1A47`, cream paper `#FFF8F3`.
+- **Core colors:** sage `#A3B18A` (brand, deepened to `#6F7E57` for actions),
+  camel `#C2A46F` (secondary, deepened to `#8A6F40`), clay `#B5663F` (accent),
+  ink `#121210`, true black & white, warm-stone neutrals, paper `#FAF9F3`.
 - **Components:** `components/` — Button, Tag, Badge, Avatar, Input, Textarea,
   Card, ProjectCard (React; bundled under `window.AshishPortfolioDesignSystem_48f8eb`).
 - **UI kit:** `ui_kits/portfolio/` — full interactive portfolio site.

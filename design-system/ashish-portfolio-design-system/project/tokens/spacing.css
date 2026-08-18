@@ -32,13 +32,13 @@
   --radius-2xl:  44px;
   --radius-pill: 999px;
 
-  /* Shadows — warm, low, diffuse (tinted toward plum/rose) */
-  --shadow-xs:  0 1px 2px rgba(61, 26, 71, 0.06);
-  --shadow-sm:  0 2px 8px rgba(61, 26, 71, 0.07);
-  --shadow-md:  0 8px 24px rgba(61, 26, 71, 0.10);
-  --shadow-lg:  0 18px 48px rgba(61, 26, 71, 0.14);
-  --shadow-brand: 0 12px 32px rgba(226, 92, 132, 0.28);
-  --shadow-peri:  0 12px 32px rgba(110, 114, 230, 0.26);
+  /* Shadows — warm, low, diffuse (tinted toward ink/sage) */
+  --shadow-xs:  0 1px 2px rgba(18, 18, 16, 0.05);
+  --shadow-sm:  0 2px 8px rgba(18, 18, 16, 0.07);
+  --shadow-md:  0 8px 24px rgba(18, 18, 16, 0.10);
+  --shadow-lg:  0 18px 48px rgba(18, 18, 16, 0.14);
+  --shadow-brand:     0 12px 32px rgba(111, 126, 87, 0.30);
+  --shadow-secondary: 0 12px 32px rgba(138, 111, 64, 0.28);
 
   /* Borders */
   --border-w: 1px;

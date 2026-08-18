@@ -7,7 +7,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   name?: string;
   /** Pixel diameter. @default 48 */
   size?: number;
-  /** Show the rose ring. @default true */
+  /** Show the sage ring. @default true */
   ring?: boolean;
   style?: React.CSSProperties;
 }

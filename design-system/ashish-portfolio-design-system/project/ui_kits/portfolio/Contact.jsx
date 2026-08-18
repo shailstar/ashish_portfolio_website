@@ -18,7 +18,7 @@ function Contact() {
           zIndex: 1,
         }}
       >
-        <div className="eyebrow" style={{ marginBottom: "14px", color: "var(--rose-300)" }}>Contact</div>
+        <div className="eyebrow" style={{ marginBottom: "14px", color: "var(--sage-300)" }}>Contact</div>
         <h2
           style={{
             fontFamily: "var(--font-display)",
@@ -29,9 +29,9 @@ function Contact() {
             letterSpacing: "-0.015em",
           }}
         >
-          Let's make something <span style={{ fontStyle: "italic", color: "var(--rose-300)" }}>gentle</span> together.
+          Let's make something <span style={{ fontStyle: "italic", color: "var(--camel-300)" }}>gentle</span> together.
         </h2>
-        <p style={{ fontSize: "1.0625rem", lineHeight: 1.7, color: "var(--rose-100)", margin: "0 0 34px", maxWidth: "48ch", opacity: 0.85 }}>
+        <p style={{ fontSize: "1.0625rem", lineHeight: 1.7, color: "var(--stone-50)", margin: "0 0 34px", maxWidth: "48ch", opacity: 0.82 }}>
           Have a project in mind, or just want to say hello? Tell me a little
           about it and I'll get back to you within a day.
         </p>
@@ -49,7 +49,7 @@ function Contact() {
             <div style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "#fff", marginBottom: "8px" }}>
               Thank you — message sent.
             </div>
-            <p style={{ color: "var(--rose-100)", opacity: 0.8, margin: 0 }}>
+            <p style={{ color: "var(--stone-50)", opacity: 0.8, margin: 0 }}>
               I'll be in touch soon. ♥
             </p>
           </div>

@@ -6,10 +6,10 @@ import React from "react";
 export function Badge({ children, tone = "success", dot = true, style = {}, ...rest }) {
   const tones = {
     success: "var(--success)",
-    warning: "var(--gold)",
-    danger:  "var(--heart)",
-    info:    "var(--peri-500)",
-    neutral: "var(--warm-500)",
+    warning: "var(--warning)",
+    danger:  "var(--danger)",
+    info:    "var(--secondary)",
+    neutral: "var(--stone-500)",
   };
   return (
     <span

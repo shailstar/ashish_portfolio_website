@@ -5,7 +5,7 @@ function Hero({ setRoute }) {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(120deg, var(--rose-100) 0%, var(--lav-100) 55%, var(--peri-100) 100%)",
+        background: "linear-gradient(120deg, var(--sage-100) 0%, var(--camel-100) 55%, var(--stone-100) 100%)",
       }}
     >
       <div
@@ -75,7 +75,7 @@ function Hero({ setRoute }) {
           <img
             src="../../assets/illustrations/portrait-bloom-mind.jpeg"
             alt="Illustration of a blooming mind"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "72% center", display: "block" }}
           />
         </div>
       </div>

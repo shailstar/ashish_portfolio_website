@@ -44,8 +44,8 @@ function Nav({ route, setRoute }) {
             onClick={() => setRoute(l.id)}
             style={{
               border: "none",
-              background: route === l.id ? "var(--rose-100)" : "transparent",
-              color: route === l.id ? "var(--rose-700)" : "var(--text-body)",
+              background: route === l.id ? "var(--sage-100)" : "transparent",
+              color: route === l.id ? "var(--sage-700)" : "var(--text-body)",
               fontFamily: "var(--font-sans)",
               fontSize: "0.9375rem",
               fontWeight: 600,
