@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header ref="headerRef" class="header">
     <div class="nav-container">
       <button class="logo" @click="$emit('navigate', 'home')">
         Dr. Ashish Yadav
@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import Button from './Button.vue'
 
 defineProps({
@@ -46,6 +46,34 @@ defineProps({
 })
 
 defineEmits(['navigate'])
+
+// The header is sticky, so it takes real height out of the first screenful.
+// Publish that height as --nav-h and let sections size against it, rather than
+// hard-coding a number that drifts with font loading, zoom, and OS font metrics.
+const headerRef = ref(null)
+let navObserver = null
+
+const publishNavHeight = () => {
+  const el = headerRef.value
+  if (!el) return
+  document.documentElement.style.setProperty('--nav-h', `${Math.round(el.offsetHeight)}px`)
+}
+
+onMounted(() => {
+  publishNavHeight()
+  if (typeof ResizeObserver !== 'undefined') {
+    navObserver = new ResizeObserver(publishNavHeight)
+    navObserver.observe(headerRef.value)
+  }
+  // Web fonts land after first paint and can change the logo's line box.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(publishNavHeight)
+  }
+})
+
+onUnmounted(() => {
+  if (navObserver) navObserver.disconnect()
+})
 
 const links = [
   { id: 'home', label: 'Home' },
