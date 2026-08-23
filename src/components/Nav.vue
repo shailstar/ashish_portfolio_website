@@ -25,7 +25,7 @@
           </button>
         </template>
         <a
-          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
+          href="https://wa.me/message/75HLOF6Q7MV4A1"
           target="_blank"
           rel="noopener noreferrer"
           class="button-link"
@@ -51,7 +51,7 @@ const links = [
   { id: 'home', label: 'Home' },
   { id: 'work', label: 'Approach', url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j' },
   { id: 'about', label: 'About' },
-  { id: 'contact', label: 'Contact', url: 'https://wa.me/message/75HLOF6Q7MV4A1' },
+  { id: 'contact', label: 'Contact' },
 ]
 </script>
 

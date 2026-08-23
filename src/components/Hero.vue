@@ -27,9 +27,9 @@
           >
             Schedule a Consultation
           </Button>
-          <button class="cta-secondary" @click="handleAssessment">
+          <a href="/assessment.html" target="_blank" rel="noopener noreferrer" class="cta-secondary">
             Not sure yet? Take a 2-Min Self Assessment →
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -73,11 +73,6 @@ const PAIRS = [
     s: 'Tailored care combining modern medicine and yogic frameworks.'
   }
 ]
-
-const handleAssessment = () => {
-  // Placeholder for assessment link
-  console.log('Assessment clicked')
-}
 
 // Locks the headline+subheading block to the tallest of the rotating text
 // pairs, so swapping between them never reflows the CTA row below it.

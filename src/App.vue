@@ -1,10 +1,10 @@
 <template>
   <div class="app">
-    <Nav :route="route" @navigate="route = $event" />
+    <Nav :route="route" @navigate="handleNavigate" />
 
     <main>
       <template v-if="route === 'home'">
-        <Hero @navigate="route = $event" />
+        <Hero @navigate="handleNavigate" />
         <AboutHero />
         <TreatmentProcess />
         <Services />
@@ -16,12 +16,12 @@
       <AboutHero v-else-if="route === 'about'" />
     </main>
 
-    <Footer @navigate="route = $event" />
+    <Footer @navigate="handleNavigate" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import Nav from './components/Nav.vue'
 import Hero from './components/Hero.vue'
 import AboutHero from './components/AboutHero.vue'
@@ -31,6 +31,16 @@ import Bookings from './components/Bookings.vue'
 import Footer from './components/Footer.vue'
 
 const route = ref('home')
+
+const handleNavigate = async (target) => {
+  if (target === 'contact') {
+    route.value = 'home'
+    await nextTick()
+    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
+    return
+  }
+  route.value = target
+}
 </script>
 
 <style scoped>

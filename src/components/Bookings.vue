@@ -1,5 +1,5 @@
 <template>
-  <section class="bookings">
+  <section id="booking" class="bookings">
     <div class="bookings-container">
       <div class="bookings-header">
         <h2 class="bookings-title">Consultations / Bookings</h2>
@@ -16,7 +16,7 @@
             @click="selectedOption = option.id"
           >
             <div class="card-icon-wrapper">
-              <span class="card-icon">{{ option.icon }}</span>
+              <img :src="option.image" :alt="option.label" class="card-icon-img" loading="lazy" />
             </div>
             <h4 class="card-title">{{ option.label }}</h4>
             <p class="card-subtitle">{{ option.description }}</p>
@@ -48,7 +48,7 @@
               </div>
 
               <a
-                v-if="selectedOption === 'in-person' || selectedOption === 'home'"
+                v-if="selectedOption === 'online'"
                 href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -57,7 +57,7 @@
                 Schedule Consultation
               </a>
               <a
-                v-else-if="selectedOption === 'online'"
+                v-else-if="selectedOption === 'in-person' || selectedOption === 'home'"
                 href="https://wa.me/message/75HLOF6Q7MV4A1"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -82,19 +82,19 @@ const meetingOptions = [
   {
     id: 'in-person',
     label: 'In-Person',
-    icon: '🏢',
+    image: '/bookings/in-person.webp',
     description: 'Visit our clinic'
   },
   {
     id: 'online',
     label: 'Online',
-    icon: '💻',
+    image: '/bookings/online.webp',
     description: 'Video consultation'
   },
   {
     id: 'home',
     label: 'Home Visit',
-    icon: '🏠',
+    image: '/bookings/home-visit.webp',
     description: 'At your place'
   }
 ]
@@ -149,57 +149,59 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 }
 
 .meeting-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(1.25rem, 3vw, 1.75rem);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(2rem, 6vw, 4.5rem);
   margin-bottom: 2rem;
 }
 
 .meeting-card {
-  padding: clamp(1.5rem, 3vw, 2rem) 1rem;
-  background: linear-gradient(135deg, var(--sage-100) 0%, var(--camel-100) 100%);
+  background: none;
   border: none;
-  border-radius: var(--radius-2xl);
+  padding: 0;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.875rem;
   font-family: var(--font-sans);
   color: var(--text-body);
 }
 
 .meeting-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
 }
 
 .meeting-card.active {
-  background: linear-gradient(135deg, var(--brand) 0%, #7c3aed 100%);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 
 .card-icon-wrapper {
-  width: 70px;
-  height: 70px;
-  background: white;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 0 0 3px var(--sage-200), var(--shadow-md);
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
-.meeting-card.active .card-icon-wrapper {
-  background: rgba(255, 255, 255, 0.9);
+.meeting-card:hover .card-icon-wrapper {
+  box-shadow: 0 0 0 3px var(--sage-400), var(--shadow-lg);
 }
 
-.card-icon {
-  font-size: 2.25rem;
-  line-height: 1;
+.meeting-card.active .card-icon-wrapper {
+  box-shadow: 0 0 0 3px var(--brand), var(--shadow-lg);
+}
+
+.card-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card-title {
@@ -207,10 +209,11 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   font-weight: 700;
   margin: 0;
   color: var(--text-strong);
+  transition: color 0.3s ease;
 }
 
 .meeting-card.active .card-title {
-  color: white;
+  color: var(--brand-ink);
 }
 
 .card-subtitle {
@@ -218,10 +221,6 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   margin: 0;
   color: var(--text-muted);
   font-weight: 500;
-}
-
-.meeting-card.active .card-subtitle {
-  color: rgba(255, 255, 255, 0.9);
 }
 
 .bookings-card {
@@ -392,17 +391,12 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 
 @media (max-width: 768px) {
   .meeting-cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+    gap: 1.75rem 2.5rem;
   }
 
   .card-icon-wrapper {
-    width: 60px;
-    height: 60px;
-  }
-
-  .card-icon {
-    font-size: 2rem;
+    width: 84px;
+    height: 84px;
   }
 
   .bookings-card {

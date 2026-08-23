@@ -3,7 +3,7 @@
     <div class="footer-content">
       <div class="footer-brand">
         <div class="footer-logo">
-          Ashish<span class="dot">.</span>
+          Dr. Ashish Yadav<span class="dot">.</span>
         </div>
         <p class="footer-tagline">Designing for calm, clear minds. © 2026</p>
       </div>
@@ -32,6 +32,7 @@
       <div class="footer-social">
         <a href="https://www.instagram.com/drashishyadav/" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
         <a href="https://www.linkedin.com/in/drashishyadav" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+        <a href="https://www.youtube.com/@drashish" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ashishyadav0210@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link">Email</a>
       </div>
     </div>

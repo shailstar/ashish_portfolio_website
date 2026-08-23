@@ -6,16 +6,7 @@
         <p class="services-subtitle">Comprehensive mental health care tailored to your needs</p>
       </div>
 
-      <div class="services-grid">
-        <div v-for="service in services" :key="service.id" class="service-card">
-          <div class="service-icon">{{ service.icon }}</div>
-          <h3 class="service-title">{{ service.title }}</h3>
-          <p class="service-description">{{ service.description }}</p>
-          <ul v-if="service.points" class="service-points">
-            <li v-for="(point, index) in service.points" :key="index">{{ point }}</li>
-          </ul>
-        </div>
-      </div>
+      <ServicesFeatured :services="featuredServices" />
 
       <div class="services-cta">
         <a
@@ -26,69 +17,111 @@
         >
           Schedule a Consultation
         </a>
-        <button class="cta-button secondary">Begin Assessment</button>
+        <a href="/assessment.html" target="_blank" rel="noopener noreferrer" class="cta-button secondary">Begin Assessment</a>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-const services = [
+import ServicesFeatured from './ServicesFeatured.vue'
+
+const featuredServices = [
   {
     id: 1,
-    icon: '🔍',
+    image: '/services/personalised-consultation.webp',
+    imageAlt: 'Dr Ashish Yadav in consultation with a patient',
     title: 'Personalised Psychiatric Consultation',
-    description: 'Comprehensive evaluation with a tailored treatment plan.',
-    points: ['Diagnosis + formulation', 'Medication when required', 'Clear roadmap']
+    subtitle: 'Comprehensive evaluation with a tailored treatment plan.',
+    points: [
+      { icon: 'search', title: 'Diagnosis + formulation' },
+      { icon: 'pill', title: 'Medication when required' },
+      { icon: 'pin', title: 'Clear roadmap' }
+    ]
   },
   {
     id: 2,
-    icon: '😰',
-    title: 'Anxiety & Stress Disorders',
-    description: 'Move from constant overthinking and tension to clarity and control.',
-    points: ['Generalised anxiety', 'Panic episodes', 'Work-related stress']
+    image: '/services/anxiety-stress-disorders.webp',
+    imageAlt: 'Woman finding calm while looking out at a mountain lake',
+    title: 'Anxiety <span class="amp">&amp;</span> Stress Disorders',
+    subtitle: 'Move from constant overthinking and tension to <span class="hl">clarity and control</span>.',
+    points: [
+      { icon: 'anxiety', title: 'Generalised anxiety', description: 'Reducing excessive worry and persistent unease.' },
+      { icon: 'activity', title: 'Panic episodes', description: 'Managing sudden panic and physical symptoms.' },
+      { icon: 'briefcase', title: 'Work-related stress', description: 'Building resilience and restoring work-life balance.' }
+    ]
   },
   {
     id: 3,
-    icon: '😔',
-    title: 'Depression & Mood Disorders',
-    description: 'Address low mood, fatigue, and loss of motivation at the root.',
-    points: ['Major depression', 'Burnout', 'Emotional numbness']
+    image: '/services/depression-mood-disorders.webp',
+    imageAlt: 'Woman looking out at a sunset, finding a moment of calm',
+    title: 'Depression <span class="amp">&amp;</span> Mood Disorders',
+    subtitle: 'Address low mood, fatigue, and loss of motivation <span class="hl">at the root</span>.',
+    points: [
+      { icon: 'cloud-sun', title: 'Major depression', description: 'Evidence-based treatment to lift low mood and restore hope.' },
+      { icon: 'battery', title: 'Burnout', description: 'Recover energy, manage exhaustion, and rebuild inner balance.' },
+      { icon: 'numbness', title: 'Emotional numbness', description: 'Reconnect with emotions and find meaning again.' }
+    ]
   },
   {
     id: 4,
-    icon: '🔄',
-    title: 'Overthinking & Behavioural Patterns',
-    description: 'Break repetitive thought loops and unhelpful habits.',
-    points: ['Rumination', 'Procrastination', 'Binge behaviours (OTT, phone use)']
+    image: '/services/overthinking-behavioural-patterns.webp',
+    imageAlt: 'Man deep in thought at his desk, surrounded by tangled thoughts',
+    title: 'Overthinking <span class="amp">&amp;</span> Behavioural Patterns',
+    subtitle: 'Break repetitive thought loops and <span class="hl">unhelpful habits</span>.',
+    points: [
+      { icon: 'anxiety', title: 'Rumination', description: 'Stop getting stuck in the same thoughts.' },
+      { icon: 'clipboard-clock', title: 'Procrastination', description: 'Build action, focus, and follow-through.' },
+      { icon: 'phone-play', title: 'Binge behaviours (OTT, phone use)', description: 'Regain control and create healthier daily patterns.' }
+    ]
   },
   {
     id: 5,
-    icon: '😴',
-    title: 'Sleep & Lifestyle Regulation',
-    description: 'Restore natural sleep and daily rhythm.',
-    points: ['Insomnia', 'Irregular routines', 'Bedtime procrastination']
+    image: '/services/sleep-lifestyle-regulation.webp',
+    imageAlt: 'Woman sleeping peacefully with a moonlit mountain view',
+    title: 'Sleep <span class="amp">&amp;</span> Lifestyle Regulation',
+    subtitle: 'Restore natural sleep and <span class="hl">daily rhythm</span>.',
+    points: [
+      { icon: 'moon-stars', title: 'Insomnia', description: 'Evidence-based strategies to fall asleep and stay asleep.' },
+      { icon: 'cycle-clock', title: 'Irregular routines', description: 'Build a consistent rhythm that supports your mind and body.' },
+      { icon: 'phone-moon', title: 'Bedtime procrastination', description: 'Break delaying habits and create a healthier wind-down routine.' }
+    ]
   },
   {
     id: 6,
-    icon: '🧘',
-    title: 'Integrative Mind-Body Therapy',
-    description: 'Structured use of yogic practices alongside psychiatry.',
-    points: ['Breathwork (pranayama)', 'Awareness training', 'Nervous system regulation']
+    image: '/services/integrative-mind-body-therapy.webp',
+    imageAlt: 'Woman meditating with a hand on her chest, facing a sunrise',
+    title: 'Integrative <span class="hl">Mind-Body</span> Therapy',
+    subtitle: 'Structured use of <span class="hl">yogic practices</span> alongside psychiatry.',
+    points: [
+      { icon: 'breathwork', title: 'Breathwork (pranayama)', description: 'Regulate breath to calm the mind and reduce stress.' },
+      { icon: 'awareness', title: 'Awareness training', description: 'Build present-moment awareness and break automatic patterns.' },
+      { icon: 'nervous', title: 'Nervous system regulation', description: 'Restore balance, build resilience, and improve overall well-being.' }
+    ]
   },
   {
     id: 7,
-    icon: '🛡️',
-    title: 'Follow-up & Long-term Care',
-    description: 'Ongoing refinement of treatment for sustained results.',
-    points: ['Progress tracking', 'Adjustments in plan', 'Relapse prevention']
+    image: '/services/followup-long-term-care.webp',
+    imageAlt: 'Follow-up consultation looking out at a river valley view',
+    title: 'Follow-up <span class="amp">&amp;</span> Long-term Care',
+    subtitle: 'Ongoing refinement of treatment for <span class="hl">sustained results</span>.',
+    points: [
+      { icon: 'clipboard-check', title: 'Progress tracking', description: 'Regular check-ins to monitor improvements and celebrate milestones.' },
+      { icon: 'sliders', title: 'Adjustments in plan', description: 'Tailoring treatment as your needs evolve for better outcomes.' },
+      { icon: 'shield-leaf', title: 'Relapse prevention', description: 'Building resilience and strategies to maintain long-term well-being.' }
+    ]
   },
   {
     id: 8,
-    icon: '⭐',
-    title: 'Executive & Specialised Programs',
-    description: 'High-touch, personalised care designed for complex needs and elevated expectations.',
-    points: ['Personalised engagement', 'Complex case management', 'Premium support']
+    image: '/services/executive-specialised-programs.webp',
+    imageAlt: 'Executive consultation in a refined, discreet office setting',
+    title: 'Executive <span class="amp">&amp;</span> Specialised Programs',
+    subtitle: 'High-touch, personalised care designed for <span class="hl">complex needs</span> and <span class="hl">elevated expectations</span>.',
+    points: [
+      { icon: 'chat', title: 'Personalised engagement', description: 'One-on-one attention and customised plans tailored to your unique goals and lifestyle.' },
+      { icon: 'puzzle', title: 'Complex case management', description: 'Expert handling of complex conditions with an integrative and multidisciplinary approach.' },
+      { icon: 'diamond-star', title: 'Premium support', description: 'Priority access, continuous support, and a seamless experience at every step.' }
+    ]
   }
 ]
 </script>
@@ -123,75 +156,6 @@ const services = [
   color: var(--text-body);
   margin: 0;
   line-height: 1.6;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: clamp(3rem, 6vw, 4rem);
-}
-
-.service-card {
-  padding: clamp(1.5rem, 3vw, 2rem);
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.service-card:hover {
-  border-color: var(--brand);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-.service-icon {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  margin-bottom: 1rem;
-  line-height: 1;
-}
-
-.service-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  font-weight: 600;
-  margin: 0 0 0.75rem;
-  color: var(--text-strong);
-  line-height: 1.3;
-}
-
-.service-description {
-  font-size: clamp(0.875rem, 1.2vw, 1rem);
-  color: var(--text-body);
-  margin: 0 0 1rem;
-  line-height: 1.6;
-}
-
-.service-points {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-}
-
-.service-points li {
-  font-size: clamp(0.8125rem, 1vw, 0.9375rem);
-  color: var(--text-muted);
-  padding-left: 1.25rem;
-  position: relative;
-}
-
-.service-points li:before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--brand);
-  font-weight: bold;
 }
 
 .services-cta {
@@ -240,10 +204,6 @@ const services = [
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
   .services-cta {
     flex-direction: column;
   }
