@@ -19,18 +19,9 @@
             rel="noopener noreferrer"
             :aria-label="`${option.title}. Opens ${option.destination} in a new tab.`"
           >
-            <div class="tile-art" aria-hidden="true">
-              <span class="art-glow"></span>
-              <div class="art-land">
-                <span class="art-range range-far"></span>
-                <span class="art-range range-mid"></span>
-                <span class="art-range range-near"></span>
-                <span class="art-mist"></span>
-              </div>
-              <span class="art-ridge"></span>
+            <div class="tile-plate">
+              <img class="tile-icon" :src="option.icon" alt="" loading="lazy" decoding="async" />
             </div>
-
-            <div class="tile-frost" aria-hidden="true"></div>
 
             <div class="tile-copy">
               <h3 class="tile-title">{{ option.title }}</h3>
@@ -66,6 +57,7 @@ const options = [
   {
     id: 'in-person',
     theme: 'dawn',
+    icon: '/booking-clinic.webp',
     title: 'In-Person Clinic Visit',
     tags: ['In person', 'Clinic'],
     destination: 'Google Calendar',
@@ -74,6 +66,7 @@ const options = [
   {
     id: 'online',
     theme: 'grove',
+    icon: '/booking-video.webp',
     title: 'Online Video Consult',
     tags: ['Online', 'Video call'],
     destination: 'WhatsApp',
@@ -82,6 +75,7 @@ const options = [
   {
     id: 'home',
     theme: 'dusk',
+    icon: '/booking-home.webp',
     title: 'Home Visit Consultation',
     tags: ['At home', 'Doorstep'],
     destination: 'Google Calendar',
@@ -149,23 +143,23 @@ const options = [
 
 .tile {
   position: relative;
-  display: block;
-  /* slightly wider than tall, like the reference */
-  aspect-ratio: 1.1 / 1;
-  border: clamp(4px, 0.42vw, 6px) solid var(--white);
-  border-radius: clamp(1.75rem, 2.8vw, 2.5rem);
-  background-clip: padding-box;
-  overflow: hidden;
-  isolation: isolate;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  aspect-ratio: 1.06 / 1;
+  padding: clamp(1.25rem, 2.6vw, 1.875rem);
+  border-radius: var(--radius-lg);
+  border: var(--border-w) solid var(--border);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-sm);
   text-decoration: none;
-  box-shadow: 0 4px 10px rgb(60 52 38 / 0.1), 0 22px 48px rgb(60 52 38 / 0.22);
   transition: transform var(--dur-base) var(--ease-soft),
-    box-shadow var(--dur-base) var(--ease-soft);
+    box-shadow var(--dur-base) var(--ease-soft), border-color var(--dur-base) var(--ease-soft);
 }
 
 .tile:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 14px rgb(60 52 38 / 0.12), 0 32px 64px rgb(60 52 38 / 0.3);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brand);
 }
 
 .tile:focus-visible {
@@ -173,169 +167,77 @@ const options = [
   outline-offset: 3px;
 }
 
-/* ---------- the artwork, edge to edge ----------
-   A hazy range of peaks built from tinted layers rather than a photograph: sky
-   wash, a bright mist at the horizon, three ranges that dissolve into it, and a
-   dark foreground the copy sits over. Swapping this for an <img> is contained
-   to .tile-art. */
+/* ---------- the icon plate ----------
+   Each icon carries a flat baked ground, so rather than fight it the ground
+   becomes the design: a rounded plate tinted to that icon's own colour, which
+   makes the square deliberate instead of an artefact. On a white card there is
+   no blend that removes a cream ground — multiply only clears pure white — so
+   matching the plate is the one exact solution. */
 
-.tile-art {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 46%, var(--sky-3) 100%);
+.tile-plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  width: clamp(5.5rem, 11vw, 7.5rem);
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: var(--plate);
 }
 
-.art-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(115% 58% at 50% 4%, rgb(255 255 255 / 0.5) 0%, rgb(255 255 255 / 0) 62%);
+.tile-icon {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
 }
 
-/* the horizon, so the peaks stay clear of the copy at the foot of the card */
-.art-land {
-  position: absolute;
-  inset: 0 0 26% 0;
+/* the house is a stock render on pure white, where multiply drops the box
+   cleanly onto the plate the other two match directly */
+.theme-dusk .tile-icon {
+  mix-blend-mode: multiply;
 }
 
-.art-range,
-.art-mist {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.range-far {
-  height: 78%;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.5) 0%, rgb(255 255 255 / 0) 64%);
-  clip-path: polygon(
-    0% 100%, 0% 54%, 7% 38%, 14% 52%, 22% 30%, 30% 48%, 38% 26%, 47% 46%,
-    55% 22%, 64% 44%, 72% 28%, 80% 48%, 88% 32%, 96% 50%, 100% 42%, 100% 100%
-  );
-  filter: blur(1.4px);
-}
-
-/* one dominant massif, raked so it has a lit face and a shaded one */
-.range-mid {
-  height: 92%;
-  background: linear-gradient(112deg, rgb(255 255 255 / 0.86) 0%, rgb(255 255 255 / 0.52) 38%, rgb(255 255 255 / 0) 74%);
-  clip-path: polygon(
-    0% 100%, 0% 84%, 10% 70%, 20% 48%, 30% 24%, 38% 8%, 48% 42%, 55% 30%,
-    64% 48%, 72% 22%, 82% 54%, 90% 44%, 100% 64%, 100% 100%
-  );
-  filter: blur(0.6px);
-}
-
-.range-near {
-  height: 46%;
-  background: linear-gradient(180deg, var(--peak-near) 0%, rgb(255 255 255 / 0) 82%);
-  opacity: 0.55;
-  clip-path: polygon(
-    0% 100%, 0% 70%, 10% 56%, 22% 72%, 34% 52%, 46% 70%, 58% 54%,
-    70% 72%, 82% 56%, 92% 72%, 100% 62%, 100% 100%
-  );
-}
-
-.art-mist {
-  left: -10%;
-  right: -10%;
-  bottom: -6%;
-  height: 30%;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0) 0%, rgb(255 255 255 / 0.26) 46%, rgb(255 255 255 / 0) 100%);
-  filter: blur(7px);
-}
-
-.art-ridge {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 42%;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0) 0%, var(--ridge) 46%, var(--ridge-deep) 100%);
-}
-
-/* ---------- the frosted panel the copy sits on ----------
-   The reference blurs the photograph behind its text rather than laying a flat
-   scrim over it, and feathers the blur in so there is no visible seam. */
-
-.tile-frost {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 54%;
-  z-index: -1;
-  backdrop-filter: blur(14px) saturate(1.08);
-  -webkit-backdrop-filter: blur(14px) saturate(1.08);
-  background: linear-gradient(180deg, rgb(22 17 12 / 0.06) 0%, rgb(22 17 12 / 0.34) 62%, rgb(22 17 12 / 0.48) 100%);
-  -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 1) 26%);
-  mask-image: linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 1) 26%);
-}
-
-/* ---------- per-card palettes ---------- */
+/* ---------- per-tile palettes ----------
+   Plate tint sampled from each icon's own baked ground. */
 
 .theme-dawn {
-  --sky-1: var(--camel-100);
-  --sky-2: var(--clay-300);
-  --sky-3: var(--clay-600);
-  --peak-near: var(--clay-600);
-  --ridge: #57301D;
-  --ridge-deep: #2D1A12;
+  --plate: #EDEAE4;
+  --ink: var(--clay-600);
 }
 
 .theme-grove {
-  --sky-1: var(--sage-100);
-  --sky-2: var(--sage-300);
-  --sky-3: var(--sage-700);
-  --peak-near: var(--sage-700);
-  --ridge: #2C3620;
-  --ridge-deep: #1F261A;
+  --plate: #EAE7DC;
+  --ink: var(--sage-700);
 }
 
 .theme-dusk {
-  --sky-1: var(--clay-200);
-  --sky-2: var(--clay-500);
-  --sky-3: var(--stone-700);
-  --peak-near: var(--stone-700);
-  --ridge: #4A4133;
-  --ridge-deep: #2A2620;
-}
-
-.theme-grove .art-range {
-  transform: scaleX(-1);
-}
-
-.theme-dusk .art-range {
-  transform: translateX(-7%) scaleX(1.14);
+  --plate: #EDEAE4;
+  --ink: var(--stone-600);
 }
 
 /* ---------- copy ---------- */
 
 .tile-copy {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: clamp(1rem, 1.8vw, 1.5rem);
-  color: var(--white);
+  padding-top: clamp(1rem, 2.2vw, 1.5rem);
+  text-align: center;
 }
 
 .tile-title {
-  margin: 0 0 clamp(0.75rem, 1.4vw, 1rem);
-  max-width: 12ch;
+  margin: 0 0 clamp(0.625rem, 1.4vw, 0.875rem);
   font-family: var(--font-sans);
-  font-size: clamp(1.125rem, 1.7vw, 1.4375rem);
+  font-size: clamp(1.0625rem, 1.55vw, 1.3125rem);
   font-weight: var(--fw-bold);
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: var(--ls-tight);
-  color: var(--white);
-  text-shadow: 0 1px 12px rgb(18 14 10 / 0.45);
+  color: var(--ink-900);
 }
 
 .tile-foot {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.625rem;
+  gap: 0.5rem;
 }
 
 .tile-tags {
@@ -344,35 +246,35 @@ const options = [
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.375rem;
 }
 
 .tile-tags li {
   padding: 0.25rem 0.5625rem;
   border-radius: var(--radius-pill);
-  background: rgb(24 19 14 / 0.42);
-  border: 1px solid rgb(255 255 255 / 0.16);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
   font-family: var(--font-sans);
   font-size: 0.625rem;
   font-weight: var(--fw-medium);
   line-height: 1.2;
   white-space: nowrap;
-  color: rgb(255 255 255 / 0.88);
+  color: var(--stone-700);
 }
 
-/* every card leaves the site, so each says where it goes */
+/* every tile leaves the site, so each says where it goes */
 .tile-meta {
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
-  flex-shrink: 0;
   font-family: var(--font-sans);
   font-size: 0.625rem;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
   white-space: nowrap;
-  color: rgb(255 255 255 / 0.86);
+  color: var(--ink);
 }
 
 .tile-meta svg {
