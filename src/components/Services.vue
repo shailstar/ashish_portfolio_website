@@ -12,69 +12,62 @@
         </p>
       </div>
 
-      <ul ref="rail" class="services-rail">
+      <ol class="services-stack">
         <li
           v-for="(service, index) in services"
           :key="service.id"
-          class="service-panel"
-          :class="[`theme-${service.theme}`, { 'is-active': active === index }]"
+          class="stack-slot"
+          :style="{ '--i': index }"
         >
-          <div class="panel-scene" aria-hidden="true">
-            <span class="scene-orb"></span>
-            <span class="scene-cloud cloud-a"></span>
-            <span class="scene-cloud cloud-b"></span>
-            <span class="scene-ridge"></span>
-            <span class="scene-hill"></span>
-            <span class="scene-field"></span>
-          </div>
-
-          <button
-            type="button"
-            class="panel-trigger"
-            :aria-expanded="active === index"
-            @focus="active = index"
-            @click="active = index"
+          <article
+            class="service-card"
+            :class="`theme-${service.theme}`"
           >
-            <span class="sr-only">{{ service.title }}</span>
-          </button>
+            <header class="card-head">
+              <span class="head-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path v-for="(d, i) in service.icon" :key="i" :d="d" />
+                </svg>
+              </span>
+              <h3 class="card-name">{{ service.title }}</h3>
+              <span class="card-index" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</span>
+            </header>
 
-          <span class="panel-icon" aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path v-for="(d, i) in service.icon" :key="i" :d="d" />
-            </svg>
-          </span>
+            <div class="card-body">
+              <div class="card-copy">
+                <p class="card-description">{{ service.description }}</p>
+                <ul class="card-points">
+                  <li v-for="point in service.points" :key="point">{{ point }}</li>
+                </ul>
+                <a
+                  :href="bookingUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="card-cta"
+                >
+                  Book this <span aria-hidden="true">→</span>
+                </a>
+              </div>
 
-          <p class="panel-label" aria-hidden="true">{{ service.title }}</p>
-
-          <span class="panel-index" aria-hidden="true">{{ String(index + 1).padStart(2, '0') }}</span>
-
-          <div class="panel-detail">
-            <h3 class="detail-title">{{ service.title }}</h3>
-            <p class="detail-description">{{ service.description }}</p>
-            <ul class="detail-points">
-              <li v-for="point in service.points" :key="point">{{ point }}</li>
-            </ul>
-          </div>
-
-          <a
-            :href="bookingUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="panel-cta"
-            :tabindex="active === index ? 0 : -1"
-            :aria-hidden="active !== index"
-          >
-            Book this <span aria-hidden="true">→</span>
-          </a>
+              <img
+                v-if="service.image"
+                class="card-photo"
+                :src="service.image"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
         </li>
-      </ul>
+      </ol>
 
       <div class="services-cta">
         <a
@@ -92,54 +85,8 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-
 const bookingUrl =
   'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j'
-
-const active = ref(0)
-const rail = ref(null)
-
-let ticking = false
-
-/* Which row is open follows the scroll position: the stack is divided into as
-   many equal bands as there are rows, and whichever band holds the viewport's
-   centre line names the open row.
- *
- * Hit-testing the live row rectangles instead would oscillate — opening a row
- * moves the rows after it, which can push the centre line back onto the row
- * that was just closed. These bands are derived only from the stack's total
- * height, which stays constant (exactly one row is open at any moment, mid-
- * animation included), so nothing the animation does can feed back into the
- * choice. The geometry still works out: with n rows, the band for row k always
- * falls inside row k's own span once it is open. */
-function syncActive() {
-  ticking = false
-  const el = rail.value
-  if (!el) return
-  const rect = el.getBoundingClientRect()
-  if (rect.height <= 0) return
-  const band = (window.innerHeight / 2 - rect.top) / rect.height
-  const index = Math.min(services.length - 1, Math.max(0, Math.floor(band * services.length)))
-  if (index !== active.value) active.value = index
-}
-
-function onScroll() {
-  if (ticking) return
-  ticking = true
-  requestAnimationFrame(syncActive)
-}
-
-onMounted(() => {
-  syncActive()
-  window.addEventListener('scroll', onScroll, { passive: true })
-  window.addEventListener('resize', onScroll)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', onScroll)
-  window.removeEventListener('resize', onScroll)
-})
 
 const services = [
   {
@@ -149,6 +96,7 @@ const services = [
       'M16.4 16.4 20.6 20.6'
     ],
     theme: 'sage',
+    image: '/service-consultation.webp',
     title: 'Personalised Psychiatric Consultation',
     description: 'Comprehensive evaluation with a tailored treatment plan.',
     points: ['Diagnosis + formulation', 'Medication when required', 'Clear roadmap']
@@ -159,6 +107,7 @@ const services = [
       'M3 12h3.6l2-5.2 3.1 10.4 2.4-5.2H21'
     ],
     theme: 'camel',
+    image: '/service-anxiety.webp',
     title: 'Anxiety & Stress Disorders',
     description: 'Move from constant overthinking and tension to clarity and control.',
     points: ['Generalised anxiety', 'Panic episodes', 'Work-related stress']
@@ -169,6 +118,7 @@ const services = [
       'M6.8 19a4.1 4.1 0 0 1 .4-8.2 5.6 5.6 0 0 1 10.7-.4A3.8 3.8 0 0 1 17.4 19H6.8z'
     ],
     theme: 'ink',
+    image: '/service-depression.webp',
     title: 'Depression & Mood Disorders',
     description: 'Address low mood, fatigue, and loss of motivation at the root.',
     points: ['Major depression', 'Burnout', 'Emotional numbness']
@@ -180,6 +130,7 @@ const services = [
       'M20.4 4.4v4.2h-4.2'
     ],
     theme: 'clay',
+    image: '/service-overthinking.webp',
     title: 'Overthinking & Behavioural Patterns',
     description: 'Break repetitive thought loops and unhelpful habits.',
     points: ['Rumination', 'Procrastination', 'Binge behaviours (OTT, phone use)']
@@ -190,6 +141,7 @@ const services = [
       'M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8z'
     ],
     theme: 'dusk',
+    image: '/service-sleep.webp',
     title: 'Sleep & Lifestyle Regulation',
     description: 'Restore natural sleep and daily rhythm.',
     points: ['Insomnia', 'Irregular routines', 'Bedtime procrastination']
@@ -202,6 +154,7 @@ const services = [
       'M17.4 6.3a8 8 0 0 1 0 11.4'
     ],
     theme: 'leaf',
+    image: '/service-mindbody.webp',
     title: 'Integrative Mind-Body Therapy',
     description: 'Structured use of yogic practices alongside psychiatry.',
     points: ['Breathwork (pranayama)', 'Awareness training', 'Nervous system regulation']
@@ -213,6 +166,7 @@ const services = [
       'M9.4 12.1 11.3 14l3.4-3.6'
     ],
     theme: 'stone',
+    image: '/service-followup.webp',
     title: 'Follow-up & Long-term Care',
     description: 'Ongoing refinement of treatment for sustained results.',
     points: ['Progress tracking', 'Adjustments in plan', 'Relapse prevention']
@@ -223,6 +177,7 @@ const services = [
       'm12 3.7 2.6 5.2 5.8.9-4.2 4 1 5.7-5.2-2.7-5.2 2.7 1-5.7-4.2-4 5.8-.9z'
     ],
     theme: 'moss',
+    image: '/service-executive.webp',
     title: 'Executive & Specialised Programs',
     description:
       'High-touch, personalised care designed for complex needs and elevated expectations.',
@@ -233,24 +188,13 @@ const services = [
 
 <style scoped>
 .services {
-  padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
+  padding: clamp(3.5rem, 7vw, 6rem) var(--gutter) clamp(3rem, 6vw, 5rem);
   background-color: var(--bg-page);
 }
 
 .services-container {
   max-width: var(--container-xl);
   margin: 0 auto;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 /* ---------- header ---------- */
@@ -291,508 +235,256 @@ const services = [
   color: var(--text-body);
 }
 
-/* ---------- the stack: one open row, the rest collapsed to bars ---------- */
+/* ---------- the stack ----------
+   Every card pins itself a little lower than the one before it and outranks it,
+   so scrolling deals them onto a pile: the card you are reading sits on top and
+   each one it has covered leaves a sliver of its own sky showing above.
 
-.services-rail {
-  /* the open height is shared with the artwork below, so a collapsed bar
-     crops the bottom of the same painting rather than resizing it */
-  --open-height: clamp(19rem, 26vw, 23rem);
-  --bar-height: 9.5rem;
+   The slot is what scrolls; the card inside it is what sticks. Slot height is
+   therefore the scroll distance one card gets before the next starts covering
+   it — keep it equal to the card height, or cards overlap before you have read
+   them. Nothing in this list may set `overflow` other than `visible`: an
+   overflow on any ancestor silently kills position: sticky. */
+
+.services-stack {
+  --stack-top: clamp(5.25rem, 6vh, 6rem);
+  /* the step IS the header band: what a covered card leaves showing is its own
+     title bar, so the whole pile stays readable rather than fading into a run
+     of anonymous slivers */
+  --band-h: 3.125rem;
+  --stack-step: var(--band-h);
+  --card-h: clamp(16.5rem, 21vw, 19.5rem);
+
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.5rem, 0.8vw, 0.75rem);
+  position: relative;
 }
 
-.service-panel {
+.stack-slot {
+  position: sticky;
+  top: calc(var(--stack-top) + var(--i) * var(--stack-step));
+  z-index: calc(var(--i) + 1);
+  height: var(--card-h);
+}
+
+.service-card {
   position: relative;
-  flex: 0 0 auto;
-  height: var(--bar-height);
-  border-radius: var(--radius-lg);
+  height: var(--card-h);
+  /* A large radius on a pile is what makes the edges ragged: every card's
+     rounded top exposes a wedge of the card behind it, and eight of those
+     stack into a stepped left edge. Small radius, crisp hairline, tight
+     shadow — a wide soft shadow smears down the band above instead of
+     separating the layers. */
+  border-radius: 0.75rem;
   overflow: hidden;
   isolation: isolate;
-  transition: height var(--dur-slow) var(--ease-soft);
+  display: grid;
+  grid-template-rows: var(--band-h) minmax(0, 1fr);
+  box-shadow: 0 -8px 18px -6px rgb(18 18 16 / 0.3), inset 0 1px 0 rgb(255 255 255 / 0.22);
 }
 
-.service-panel.is-active {
-  height: var(--open-height);
+/* ---------- the header band ----------
+   Bands alternate light and deep down the stack, each carrying type in its own
+   hue, so the pile reads as a run of distinct layers rather than one field. */
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 clamp(1.125rem, 2vw, 1.625rem);
+  background: var(--tint);
+  color: var(--ink);
 }
 
-/* the trigger is the whole row — the overlay copy floats above it and lets
-   clicks through, so only the CTA inside it is separately clickable */
-.panel-trigger {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  width: 100%;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  appearance: none;
-}
-
-.panel-trigger:focus-visible {
-  outline: 2px solid var(--white);
-  outline-offset: -6px;
-}
-
-/* ---------- the illustrated art, edge to edge ----------
-   The reference panels are full-bleed painted landscapes. With no per-service
-   artwork to trace, each composes one from tinted layers: sky wash, sun, two
-   cloud banks, a far ridge, a near hill and a foreground field. Every colour
-   is a token. Swapping this block for an <img> is a contained change. */
-
-.panel-scene {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* held at full open height and anchored to the bottom, so a collapsed bar
-     shows the rich foreground of the painting instead of empty sky */
-  height: var(--open-height);
-  z-index: -2;
-  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 52%, var(--sky-bot) 100%);
-}
-
-.panel-scene > span {
-  position: absolute;
-}
-
-.scene-orb {
-  top: 15%;
-  right: 19%;
-  width: clamp(2.75rem, 3.5vw, 4rem);
-  height: clamp(2.75rem, 3.5vw, 4rem);
-  border-radius: 50%;
-  background: var(--orb);
+.head-icon {
+  flex-shrink: 0;
+  display: flex;
   opacity: 0.85;
 }
 
-.scene-cloud {
-  border-radius: var(--radius-pill);
-  background: var(--cloud);
-  opacity: 0.72;
-}
-
-/* two lobes turn the capsule into a painted cloud bank rather than a bar */
-.scene-cloud::before,
-.scene-cloud::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  border-radius: 50%;
-  background: inherit;
-}
-
-.scene-cloud::before {
-  left: 18%;
-  width: 2.75rem;
-  height: 2.75rem;
-}
-
-.scene-cloud::after {
-  left: 46%;
-  width: 2rem;
-  height: 2rem;
-}
-
-.cloud-a {
-  top: 16%;
-  left: 8%;
-  width: clamp(4.5rem, 7%, 6.5rem);
-  height: 1.5rem;
-}
-
-.cloud-b {
-  top: 31%;
-  right: 30%;
-  width: clamp(3.5rem, 5.5%, 5rem);
+.head-icon svg {
+  width: 1.25rem;
   height: 1.25rem;
-  opacity: 0.5;
-}
-
-.cloud-b::before {
-  left: 24%;
-  width: 2rem;
-  height: 2rem;
-}
-
-.cloud-b::after {
-  left: 56%;
-  width: 1.375rem;
-  height: 1.375rem;
-}
-
-/* the domes run wider than the row so the ground reads as rolling hills
-   rather than three stacked bubbles */
-.scene-ridge {
-  left: -8%;
-  right: 38%;
-  bottom: 32%;
-  height: 30%;
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  background: var(--ridge);
-}
-
-.scene-hill {
-  left: 24%;
-  right: -14%;
-  bottom: 14%;
-  height: 34%;
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  background: var(--hill);
-}
-
-.scene-field {
-  left: -14%;
-  right: -14%;
-  bottom: 0;
-  height: 23%;
-  border-radius: 50% 50% 0 0 / 40% 40% 0 0;
-  background: var(--field);
-}
-
-/* Two washes cross-fade rather than one wash changing shape: a gradient can't
-   animate between colour stops, but a pair of layers can trade opacity.
-   Collapsed pulls dark in from the left, behind the row's title. */
-.service-panel::before,
-.service-panel::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  transition: opacity var(--dur-slow) var(--ease-soft);
-}
-
-.service-panel::before {
-  background: linear-gradient(90deg, rgb(18 18 16 / 0.5) 0%, rgb(18 18 16 / 0.26) 48%, rgb(18 18 16 / 0.04) 100%);
-  opacity: 1;
-}
-
-/* open trades it for a wash rising from the bottom, under four lines of copy */
-.service-panel::after {
-  background: linear-gradient(180deg, rgb(18 18 16 / 0) 26%, rgb(18 18 16 / 0.5) 62%, rgb(18 18 16 / 0.88) 100%);
-  opacity: 0;
-}
-
-.service-panel.is-active::before {
-  opacity: 0;
-}
-
-.service-panel.is-active::after {
-  opacity: 1;
-}
-
-/* ---------- per-panel palettes ---------- */
-
-.theme-sage {
-  --sky-top: var(--sage-100);
-  --sky-mid: var(--sage-200);
-  --sky-bot: var(--sage-300);
-  --orb: var(--camel-200);
-  --cloud: var(--sage-50);
-  --ridge: var(--sage-400);
-  --hill: var(--sage-500);
-  --field: var(--sage-700);
-}
-
-.theme-camel {
-  --sky-top: var(--camel-100);
-  --sky-mid: var(--camel-200);
-  --sky-bot: var(--camel-300);
-  --orb: var(--clay-200);
-  --cloud: var(--camel-50);
-  --ridge: var(--camel-400);
-  --hill: var(--camel-500);
-  --field: var(--camel-600);
-}
-
-.theme-ink {
-  --sky-top: var(--stone-300);
-  --sky-mid: var(--stone-400);
-  --sky-bot: var(--stone-500);
-  --orb: var(--camel-100);
-  --cloud: var(--stone-200);
-  --ridge: var(--stone-600);
-  --hill: var(--stone-600);
-  --field: var(--stone-700);
-}
-
-.theme-clay {
-  --sky-top: var(--camel-200);
-  --sky-mid: var(--clay-200);
-  --sky-bot: var(--clay-300);
-  --orb: var(--camel-50);
-  --cloud: var(--camel-50);
-  --ridge: var(--clay-400);
-  --hill: var(--clay-500);
-  --field: var(--clay-600);
-}
-
-.theme-dusk {
-  --sky-top: var(--camel-200);
-  --sky-mid: var(--camel-300);
-  --sky-bot: var(--clay-400);
-  --orb: var(--white);
-  --cloud: var(--camel-100);
-  --ridge: var(--clay-500);
-  --hill: var(--clay-600);
-  --field: var(--stone-600);
-}
-
-.theme-leaf {
-  --sky-top: var(--sage-200);
-  --sky-mid: var(--sage-300);
-  --sky-bot: var(--sage-400);
-  --orb: var(--camel-100);
-  --cloud: var(--sage-50);
-  --ridge: var(--sage-500);
-  --hill: var(--sage-600);
-  --field: var(--leaf);
-}
-
-.theme-stone {
-  --sky-top: var(--stone-100);
-  --sky-mid: var(--stone-200);
-  --sky-bot: var(--stone-300);
-  --orb: var(--camel-300);
-  --cloud: var(--white);
-  --ridge: var(--stone-400);
-  --hill: var(--stone-400);
-  --field: var(--stone-500);
-}
-
-.theme-moss {
-  --sky-top: var(--sage-300);
-  --sky-mid: var(--sage-400);
-  --sky-bot: var(--sage-500);
-  --orb: var(--camel-100);
-  --cloud: var(--sage-100);
-  --ridge: var(--sage-600);
-  --hill: var(--sage-600);
-  --field: var(--sage-800);
-}
-
-/* ---------- collapsed row ---------- */
-
-.panel-icon {
-  position: absolute;
-  top: 50%;
-  left: clamp(1.25rem, 2.4vw, 2rem);
-  translate: 0 -50%;
-  z-index: 3;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  /* smoked glass rather than a white sticker: the mark has to hold up over
-     pale sky when the row is open and over dark ground when it is a bar */
-  background: rgb(18 18 16 / 0.42);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgb(255 255 255 / 0.32);
-  color: var(--white);
-  transition: top var(--dur-slow) var(--ease-soft), translate var(--dur-slow) var(--ease-soft);
-}
-
-.panel-icon svg {
-  width: 1.5rem;
-  height: 1.5rem;
   display: block;
-  filter: drop-shadow(0 1px 3px rgb(18 18 16 / 0.45));
 }
 
-.is-active .panel-icon {
-  top: clamp(1.25rem, 2vw, 1.75rem);
-  translate: 0 0;
-}
-
-.panel-label {
-  position: absolute;
-  top: 50%;
-  left: calc(clamp(1.25rem, 2.4vw, 2rem) + 4.25rem);
-  z-index: 3;
+.card-name {
   margin: 0;
-  display: flex;
-  align-items: center;
-  height: 3rem;
-  max-width: calc(100% - 12rem);
-  translate: 0 -50%;
-  overflow: hidden;
+  margin-right: auto;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
   font-weight: var(--fw-bold);
   line-height: 1.15;
   letter-spacing: var(--ls-tight);
-  color: var(--white);
-  text-shadow: 0 1px 14px rgb(18 18 16 / 0.55);
-  white-space: nowrap;
+  color: inherit;
+  overflow: hidden;
   text-overflow: ellipsis;
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-soft);
+  white-space: nowrap;
 }
 
-/* an editorial marker at the far end, so a bar reads as one composed line
-   rather than a mark and a title adrift in a wide empty field */
-.panel-index {
-  position: absolute;
-  top: 50%;
-  right: clamp(1.25rem, 2.4vw, 2rem);
-  z-index: 3;
-  translate: 0 -50%;
+.card-index {
+  flex-shrink: 0;
+  padding-left: 1rem;
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: var(--fw-semibold);
-  letter-spacing: 0.1em;
-  color: rgb(255 255 255 / 0.65);
-  text-shadow: 0 1px 10px rgb(18 18 16 / 0.5);
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-soft);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
 }
 
-.is-active .panel-index {
-  opacity: 0;
-  transition-duration: var(--dur-fast);
+.card-body {
+  position: relative;
+  display: grid;
+  /* The artwork is height-limited by `contain`, so its width follows the card
+     height, not this column: at the current height it needs about 30% and the
+     slack shows as tint under the image's faded edge. An `auto` column does
+     NOT work here — `width: auto` on the image has no definite height to
+     resolve against during intrinsic sizing and collapses it. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
+  /* the row has to be pinned to the body's own height: left auto it sizes to
+     content and the copy and artwork overflow the card and get clipped */
+  grid-template-rows: minmax(0, 1fr);
+  /* stretch, not center: a percentage height on a centered grid item resolves
+     against an auto-sized row and collapses the image to nothing */
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 2rem);
+  /* no vertical padding: the artwork runs the full height of the body and out
+     to the card's right edge, so it reads as a panel rather than a pasted-in
+     rectangle */
+  padding: 0 0 0 clamp(1.125rem, 2vw, 1.625rem);
+  overflow: hidden;
+  background: var(--tint);
 }
 
-/* a hairline keeps the paler bars from bleeding into the page */
-.service-panel {
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+/* The illustration sits contained at the right of the card rather than being
+   cropped to fill it — these are drawn scenes with their own composition, and
+   a 4:1 cover crop cut straight through them. The card's tint is sampled from
+   each image, so the artwork's own ground melts into the card. */
+.card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  /* each illustration carries its own pale ground, a shade off the card tint —
+     fading the inner edge hides the seam between the two */
+  -webkit-mask-image: linear-gradient(90deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 1) 22%);
+  mask-image: linear-gradient(90deg, rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 1) 22%);
 }
 
-/* clicking a bar opens it too, so a light hover cue is honest */
-.service-panel:not(.is-active):hover .panel-label {
-  translate: 0.25rem -50%;
+/* ---------- per-card palettes ----------
+   Each tint is sampled from that card's own artwork, so image and card read
+   as one surface. */
+
+.theme-sage {
+  --tint: #F4E9E4;
+  --ink: var(--clay-600);
 }
 
-.service-panel:not(.is-active):hover .panel-index {
-  color: rgb(255 255 255 / 0.85);
+.theme-camel {
+  --tint: #F7EAE4;
+  --ink: var(--camel-700);
 }
 
-.panel-label {
-  transition: opacity var(--dur-base) var(--ease-soft),
-    translate var(--dur-base) var(--ease-soft);
+.theme-ink {
+  --tint: #FCF0E6;
+  --ink: var(--stone-700);
 }
 
-.is-active .panel-label {
-  opacity: 0;
-  transition-duration: var(--dur-fast);
+.theme-clay {
+  --tint: #FCF4EC;
+  --ink: var(--clay-600);
 }
 
-/* ---------- open row ---------- */
+.theme-dusk {
+  --tint: #FBF2E7;
+  --ink: var(--camel-700);
+}
 
-.panel-detail {
-  position: absolute;
-  inset: auto 0 0 0;
-  z-index: 3;
-  padding: clamp(1.25rem, 2.2vw, 2rem) clamp(1.25rem, 2vw, 1.75rem);
+.theme-leaf {
+  --tint: #FAF1E6;
+  --ink: var(--sage-800);
+}
+
+.theme-stone {
+  --tint: #FCF0E4;
+  --ink: var(--stone-700);
+}
+
+.theme-moss {
+  --tint: #FBF2E5;
+  --ink: var(--sage-800);
+}
+
+/* ---------- copy ---------- */
+
+.card-copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.625rem;
-  color: var(--white);
-  opacity: 0;
-  visibility: hidden;
-  translate: 0 0.75rem;
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-soft),
-    translate var(--dur-slow) var(--ease-soft), visibility 0s linear var(--dur-slow);
+  justify-content: center;
+  gap: 0.75rem;
+  min-width: 0;
+  padding-block: clamp(0.875rem, 1.8vw, 1.375rem);
 }
 
-.is-active .panel-detail {
-  opacity: 1;
-  visibility: visible;
-  translate: 0 0;
-  /* the copy waits for the row to finish opening, so lines don't reflow
-     mid-animation */
-  transition-delay: var(--dur-base), var(--dur-base), 0s;
-}
-
-.detail-title {
+.card-description {
   margin: 0;
-  max-width: 24ch;
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-  font-weight: var(--fw-bold);
-  line-height: 1.16;
-  letter-spacing: var(--ls-tight);
-  color: var(--white);
-  text-shadow: 0 1px 14px rgb(18 18 16 / 0.5);
-}
-
-.detail-description {
-  margin: 0;
-  max-width: 58ch;
-  font-size: clamp(0.9375rem, 1.1vw, 1rem);
+  max-width: 46ch;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.25vw, 1.1875rem);
+  font-weight: var(--fw-medium);
   line-height: var(--lh-normal);
-  color: rgb(255 255 255 / 0.88);
+  color: var(--ink-800);
 }
 
-.detail-points {
+.card-points {
   list-style: none;
-  margin: 0.125rem 0 0;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.375rem 1.5rem;
 }
 
-.detail-points li {
+.card-points li {
   position: relative;
   padding-left: 1.125rem;
   font-size: 0.875rem;
   line-height: 1.4;
-  color: rgb(255 255 255 / 0.82);
+  color: var(--stone-700);
 }
 
-.detail-points li::before {
+.card-points li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  color: var(--camel-200);
+  color: var(--ink);
   font-weight: var(--fw-bold);
 }
 
-.panel-cta {
-  position: absolute;
-  top: clamp(1.25rem, 2vw, 1.75rem);
-  right: clamp(1.25rem, 2vw, 1.75rem);
-  z-index: 3;
+.card-cta {
+  margin-top: 0.25rem;
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.5625rem 1.0625rem;
+  padding: 0.5625rem 1.125rem;
   border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 0.92);
-  color: var(--ink-900);
+  background: var(--ink-900);
+  color: var(--white);
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: var(--fw-semibold);
   letter-spacing: var(--ls-wide);
   text-decoration: none;
   white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease-soft),
-    background-color var(--dur-fast) var(--ease-soft),
-    transform var(--dur-fast) var(--ease-soft), visibility 0s linear var(--dur-slow);
+  transition: background-color var(--dur-fast) var(--ease-soft),
+    transform var(--dur-fast) var(--ease-soft);
 }
 
-.is-active .panel-cta {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition-delay: var(--dur-base), 0s, 0s, 0s;
-}
-
-.panel-cta:hover {
-  background: var(--white);
+.card-cta:hover {
+  background: var(--ink-700);
   transform: translateX(2px);
 }
 
@@ -857,57 +549,72 @@ const services = [
 }
 
 @media (max-width: 640px) {
-  .services-rail {
-    --open-height: 21rem;
-    --bar-height: 7rem;
+  .services-stack {
+    --stack-top: 5rem;
+    --band-h: 2.875rem;
+    --card-h: 20rem;
   }
 
-  .panel-icon {
-    width: 2.625rem;
-    height: 2.625rem;
+  /* a 40% column leaves a thumbnail at this width, so the artwork takes the
+     top of the card and the copy sits under it */
+  .card-body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 45% minmax(0, 1fr);
+    gap: 0;
+    padding: 0 clamp(1.125rem, 2vw, 1.625rem);
   }
 
-  .panel-icon svg {
-    width: 1.1875rem;
-    height: 1.1875rem;
+  .card-photo {
+    grid-row: 1;
+    object-position: center bottom;
+    -webkit-mask-image: linear-gradient(180deg, rgb(0 0 0 / 1) 74%, rgb(0 0 0 / 0) 100%);
+    mask-image: linear-gradient(180deg, rgb(0 0 0 / 1) 74%, rgb(0 0 0 / 0) 100%);
   }
 
-  .is-active .panel-icon {
-    top: 1.125rem;
+  .card-copy {
+    grid-row: 2;
+    padding-block: 0 clamp(0.875rem, 3vw, 1.25rem);
   }
 
-  .panel-label {
-    left: calc(clamp(1.25rem, 2.4vw, 2rem) + 3.5rem);
-    height: 2.625rem;
-    max-width: calc(100% - 9rem);
-    font-size: 1.125rem;
-    white-space: normal;
+  .card-cta {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.6875rem;
   }
 
-  .panel-index {
-    font-size: 0.75rem;
+  .head-icon svg {
+    width: 1.125rem;
+    height: 1.125rem;
   }
 
-  .detail-description {
-    max-width: 42ch;
+  .card-points {
+    gap: 0.375rem 1rem;
+  }
+}
+
+/* Once every card is pinned the whole pile is on screen at once, so its height
+   — stack-top + (n-1) bands + one card — has to fit the viewport, or the last
+   card's checkpoints sit below the fold with no way to scroll them into view. */
+@media (max-height: 720px) {
+  .services-stack {
+    /* the page header is 77px at every width, so 5.5rem is the floor here */
+    --stack-top: 5.5rem;
+    --band-h: 2.625rem;
+    --card-h: 15rem;
+  }
+
+  .card-description {
+    font-size: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .service-panel,
-  .service-panel::before,
-  .service-panel::after,
-  .panel-detail,
-  .panel-icon,
-  .panel-label,
-  .panel-index,
-  .panel-cta,
+  .card-cta,
   .cta-button {
     transition: none;
   }
 
-  .cta-button:hover,
-  .panel-cta:hover {
+  .card-cta:hover,
+  .cta-button:hover {
     transform: none;
   }
 }
