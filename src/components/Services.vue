@@ -42,18 +42,21 @@
 
             <div class="card-body">
               <div class="card-copy">
-                <p class="card-description">{{ service.description }}</p>
+                <div class="card-lead">
+                  <p class="card-description">{{ service.description }}</p>
+                  <a
+                    :href="bookingUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="card-cta"
+                  >
+                    Book this <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+
                 <ul class="card-points">
                   <li v-for="point in service.points" :key="point">{{ point }}</li>
                 </ul>
-                <a
-                  :href="bookingUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="card-cta"
-                >
-                  Book this <span aria-hidden="true">→</span>
-                </a>
               </div>
 
               <img
@@ -419,40 +422,59 @@ const services = [
 
 /* ---------- copy ---------- */
 
+/* The copy sat in one flush-left stack inside an 820px column whose longest
+   line was 534px — 35% of the column unused, and a 315px void between the
+   text and the artwork. Splitting it in two closes that gap with content:
+   the sentence and its action on the left, the specifics in their own column
+   against a hairline. */
+
 .card-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  column-gap: clamp(1.5rem, 3vw, 3.25rem);
   min-width: 0;
   padding-block: clamp(0.875rem, 1.8vw, 1.375rem);
 }
 
-.card-description {
-  margin: 0;
-  max-width: 46ch;
-  font-family: var(--font-sans);
-  font-size: clamp(1rem, 1.25vw, 1.1875rem);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-normal);
-  color: var(--ink-800);
+.card-lead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.875rem, 1.6vw, 1.25rem);
+  min-width: 0;
 }
 
+.card-description {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: var(--ink-800);
+  text-wrap: pretty;
+}
+
+/* the checkpoints are the most scannable thing on the card and were the least
+   visible — a flat 14px run. Upright, spaced, and set off by a rule they read
+   as three distinct inclusions. */
 .card-points {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 clamp(1.25rem, 2.5vw, 2.25rem);
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.375rem 1.5rem;
+  flex-direction: column;
+  gap: 0.625rem;
+  border-left: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
 }
 
 .card-points li {
   position: relative;
-  padding-left: 1.125rem;
-  font-size: 0.875rem;
-  line-height: 1.4;
+  padding-left: 1.375rem;
+  font-size: 0.9375rem;
+  line-height: 1.35;
   color: var(--stone-700);
 }
 
@@ -460,32 +482,45 @@ const services = [
   content: '✓';
   position: absolute;
   left: 0;
-  color: var(--ink);
+  top: 0.05em;
+  font-size: 0.8125rem;
   font-weight: var(--fw-bold);
+  color: var(--ink);
 }
 
+/* a solid ink pill was the heaviest object on a pale card and out-weighed the
+   sentence above it; outlined, it reads as an invitation rather than a stop */
 .card-cta {
-  margin-top: 0.25rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.5625rem 1.125rem;
+  gap: 0.4375rem;
+  padding: 0.5rem 1.0625rem;
   border-radius: var(--radius-pill);
-  background: var(--ink-900);
-  color: var(--white);
+  border: 1px solid color-mix(in srgb, var(--ink) 45%, transparent);
+  background: transparent;
+  color: var(--ink-900);
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: var(--fw-semibold);
   letter-spacing: var(--ls-wide);
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color var(--dur-fast) var(--ease-soft),
-    transform var(--dur-fast) var(--ease-soft);
+  transition: background-color var(--dur-base) var(--ease-soft),
+    border-color var(--dur-base) var(--ease-soft), color var(--dur-base) var(--ease-soft);
+}
+
+.card-cta span {
+  transition: transform var(--dur-base) var(--ease-soft);
 }
 
 .card-cta:hover {
-  background: var(--ink-700);
-  transform: translateX(2px);
+  background: var(--ink-900);
+  border-color: var(--ink-900);
+  color: var(--white);
+}
+
+.card-cta:hover span {
+  transform: translateX(3px);
 }
 
 /* ---------- cta ---------- */
@@ -571,9 +606,32 @@ const services = [
     mask-image: linear-gradient(180deg, rgb(0 0 0 / 1) 74%, rgb(0 0 0 / 0) 100%);
   }
 
+  /* two copy columns don't fit a phone; the sentence, its checkpoints and the
+     action stack, and the points lose their rule */
   .card-copy {
     grid-row: 2;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    row-gap: 0.75rem;
     padding-block: 0 clamp(0.875rem, 3vw, 1.25rem);
+  }
+
+  .card-description {
+    max-width: none;
+  }
+
+  .card-lead {
+    gap: 0.75rem;
+  }
+
+  /* the CTA follows the points on a phone, so it reads last */
+  .card-lead .card-cta {
+    order: 2;
+  }
+
+  .card-points {
+    padding-left: 0;
+    border-left: none;
   }
 
   .card-cta {
@@ -586,8 +644,8 @@ const services = [
     height: 1.125rem;
   }
 
-  .card-points {
-    gap: 0.375rem 1rem;
+  .card-points li {
+    font-size: 0.875rem;
   }
 }
 
