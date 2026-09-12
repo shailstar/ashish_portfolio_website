@@ -1,5 +1,5 @@
 <template>
-  <article class="feature-card">
+  <article class="feature-card" :class="{ 'feature-card--compact': service.compact }">
     <div class="feature-image">
       <img :src="service.image" :alt="service.imageAlt" loading="lazy" />
     </div>
@@ -318,6 +318,78 @@ defineProps({
 
   .feature-image {
     aspect-ratio: 16 / 10;
+  }
+}
+
+/* Compact variant: keeps the whole card within a single standard viewport */
+.feature-card--compact {
+  grid-template-columns: minmax(200px, 300px) 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.125rem, 2.2vw, 1.75rem);
+  align-items: start;
+}
+
+.feature-card--compact .feature-image {
+  aspect-ratio: 4 / 5;
+}
+
+.feature-card--compact .feature-title {
+  font-size: clamp(1.375rem, 2.4vw, 2rem);
+  line-height: 1.2;
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
+.feature-card--compact .feature-divider {
+  margin: 0.75rem 0;
+}
+
+.feature-card--compact .divider-line {
+  max-width: none;
+}
+
+.feature-card--compact .feature-subtitle {
+  font-size: clamp(0.875rem, 1vw, 0.9375rem);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.feature-card--compact .feature-points li {
+  padding: 0.5rem 0;
+  gap: 0.75rem;
+}
+
+.feature-card--compact .point-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.feature-card--compact .point-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.feature-card--compact .point-text {
+  padding-top: 0.2rem;
+  gap: 0.05rem;
+}
+
+.feature-card--compact .point-text strong {
+  font-size: 1.0625rem;
+}
+
+.feature-card--compact .point-text span {
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 768px) {
+  .feature-card--compact {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card--compact .feature-image {
+    aspect-ratio: 16 / 9;
   }
 }
 </style>

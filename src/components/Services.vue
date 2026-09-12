@@ -29,6 +29,7 @@ import ServicesFeatured from './ServicesFeatured.vue'
 const featuredServices = [
   {
     id: 1,
+    compact: true,
     image: '/services/personalised-consultation.webp',
     imageAlt: 'Dr Ashish Yadav in consultation with a patient',
     title: 'Personalised Psychiatric Consultation',
@@ -41,6 +42,7 @@ const featuredServices = [
   },
   {
     id: 2,
+    compact: true,
     image: '/services/anxiety-stress-disorders.webp',
     imageAlt: 'Woman finding calm while looking out at a mountain lake',
     title: 'Anxiety <span class="amp">&amp;</span> Stress Disorders',
@@ -53,6 +55,7 @@ const featuredServices = [
   },
   {
     id: 3,
+    compact: true,
     image: '/services/depression-mood-disorders.webp',
     imageAlt: 'Woman looking out at a sunset, finding a moment of calm',
     title: 'Depression <span class="amp">&amp;</span> Mood Disorders',
@@ -65,6 +68,7 @@ const featuredServices = [
   },
   {
     id: 4,
+    compact: true,
     image: '/services/overthinking-behavioural-patterns.webp',
     imageAlt: 'Man deep in thought at his desk, surrounded by tangled thoughts',
     title: 'Overthinking <span class="amp">&amp;</span> Behavioural Patterns',
@@ -77,6 +81,7 @@ const featuredServices = [
   },
   {
     id: 5,
+    compact: true,
     image: '/services/sleep-lifestyle-regulation.webp',
     imageAlt: 'Woman sleeping peacefully with a moonlit mountain view',
     title: 'Sleep <span class="amp">&amp;</span> Lifestyle Regulation',
@@ -89,6 +94,7 @@ const featuredServices = [
   },
   {
     id: 6,
+    compact: true,
     image: '/services/integrative-mind-body-therapy.webp',
     imageAlt: 'Woman meditating with a hand on her chest, facing a sunrise',
     title: 'Integrative <span class="hl">Mind-Body</span> Therapy',
@@ -101,6 +107,7 @@ const featuredServices = [
   },
   {
     id: 7,
+    compact: true,
     image: '/services/followup-long-term-care.webp',
     imageAlt: 'Follow-up consultation looking out at a river valley view',
     title: 'Follow-up <span class="amp">&amp;</span> Long-term Care',
@@ -113,6 +120,7 @@ const featuredServices = [
   },
   {
     id: 8,
+    compact: true,
     image: '/services/executive-specialised-programs.webp',
     imageAlt: 'Executive consultation in a refined, discreet office setting',
     title: 'Executive <span class="amp">&amp;</span> Specialised Programs',

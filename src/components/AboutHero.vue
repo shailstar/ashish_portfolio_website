@@ -21,7 +21,7 @@
 
         <div class="about-footer-text">
           <p class="endline">
-            Tum Akele nahi ho dost, <span class="endline-accent">Healing starts here.</span>
+            You Are NOT Alone, <span class="endline-accent">Healing starts here.</span>
           </p>
         </div>
       </div>

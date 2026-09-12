@@ -64,7 +64,7 @@ const links = [
   align-items: center;
   justify-content: space-between;
   padding: 18px clamp(1.25rem, 5vw, 4rem);
-  background: rgba(255, 248, 243, 0.82);
+  background: rgba(243, 245, 238, 0.82);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }

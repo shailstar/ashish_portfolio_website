@@ -17,9 +17,11 @@
           >
             <div class="card-icon-wrapper">
               <img :src="option.image" :alt="option.label" class="card-icon-img" loading="lazy" />
+              <div class="card-overlay">
+                <h4 class="card-title">{{ option.label }}</h4>
+                <p class="card-subtitle">{{ option.description }}</p>
+              </div>
             </div>
-            <h4 class="card-title">{{ option.label }}</h4>
-            <p class="card-subtitle">{{ option.description }}</p>
           </button>
         </div>
       </div>
@@ -165,7 +167,6 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.875rem;
   font-family: var(--font-sans);
   color: var(--text-body);
 }
@@ -179,18 +180,19 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 }
 
 .card-icon-wrapper {
-  width: 108px;
-  height: 108px;
-  border-radius: 50%;
+  position: relative;
+  width: clamp(130px, 18vw, 168px);
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 4px solid white;
-  box-shadow: 0 0 0 3px var(--sage-200), var(--shadow-md);
+  border: 4px solid var(--ink-900);
+  box-shadow: var(--shadow-md);
   flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
 .meeting-card:hover .card-icon-wrapper {
-  box-shadow: 0 0 0 3px var(--sage-400), var(--shadow-lg);
+  box-shadow: 0 0 0 3px var(--sage-300), var(--shadow-lg);
 }
 
 .meeting-card.active .card-icon-wrapper {
@@ -202,24 +204,37 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.35);
+  transform-origin: 50% 35%;
+}
+
+.card-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  padding: 0.5rem 0.875rem 0.75rem;
+  background: linear-gradient(to top, var(--ink-900) 0%, var(--ink-900) 60%, rgba(18, 18, 16, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.15rem;
+  text-align: left;
 }
 
 .card-title {
   font-size: clamp(0.875rem, 1.2vw, 1rem);
   font-weight: 700;
   margin: 0;
-  color: var(--text-strong);
+  color: white;
   transition: color 0.3s ease;
 }
 
-.meeting-card.active .card-title {
-  color: var(--brand-ink);
-}
-
 .card-subtitle {
-  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-size: clamp(0.6875rem, 0.9vw, 0.8125rem);
   margin: 0;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
 }
 
@@ -395,8 +410,7 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   }
 
   .card-icon-wrapper {
-    width: 84px;
-    height: 84px;
+    width: clamp(110px, 30vw, 140px);
   }
 
   .bookings-card {
