@@ -71,6 +71,13 @@ const RESOURCES = {
       href: '/phq9.html',
       ctaLabel: 'Take the screening',
     },
+    {
+      icon: '\u{26A1}',
+      title: 'Adult ADHD Self-Report Scale (ASRS)',
+      description: 'A symptom checklist to screen for adult ADHD traits and patterns.',
+      href: '/asrs.html',
+      ctaLabel: 'Take the checklist',
+    },
   ],
   blogs: [],
   videos: [],
