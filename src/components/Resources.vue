@@ -55,7 +55,36 @@ const tabs = [
 const activeTab = ref('downloads')
 
 const RESOURCES = {
-  downloads: [],
+  downloads: [
+    {
+      icon: '\u{1F634}',
+      title: 'How to Sleep Better',
+      description: 'A psychiatrist’s guide to why sleep drives mental health, and five evidence-based strategies to fix it.',
+      href: '/resources/how-to-sleep-better.pdf',
+      ctaLabel: 'Download PDF',
+    },
+    {
+      icon: '\u{1F4C5}',
+      title: 'PMDD: A Non-Pharmacological Action Plan',
+      description: 'Lifestyle and behavioural strategies to manage Premenstrual Dysphoric Disorder, starting this cycle.',
+      href: '/resources/pmdd-non-pharmacological-guide.pdf',
+      ctaLabel: 'Download PDF',
+    },
+    {
+      icon: '\u{1F37D}\u{FE0F}',
+      title: 'Living Well with IBS-D',
+      description: 'A practical, non-medication guide to irritable bowel syndrome with diarrhoea.',
+      href: '/resources/ibs-d-patient-guide.pdf',
+      ctaLabel: 'Download PDF',
+    },
+    {
+      icon: '\u{1F37D}\u{FE0F}',
+      title: 'Living Well with IBS-C',
+      description: 'A practical, non-medication guide to irritable bowel syndrome with constipation.',
+      href: '/resources/ibs-c-patient-guide.pdf',
+      ctaLabel: 'Download PDF',
+    },
+  ],
   forms: [
     {
       icon: '\u{1F4DD}',
