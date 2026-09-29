@@ -14,6 +14,8 @@
       <WorkGrid v-else-if="route === 'work'" heading="Clinical Experience" blurb="Comprehensive mental health consultations and treatment across diverse presentations and complexities." />
 
       <AboutHero v-else-if="route === 'about'" />
+
+      <Resources v-else-if="route === 'resources'" />
     </main>
 
     <Footer @navigate="handleNavigate" />
@@ -29,6 +31,7 @@ import TreatmentProcess from './components/TreatmentProcess.vue'
 import Services from './components/Services.vue'
 import Bookings from './components/Bookings.vue'
 import Footer from './components/Footer.vue'
+import Resources from './components/Resources.vue'
 
 const route = ref('home')
 

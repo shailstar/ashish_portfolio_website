@@ -51,6 +51,7 @@ const links = [
   { id: 'home', label: 'Home' },
   { id: 'work', label: 'Approach', url: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j' },
   { id: 'about', label: 'About' },
+  { id: 'resources', label: 'Resources' },
   { id: 'contact', label: 'Contact' },
 ]
 </script>
