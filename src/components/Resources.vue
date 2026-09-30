@@ -32,6 +32,7 @@
               allowfullscreen
             ></iframe>
           </div>
+          <h3 class="video-title">{{ item.title }}</h3>
         </div>
       </div>
       <div v-else-if="activeItems.length" class="resource-grid">
@@ -124,8 +125,8 @@ const RESOURCES = {
   ],
   blogs: [],
   videos: [
-    { embedId: 'F0eNhCV0ehY' },
-    { embedId: '8-nwMi0J2Is' },
+    { embedId: 'F0eNhCV0ehY', title: 'Why Do You Wake Up at 3 AM? The Real Reason Behind Night Wakings' },
+    { embedId: '8-nwMi0J2Is', title: 'Kya Ye ADHD Ke Signs Hain? | ADHD Symptoms in Adults, Signs & ASRS Test' },
   ],
 }
 
@@ -269,6 +270,15 @@ const activeTabLabel = computed(() => tabs.find(t => t.id === activeTab.value)?.
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video-title {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0;
+  padding: 16px clamp(1.25rem, 2.5vw, 1.5rem);
 }
 
 .empty-state {
