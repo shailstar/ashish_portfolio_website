@@ -20,7 +20,21 @@
     </div>
 
     <div class="tab-panel">
-      <div v-if="activeItems.length" class="resource-grid">
+      <div v-if="activeTab === 'videos' && activeItems.length" class="video-grid">
+        <div v-for="item in activeItems" :key="item.embedId" class="video-card">
+          <div class="video-embed">
+            <iframe
+              :src="`https://www.youtube-nocookie.com/embed/${item.embedId}`"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      <div v-else-if="activeItems.length" class="resource-grid">
         <a
           v-for="item in activeItems"
           :key="item.title"
@@ -109,7 +123,10 @@ const RESOURCES = {
     },
   ],
   blogs: [],
-  videos: [],
+  videos: [
+    { embedId: 'F0eNhCV0ehY' },
+    { embedId: '8-nwMi0J2Is' },
+  ],
 }
 
 const activeItems = computed(() => RESOURCES[activeTab.value] || [])
@@ -224,6 +241,34 @@ const activeTabLabel = computed(() => tabs.find(t => t.id === activeTab.value)?.
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--brand-ink);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.video-card {
+  overflow: hidden;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .empty-state {
