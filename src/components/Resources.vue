@@ -99,6 +99,20 @@ const RESOURCES = {
       href: '/resources/ibs-c-patient-guide.pdf',
       ctaLabel: 'Download PDF',
     },
+    {
+      icon: '\u{1F465}',
+      title: 'Social Anxiety: Practical Self Help',
+      description: 'Six CBT-based steps to break the fear loop, from building a fear ladder to dropping safety behaviours.',
+      href: '/resources/social-anxiety-guide.pdf',
+      ctaLabel: 'Download PDF',
+    },
+    {
+      icon: '\u{1F33F}',
+      title: 'The Daily Stress Toolkit',
+      description: 'Six evidence-based tools with no equipment or long routines, plus a 10-minute daily minimum.',
+      href: '/resources/daily-stress-toolkit.pdf',
+      ctaLabel: 'Download PDF',
+    },
   ],
   forms: [
     {
