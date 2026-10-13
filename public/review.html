@@ -109,6 +109,7 @@ button.primary{background:var(--text);color:var(--card);border-color:var(--text)
   </div>
 </div></div>
 
+<script src="/review-phrases.js"></script>
 <script>
 const R=a=>a[Math.floor(Math.random()*a.length)];
 const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -121,80 +122,129 @@ single('who');single('feel');multi('cond');multi('likes');
 document.getElementById('words').addEventListener('input',clearErr);
 const sel=id=>[...document.querySelectorAll('#'+id+' .chip.on')].map(b=>b.dataset.v);
 
-const NAMES=["Dr. Ashish Yadav","Dr Ashish Yadav","Dr. Ashish","Dr Ashish","Dr. Ashish Yadav","Dr Ashish Yadav sir"];
-const THANK=["Dr Ashish","Dr. Ashish","Ashish sir","Dr. Ashish Yadav","doctor"];
-const LIKES={
- listen:["{D} listens patiently and never makes you feel rushed.","What stood out was how patiently {D} listened.","{D} actually listens, which is rare.","{D} gave {me} time and heard everything without interrupting."],
- explain:["{D} explained everything clearly, from the diagnosis to the plan.","Every doubt {I} had was answered in simple words.","Things were explained clearly, without confusing medical terms.","{D} made sure {I} understood what was going on and why."],
- person:["{D} sees you as a person, not just a case.","{I} never felt like just another patient.","The care felt personal and genuine."],
- meds:["{D} doesn't just hand over a prescription.","It wasn't only about medicines, {D} also guided {me} on routine and lifestyle.","{I} liked that the focus wasn't only on medication."],
- yoga:["{D} also suggested yoga and breathing practices alongside treatment, which {I} found useful.","The mix of modern treatment and yoga was something {I} hadn't seen elsewhere.","Loved the holistic approach, with yoga as part of the plan."],
- diag:["The diagnosis was very thorough.","{D} took time to understand the root cause before starting anything.","{D} asked the right questions and didn't jump to conclusions."],
- comfort:["{I} felt comfortable from the first visit and never judged.","The atmosphere is calm and non-judgmental.","It was easy to open up."],
- know:["{D} is very knowledgeable.","You can tell {D} really knows the subject.","Very sound knowledge and a structured approach."],
- follow:["Follow-ups are well planned and progress is tracked properly.","{D} keeps track of progress at every follow-up.","The follow-up care has been consistent."]
-};
-const FEEL={
- self:{better:["I'm feeling much better now.","Things are a lot better than before.","Big difference in how I feel day to day."],
-       improving:["Still on the journey, but already seeing improvement.","Slowly and steadily getting better.","I can already see positive changes."],
-       started:["It's early days, but I feel I'm in the right hands.","Just started treatment, and the first visit itself gave me confidence."]},
- fam:{better:["We've seen a real improvement at home.","My family member is doing much better now."],
-      improving:["The improvement is already visible.","Things are slowly getting better."],
-      started:["It's early days, but we feel we're in the right hands.","Treatment has just started, and we already feel more confident."]}
-};
+// [a|b|c] picks one option at random; options may be empty, e.g. [very |].
+const spin=s=>{let p;do{p=s;s=s.replace(/\[([^\[\]]*)\]/g,(m,a)=>R(a.split('|')))}while(s!==p);return s};
+// Short code for a sentence. Only these codes are shared between devices, never the review text.
+const hash=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16).padStart(8,'0')};
+
+const NAMES=["Dr. Ashish Yadav","Dr Ashish Yadav","Dr. Ashish","Dr Ashish","Dr Ashish sir","Dr Ashish Yadav sir"];
+const SHORT=["Dr. Ashish","Dr Ashish","Dr Ashish sir"];
+const THANK=["Dr Ashish","Dr. Ashish","Dr Ashish sir","Dr. Ashish Yadav","Dr Ashish Yadav sir"];
+const nm=(list,poss)=>poss?R(list.filter(n=>!/sir$/.test(n)))+poss:R(list);
 const joinL=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
 
-const SEO_COND={
- 'anxiety':['A trusted psychiatrist in Jaipur for anxiety treatment.','Good option for anxiety treatment in Jaipur.'],
- 'depression':['A trusted psychiatrist in Jaipur for depression treatment.','Good option for depression treatment in Jaipur.'],
- 'sleep problems':['Helpful for sleep problems and insomnia treatment in Jaipur.','A good psychiatrist in Jaipur for sleep issues.'],
- 'stress':['Good for stress and burnout management in Jaipur.','A trusted psychiatrist in Jaipur for stress and burnout.'],
- 'ADHD':['A good psychiatrist in Jaipur for ADHD diagnosis and treatment.','Recommended for ADHD treatment in Jaipur.'],
- 'bipolar disorder':['A trusted psychiatrist in Jaipur for bipolar disorder treatment.','Recommended for bipolar disorder care in Jaipur.'],
- 'addiction':['A trusted psychiatrist in Jaipur for de-addiction treatment.','Recommended for addiction treatment in Jaipur.']
-};
-const SEO_GEN=['A trusted psychiatrist in Jaipur.','Good option for mental health treatment in Jaipur.','Recommended neuropsychiatrist in Jaipur.','One of the better psychiatrists in Jaipur.','If you are looking for a psychiatrist in Jaipur, book a consultation.'];
-const SEO_YOGA=['Integrative psychiatry with yoga, right here in Jaipur.','Psychiatry with a yoga based holistic approach in Jaipur.'];
+// History of used sentences, oldest first. Each entry: {i:[base sentence codes], s:[exact sentence codes]}.
+// Copied reviews from every device come from the server; this device also keeps its own copies and
+// the drafts it has shown, so "Another version" moves on and the page still works offline.
+const API='/api/review-history',HMAX=100,SMAX=20,CKEY='reviewUsed',SKEY='reviewShown';
+let shared=null;
+function loadH(k){try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return []}}
+function pushH(k,e,max){try{const h=loadH(k);h.push(e);localStorage.setItem(k,JSON.stringify(h.slice(-max)))}catch(e){}}
+fetch(API,{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(Array.isArray(d))shared=d}).catch(()=>{});
+
+let AGE={},SEEN=new Set(),USED;
+function prepHistory(){
+  AGE={};SEEN=new Set();
+  (shared||loadH(CKEY)).concat(loadH(SKEY)).forEach((e,k)=>{(e.i||[]).forEach(id=>AGE[id]=k);(e.s||[]).forEach(h=>SEEN.add(h))});
+}
+// Pick the base sentence used least recently (never-used ones first), then a wording not used recently.
+const HC=new Map(),th=t=>{let h=HC.get(t);if(!h)HC.set(t,h=hash(t));return h};
+const age=t=>AGE[th(t)]??-1;
+function pick(pool){
+  const left=pool.filter(x=>!USED.i.includes(th(x)));if(left.length)pool=left;
+  const lo=Math.min(...pool.map(age)),t=R(pool.filter(x=>age(x)===lo));
+  let s;for(let k=0;k<12;k++){s=spin(t);if(!SEEN.has(hash(s)))break}
+  USED.i.push(th(t));USED.s.push(hash(s));return s;
+}
+// For optional sentences: only use one that hasn't appeared in recent history, otherwise leave it out.
+const fresh=pool=>pool.some(x=>age(x)<0)?pick(pool):null;
 function seoLine(conds,likes){
-  const pool=[];
-  conds.forEach(c=>{if(SEO_COND[c])pool.push(...SEO_COND[c])});
-  if(likes.includes('yoga'))pool.push(...SEO_YOGA);
-  if(!pool.length||Math.random()<0.35)pool.push(...SEO_GEN);
-  return R(pool);
+  const lbl=conds.filter(c=>SEO_LBL[c]).map(c=>SEO_LBL[c]);let pool=[];
+  if(lbl.length)pool=pool.concat(SEO_COND);
+  if(likes.includes('yoga'))pool=pool.concat(SEO_YOGA);
+  if(!pool.length||Math.random()<0.35)pool=pool.concat(SEO_GEN);
+  const s=fresh(pool);return s&&s.replace('{L}',R(lbl)||'');
 }
 
-function build(){
+function build1(){
+  USED={i:[],s:[]};
   const who=sel('who')[0]||'self',fam=who==='fam';
   const conds=sel('cond');const o=document.getElementById('other').value.trim();if(o)conds.push(o);
   const c=joinL(conds),likes=sel('likes'),words=document.getElementById('words').value.trim(),feel=sel('feel')[0];
   if(!likes.length&&!words){err.textContent='Pick at least one thing you liked, or write a few words.';return null}
   let op=null;
-  if(c){op=R(fam?[`We consulted {D} for a family member's ${c}.`,`Took a family member to {D} for ${c}.`,`A family member was struggling with ${c}, so we went to {D}.`]
-               :[`I consulted {D} for ${c}.`,`Went to {D} for ${c} and I'm glad I did.`,`I'd been dealing with ${c} for quite some time before I met {D}.`,`Visited {D} in Jaipur for ${c}.`,`Came to {D} for help with ${c}.`])}
-  else if(Math.random()<0.65){op=R(fam?[`We consulted {D} for a family member.`,`Took a family member to {D}, and it was the right decision.`]
-               :[`Had my consultation with {D} in Jaipur.`,`I was going through a difficult phase when I met {D}.`,`I'm glad I reached out to {D}.`,`My experience with {D} has been really good.`])}
-  const n=Math.min(likes.length,1+Math.floor(Math.random()*3));
-  let mid=sh(likes).slice(0,n).map(k=>R(LIKES[k]));
-  if(feel){const f=R(FEEL[who][feel]);Math.random()<0.5?mid.push(f):mid.unshift(f)}
+  if(c)op=pick(OPEN[fam?'famC':'selfC']).replace('{C}',c);
+  else if(Math.random()<0.65)op=fresh(OPEN[fam?'fam':'self']);
+  const n=Math.min(likes.length*2,2+Math.floor(Math.random()*3));
+  // Prefer liked items that still have sentences unused in recent history.
+  const fr=k=>LIKES[k].some(x=>age(x)<0)?1:0;
+  const order=sh(likes).sort((a,b)=>fr(b)-fr(a));
+  let mid=[];for(let j=0;j<n;j++)mid.push(pick(LIKES[order[j%order.length]]));
+  if(feel){const f=pick(FEEL[who][feel]);Math.random()<0.5?mid.push(f):mid.unshift(f)}
   let w=null;
   if(words){const wc=words.split(/\s+/).length;
-    w=wc<=3?R([cap(words)+'.','In one word, '+words.toLowerCase()+'.',cap(words)+', that sums it up.']):cap(words)+(/[.!?]$/.test(words)?'':'.')}
+    const wrap=wc<=3&&fresh(wc===1?WORDS_ANY.concat(WORDS_ONE):WORDS_ANY);
+    w=wrap?wrap.replace('{W}',cap(words)).replace('{w}',words.toLowerCase()):cap(words)+(/[.!?]$/.test(words)?'':'.')}
   let s=[];if(w&&Math.random()<0.3){s.push(w);w=null}
   if(op)s.push(op);s=s.concat(mid);if(w)s.push(w);
-  if(Math.random()<0.65)s.push(R(["Highly recommend him to anyone looking for a psychiatrist in Jaipur.","Would definitely recommend.","Thank you, {T}.","Grateful for the care.","If you're hesitating to see a psychiatrist, don't.","Thank you {T} for everything.","Recommended."]));
-  s=s.slice(0,4);
-  if(!s.some(x=>/jaipur/i.test(x))&&Math.random()<0.3){const seo=seoLine(conds,likes);s.splice(Math.random()<0.5?s.length:Math.min(1,s.length),0,seo)}
-  let first=true;const P=fam?{I:'we',me:'us'}:{I:'I',me:'me'};
-  s=s.map(x=>{x=x.replace(/\{I\}/g,P.I).replace(/\{me\}/g,P.me).replace(/\{T\}/g,R(THANK));
-    x=x.replace(/\{D\}/g,(m,i)=>{if(first){first=false;return R(NAMES)}return i===0?'He':'he'});return cap(x)});
-  if(first&&Math.random()<0.5){s[0]=R(NAMES)+' is '+R(['a great doctor','genuinely caring','excellent'])+'. '+s[0]}
-  return s.join(' ');
+  const cl=Math.random()<0.65&&fresh(CLOSE);if(cl)s.push(cl);
+  s=s.slice(0,6);
+  const seo=!s.some(x=>/jaipur/i.test(x))&&Math.random()<0.3&&seoLine(conds,likes);
+  if(seo){s.splice(Math.random()<0.5?s.length:Math.min(1,s.length),0,seo)}
+  let first=true,prevHe=false;
+  const P=fam?{I:'we',me:'us',my:'our',myself:'ourselves',was:'were'}:{I:'I',me:'me',my:'my',myself:'myself',was:'was'};
+  s=s.map(x=>{x=x.replace(/\{(I|me|my|myself|was)\}/g,(m,k)=>P[k]).replace(/\{T\}/g,()=>R(THANK));
+    x=x.replace(/\{D\}('s)?/g,(m,poss,i)=>{if(first){first=false;return nm(NAMES,poss)}
+      if(i!==0)return poss?'his':'he';return prevHe?nm(SHORT,poss):poss?'His':'He'});
+    prevHe=/^he\b/i.test(x);return cap(x)});
+  const intro=first&&Math.random()<0.5&&fresh(INTRO);if(intro)s[0]=R(NAMES)+' is '+intro+'. '+s[0];
+  return {t:s.join(' '),u:USED};
+}
+
+// Words that may repeat freely; everything else counts against a draft.
+const STOP=new Set("a an the and or but to of in on for with at from by is was were be been it its this that i we me us my our he him his you your they them very just not no so as all also what which who had have has did do does didn't don't i'm it's we've i'd dr yadav sir doctor".split(' '));
+const contentWords=t=>(t.toLowerCase().match(/[a-z']+/g)||[]).filter(w=>!STOP.has(w));
+// 3-word phrases, skipping ones made only of filler words.
+function phrases(t){const w=t.toLowerCase().match(/[a-z']+/g)||[],out=[];
+  for(let i=0;i+2<w.length;i++){const p=w.slice(i,i+3);if(p.some(x=>!STOP.has(x)))out.push(p)}return out}
+function repeats(t,avoid){
+  const sents=t.split(/(?<=[.!?])\s+/),seen={};let score=0,prevStart='';
+  for(const x of sents){const ws=x.toLowerCase().match(/[a-z']+/g)||[];
+    if(ws[0]&&ws[0]===prevStart)score+=3;prevStart=ws[0]||'';
+    ws.forEach(w=>{if(STOP.has(w))return;if(seen[w])score+=2;seen[w]=1})}
+  new Set(phrases(t).map(p=>p.join(' '))).forEach(p=>score+=avoid[p]||0);
+  return score;
+}
+let current=null;
+function build(){
+  prepHistory();
+  const d=build1();if(d==null)return null;
+  // Penalise phrases from drafts this device shown or copied (newer ones count more), except the person's own words.
+  const own=new Set(contentWords([...sel('cond'),document.getElementById('other').value,document.getElementById('words').value].join(' ')));
+  const avoid={},texts=loadH(CKEY).concat(loadH(SKEY)).map(e=>e.t).filter(Boolean);
+  texts.forEach((h,i)=>{const w=1+i/texts.length;
+    new Set(phrases(h).filter(p=>!p.some(x=>own.has(x))).map(p=>p.join(' '))).forEach(p=>avoid[p]=(avoid[p]||0)+w)});
+  // Choose randomly among the good drafts, so the same low-scoring sentences don't always win.
+  const c=[d];for(let k=0;k<40;k++)c.push(build1());
+  c.forEach(x=>x.sc=repeats(x.t,avoid));
+  const min=Math.min(...c.map(x=>x.sc));
+  current=R(c.filter(x=>x.sc<=min+1));
+  pushH(SKEY,{i:current.u.i,s:current.u.s,t:current.t},SMAX);
+  return current.t;
 }
 const out=document.getElementById('out'),dr=document.getElementById('draft'),cp=document.getElementById('copy');
 function go(){const t=build();if(t==null)return;dr.value=t;out.style.display='block';cp.textContent='Copy';out.scrollIntoView({behavior:'smooth',block:'nearest'})}
 document.getElementById('gen').onclick=go;
 document.getElementById('again').onclick=go;
-cp.onclick=async()=>{try{await navigator.clipboard.writeText(dr.value)}catch(e){dr.select();document.execCommand('copy')}cp.textContent='Copied'};
+let posted=null;
+function record(){
+  if(!current||posted===current)return;posted=current;
+  const e={i:current.u.i,s:current.u.s};
+  pushH(CKEY,{...e,t:current.t},HMAX);
+  if(shared){shared.push(e);shared=shared.slice(-HMAX)}
+  fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(e),keepalive:true}).catch(()=>{});
+}
+cp.onclick=async()=>{try{await navigator.clipboard.writeText(dr.value)}catch(e){dr.select();document.execCommand('copy')}cp.textContent='Copied';record()};
 </script>
 </body>
 </html>
