@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Review Dr. Ashish Yadav</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{
+  --bg:#f7f6f2;--card:#ffffff;--text:#1f1e1c;--muted:#6b6a65;--border:#dcdad3;
+  --accent:#185FA5;--accent-bg:#E6F1FB;--accent-text:#0C447C;--danger:#A32D2D;--soft:#f1efe8;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#1a1a19;--card:#242422;--text:#f1efe8;--muted:#b4b2a9;--border:#3a3936;
+  --accent:#378ADD;--accent-bg:#0C447C;--accent-text:#E6F1FB;--danger:#F09595;--soft:#2c2c2a;}
+}
+:root[data-theme="dark"]{--bg:#1a1a19;--card:#242422;--text:#f1efe8;--muted:#b4b2a9;--border:#3a3936;
+  --accent:#378ADD;--accent-bg:#0C447C;--accent-text:#E6F1FB;--danger:#F09595;--soft:#2c2c2a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",sans-serif;line-height:1.6}
+.wrap{max-width:480px;margin:0 auto;padding:24px 18px 40px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px}
+.head{display:flex;align-items:center;gap:12px}
+.avatar{width:48px;height:48px;border-radius:50%;background:var(--accent-bg);color:var(--accent-text);display:flex;align-items:center;justify-content:center;font-weight:600}
+.name{margin:0;font-weight:600;font-size:17px}
+.sub{margin:0;font-size:13px;color:var(--muted)}
+.q{font-size:15px;font-weight:600;margin:22px 0 0}
+.hint{font-size:13px;color:var(--muted);margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{font:inherit;font-size:14px;padding:7px 13px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer}
+.chip.on{background:var(--accent-bg);color:var(--accent-text);border-color:var(--accent)}
+input[type=text],textarea{width:100%;font:inherit;font-size:15px;padding:10px 12px;margin-top:10px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text)}
+textarea{line-height:1.6;resize:vertical}
+button.btn{font:inherit;font-size:15px;padding:11px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;width:100%}
+button.primary{background:var(--text);color:var(--card);border-color:var(--text);margin-top:24px}
+.err{font-size:13px;color:var(--danger);margin:6px 0 0;min-height:1em}
+.out{display:none;margin-top:16px;background:var(--soft);border-radius:12px;padding:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.google{display:block;text-align:center;margin-top:10px;padding:12px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-size:15px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+  <div class="head">
+    <div class="avatar">AY</div>
+    <div><p class="name">Dr. Ashish Yadav</p><p class="sub">Neuro-psychiatrist, Jaipur</p></div>
+  </div>
+  <p class="hint" style="margin-top:14px">Answer a few quick questions and we'll draft a short review for you. Edit it so it sounds like you, then post it on Google.</p>
+
+  <p class="q">This review is about</p>
+  <div class="chips" id="who">
+    <button class="chip on" data-v="self">My own treatment</button>
+    <button class="chip" data-v="fam">A family member</button>
+  </div>
+
+  <p class="q">What did you come in for? (optional)</p>
+  <p class="hint">Your Google review is public and shows your name. Only add this if you're comfortable sharing it.</p>
+  <div class="chips" id="cond">
+    <button class="chip" data-v="anxiety">Anxiety</button>
+    <button class="chip" data-v="depression">Depression</button>
+    <button class="chip" data-v="sleep problems">Sleep issues</button>
+    <button class="chip" data-v="stress">Stress</button>
+    <button class="chip" data-v="ADHD">ADHD</button>
+    <button class="chip" data-v="bipolar disorder">Bipolar disorder</button>
+    <button class="chip" data-v="addiction">Addiction</button>
+  </div>
+  <input id="other" type="text" placeholder="Something else, in your words">
+
+  <p class="q">What did you like?</p>
+  <p class="hint">Pick what was true for you.</p>
+  <div class="chips" id="likes">
+    <button class="chip" data-v="listen">Listened patiently</button>
+    <button class="chip" data-v="explain">Explained clearly</button>
+    <button class="chip" data-v="person">Treated me as a person</button>
+    <button class="chip" data-v="meds">Not just medicines</button>
+    <button class="chip" data-v="yoga">Yoga and holistic approach</button>
+    <button class="chip" data-v="diag">Thorough diagnosis</button>
+    <button class="chip" data-v="comfort">Felt comfortable, not judged</button>
+    <button class="chip" data-v="know">Very knowledgeable</button>
+    <button class="chip" data-v="follow">Good follow-up</button>
+  </div>
+
+  <p class="q">Say it in a few words (optional)</p>
+  <input id="words" type="text" placeholder="Life-changing">
+
+  <p class="q">How are things now? (optional)</p>
+  <div class="chips" id="feel">
+    <button class="chip" data-v="better">Much better</button>
+    <button class="chip" data-v="improving">Improving</button>
+    <button class="chip" data-v="started">Just started</button>
+  </div>
+
+  <button class="btn primary" id="gen">Write my draft</button>
+  <p class="err" id="err"></p>
+
+  <div class="out" id="out">
+    <p class="hint" style="margin:0">Your draft. Tap to edit before copying.</p>
+    <textarea id="draft" rows="5"></textarea>
+    <div class="row">
+      <button class="btn" id="again">Another version</button>
+      <button class="btn" id="copy">Copy</button>
+    </div>
+    <a class="google" href="https://g.page/r/Ce-0WPbw-7VYEBI/review" target="_blank" rel="noopener">Open Google review</a>
+    <p class="hint" style="margin-top:8px">Copy first, then paste it on Google and choose your star rating there.</p>
+  </div>
+</div></div>
+
+<script>
+const R=a=>a[Math.floor(Math.random()*a.length)];
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const err=document.getElementById('err');
+function clearErr(){err.textContent=''}
+function single(id){const g=document.getElementById(id);g.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const was=b.classList.contains('on');g.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));if(!(was&&id==='feel'))b.classList.add('on');clearErr()})}
+function multi(id){document.getElementById(id).addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;b.classList.toggle('on');clearErr()})}
+single('who');single('feel');multi('cond');multi('likes');
+document.getElementById('words').addEventListener('input',clearErr);
+const sel=id=>[...document.querySelectorAll('#'+id+' .chip.on')].map(b=>b.dataset.v);
+
+const NAMES=["Dr. Ashish Yadav","Dr Ashish Yadav","Dr. Ashish","Dr Ashish","Dr. Ashish Yadav","Dr Ashish Yadav sir"];
+const THANK=["Dr Ashish","Dr. Ashish","Ashish sir","Dr. Ashish Yadav","doctor"];
+const LIKES={
+ listen:["{D} listens patiently and never makes you feel rushed.","What stood out was how patiently {D} listened.","{D} actually listens, which is rare.","{D} gave {me} time and heard everything without interrupting."],
+ explain:["{D} explained everything clearly, from the diagnosis to the plan.","Every doubt {I} had was answered in simple words.","Things were explained clearly, without confusing medical terms.","{D} made sure {I} understood what was going on and why."],
+ person:["{D} sees you as a person, not just a case.","{I} never felt like just another patient.","The care felt personal and genuine."],
+ meds:["{D} doesn't just hand over a prescription.","It wasn't only about medicines, {D} also guided {me} on routine and lifestyle.","{I} liked that the focus wasn't only on medication."],
+ yoga:["{D} also suggested yoga and breathing practices alongside treatment, which {I} found useful.","The mix of modern treatment and yoga was something {I} hadn't seen elsewhere.","Loved the holistic approach, with yoga as part of the plan."],
+ diag:["The diagnosis was very thorough.","{D} took time to understand the root cause before starting anything.","{D} asked the right questions and didn't jump to conclusions."],
+ comfort:["{I} felt comfortable from the first visit and never judged.","The atmosphere is calm and non-judgmental.","It was easy to open up."],
+ know:["{D} is very knowledgeable.","You can tell {D} really knows the subject.","Very sound knowledge and a structured approach."],
+ follow:["Follow-ups are well planned and progress is tracked properly.","{D} keeps track of progress at every follow-up.","The follow-up care has been consistent."]
+};
+const FEEL={
+ self:{better:["I'm feeling much better now.","Things are a lot better than before.","Big difference in how I feel day to day."],
+       improving:["Still on the journey, but already seeing improvement.","Slowly and steadily getting better.","I can already see positive changes."],
+       started:["It's early days, but I feel I'm in the right hands.","Just started treatment, and the first visit itself gave me confidence."]},
+ fam:{better:["We've seen a real improvement at home.","My family member is doing much better now."],
+      improving:["The improvement is already visible.","Things are slowly getting better."],
+      started:["It's early days, but we feel we're in the right hands.","Treatment has just started, and we already feel more confident."]}
+};
+const joinL=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+
+const SEO_COND={
+ 'anxiety':['A trusted psychiatrist in Jaipur for anxiety treatment.','Good option for anxiety treatment in Jaipur.'],
+ 'depression':['A trusted psychiatrist in Jaipur for depression treatment.','Good option for depression treatment in Jaipur.'],
+ 'sleep problems':['Helpful for sleep problems and insomnia treatment in Jaipur.','A good psychiatrist in Jaipur for sleep issues.'],
+ 'stress':['Good for stress and burnout management in Jaipur.','A trusted psychiatrist in Jaipur for stress and burnout.'],
+ 'ADHD':['A good psychiatrist in Jaipur for ADHD diagnosis and treatment.','Recommended for ADHD treatment in Jaipur.'],
+ 'bipolar disorder':['A trusted psychiatrist in Jaipur for bipolar disorder treatment.','Recommended for bipolar disorder care in Jaipur.'],
+ 'addiction':['A trusted psychiatrist in Jaipur for de-addiction treatment.','Recommended for addiction treatment in Jaipur.']
+};
+const SEO_GEN=['A trusted psychiatrist in Jaipur.','Good option for mental health treatment in Jaipur.','Recommended neuropsychiatrist in Jaipur.','One of the better psychiatrists in Jaipur.','If you are looking for a psychiatrist in Jaipur, book a consultation.'];
+const SEO_YOGA=['Integrative psychiatry with yoga, right here in Jaipur.','Psychiatry with a yoga based holistic approach in Jaipur.'];
+function seoLine(conds,likes){
+  const pool=[];
+  conds.forEach(c=>{if(SEO_COND[c])pool.push(...SEO_COND[c])});
+  if(likes.includes('yoga'))pool.push(...SEO_YOGA);
+  if(!pool.length||Math.random()<0.35)pool.push(...SEO_GEN);
+  return R(pool);
+}
+
+function build(){
+  const who=sel('who')[0]||'self',fam=who==='fam';
+  const conds=sel('cond');const o=document.getElementById('other').value.trim();if(o)conds.push(o);
+  const c=joinL(conds),likes=sel('likes'),words=document.getElementById('words').value.trim(),feel=sel('feel')[0];
+  if(!likes.length&&!words){err.textContent='Pick at least one thing you liked, or write a few words.';return null}
+  let op=null;
+  if(c){op=R(fam?[`We consulted {D} for a family member's ${c}.`,`Took a family member to {D} for ${c}.`,`A family member was struggling with ${c}, so we went to {D}.`]
+               :[`I consulted {D} for ${c}.`,`Went to {D} for ${c} and I'm glad I did.`,`I'd been dealing with ${c} for quite some time before I met {D}.`,`Visited {D} in Jaipur for ${c}.`,`Came to {D} for help with ${c}.`])}
+  else if(Math.random()<0.65){op=R(fam?[`We consulted {D} for a family member.`,`Took a family member to {D}, and it was the right decision.`]
+               :[`Had my consultation with {D} in Jaipur.`,`I was going through a difficult phase when I met {D}.`,`I'm glad I reached out to {D}.`,`My experience with {D} has been really good.`])}
+  const n=Math.min(likes.length,1+Math.floor(Math.random()*3));
+  let mid=sh(likes).slice(0,n).map(k=>R(LIKES[k]));
+  if(feel){const f=R(FEEL[who][feel]);Math.random()<0.5?mid.push(f):mid.unshift(f)}
+  let w=null;
+  if(words){const wc=words.split(/\s+/).length;
+    w=wc<=3?R([cap(words)+'.','In one word, '+words.toLowerCase()+'.',cap(words)+', that sums it up.']):cap(words)+(/[.!?]$/.test(words)?'':'.')}
+  let s=[];if(w&&Math.random()<0.3){s.push(w);w=null}
+  if(op)s.push(op);s=s.concat(mid);if(w)s.push(w);
+  if(Math.random()<0.65)s.push(R(["Highly recommend him to anyone looking for a psychiatrist in Jaipur.","Would definitely recommend.","Thank you, {T}.","Grateful for the care.","If you're hesitating to see a psychiatrist, don't.","Thank you {T} for everything.","Recommended."]));
+  s=s.slice(0,4);
+  if(!s.some(x=>/jaipur/i.test(x))&&Math.random()<0.3){const seo=seoLine(conds,likes);s.splice(Math.random()<0.5?s.length:Math.min(1,s.length),0,seo)}
+  let first=true;const P=fam?{I:'we',me:'us'}:{I:'I',me:'me'};
+  s=s.map(x=>{x=x.replace(/\{I\}/g,P.I).replace(/\{me\}/g,P.me).replace(/\{T\}/g,R(THANK));
+    x=x.replace(/\{D\}/g,(m,i)=>{if(first){first=false;return R(NAMES)}return i===0?'He':'he'});return cap(x)});
+  if(first&&Math.random()<0.5){s[0]=R(NAMES)+' is '+R(['a great doctor','genuinely caring','excellent'])+'. '+s[0]}
+  return s.join(' ');
+}
+const out=document.getElementById('out'),dr=document.getElementById('draft'),cp=document.getElementById('copy');
+function go(){const t=build();if(t==null)return;dr.value=t;out.style.display='block';cp.textContent='Copy';out.scrollIntoView({behavior:'smooth',block:'nearest'})}
+document.getElementById('gen').onclick=go;
+document.getElementById('again').onclick=go;
+cp.onclick=async()=>{try{await navigator.clipboard.writeText(dr.value)}catch(e){dr.select();document.execCommand('copy')}cp.textContent='Copied'};
+</script>
+</body>
+</html>
