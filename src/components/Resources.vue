@@ -113,6 +113,20 @@ const RESOURCES = {
       href: '/resources/daily-stress-toolkit.pdf',
       ctaLabel: 'Download PDF',
     },
+    {
+      icon: '\u{1F9E0}',
+      title: 'ADHD Guide',
+      description: 'What your ASRS screening result means, what a comprehensive ADHD evaluation covers, and how to prepare for it.',
+      href: '/resources/adhd-guide.pdf',
+      ctaLabel: 'Download PDF',
+    },
+    {
+      icon: '\u{1F343}',
+      title: 'Anxiety Guide',
+      description: 'CBT-based tools for panic attacks and health worries: slow breathing, 5-4-3-2-1 grounding, and a cut-out reminder card.',
+      href: '/resources/anxiety-guide.pdf',
+      ctaLabel: 'Download PDF',
+    },
   ],
   forms: [
     {
