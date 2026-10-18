@@ -137,10 +137,10 @@ const spin=s=>{let p;do{p=s;s=s.replace(/\[([^\[\]]*)\]/g,(m,a)=>R(a.split('|'))
 // Short code for a sentence. Only these codes are shared between devices, never the review text.
 const hash=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16).padStart(8,'0')};
 
-const NAMES=["Dr. Ashish Yadav","Dr Ashish Yadav","Dr. Ashish","Dr Ashish","Dr Ashish sir","Dr Ashish Yadav sir"];
-const SHORT=["Dr. Ashish","Dr Ashish","Dr Ashish sir"];
-const THANK=["Dr Ashish","Dr. Ashish","Dr Ashish sir","Dr. Ashish Yadav","Dr Ashish Yadav sir"];
-const nm=(list,poss)=>poss?R(list.filter(n=>!/sir$/.test(n)))+poss:R(list);
+const NAMES=["Dr. Ashish Yadav","Dr Ashish Yadav","Dr. Ashish","Dr Ashish","Dr Ashish sir","Dr Ashish Yadav sir","Dr Ashish Ji","Dr Ashish Yadav ji","Dr Ashish sirji","Dr Yadav Ji"];
+const SHORT=["Dr. Ashish","Dr Ashish","Dr Ashish sir","Dr Ashish Ji","Dr Ashish sirji","Dr Yadav Ji"];
+const THANK=["Dr Ashish","Dr. Ashish","Dr Ashish sir","Dr. Ashish Yadav","Dr Ashish Yadav sir","Dr Ashish Ji","Dr Ashish Yadav ji","Dr Ashish sirji","Dr Yadav Ji"];
+const nm=(list,poss)=>poss?R(list.filter(n=>!/(sir|ji)$/i.test(n)))+poss:R(list);
 const joinL=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
 
 // History of used sentences, oldest first. Each entry: {i:[base sentence codes], s:[exact sentence codes]}.
@@ -212,7 +212,7 @@ function build1(){
 }
 
 // Words that may repeat freely; everything else counts against a draft.
-const STOP=new Set("a an the and or but to of in on for with at from by is was were be been it its this that i we me us my our he him his you your they them very just not no so as all also what which who had have has did do does didn't don't i'm it's we've i'd dr yadav sir doctor".split(' '));
+const STOP=new Set("a an the and or but to of in on for with at from by is was were be been it its this that i we me us my our he him his you your they them very just not no so as all also what which who had have has did do does didn't don't i'm it's we've i'd dr yadav sir ji sirji doctor".split(' '));
 const contentWords=t=>(t.toLowerCase().match(/[a-z']+/g)||[]).filter(w=>!STOP.has(w));
 // 3-word phrases, skipping ones made only of filler words.
 function phrases(t){const w=t.toLowerCase().match(/[a-z']+/g)||[],out=[];
