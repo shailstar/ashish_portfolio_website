@@ -849,7 +849,7 @@ const WORDS_ANY=[
 ];
 const WORDS_ONE=["In one word, {w}.","One word for the experience: {w}.","The only word {I} can think of is {w}."];
 
-const SEO_LBL={'anxiety':'anxiety','depression':'depression','sleep problems':'insomnia','stress':'stress and burnout','ADHD':'ADHD','bipolar disorder':'bipolar disorder','addiction':'de-addiction'};
+const SEO_LBL={'anxiety':'anxiety','depression':'depression','sleep problems':'insomnia','stress':'stress and burnout','ADHD':'ADHD','bipolar disorder':'bipolar disorder','addiction':'de-addiction','sexual health issues':'sexual dysfunction'};
 const SEO_COND=[
  "A trusted psychiatrist in Jaipur for {L} treatment.",
  "Good option for {L} treatment in Jaipur.",
