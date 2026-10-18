@@ -140,7 +140,9 @@ const hash=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h
 const NAMES=["Dr. Ashish Yadav","Dr Ashish Yadav","Dr. Ashish","Dr Ashish","Dr Ashish sir","Dr Ashish Yadav sir","Dr Ashish Ji","Dr Ashish Yadav ji","Dr Ashish sirji","Dr Yadav Ji"];
 const SHORT=["Dr. Ashish","Dr Ashish","Dr Ashish sir","Dr Ashish Ji","Dr Ashish sirji","Dr Yadav Ji"];
 const THANK=["Dr Ashish","Dr. Ashish","Dr Ashish sir","Dr. Ashish Yadav","Dr Ashish Yadav sir","Dr Ashish Ji","Dr Ashish Yadav ji","Dr Ashish sirji","Dr Yadav Ji"];
-const nm=(list,poss)=>poss?R(list.filter(n=>!/(sir|ji)$/i.test(n)))+poss:R(list);
+// Ji/sirji forms are used less often: about 15% of names, the rest from the other forms.
+const isJi=n=>/ji$/i.test(n);
+const nm=(list,poss)=>{const plain=list.filter(n=>!isJi(n));if(poss)return R(plain.filter(n=>!/sir$/.test(n)))+poss;return R(Math.random()<0.15?list.filter(isJi):plain)};
 const joinL=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
 
 // History of used sentences, oldest first. Each entry: {i:[base sentence codes], s:[exact sentence codes]}.
@@ -203,11 +205,11 @@ function build1(){
   if(seo){s.splice(Math.random()<0.5?s.length:Math.min(1,s.length),0,seo)}
   let first=true,prevHe=false;
   const P=fam?{I:'we',me:'us',my:'our',myself:'ourselves',was:'were'}:{I:'I',me:'me',my:'my',myself:'myself',was:'was'};
-  s=s.map(x=>{x=x.replace(/\{(I|me|my|myself|was)\}/g,(m,k)=>P[k]).replace(/\{T\}/g,()=>R(THANK));
+  s=s.map(x=>{x=x.replace(/\{(I|me|my|myself|was)\}/g,(m,k)=>P[k]).replace(/\{T\}/g,()=>nm(THANK));
     x=x.replace(/\{D\}('s)?/g,(m,poss,i)=>{if(first){first=false;return nm(NAMES,poss)}
       if(i!==0)return poss?'his':'he';return prevHe?nm(SHORT,poss):poss?'His':'He'});
     prevHe=/^he\b/i.test(x);return cap(x)});
-  const intro=first&&Math.random()<0.5&&fresh(INTRO);if(intro)s[0]=R(NAMES)+' is '+intro+'. '+s[0];
+  const intro=first&&Math.random()<0.5&&fresh(INTRO);if(intro)s[0]=nm(NAMES)+' is '+intro+'. '+s[0];
   return {t:s.join(' '),u:USED};
 }
 
