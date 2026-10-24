@@ -76,6 +76,14 @@ const columns = [
     ],
   },
   {
+    title: 'Locations',
+    links: [
+      { id: 'jaipur', label: 'Psychiatrist in Jaipur', path: '/psychiatrist-in-jaipur' },
+      { id: 'jhotwara', label: 'Jhotwara clinic', path: '/psychiatrist-in-jhotwara' },
+      { id: 'vaishali', label: 'Vaishali Nagar clinic', path: '/psychiatrist-in-vaishali-nagar' },
+    ],
+  },
+  {
     title: 'Self-checks',
     links: [
       { label: 'PHQ-9 mood check', url: '/phq9.html', external: true },
@@ -107,7 +115,7 @@ const columns = [
   margin: 0 auto;
   padding: clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
   gap: clamp(2rem, 4vw, 3rem);
 }
 
@@ -233,7 +241,7 @@ const columns = [
 
 @media (max-width: 1024px) {
   .footer-main {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .footer-brand {
@@ -244,10 +252,6 @@ const columns = [
 @media (max-width: 600px) {
   .footer-main {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-col:last-child {
-    grid-column: 1 / -1;
   }
 
   .footer-bottom {

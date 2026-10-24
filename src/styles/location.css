@@ -1,0 +1,429 @@
+/* Shared styles for location pages (JaipurPage, ClinicPage). */
+.loc {
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 8vw, 5.5rem);
+  background: var(--bg-page);
+}
+
+.loc-container {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+
+.loc-title,
+.loc-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+}
+
+.loc-title em,
+.loc-h2 em {
+  display: block;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brand);
+}
+
+.loc-title {
+  font-size: var(--fs-h1);
+  margin: 1rem 0 1.25rem;
+}
+
+.loc-h2 {
+  font-size: var(--fs-h2);
+  margin: 0.75rem 0 1.5rem;
+}
+
+.loc-h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.loc-text {
+  font-size: var(--fs-md);
+  margin: 0 0 1.25rem;
+}
+
+/* ---- Hero ---- */
+.loc-hero {
+  max-width: 800px;
+}
+
+.loc-lead {
+  font-size: var(--fs-md);
+  margin: 0 0 1.5rem;
+}
+
+.loc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.loc-button {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 26px;
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: 1.5px solid var(--brand);
+  border-radius: var(--radius-pill);
+}
+
+.loc-button:hover {
+  background: var(--brand-hover);
+  border-color: var(--brand-hover);
+  color: var(--text-on-brand);
+}
+
+.loc-button-outline {
+  background: transparent;
+  color: var(--brand-ink);
+}
+
+.loc-button-outline:hover {
+  background: var(--sage-100);
+  color: var(--brand-ink);
+  border-color: var(--brand);
+}
+
+/* ---- Blocks ---- */
+.loc-block {
+  margin-top: clamp(3.5rem, 7vw, 5rem);
+}
+
+.loc-split {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  padding-top: clamp(2.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--border);
+}
+
+.loc-split .loc-h2 {
+  margin-bottom: 0;
+}
+
+/* ---- Clinics ---- */
+.loc-clinics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.loc-clinic {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--shadow-sm);
+}
+
+.loc-clinic-area {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.loc-clinic-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.25rem 0 1rem;
+}
+
+.loc-info {
+  margin: 0 0 1.25rem;
+}
+
+.loc-info-row {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.9375rem;
+}
+
+.loc-info-row:last-child {
+  border-bottom: none;
+}
+
+.loc-info dt {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.loc-info dd {
+  margin: 0;
+  color: var(--text-strong);
+}
+
+.loc-clinic-links {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.loc-clinic-link {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+.loc-clinic-link:hover {
+  color: var(--brand-hover);
+}
+
+.loc-extras {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.loc-extra {
+  background: var(--sage-50);
+  border: 1px solid var(--border-brand);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+}
+
+.loc-extra-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.loc-extra p {
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+/* ---- Who you'll see ---- */
+.loc-pills {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.loc-pills li {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--brand-ink);
+  background: var(--sage-50);
+  border: 1px solid var(--border-brand);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.loc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.loc-link {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--brand-ink);
+}
+
+.loc-link:hover {
+  color: var(--brand-hover);
+}
+
+/* ---- Areas of care ---- */
+.loc-care {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.loc-care-item {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+}
+
+.loc-care-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.loc-care-link {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: var(--brand-ink);
+}
+
+.loc-care-text {
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+/* ---- Guide ---- */
+.loc-guide {
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 1.75rem) 2.75rem;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: 0.9375rem;
+}
+
+.loc-guide strong {
+  color: var(--text-strong);
+}
+
+/* ---- Beyond Jaipur + fees ---- */
+.loc-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.loc-duo-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.loc-duo-card p {
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.loc-fees {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.loc-fees li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.loc-fees strong {
+  color: var(--text-strong);
+}
+
+/* ---- Crisis + CTA ---- */
+.loc-urgent {
+  margin: 2.5rem 0 0;
+  padding: 1rem 1.25rem;
+  background: var(--camel-50);
+  border-left: 4px solid var(--camel-400);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+}
+
+.loc-urgent a {
+  font-weight: 600;
+}
+
+.loc-cta {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding: clamp(2rem, 5vw, 3rem);
+  background: var(--sage-100);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.loc-cta-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.loc-cta-text {
+  margin: 0 auto 1.5rem;
+  max-width: 520px;
+}
+
+.loc-cta-actions {
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .loc-clinics,
+  .loc-split,
+  .loc-duo,
+  .loc-extras {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .loc-care {
+    grid-template-columns: 1fr;
+  }
+
+  .loc-info-row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+/* ---- Small inline CTA ---- */
+.loc-mini-cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+}
+
+.loc-mini-cta:hover {
+  background: var(--brand-hover);
+}
+

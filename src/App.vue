@@ -24,6 +24,12 @@
       <AdhdAssessment v-else-if="route === 'adhd'" @navigate="handleNavigate" />
 
       <PrivacyPolicy v-else-if="route === 'privacy'" @navigate="handleNavigate" />
+
+      <JaipurPage v-else-if="route === 'jaipur'" @navigate="handleNavigate" />
+
+      <ClinicPage v-else-if="route === 'jhotwara'" clinic-id="jhotwara" @navigate="handleNavigate" />
+
+      <ClinicPage v-else-if="route === 'vaishali'" clinic-id="vaishali" @navigate="handleNavigate" />
     </main>
 
     <Footer @navigate="handleNavigate" />
@@ -33,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, watch } from 'vue'
 import Nav from './components/Nav.vue'
 import Hero from './components/Hero.vue'
 import AboutHero from './components/AboutHero.vue'
@@ -47,6 +53,8 @@ import WhatsAppFloat from './components/WhatsAppFloat.vue'
 import CancellationPolicy from './components/CancellationPolicy.vue'
 import AdhdAssessment from './components/AdhdAssessment.vue'
 import PrivacyPolicy from './components/PrivacyPolicy.vue'
+import JaipurPage from './components/JaipurPage.vue'
+import ClinicPage from './components/ClinicPage.vue'
 
 // Pages that have their own URL. Other routes live at "/".
 // New paths also need a rewrite in public/_redirects.
@@ -55,6 +63,42 @@ const PATHS = {
   cancellation: '/cancellation-policy',
   adhd: '/adult-adhd-assessment',
   privacy: '/privacy',
+  jaipur: '/psychiatrist-in-jaipur',
+  jhotwara: '/psychiatrist-in-jhotwara',
+  vaishali: '/psychiatrist-in-vaishali-nagar',
+}
+
+// Browser tab title and search-result description per page
+const DEFAULT_TITLE = 'Dr. Ashish - Psychiatrist'
+const META = {
+  fees: {
+    title: 'Psychiatrist Consultation Fees | Dr. Ashish Yadav',
+    description: 'Clear consultation fees for online, in-person and home-visit psychiatry consultations in Jaipur, with what every consultation includes.',
+  },
+  adhd: {
+    title: 'Adult ADHD Assessment in Jaipur & Online | Dr. Ashish Yadav',
+    description: 'A structured adult ADHD assessment by a DNB Neuro-psychiatrist, online across India or in person in Jaipur, with a written report.',
+  },
+  cancellation: {
+    title: 'Cancellation & Refund Policy | Dr. Ashish Yadav',
+    description: 'Rescheduling, cancellation and refund terms for consultations and the adult ADHD assessment.',
+  },
+  privacy: {
+    title: 'Privacy Policy | Dr. Ashish Yadav',
+    description: "How Dr. Ashish Yadav's practice collects, uses and protects your information.",
+  },
+  jaipur: {
+    title: 'Psychiatrist in Jaipur | Dr. Ashish Yadav, Jhotwara & Vaishali Nagar',
+    description: 'DNB Neuro-psychiatrist in Jaipur with clinics in Jhotwara and Vaishali Nagar, home visits and online consultations. English, Hindi and Gujarati.',
+  },
+  jhotwara: {
+    title: 'Psychiatrist in Jhotwara, Jaipur | Dr. Ashish Yadav',
+    description: 'Psychiatrist at Shri Ram Hospital, Hanuman Road, Tara Nagar, Jhotwara. Open every day except Wednesday, 1–2 PM and 5–7 PM. Also online.',
+  },
+  vaishali: {
+    title: 'Psychiatrist in Vaishali Nagar, Jaipur | Dr. Ashish Yadav',
+    description: 'Psychiatrist at Asha Clinic, Sirsi Road, Vaishali Nagar, opposite DMart. Every day except Wednesday, 10 AM–1 PM. Evenings at Shalby Hospital.',
+  },
 }
 
 const routeFromPath = (pathname) =>
@@ -68,6 +112,20 @@ const syncUrl = (target) => {
     window.history.pushState({ route: target }, '', path)
   }
 }
+
+const setMeta = (id) => {
+  const meta = META[id]
+  document.title = meta?.title || DEFAULT_TITLE
+  let tag = document.querySelector('meta[name="description"]')
+  if (!tag) {
+    tag = document.createElement('meta')
+    tag.name = 'description'
+    document.head.appendChild(tag)
+  }
+  tag.content = meta?.description || ''
+}
+
+watch(route, setMeta, { immediate: true })
 
 window.addEventListener('popstate', () => {
   route.value = routeFromPath(window.location.pathname)
