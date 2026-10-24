@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Personal self-check result pages and the internal review tool
+Disallow: /results/
+Disallow: /review.html
+
+Sitemap: https://drashishyadav.com/sitemap.xml
