@@ -98,7 +98,7 @@
         </div>
         <div class="info-item">
           <h3>📧 Email</h3>
-          <p><a href="mailto:contact@drashish.com">contact@drashish.com</a></p>
+          <p><a href="mailto:contact@drashishyadav.com">contact@drashishyadav.com</a></p>
         </div>
         <div class="info-item">
           <h3>📍 Address</h3>
