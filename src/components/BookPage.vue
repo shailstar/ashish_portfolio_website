@@ -173,13 +173,13 @@ const QUESTION_MSG = "Hi Dr. Ashish, I'd like to book a consultation but I'm not
 
 const type = ref('first')
 const mode = ref('online')
-const duration = ref(30)
+const duration = ref(60)
 
 const durations = computed(() => durationsFor(type.value))
 const price = computed(() => priceFor(type.value, mode.value, duration.value))
 
 watch(type, (t) => {
-  if (!durationsFor(t).includes(duration.value)) duration.value = durationsFor(t)[0] || 30
+  if (!durationsFor(t).includes(duration.value)) duration.value = 60
 })
 
 const summary = computed(() => {

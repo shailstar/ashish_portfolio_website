@@ -96,7 +96,7 @@ const allowed = refParam === BOOKING_REF || stored?.method === 'upi'
 const session = reactive({
   type: stored?.type || 'first',
   mode: stored?.mode || 'online',
-  duration: stored?.duration || 30,
+  duration: stored?.duration || 60,
 })
 
 const paidVia = refParam === BOOKING_REF ? 'Razorpay' : stored?.method === 'upi' ? 'Direct UPI' : 'Razorpay'
