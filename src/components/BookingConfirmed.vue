@@ -41,6 +41,21 @@
           <li>For anyone under 18, a parent or guardian must attend the consultation.</li>
         </ul>
 
+        <!-- Shown once Cal.com reports the booking -->
+        <div v-if="booked" ref="bookedEl" class="bc-booked" role="status">
+          <span class="bc-booked-icon" aria-hidden="true">✓</span>
+          <div class="bc-booked-body">
+            <h2 class="bc-booked-title">Slot requested{{ bookedWhen ? ` for ${bookedWhen}` : '' }}.</h2>
+            <p>
+              One last tap: send your booking details to the clinic on WhatsApp. Your appointment is confirmed once
+              your payment is verified.
+            </p>
+            <a :href="whatsappHref" target="_blank" rel="noopener noreferrer" class="bc-wa-button">
+              Send details on WhatsApp
+            </a>
+          </div>
+        </div>
+
         <div class="bc-cal">
           <iframe
             :key="calUrl"
@@ -55,7 +70,8 @@
           <a :href="calUrl" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>.
           Need a same-day appointment, or have a question? Call or WhatsApp
           <a :href="PHONE_TEL">{{ PHONE_DISPLAY }}</a>
-          or <a :href="whatsappHref" target="_blank" rel="noopener noreferrer">message on WhatsApp</a>.
+          Already booked a slot?
+          <a :href="whatsappHref" target="_blank" rel="noopener noreferrer">Send your details on WhatsApp</a>.
         </p>
       </template>
     </div>
@@ -63,7 +79,7 @@
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue'
+import { ref, reactive, computed, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import {
   BOOKING_REF, CONFIRM_WINDOW, SESSION_TYPES, MODES, priceFor, minutesFor, formatPrice, calUrlFor, loadBooking,
 } from '../data/booking.js'
@@ -104,13 +120,61 @@ const calEmbedSrc = computed(() => {
   return `${calUrl.value}?${query}`
 })
 
-const whatsappHref = computed(() =>
-  waLink(
-    `Hi Dr. Ashish, I've paid for a ${sessionLabel.value} (${formatPrice(
-      priceFor(session.type, session.mode, session.duration),
-    )}) via ${paidVia}. Payment ref: `,
-  ),
-)
+// ---- Booking success from the Cal.com calendar ----
+// The embedded calendar posts messages to this page; a "bookingSuccessful" one means a slot was booked.
+const booked = ref(false)
+const bookedStart = ref(null)
+const bookedName = ref('')
+const bookedEl = ref(null)
+
+const bookedWhen = computed(() => {
+  if (!bookedStart.value) return ''
+  const d = new Date(bookedStart.value)
+  if (Number.isNaN(d.getTime())) return ''
+  return d.toLocaleString('en-IN', {
+    weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata',
+  })
+})
+
+const onCalMessage = async (event) => {
+  let host = ''
+  try {
+    host = new URL(event.origin).hostname
+  } catch {
+    return
+  }
+  if (!/(^|\.)cal\.com$/.test(host)) return
+  const msg = event.data
+  const method = msg?.method || msg?.fullType || ''
+  if (typeof method !== 'string' || !method.includes('bookingSuccessful')) return
+  const data = msg.data || {}
+  bookedStart.value = data.startTime || data.booking?.startTime || data.date || null
+  const name = data.booking?.attendees?.[0]?.name || data.booking?.responses?.name || ''
+  bookedName.value = typeof name === 'string' ? name : [name.firstName, name.lastName].filter(Boolean).join(' ')
+  if (!booked.value) {
+    booked.value = true
+    await nextTick()
+    bookedEl.value?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+}
+
+onMounted(() => window.addEventListener('message', onCalMessage))
+onBeforeUnmount(() => window.removeEventListener('message', onCalMessage))
+
+const whatsappHref = computed(() => {
+  const price = formatPrice(priceFor(session.type, session.mode, session.duration))
+  return waLink(
+    [
+      "Hi Dr. Ashish, I've booked a consultation. Please confirm it.",
+      '',
+      `Session: ${sessionLabel.value} (${price})`,
+      `Slot: ${bookedWhen.value || '(as booked on Cal.com)'}`,
+      `Paid via: ${paidVia}`,
+      `Payment ref: ${paymentRef}`,
+      `Name: ${bookedName.value}`,
+    ].join('\n'),
+  )
+})
 </script>
 
 <style scoped>
@@ -211,6 +275,57 @@ const whatsappHref = computed(() =>
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+}
+
+.bc-booked {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--sage-100);
+  border: 1.5px solid var(--brand);
+  border-radius: var(--radius-lg);
+}
+
+.bc-booked-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.bc-booked-title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.bc-booked-body p {
+  font-size: 0.9375rem;
+  margin: 0 0 1rem;
+}
+
+.bc-wa-button {
+  display: inline-flex;
+  padding: 12px 24px;
+  background: #1fa855;
+  color: var(--white);
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+}
+
+.bc-wa-button:hover {
+  background: #188a45;
+  color: var(--white);
 }
 
 .bc-cal {
