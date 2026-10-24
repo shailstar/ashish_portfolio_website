@@ -74,6 +74,7 @@ const columns = [
       { id: 'fees', label: 'Consultation fees', path: '/fees' },
       { id: 'adhd', label: 'Adult ADHD assessment', path: '/adult-adhd-assessment' },
       { id: 'resources', label: 'Resources' },
+      { id: 'talks', label: 'Talks & workshops', path: '/talks-and-workshops' },
       { id: 'book', label: 'Book a consultation', path: '/book' },
     ],
   },

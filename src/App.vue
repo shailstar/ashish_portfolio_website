@@ -34,6 +34,8 @@
       <BookPage v-else-if="route === 'book'" @navigate="handleNavigate" />
 
       <BookingConfirmed v-else-if="route === 'confirmed'" @navigate="handleNavigate" />
+
+      <TalksPage v-else-if="route === 'talks'" />
     </main>
 
     <Footer @navigate="handleNavigate" />
@@ -62,6 +64,7 @@ import ClinicPage from './components/ClinicPage.vue'
 import AboutPage from './components/AboutPage.vue'
 import BookPage from './components/BookPage.vue'
 import BookingConfirmed from './components/BookingConfirmed.vue'
+import TalksPage from './components/TalksPage.vue'
 
 // Pages that have their own URL. Other routes live at "/".
 // New paths also need a rewrite in public/_redirects.
@@ -76,11 +79,16 @@ const PATHS = {
   about: '/about',
   book: '/book',
   confirmed: '/booking-confirmed',
+  talks: '/talks-and-workshops',
 }
 
 // Browser tab title and search-result description per page
 const DEFAULT_TITLE = 'Dr. Ashish - Psychiatrist'
 const META = {
+  talks: {
+    title: 'Mental Health Talks & Workshops in Jaipur | Dr. Ashish Yadav',
+    description: 'Mental health talks, workshops and breathwork sessions for schools, colleges, corporates and yoga teacher trainings. In Jaipur, beyond and online.',
+  },
   book: {
     title: 'Book a Consultation | Dr. Ashish Yadav, Psychiatrist in Jaipur',
     description: 'Book an online or in-clinic psychiatry consultation, follow-up or adult ADHD assessment in Jaipur. Pay by Razorpay or UPI.',

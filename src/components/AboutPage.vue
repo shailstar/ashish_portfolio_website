@@ -109,6 +109,16 @@
         </ul>
       </div>
 
+      <!-- Talks banner -->
+      <button class="ap-block ap-talks" @click="$emit('navigate', 'talks')">
+        <span class="ap-talks-icon" aria-hidden="true">🎤</span>
+        <span class="ap-talks-text">
+          <strong>I also speak at schools, colleges, corporates and yoga teacher trainings.</strong>
+          <span>Talks, workshops and breathwork sessions in English, Hindi and Gujarati.</span>
+        </span>
+        <span class="ap-talks-link">Talks &amp; workshops &rarr;</span>
+      </button>
+
       <!-- How I work -->
       <div class="ap-block">
         <div class="eyebrow">How I work</div>
@@ -553,6 +563,56 @@ const values = [
 .ap-feature-date {
   font-size: var(--fs-sm);
   color: var(--text-muted);
+}
+
+/* ---- Talks banner ---- */
+.ap-talks {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: 1.25rem 1.5rem;
+  background: var(--sage-50);
+  border: 1px solid var(--border-brand);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+}
+
+.ap-talks:hover {
+  background: var(--sage-100);
+}
+
+.ap-talks-icon {
+  font-size: 2rem;
+}
+
+.ap-talks-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--text-body);
+  font-size: 0.9375rem;
+}
+
+.ap-talks-text strong {
+  color: var(--text-strong);
+  font-size: 1rem;
+}
+
+.ap-talks-link {
+  font-weight: 700;
+  color: var(--brand-ink);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .ap-talks {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* ---- Values ---- */
