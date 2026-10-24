@@ -211,7 +211,7 @@ const glance = [
   { label: 'Who does it', value: 'Dr. Ashish Yadav, Neuro-psychiatrist (DNB Psychiatry)' },
   { label: 'Where', value: 'Online by Google Meet, or in person in Jaipur' },
   { label: 'Fee', value: '₹3,499 online · ₹3,999 in person' },
-  { label: 'You receive', value: 'A consultation and a written assessment report' },
+  { label: 'You receive', value: 'A 60-minute evaluation and a written assessment report' },
   { label: 'What it is not', value: 'A quick online quiz, or a promise of a diagnosis or medicine' },
 ]
 

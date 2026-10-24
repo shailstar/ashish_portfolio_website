@@ -25,16 +25,34 @@ export const UPI_QR_IMAGES = {
   3999: '/upi/upi-3999.png',
 }
 
-// Optional: pick an exact slot on Google Calendar after paying
-export const CALENDAR_URL =
-  'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j'
+// Cal.com booking calendar for each session, shown after payment
+const CAL_BASE = 'https://cal.com/drashishyadav/'
+const CAL_EVENTS = {
+  'first-online-30': 'online-consultation-30min',
+  'first-online-60': 'online-consultation-60-min',
+  'first-jhotwara-30': 'clinic-consultation-jhotwara',
+  'first-jhotwara-60': 'clinic-consultation-jhotwara-60-minutes',
+  'first-vaishali-30': 'clinic-consultation-vaishali-nagar-30-minutes',
+  'first-vaishali-60': 'clinic-consultation-vaishali-nagar-60-minutes',
+  'follow-up-online': 'follow-up-consultation-online',
+  'follow-up-jhotwara': 'follow-up-consultation-jhotwara',
+  'follow-up-vaishali': 'follow-up-consultation-vaishali-nagar',
+  'adhd-online': 'adult-adhd-assessment-online',
+  'adhd-jhotwara': 'adult-adhd-assessment-jhotwara',
+  'adhd-vaishali': 'adult-adhd-assessment-vaishali-nagar',
+}
 
-export const CONFIRM_WINDOW = '12–24 hours'
+export const calUrlFor = (type, mode, duration) => {
+  const key = type === 'first' ? `${type}-${mode}-${duration}` : `${type}-${mode}`
+  return CAL_BASE + CAL_EVENTS[key]
+}
+
+export const CONFIRM_WINDOW = 'a few hours'
 
 export const SESSION_TYPES = [
   { id: 'first', label: 'First consultation', hint: 'Your first visit' },
   { id: 'follow-up', label: 'Follow-up', hint: 'Already under my care' },
-  { id: 'adhd', label: 'Adult ADHD assessment', hint: 'ASRS, evaluation and report' },
+  { id: 'adhd', label: 'Adult ADHD assessment', hint: '60-min evaluation and report' },
 ]
 
 export const MODES = [
@@ -51,6 +69,9 @@ export const priceFor = (type, mode, duration) => {
 }
 
 export const durationsFor = (type) => (type === 'first' ? [30, 60] : [])
+
+// Length shown in summaries
+export const minutesFor = (type, duration) => (type === 'first' ? duration : type === 'adhd' ? 60 : 30)
 
 export const formatPrice = (amount) => `₹${amount.toLocaleString('en-IN')}`
 

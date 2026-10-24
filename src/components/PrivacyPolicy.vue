@@ -126,8 +126,8 @@ const sections = [
       'Your information is never sold, rented or used for advertising. It is shared only in these limited situations:',
     ],
     points: [
-      'Service providers that make the practice work: Google (Calendar, Meet, Gmail and Analytics), WhatsApp, and Netlify, which hosts this website. They handle data under their own privacy policies.',
-      'Booking details you enter on this website are not stored here. They are sent to the clinic through WhatsApp when you tap the send button.',
+      'Service providers that make the practice work: Google (Calendar, Meet, Gmail and Analytics), Cal.com (appointment scheduling), WhatsApp, and Netlify, which hosts this website. They handle data under their own privacy policies.',
+      'Appointment times and booking details, such as your name, phone number, email and payment reference, are handled by Cal.com, the scheduling service used for bookings.',
       'Payments are made through Razorpay or directly by UPI. Razorpay, your UPI app and your bank process the payment under their own terms. Only the payment reference is kept to confirm your booking. Card or bank details are never collected by this website.',
       'Other healthcare professionals, such as a lab or a therapist, only with your consent and only when it helps your care.',
       'When the law requires it, or when there is a serious and immediate risk to your life or someone else\'s.',

@@ -8,140 +8,66 @@
         <button class="bc-button" @click="$emit('navigate', 'book')">Book a consultation</button>
       </div>
 
-      <!-- Details sent -->
-      <div v-else-if="sent" class="bc-card bc-done">
-        <span class="bc-done-icon" aria-hidden="true">✓</span>
-        <h1 class="bc-title">
-          Thank you, {{ firstName }}.
-          <em>Your request is in.</em>
-        </h1>
-        <p>
-          Your appointment time will be confirmed on WhatsApp within {{ CONFIRM_WINDOW }}. After confirmation, you will
-          also receive a short consent form to fill in before your consultation.
-        </p>
-        <p class="bc-small">
-          WhatsApp didn't open?
-          <a :href="whatsappHref" target="_blank" rel="noopener noreferrer">Send your details again</a>.
-          For a same-day appointment, call <a :href="PHONE_TEL">{{ PHONE_DISPLAY }}</a>.
-        </p>
-        <a :href="CALENDAR_URL" target="_blank" rel="noopener noreferrer" class="bc-calendar">
-          Prefer an exact time? Pick a slot on my calendar &rarr;
-        </a>
-      </div>
-
-      <!-- Details form -->
       <template v-else>
         <header class="bc-header">
           <div class="eyebrow">Step 3 of 3</div>
           <h1 class="bc-title">
             Thank you for paying.
-            <em>One last step.</em>
+            <em>Now pick your time.</em>
           </h1>
           <p class="bc-lead">
-            Share your details below. They open in WhatsApp, ready to send to the clinic, and your time is confirmed
-            within {{ CONFIRM_WINDOW }}.
+            Choose a slot below and fill in the short booking form. Your appointment is confirmed by email once your
+            payment is verified, usually within {{ CONFIRM_WINDOW }}.
           </p>
         </header>
 
-        <form class="bc-card bc-form" @submit.prevent="send">
-          <!-- Session: prefilled from the booking page, editable if it didn't carry over -->
-          <div class="bc-session">
-            <label class="bc-field">
-              <span class="bc-label">Session booked</span>
-              <select v-model="session.type" required>
-                <option v-for="t in SESSION_TYPES" :key="t.id" :value="t.id">{{ t.label }}</option>
-              </select>
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">Where</span>
-              <select v-model="session.mode" required>
-                <option v-for="m in MODES" :key="m.id" :value="m.id">{{ m.label }}</option>
-              </select>
-            </label>
-            <label v-if="session.type === 'first'" class="bc-field">
-              <span class="bc-label">Duration</span>
-              <select v-model.number="session.duration" required>
-                <option :value="30">30 minutes</option>
-                <option :value="60">60 minutes</option>
-              </select>
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">Paid by</span>
-              <select v-model="session.method" required>
-                <option value="razorpay">Razorpay</option>
-                <option value="upi">Direct UPI</option>
-              </select>
-            </label>
-          </div>
-          <p class="bc-price">Amount: <strong>{{ formatPrice(price) }}</strong><span v-if="session.method === 'razorpay'"> + convenience fee</span></p>
+        <!-- Session: prefilled from the booking page, editable if it didn't carry over -->
+        <div class="bc-session">
+          <span class="bc-session-label">Calendar for</span>
+          <select v-model="session.type" aria-label="Session type">
+            <option v-for="t in SESSION_TYPES" :key="t.id" :value="t.id">{{ t.label }}</option>
+          </select>
+          <select v-model="session.mode" aria-label="Where">
+            <option v-for="m in MODES" :key="m.id" :value="m.id">{{ m.label }}</option>
+          </select>
+          <select v-if="session.type === 'first'" v-model.number="session.duration" aria-label="Duration">
+            <option :value="30">30 minutes</option>
+            <option :value="60">60 minutes</option>
+          </select>
+        </div>
 
-          <div class="bc-grid">
-            <label class="bc-field">
-              <span class="bc-label">Full name *</span>
-              <input v-model.trim="form.name" type="text" autocomplete="name" required />
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">Phone / WhatsApp number *</span>
-              <input v-model.trim="form.phone" type="tel" autocomplete="tel" inputmode="tel" required />
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">Age *</span>
-              <input v-model.number="form.age" type="number" min="1" max="110" required />
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">{{ session.method === 'upi' ? 'UPI UTR / transaction number *' : 'Razorpay payment ID *' }}</span>
-              <input v-model.trim="form.paymentRef" type="text" required />
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">Preferred date *</span>
-              <input v-model="form.date" type="date" :min="today" required />
-            </label>
-            <label class="bc-field">
-              <span class="bc-label">Preferred time *</span>
-              <select v-model="form.time" required>
-                <option value="" disabled>Choose</option>
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-                <option>Any time</option>
-              </select>
-            </label>
-            <label class="bc-field bc-field-wide">
-              <span class="bc-label">What would you like help with? (optional)</span>
-              <select v-model="form.concern">
-                <option value="">Prefer to discuss in the consultation</option>
-                <option v-for="area in CARE_AREAS" :key="area.title">{{ area.title }}</option>
-                <option>Something else</option>
-              </select>
-            </label>
-          </div>
+        <ul class="bc-tips">
+          <li><strong>Paid via: {{ paidVia }}</strong> is already filled in for you in the booking form.</li>
+          <li>For anyone under 18, a parent or guardian must attend the consultation.</li>
+        </ul>
 
-          <p v-if="form.age && form.age < 18" class="bc-minor">
-            For anyone under 18, a parent or guardian must attend the consultation.
-          </p>
+        <div class="bc-cal">
+          <iframe
+            :key="calUrl"
+            :src="calEmbedSrc"
+            :title="`Pick a time: ${sessionLabel}`"
+            loading="lazy"
+          ></iframe>
+        </div>
 
-          <label class="bc-check">
-            <input v-model="form.agreed" type="checkbox" required />
-            <span>
-              I have read the
-              <a href="/cancellation-policy" target="_blank" rel="noopener noreferrer">cancellation policy and the extra time policy</a>.
-            </span>
-          </label>
-
-          <button type="submit" class="bc-button bc-submit">Send booking details on WhatsApp</button>
-          <p class="bc-small">Your details are sent only through WhatsApp. They are not stored on this website.</p>
-        </form>
+        <p class="bc-small">
+          Calendar not loading?
+          <a :href="calUrl" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>.
+          Need a same-day appointment, or have a question? Call or WhatsApp
+          <a :href="PHONE_TEL">{{ PHONE_DISPLAY }}</a>
+          or <a :href="whatsappHref" target="_blank" rel="noopener noreferrer">message on WhatsApp</a>.
+        </p>
       </template>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { reactive, computed } from 'vue'
 import {
-  BOOKING_REF, CALENDAR_URL, CONFIRM_WINDOW, SESSION_TYPES, MODES, priceFor, formatPrice, loadBooking,
+  BOOKING_REF, CONFIRM_WINDOW, SESSION_TYPES, MODES, priceFor, minutesFor, formatPrice, calUrlFor, loadBooking,
 } from '../data/booking.js'
-import { CARE_AREAS, PHONE_DISPLAY, PHONE_TEL, waLink } from '../data/clinics.js'
+import { PHONE_DISPLAY, PHONE_TEL, waLink } from '../data/clinics.js'
 
 defineEmits(['navigate'])
 
@@ -155,72 +81,36 @@ const session = reactive({
   type: stored?.type || 'first',
   mode: stored?.mode || 'online',
   duration: stored?.duration || 30,
-  method: refParam === BOOKING_REF ? 'razorpay' : stored?.method || 'upi',
 })
 
-const price = computed(() => priceFor(session.type, session.mode, session.duration))
+const paidVia = refParam === BOOKING_REF ? 'Razorpay' : stored?.method === 'upi' ? 'Direct UPI' : 'Razorpay'
 
-const form = reactive({
-  name: '',
-  phone: '',
-  age: null,
-  paymentRef: '',
-  date: '',
-  time: '',
-  concern: '',
-  agreed: false,
-})
-
-const pad = (n) => String(n).padStart(2, '0')
-const now = new Date()
-const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
-
-const sent = ref(false)
-const firstName = computed(() => form.name.split(' ')[0])
+const calUrl = computed(() => calUrlFor(session.type, session.mode, session.duration))
 
 const sessionLabel = computed(() => {
   const t = SESSION_TYPES.find((x) => x.id === session.type).label
   const m = MODES.find((x) => x.id === session.mode).label
-  const mins = session.type === 'first' ? `${session.duration} min` : session.type === 'follow-up' ? '30 min' : null
-  return [t, m, mins].filter(Boolean).join(' · ')
+  return `${t} · ${m} · ${minutesFor(session.type, session.duration)} min`
 })
 
-const prettyDate = computed(() => {
-  if (!form.date) return ''
-  const [y, m, d] = form.date.split('-').map(Number)
-  return new Date(y, m - 1, d).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })
+// Cal.com fills booking questions from matching URL parameters (by question identifier)
+const params = new URLSearchParams(window.location.search)
+const paymentRef = params.get('razorpay_payment_id') || params.get('payment_id') || ''
+
+const calEmbedSrc = computed(() => {
+  const query = new URLSearchParams({ embed: 'true', theme: 'light', layout: 'month_view', 'Paid-Via': paidVia })
+  // Used once a "Payment ID / UTR" question with identifier payment-ref exists in Cal.com
+  if (paymentRef) query.set('payment-ref', paymentRef)
+  return `${calUrl.value}?${query}`
 })
 
-const message = computed(() =>
-  [
-    "Hi Dr. Ashish, I've paid for a consultation. Please confirm my time.",
-    '',
-    `Session: ${sessionLabel.value} (${formatPrice(price.value)})`,
-    `Paid via: ${session.method === 'upi' ? 'Direct UPI' : 'Razorpay'}`,
-    `Payment ref: ${form.paymentRef}`,
-    `Name: ${form.name}`,
-    `Phone: ${form.phone}`,
-    `Age: ${form.age}`,
-    `Preferred: ${prettyDate.value}, ${form.time}`,
-    form.concern ? `Help with: ${form.concern}` : null,
-    'I have read the cancellation and extra time policy.',
-  ]
-    .filter((line) => line !== null)
-    .join('\n'),
+const whatsappHref = computed(() =>
+  waLink(
+    `Hi Dr. Ashish, I've paid for a ${sessionLabel.value} (${formatPrice(
+      priceFor(session.type, session.mode, session.duration),
+    )}) via ${paidVia}. Payment ref: `,
+  ),
 )
-
-const whatsappHref = computed(() => waLink(message.value))
-
-const send = () => {
-  window.open(whatsappHref.value, '_blank', 'noopener')
-  sent.value = true
-  try {
-    sessionStorage.removeItem('pendingBooking')
-  } catch {
-    // ignore
-  }
-  window.scrollTo(0, 0)
-}
 </script>
 
 <style scoped>
@@ -230,7 +120,7 @@ const send = () => {
 }
 
 .bc-container {
-  max-width: var(--container-sm);
+  max-width: var(--container-md);
   margin: 0 auto;
 }
 
@@ -252,6 +142,7 @@ const send = () => {
 .bc-lead {
   font-size: var(--fs-md);
   margin: 0 0 1.5rem;
+  max-width: 640px;
 }
 
 .bc-card {
@@ -262,22 +153,10 @@ const send = () => {
   box-shadow: var(--shadow-sm);
 }
 
-.bc-empty,
-.bc-done {
+.bc-empty {
+  max-width: var(--container-sm);
+  margin: 0 auto;
   text-align: center;
-}
-
-.bc-done-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  background: var(--sage-100);
-  color: var(--brand-ink);
-  font-size: 1.75rem;
-  font-weight: 700;
 }
 
 .bc-button {
@@ -295,119 +174,73 @@ const send = () => {
   background: var(--brand-hover);
 }
 
-.bc-calendar {
-  display: inline-block;
-  margin-top: 1rem;
-  font-weight: 600;
+.bc-session {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem;
+  background: var(--sage-50);
+  border: 1px solid var(--border-brand);
+  border-radius: var(--radius-md);
+}
+
+.bc-session-label {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--brand-ink);
+}
+
+.bc-session select {
+  padding: 8px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  font-size: 0.9375rem;
+  font-family: var(--font-sans);
+  color: var(--text-strong);
+}
+
+.bc-tips {
+  margin: 1rem 0;
+  padding: 0.9rem 1.25rem 0.9rem 2.25rem;
+  background: var(--camel-50);
+  border-left: 4px solid var(--camel-400);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.bc-cal {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.bc-cal iframe {
+  display: block;
+  width: 100%;
+  height: 820px;
+  border: 0;
 }
 
 .bc-small {
   font-size: var(--fs-sm);
   color: var(--text-muted);
-  margin: 0.75rem 0 0;
+  margin: 1rem 0 0;
 }
 
 .bc-small a {
   font-weight: 600;
 }
 
-/* ---- Form ---- */
-.bc-session {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.75rem;
-  padding: 1rem;
-  background: var(--sage-50);
-  border: 1px solid var(--border-brand);
-  border-radius: var(--radius-md);
-}
-
-.bc-price {
-  margin: 0.75rem 0 1.5rem;
-  font-size: 0.9375rem;
-}
-
-.bc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.bc-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.bc-field-wide {
-  grid-column: 1 / -1;
-}
-
-.bc-label {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--text-strong);
-}
-
-.bc-field input,
-.bc-field select {
-  width: 100%;
-  padding: 11px 12px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--white);
-  font-size: 1rem;
-  color: var(--text-strong);
-}
-
-.bc-field input:focus,
-.bc-field select:focus {
-  outline: none;
-  border-color: var(--brand);
-  box-shadow: 0 0 0 3px var(--focus-ring-soft);
-}
-
-.bc-minor {
-  margin: 1rem 0 0;
-  padding: 0.75rem 1rem;
-  background: var(--camel-50);
-  border-left: 4px solid var(--camel-400);
-  border-radius: var(--radius-sm);
-  font-size: var(--fs-sm);
-}
-
-.bc-check {
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  margin: 1.5rem 0;
-  font-size: 0.9375rem;
-  cursor: pointer;
-}
-
-.bc-check input {
-  margin-top: 0.25rem;
-  width: 1.1rem;
-  height: 1.1rem;
-  accent-color: var(--brand);
-}
-
-.bc-check a {
-  font-weight: 600;
-}
-
-.bc-submit {
-  width: 100%;
-  background: #1fa855;
-}
-
-.bc-submit:hover {
-  background: #188a45;
-}
-
-@media (max-width: 560px) {
-  .bc-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .bc-cal iframe {
+    height: 1000px;
   }
 }
 </style>

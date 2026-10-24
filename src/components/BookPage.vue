@@ -8,8 +8,8 @@
           <em>in three simple steps.</em>
         </h1>
         <p class="bk-lead">
-          Choose your session, pay securely, then share your details on WhatsApp. Your appointment time is confirmed
-          within {{ CONFIRM_WINDOW }}.
+          Choose your session, pay securely, then pick your exact time on the calendar. Your appointment is confirmed
+          once your payment is verified.
         </p>
         <p class="bk-sameday">
           Need to be seen today? Please call or WhatsApp
@@ -114,8 +114,8 @@
         </div>
 
         <p class="bk-policy-note">
-          Paying requests your booking, and the exact time is confirmed by WhatsApp within {{ CONFIRM_WINDOW }}. If no
-          suitable time can be offered, you get a full refund.
+          After paying, you pick your time on the calendar, and the booking is confirmed once your payment is verified.
+          If no suitable time can be offered, you get a full refund.
           <a href="/cancellation-policy" target="_blank" rel="noopener noreferrer">Cancellation &amp; extra time policy</a>
         </p>
       </div>
@@ -124,11 +124,11 @@
       <div class="bk-step bk-step-muted">
         <div class="bk-step-head">
           <span class="bk-step-number">3</span>
-          <h2 class="bk-step-title">Share your details</h2>
+          <h2 class="bk-step-title">Pick your time</h2>
         </div>
         <p class="bk-step-text">
-          After paying, you will be asked for your name, a preferred date and time, and your payment reference. These
-          are sent to the clinic on WhatsApp in one tap.
+          After paying, the calendar for your session opens. Pick a free slot and fill in a short form with your
+          contact details and payment reference.
         </p>
       </div>
 
@@ -160,8 +160,8 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import {
-  RAZORPAY_LINKS, UPI_ID, UPI_QR_IMAGES, CONFIRM_WINDOW, SESSION_TYPES, MODES,
-  priceFor, durationsFor, formatPrice, upiLink, saveBooking,
+  RAZORPAY_LINKS, UPI_ID, UPI_QR_IMAGES, SESSION_TYPES, MODES,
+  priceFor, durationsFor, minutesFor, formatPrice, upiLink, saveBooking,
 } from '../data/booking.js'
 import { PHONE_DISPLAY, PHONE_TEL, waLink } from '../data/clinics.js'
 
@@ -185,8 +185,7 @@ watch(type, (t) => {
 const summary = computed(() => {
   const t = SESSION_TYPES.find((x) => x.id === type.value).label
   const m = MODES.find((x) => x.id === mode.value).label
-  const mins = type.value === 'first' ? `${duration.value} min` : type.value === 'follow-up' ? '30 min' : null
-  return [t, m, mins].filter(Boolean).join(' · ')
+  return [t, m, `${minutesFor(type.value, duration.value)} min`].join(' · ')
 })
 
 const razorpayLink = computed(() => RAZORPAY_LINKS[price.value])
