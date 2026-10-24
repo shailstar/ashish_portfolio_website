@@ -162,7 +162,7 @@
             <li><span>Consultation, 30 min</span><strong>₹799</strong></li>
             <li><span>Consultation, 60 min</span><strong>₹1,499</strong></li>
             <li><span>Follow-up, 30 min</span><strong>₹499</strong></li>
-            <li><span>Home visit, 60 min</span><strong>₹4,499</strong></li>
+            <li><span>Home visit, 45–50 min</span><strong>₹4,499</strong></li>
           </ul>
           <button class="loc-link" @click="$emit('navigate', 'fees')">Full fee list &rarr;</button>
         </div>

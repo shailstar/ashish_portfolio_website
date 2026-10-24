@@ -69,7 +69,7 @@ const defaultFaqs = [
   },
   {
     q: 'How does a home visit work?',
-    a: '<p>Home visits are offered within Jaipur in selected cases only, for a 60-minute consultation. They are booked and confirmed through WhatsApp, where the date, time and address are arranged with you.</p>',
+    a: '<p>Home visits are offered within Jaipur in selected cases only, for a 45–50 minute consultation. They are booked and confirmed through WhatsApp, where the date, time and address are arranged with you.</p>',
   },
   {
     q: 'Is the follow-up included in the first consultation fee?',

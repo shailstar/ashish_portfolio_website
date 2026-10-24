@@ -51,6 +51,7 @@
           <div class="bk-options bk-options-2">
             <label v-for="d in durations" :key="d" :class="['bk-option', { selected: duration === d }]">
               <input v-model="duration" type="radio" name="duration" :value="d" />
+              <span v-if="d === 60" class="bk-option-tag">Recommended</span>
               <span class="bk-option-label">{{ d }} minutes</span>
               <span class="bk-option-hint">{{ formatPrice(priceFor(type, mode, d)) }}</span>
             </label>
@@ -138,7 +139,7 @@
         <div class="bk-other-grid">
           <a :href="waLink(HOME_VISIT_MSG)" target="_blank" rel="noopener noreferrer" class="bk-other-card">
             <span class="bk-other-label">Home visit</span>
-            <span class="bk-other-text">Within Jaipur, in selected cases. ₹4,499 for 60 min.</span>
+            <span class="bk-other-text">Within Jaipur, in selected cases. ₹4,499 for 45–50 min.</span>
             <span class="bk-other-link">Request on WhatsApp &rarr;</span>
           </a>
           <a :href="waLink(SHALBY_MSG)" target="_blank" rel="noopener noreferrer" class="bk-other-card">
@@ -387,6 +388,19 @@ const copyUpi = async () => {
 .bk-option-hint {
   font-size: var(--fs-sm);
   color: var(--text-muted);
+}
+
+.bk-option-tag {
+  position: absolute;
+  top: -0.6rem;
+  right: 0.75rem;
+  padding: 2px 10px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  border-radius: var(--radius-pill);
 }
 
 .bk-summary {

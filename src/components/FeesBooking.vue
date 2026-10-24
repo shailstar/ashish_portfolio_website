@@ -220,7 +220,7 @@ const feeRows = [
   { label: 'In-person consultation', mode: 'In Jaipur', duration: '30 min', price: '₹799' },
   { label: 'In-person consultation', mode: 'In Jaipur', duration: '60 min', price: '₹1,499' },
   { label: 'Follow-up consultation', mode: 'Online or in Jaipur', duration: '30 min', price: '₹499' },
-  { label: 'Home visit', mode: 'Within Jaipur', duration: '60 min', price: '₹4,499' },
+  { label: 'Home visit', mode: 'Within Jaipur', duration: '45–50 min', price: '₹4,499' },
   { label: 'Session extension', mode: 'Subject to availability', duration: '15 min', price: '₹399' },
 ]
 
