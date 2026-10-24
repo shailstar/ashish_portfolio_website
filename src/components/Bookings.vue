@@ -12,8 +12,7 @@
             v-for="option in meetingOptions"
             :key="option.id"
             class="meeting-card"
-            :class="{ active: selectedOption === option.id }"
-            @click="selectedOption = option.id"
+            @click="choose(option)"
           >
             <div class="card-icon-wrapper">
               <img :src="option.image" :alt="option.label" class="card-icon-img" loading="lazy" />
@@ -26,49 +25,21 @@
         </div>
       </div>
 
-      <div v-if="selectedOption" class="bookings-card">
-        <div class="card-inner">
-
-          <transition name="fade">
-            <div v-if="selectedOption" class="calendar-wrapper">
-              <p class="reassurance-message">
-                Your information is confidential. This is a safe, judgment-free space.
-              </p>
-
-              <div class="calendar-box">
-                <div class="calendar-header">
-                  <button class="calendar-nav">‹</button>
-                  <h4 class="calendar-month">{{ currentMonth }}</h4>
-                  <button class="calendar-nav">›</button>
-                </div>
-                <div class="calendar-grid">
-                  <div v-for="day in daysOfWeek" :key="day" class="day-header">{{ day }}</div>
-                  <div v-for="(day, index) in calendarDays" :key="index" class="calendar-day" :class="{ available: day !== 0 }">
-                    {{ day !== 0 ? day : '' }}
-                  </div>
-                </div>
-              </div>
-
-              <a
-                v-if="selectedOption === 'online'"
-                href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-button"
-              >
-                Schedule Consultation
-              </a>
-              <a
-                v-else-if="selectedOption === 'in-person' || selectedOption === 'home'"
-                href="https://wa.me/message/75HLOF6Q7MV4A1"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cta-button"
-              >
-                Schedule Consultation
-              </a>
-            </div>
-          </transition>
+      <!-- How booking works -->
+      <div class="steps-card">
+        <p class="reassurance-message">
+          Your information is confidential. This is a safe, judgment-free space.
+        </p>
+        <ol class="steps">
+          <li v-for="(step, index) in steps" :key="step.title" class="step">
+            <span class="step-number">{{ index + 1 }}</span>
+            <span class="step-title">{{ step.title }}</span>
+            <span class="step-text">{{ step.text }}</span>
+          </li>
+        </ol>
+        <div class="steps-actions">
+          <button class="cta-button" @click="$emit('navigate', 'book')">Book a consultation</button>
+          <button class="steps-link" @click="$emit('navigate', 'fees')">See fees &amp; what's included &rarr;</button>
         </div>
       </div>
     </div>
@@ -76,40 +47,47 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { waLink } from '../data/clinics.js'
 
-const selectedOption = ref(null)
+const emit = defineEmits(['navigate'])
+
+const HOME_MSG = "Hi Dr. Ashish, I'd like to book a home visit in Jaipur. My area is: "
 
 const meetingOptions = [
   {
     id: 'in-person',
     label: 'In-Person',
     image: '/bookings/in-person.webp',
-    description: 'Visit our clinic'
+    description: 'Visit our clinic',
   },
   {
     id: 'online',
     label: 'Online',
     image: '/bookings/online.webp',
-    description: 'Video consultation'
+    description: 'Video consultation',
   },
   {
     id: 'home',
     label: 'Home Visit',
     image: '/bookings/home-visit.webp',
-    description: 'At your place'
-  }
+    description: 'At your place',
+  },
 ]
 
-const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const steps = [
+  { title: 'Choose', text: 'Pick your session, online or at a Jaipur clinic.' },
+  { title: 'Pay', text: 'Securely by Razorpay or directly by UPI.' },
+  { title: 'Confirm', text: 'Share your details on WhatsApp. Your time is confirmed within 12–24 hours.' },
+]
 
-const currentMonth = ref('June 2026')
-
-const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
-  const startDay = 4
-  if (i < startDay || i >= startDay + 30) return 0
-  return i - startDay + 1
-}))
+// Home visits are arranged on WhatsApp; everything else goes to the booking page
+const choose = (option) => {
+  if (option.id === 'home') {
+    window.open(waLink(HOME_MSG), '_blank', 'noopener')
+    return
+  }
+  emit('navigate', 'book')
+}
 </script>
 
 <style scoped>
@@ -175,10 +153,6 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   transform: translateY(-6px);
 }
 
-.meeting-card.active {
-  transform: translateY(-6px);
-}
-
 .card-icon-wrapper {
   position: relative;
   width: clamp(130px, 18vw, 168px);
@@ -192,10 +166,6 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
 }
 
 .meeting-card:hover .card-icon-wrapper {
-  box-shadow: 0 0 0 3px var(--sage-300), var(--shadow-lg);
-}
-
-.meeting-card.active .card-icon-wrapper {
   box-shadow: 0 0 0 3px var(--brand), var(--shadow-lg);
 }
 
@@ -228,7 +198,6 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   font-weight: 700;
   margin: 0;
   color: white;
-  transition: color 0.3s ease;
 }
 
 .card-subtitle {
@@ -238,44 +207,15 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   font-weight: 500;
 }
 
-.bookings-card {
+/* ---- How booking works ---- */
+.steps-card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
   background: white;
+  border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-lg);
-  max-width: 600px;
-  margin: 0 auto;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.card-inner {
-  padding: clamp(2rem, 5vw, 3.5rem);
-}
-
-.calendar-wrapper {
-  animation: fadeSlide 0.4s ease;
-}
-
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
 }
 
 .reassurance-message {
@@ -291,93 +231,53 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   font-weight: 500;
 }
 
-.calendar-box {
-  background: var(--bg-subtle);
-  border-radius: var(--radius-xl);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 2rem;
-}
-
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.calendar-month {
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  font-weight: 700;
-  color: var(--text-strong);
-  margin: 0;
-}
-
-.calendar-nav {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  color: var(--text-strong);
-}
-
-.calendar-nav:hover {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: white;
-}
-
-.calendar-grid {
+.steps {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
-.day-header {
-  text-align: center;
-  font-weight: 700;
-  font-size: clamp(0.7rem, 1vw, 0.8rem);
-  color: var(--text-muted);
-  padding: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: var(--ls-wider);
-}
-
-.calendar-day {
-  aspect-ratio: 1;
+.step {
   display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.25rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.step-number {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-lg);
-  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
-  font-weight: 500;
-  color: var(--text-muted);
-  background: transparent;
-  cursor: default;
-}
-
-.calendar-day.available {
-  color: var(--text-strong);
-  background: white;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-}
-
-.calendar-day.available:hover {
-  border-color: var(--brand);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
   background: var(--brand);
   color: white;
-  transform: scale(1.05);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  margin-bottom: 0.4rem;
+}
+
+.step-title {
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.step-text {
+  font-size: var(--fs-sm);
+  color: var(--text-body);
+}
+
+.steps-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
 }
 
 .cta-button {
@@ -395,13 +295,20 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
   text-transform: uppercase;
   letter-spacing: var(--ls-wide);
   box-shadow: var(--shadow-brand);
-  text-decoration: none;
-  text-align: center;
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+.steps-link {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--brand-ink);
 }
 
 @media (max-width: 768px) {
@@ -413,12 +320,8 @@ const calendarDays = ref(Array.from({ length: 35 }, (_, i) => {
     width: clamp(110px, 30vw, 140px);
   }
 
-  .bookings-card {
-    border-radius: var(--radius-xl);
-  }
-
-  .card-inner {
-    padding: clamp(1.5rem, 4vw, 2rem);
+  .steps {
+    grid-template-columns: 1fr;
   }
 }
 </style>

@@ -4,5 +4,6 @@ Allow: /
 # Personal self-check result pages and the internal review tool
 Disallow: /results/
 Disallow: /review.html
+Disallow: /booking-confirmed
 
 Sitemap: https://drashishyadav.com/sitemap.xml

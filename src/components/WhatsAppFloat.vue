@@ -1,6 +1,10 @@
+<script setup>
+import { WHATSAPP_URL } from '../data/clinics.js'
+</script>
+
 <template>
   <a
-    href="https://wa.me/message/75HLOF6Q7MV4A1"
+    :href="WHATSAPP_URL"
     target="_blank"
     rel="noopener noreferrer"
     class="wa-float"

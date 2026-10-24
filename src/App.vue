@@ -8,7 +8,7 @@
         <AboutHero />
         <TreatmentProcess />
         <Services />
-        <Bookings />
+        <Bookings @navigate="handleNavigate" />
       </template>
 
       <WorkGrid v-else-if="route === 'work'" heading="Clinical Experience" blurb="Comprehensive mental health consultations and treatment across diverse presentations and complexities." />
@@ -30,6 +30,10 @@
       <ClinicPage v-else-if="route === 'jhotwara'" clinic-id="jhotwara" @navigate="handleNavigate" />
 
       <ClinicPage v-else-if="route === 'vaishali'" clinic-id="vaishali" @navigate="handleNavigate" />
+
+      <BookPage v-else-if="route === 'book'" @navigate="handleNavigate" />
+
+      <BookingConfirmed v-else-if="route === 'confirmed'" @navigate="handleNavigate" />
     </main>
 
     <Footer @navigate="handleNavigate" />
@@ -39,7 +43,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick, watch } from 'vue'
+import { ref, watch } from 'vue'
 import Nav from './components/Nav.vue'
 import Hero from './components/Hero.vue'
 import AboutHero from './components/AboutHero.vue'
@@ -56,6 +60,8 @@ import PrivacyPolicy from './components/PrivacyPolicy.vue'
 import JaipurPage from './components/JaipurPage.vue'
 import ClinicPage from './components/ClinicPage.vue'
 import AboutPage from './components/AboutPage.vue'
+import BookPage from './components/BookPage.vue'
+import BookingConfirmed from './components/BookingConfirmed.vue'
 
 // Pages that have their own URL. Other routes live at "/".
 // New paths also need a rewrite in public/_redirects.
@@ -68,11 +74,22 @@ const PATHS = {
   jhotwara: '/psychiatrist-in-jhotwara',
   vaishali: '/psychiatrist-in-vaishali-nagar',
   about: '/about',
+  book: '/book',
+  confirmed: '/booking-confirmed',
 }
 
 // Browser tab title and search-result description per page
 const DEFAULT_TITLE = 'Dr. Ashish - Psychiatrist'
 const META = {
+  book: {
+    title: 'Book a Consultation | Dr. Ashish Yadav, Psychiatrist in Jaipur',
+    description: 'Book an online or in-clinic psychiatry consultation, follow-up or adult ADHD assessment in Jaipur. Pay by Razorpay or UPI.',
+  },
+  confirmed: {
+    title: 'Booking | Dr. Ashish Yadav',
+    description: '',
+    noindex: true,
+  },
   about: {
     title: 'About Dr. Ashish Yadav | Neuro-psychiatrist in Jaipur',
     description: 'Neuro-psychiatrist in Jaipur trained at the Gujarat Institute of Mental Health, certified in psychotherapy by the WPA and a Yoga Alliance RYT-200 yoga teacher.',
@@ -129,6 +146,19 @@ const setMeta = (id) => {
     document.head.appendChild(tag)
   }
   tag.content = meta?.description || ''
+
+  // Keep private pages, like the booking confirmation, out of search results
+  let robots = document.querySelector('meta[name="robots"]')
+  if (meta?.noindex) {
+    if (!robots) {
+      robots = document.createElement('meta')
+      robots.name = 'robots'
+      document.head.appendChild(robots)
+    }
+    robots.content = 'noindex, nofollow'
+  } else if (robots) {
+    robots.remove()
+  }
 }
 
 watch(route, setMeta, { immediate: true })
@@ -138,13 +168,8 @@ window.addEventListener('popstate', () => {
 })
 
 const handleNavigate = async (target) => {
-  if (target === 'contact') {
-    route.value = 'home'
-    syncUrl('home')
-    await nextTick()
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
-    return
-  }
+  // Every "Book a consultation" button leads to the booking page
+  if (target === 'contact') target = 'book'
   route.value = target
   syncUrl(target)
   window.scrollTo(0, 0)

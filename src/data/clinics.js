@@ -77,4 +77,12 @@ export const LANGUAGES = 'English, Hindi and Gujarati'
 
 export const GOOGLE_REVIEWS_URL = 'https://g.page/r/Ce-0WPbw-7VYEBI/review'
 
-export const WHATSAPP_URL = 'https://wa.me/message/75HLOF6Q7MV4A1'
+export const WHATSAPP_NUMBER = '917976304658'
+export const PHONE_DISPLAY = '+91 79763 04658'
+export const PHONE_TEL = 'tel:+917976304658'
+
+// WhatsApp link that opens the chat with a message already typed
+export const waLink = (text) =>
+  `https://wa.me/${WHATSAPP_NUMBER}${text ? `?text=${encodeURIComponent(text)}` : ''}`
+
+export const WHATSAPP_URL = waLink('Hi Dr. Ashish, I have a question.')

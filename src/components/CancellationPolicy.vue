@@ -26,7 +26,7 @@
 
       <!-- Full sections -->
       <ol class="policy-sections">
-        <li v-for="(section, index) in sections" :key="section.title" class="policy-section">
+        <li v-for="(section, index) in sections" :id="section.id" :key="section.title" class="policy-section">
           <h2 class="policy-section-title">
             <span class="policy-section-number">{{ index + 1 }}</span>
             {{ section.title }}
@@ -45,7 +45,7 @@
           personally.
         </p>
         <div class="policy-contact-links">
-          <a href="https://wa.me/message/75HLOF6Q7MV4A1" target="_blank" rel="noopener noreferrer" class="policy-button">
+          <a :href="waLink(RESCHEDULE_MSG)" target="_blank" rel="noopener noreferrer" class="policy-button">
             Message on WhatsApp
           </a>
           <a
@@ -69,12 +69,17 @@
 </template>
 
 <script setup>
+import { waLink } from '../data/clinics.js'
+
 defineEmits(['navigate'])
+
+const RESCHEDULE_MSG = "Hi Dr. Ashish, I'd like to reschedule / cancel my appointment.\nName:\nAppointment date:\nPayment ref:"
 
 const effectiveDate = '24 October 2026'
 
 const summary = [
   'You can reschedule once, free, with at least 24 hours\' notice.',
+  'Sessions end at the booked time. Extra time is ₹399 per 15 minutes, only if the next slot is free.',
   'Once an appointment is confirmed, the fee is not refunded, because that time is kept aside for you.',
   'If the clinic cancels, or the ADHD assessment turns out not to be suitable for you, you get a full refund.',
 ]
@@ -93,7 +98,16 @@ const sections = [
     rules: [
       'Consultation fees are non-refundable once your appointment is confirmed, because that slot is held only for you.',
       'Cancelling within 24 hours of the appointment, or not joining at all, is treated as a completed consultation. The fee is not refunded or carried forward.',
-      'If you join late, the session still ends at the scheduled time and the full fee applies.',
+    ],
+  },
+  {
+    id: 'extra-time',
+    title: 'Session time and extra time',
+    rules: [
+      "Each session ends at its booked time, even if the conversation is still going. This keeps every patient's appointment on time.",
+      'If more time is needed, a 15-minute extension can be added for ₹399, only if the next slot is free and it is agreed before the extra time begins.',
+      'If you join late, the session still ends at the booked time and the full fee applies.',
+      'Anything that could not be covered can be taken up in a follow-up consultation.',
     ],
   },
   {

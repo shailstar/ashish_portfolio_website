@@ -196,10 +196,11 @@
 
 <script setup>
 import AppointmentFAQ from './AppointmentFAQ.vue'
+import { waLink } from '../data/clinics.js'
 
 defineEmits(['navigate'])
 
-const WHATSAPP = 'https://wa.me/message/75HLOF6Q7MV4A1'
+const WHATSAPP = waLink("Hi Dr. Ashish, I'd like to take the adult ADHD assessment. Could you check if it's suitable for me?")
 
 const scrollTo = (id) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })

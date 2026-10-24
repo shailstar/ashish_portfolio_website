@@ -59,6 +59,8 @@
 </template>
 
 <script setup>
+import { WHATSAPP_URL } from '../data/clinics.js'
+
 defineEmits(['navigate'])
 
 const year = new Date().getFullYear()
@@ -72,7 +74,7 @@ const columns = [
       { id: 'fees', label: 'Consultation fees', path: '/fees' },
       { id: 'adhd', label: 'Adult ADHD assessment', path: '/adult-adhd-assessment' },
       { id: 'resources', label: 'Resources' },
-      { id: 'contact', label: 'Book a consultation' },
+      { id: 'book', label: 'Book a consultation', path: '/book' },
     ],
   },
   {
@@ -94,7 +96,7 @@ const columns = [
   {
     title: 'Connect',
     links: [
-      { label: 'WhatsApp', url: 'https://wa.me/message/75HLOF6Q7MV4A1', external: true },
+      { label: 'WhatsApp', url: WHATSAPP_URL, external: true },
       { label: 'Instagram', url: 'https://www.instagram.com/drashishyadav/', external: true },
       { label: 'YouTube', url: 'https://www.youtube.com/@drashish', external: true },
       { label: 'LinkedIn', url: 'https://www.linkedin.com/in/drashishyadav', external: true },

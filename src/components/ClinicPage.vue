@@ -92,7 +92,7 @@
               <dd>
                 <button class="loc-link" @click="$emit('navigate', 'contact')">On this website</button>
                 or
-                <a :href="WHATSAPP_URL" target="_blank" rel="noopener noreferrer" class="loc-link">on WhatsApp</a>
+                <a :href="clinicWhatsApp" target="_blank" rel="noopener noreferrer" class="loc-link">on WhatsApp</a>
               </dd>
             </div>
           </dl>
@@ -117,7 +117,7 @@
           <div v-if="clinic.alsoNearby" class="clinic-also">
             <h3 class="clinic-also-title">Also nearby: {{ clinic.alsoNearby.title }}</h3>
             <p>{{ clinic.alsoNearby.text }}</p>
-            <a :href="WHATSAPP_URL" target="_blank" rel="noopener noreferrer" class="loc-link">Arrange on WhatsApp &rarr;</a>
+            <a :href="waLink(SHALBY_MSG)" target="_blank" rel="noopener noreferrer" class="loc-link">Arrange on WhatsApp &rarr;</a>
           </div>
 
           <p class="loc-text clinic-nearby-intro">
@@ -219,7 +219,7 @@
         <p class="loc-cta-text">Book a clinic visit, or ask a question on WhatsApp first.</p>
         <div class="loc-actions loc-cta-actions">
           <button class="loc-button" @click="$emit('navigate', 'contact')">Book a clinic visit</button>
-          <a :href="WHATSAPP_URL" target="_blank" rel="noopener noreferrer" class="loc-button loc-button-outline">
+          <a :href="clinicWhatsApp" target="_blank" rel="noopener noreferrer" class="loc-button loc-button-outline">
             Ask on WhatsApp
           </a>
         </div>
@@ -231,7 +231,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import AppointmentFAQ from './AppointmentFAQ.vue'
-import { CLINICS, CARE_AREAS, HOME_VISIT_AREAS, LANGUAGES, WHATSAPP_URL, mapEmbedUrl } from '../data/clinics.js'
+import { CLINICS, CARE_AREAS, HOME_VISIT_AREAS, LANGUAGES, waLink, mapEmbedUrl } from '../data/clinics.js'
 
 const props = defineProps({
   clinicId: { type: String, required: true },
@@ -240,6 +240,11 @@ const props = defineProps({
 defineEmits(['navigate'])
 
 const clinic = computed(() => CLINICS[props.clinicId])
+
+const clinicWhatsApp = computed(() =>
+  waLink(`Hi Dr. Ashish, I'd like to book a consultation at the ${clinic.value.area} clinic.`),
+)
+const SHALBY_MSG = "Hi Dr. Ashish, I'd like an evening appointment at Shalby Hospital, Vaishali Nagar."
 
 const showMap = ref(false)
 watch(() => props.clinicId, () => { showMap.value = false })

@@ -52,7 +52,7 @@
             Send an email
           </a>
           <a
-            href="https://wa.me/message/75HLOF6Q7MV4A1"
+            :href="waLink(PRIVACY_MSG)"
             target="_blank"
             rel="noopener noreferrer"
             class="privacy-button privacy-button-outline"
@@ -72,7 +72,11 @@
 </template>
 
 <script setup>
+import { waLink } from '../data/clinics.js'
+
 defineEmits(['navigate'])
+
+const PRIVACY_MSG = 'Hi Dr. Ashish, I have a question about my personal data.'
 
 const effectiveDate = '24 October 2026'
 
@@ -96,7 +100,7 @@ const sections = [
     points: [
       'Contact details you give us when you message, email or book, such as your name, phone number and email address.',
       'Health information you choose to share before or during a consultation, such as your symptoms, history, medicines and reports.',
-      'Booking and payment details needed to confirm and manage your appointments, such as your UPI transaction reference.',
+      'Booking and payment details needed to confirm and manage your appointments, such as your Razorpay payment ID or UPI transaction reference.',
       'Basic website usage data collected by Google Analytics, such as the pages visited, device type, browser and approximate location. This does not include your name.',
     ],
   },
@@ -123,7 +127,8 @@ const sections = [
     ],
     points: [
       'Service providers that make the practice work: Google (Calendar, Meet, Gmail and Analytics), WhatsApp, and Netlify, which hosts this website. They handle data under their own privacy policies.',
-      'Payments are made by UPI. Your UPI app and bank process the payment under their own terms, and only the transaction reference is kept to confirm your booking. Card or bank details are never collected.',
+      'Booking details you enter on this website are not stored here. They are sent to the clinic through WhatsApp when you tap the send button.',
+      'Payments are made through Razorpay or directly by UPI. Razorpay, your UPI app and your bank process the payment under their own terms. Only the payment reference is kept to confirm your booking. Card or bank details are never collected by this website.',
       'Other healthcare professionals, such as a lab or a therapist, only with your consent and only when it helps your care.',
       'When the law requires it, or when there is a serious and immediate risk to your life or someone else\'s.',
     ],

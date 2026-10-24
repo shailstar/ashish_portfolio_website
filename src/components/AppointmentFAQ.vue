@@ -8,7 +8,7 @@
       </h2>
       <p class="appt-faq-lead">{{ lead }}</p>
       <a
-        href="https://wa.me/message/75HLOF6Q7MV4A1"
+        :href="waLink('Hi Dr. Ashish, I have a question before booking.')"
         target="_blank"
         rel="noopener noreferrer"
         class="appt-faq-ask"
@@ -32,6 +32,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { waLink } from '../data/clinics.js'
 
 // Only one answer is open at a time
 const openIndex = ref(0)

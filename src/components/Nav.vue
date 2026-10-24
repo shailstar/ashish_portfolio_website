@@ -50,7 +50,7 @@
           </a>
         </template>
 
-        <a href="/" class="nav-cta" @click.prevent="go('contact')">Book a consultation</a>
+        <a href="/book" class="nav-cta" @click.prevent="go('book')">Book a consultation</a>
       </nav>
 
       <!-- Mobile toggle -->
@@ -92,7 +92,7 @@
             {{ item.label }}
           </a>
         </template>
-        <a href="/" class="nav-cta mobile-cta" @click.prevent="go('contact')">Book a consultation</a>
+        <a href="/book" class="nav-cta mobile-cta" @click.prevent="go('book')">Book a consultation</a>
       </nav>
     </transition>
   </header>
