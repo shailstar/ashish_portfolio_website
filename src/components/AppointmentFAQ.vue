@@ -80,7 +80,7 @@ const defaultFaqs = [
   },
   {
     q: 'Do you see children and teenagers?',
-    a: '<p>Yes. Children and teenagers are always seen together with a parent or guardian, after proper consent, and never alone.</p>',
+    a: '<p>Yes. Child and adolescent psychiatry was part of my specialist training. Children and teenagers are always seen together with a parent or guardian, after proper consent, and never alone.</p>',
   },
   {
     q: 'Will what I share stay confidential?',

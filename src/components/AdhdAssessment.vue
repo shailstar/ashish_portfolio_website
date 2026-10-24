@@ -257,7 +257,7 @@ const compare = [
 const checklist = [
   {
     title: 'You are 18 or older',
-    text: 'This package is for adults. For children and teenagers, please message first. They are always seen with a parent or guardian.',
+    text: 'This package is for adults. Children and teenagers are also seen, as child and adolescent psychiatry was part of my training, so please message first. They are always seen with a parent or guardian.',
   },
   {
     title: 'You need a specific date',
@@ -306,7 +306,7 @@ const faqs = [
   },
   {
     q: 'Can my child or teenager have this assessment?',
-    a: '<p>This package is designed for adults. Children and teenagers are assessed differently, always with a parent or guardian present and after proper consent. Please message first to discuss.</p>',
+    a: '<p>This package is designed for adults. Children and teenagers are assessed differently, and Dr. Ashish Yadav has trained in child and adolescent psychiatry. They are always seen with a parent or guardian present and after proper consent. Please message first to discuss.</p>',
   },
   {
     q: 'Will my information stay private?',

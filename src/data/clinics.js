@@ -63,7 +63,12 @@ export const CARE_AREAS = [
   { title: 'Anxiety and stress', text: 'Constant worry, panic episodes and work-related stress.' },
   { title: 'Depression and mood', text: 'Low mood, burnout, loss of motivation and emotional numbness.' },
   { title: 'Adult ADHD', text: 'Trouble with focus, time and follow-through, with a structured assessment.', target: 'adhd' },
-  { title: 'Overthinking and habits', text: 'Rumination, procrastination and compulsive phone or OTT use.' },
+  {
+    title: 'Overthinking, habits and behavioural addictions',
+    text: "Rumination, procrastination, and compulsive phone, OTT, gaming or porn use. The focus of Dr. Ashish Yadav's NBEMS-commended research.",
+  },
+  { title: 'Addiction and de-addiction', text: 'Help to cut down or quit alcohol, tobacco and other substances, with relapse prevention.' },
+  { title: 'Sexual health', text: 'Low desire, performance anxiety, and erection or ejaculation concerns, discussed privately and without judgement.' },
   { title: 'Sleep problems', text: 'Insomnia, irregular routines and late-night scrolling.' },
   { title: 'Mind-body care', text: 'Breathwork, awareness training and yogic practices alongside psychiatry.' },
 ]
