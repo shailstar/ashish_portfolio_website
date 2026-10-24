@@ -188,7 +188,7 @@ const consultationTypes = [
 const included = [
   {
     title: 'Seen personally by a specialist',
-    text: 'Your assessment is done by a DNB Neuro-psychiatrist trained in modern medicine and in classical yogic science. Never a trainee, and never an automated AI tool.',
+    text: 'Your assessment is done by a neuro-psychiatrist (DNB Psychiatry) trained in modern medicine and in classical yogic science. Never a trainee, and never an automated AI tool.',
   },
   {
     title: 'A thorough assessment',
@@ -209,8 +209,8 @@ const included = [
 ]
 
 const credentials = [
-  'DNB Neuro-psychiatrist',
-  'Guinness World Record holder',
+  'Neuro-psychiatrist (DNB Psychiatry)',
+  'Part of a Guinness World Record',
   'Internationally certified yoga teacher',
 ]
 

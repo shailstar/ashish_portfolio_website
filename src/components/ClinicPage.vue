@@ -11,7 +11,7 @@
           <em>Jaipur.</em>
         </h1>
         <p class="loc-lead">
-          Dr. Ashish Yadav, DNB Neuro-psychiatrist, sees patients at {{ clinic.name }}, {{ clinic.area }}.
+          Dr. Ashish Yadav, Neuro-psychiatrist (DNB Psychiatry), sees patients at {{ clinic.name }}, {{ clinic.area }}.
           {{ clinic.days }}, {{ clinic.hours }}. Online consultations are also available if you cannot come in.
           Consultations are in {{ LANGUAGES }}.
           <template v-if="clinic.heroNote">{{ clinic.heroNote }}</template>

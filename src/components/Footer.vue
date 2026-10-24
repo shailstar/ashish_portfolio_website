@@ -8,8 +8,8 @@
         </div>
         <p class="footer-tagline">Modern psychiatry, rooted in yogic science.</p>
         <ul class="footer-credentials">
-          <li>DNB Neuro-psychiatrist</li>
-          <li>Guinness World Record holder</li>
+          <li>Neuro-psychiatrist (DNB Psychiatry)</li>
+          <li>Part of a Guinness World Record</li>
           <li>Internationally certified yoga teacher</li>
         </ul>
         <p class="footer-location">
@@ -68,7 +68,7 @@ const columns = [
     title: 'Navigate',
     links: [
       { id: 'home', label: 'Home', path: '/' },
-      { id: 'about', label: 'About' },
+      { id: 'about', label: 'About', path: '/about' },
       { id: 'fees', label: 'Consultation fees', path: '/fees' },
       { id: 'adhd', label: 'Adult ADHD assessment', path: '/adult-adhd-assessment' },
       { id: 'resources', label: 'Resources' },

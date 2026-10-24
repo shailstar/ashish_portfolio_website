@@ -9,7 +9,7 @@
           <em>close to home.</em>
         </h1>
         <p class="loc-lead">
-          Dr. Ashish Yadav is a DNB Neuro-psychiatrist who sees patients at two clinics in Jaipur, in Jhotwara and
+          Dr. Ashish Yadav is a neuro-psychiatrist (DNB Psychiatry) who sees patients at two clinics in Jaipur, in Jhotwara and
           Vaishali Nagar, and as a visiting consultant at Shalby Hospital. Home visits are available in selected cases,
           and online consultations are open to anyone across India. Consultations are in {{ LANGUAGES }}.
         </p>
@@ -92,8 +92,8 @@
             alongside medicines, which are used only when needed.
           </p>
           <ul class="loc-pills">
-            <li>DNB Neuro-psychiatrist</li>
-            <li>Guinness World Record holder</li>
+            <li>Neuro-psychiatrist (DNB Psychiatry)</li>
+            <li>Part of a Guinness World Record</li>
             <li>Internationally certified yoga teacher</li>
           </ul>
           <div class="loc-links">

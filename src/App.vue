@@ -13,7 +13,7 @@
 
       <WorkGrid v-else-if="route === 'work'" heading="Clinical Experience" blurb="Comprehensive mental health consultations and treatment across diverse presentations and complexities." />
 
-      <AboutHero v-else-if="route === 'about'" />
+      <AboutPage v-else-if="route === 'about'" @navigate="handleNavigate" />
 
       <Resources v-else-if="route === 'resources'" />
 
@@ -55,6 +55,7 @@ import AdhdAssessment from './components/AdhdAssessment.vue'
 import PrivacyPolicy from './components/PrivacyPolicy.vue'
 import JaipurPage from './components/JaipurPage.vue'
 import ClinicPage from './components/ClinicPage.vue'
+import AboutPage from './components/AboutPage.vue'
 
 // Pages that have their own URL. Other routes live at "/".
 // New paths also need a rewrite in public/_redirects.
@@ -66,18 +67,23 @@ const PATHS = {
   jaipur: '/psychiatrist-in-jaipur',
   jhotwara: '/psychiatrist-in-jhotwara',
   vaishali: '/psychiatrist-in-vaishali-nagar',
+  about: '/about',
 }
 
 // Browser tab title and search-result description per page
 const DEFAULT_TITLE = 'Dr. Ashish - Psychiatrist'
 const META = {
+  about: {
+    title: 'About Dr. Ashish Yadav | Neuro-psychiatrist in Jaipur',
+    description: 'Neuro-psychiatrist in Jaipur trained at the Gujarat Institute of Mental Health, certified in psychotherapy by the WPA and a Yoga Alliance RYT-200 yoga teacher.',
+  },
   fees: {
     title: 'Psychiatrist Consultation Fees | Dr. Ashish Yadav',
     description: 'Clear consultation fees for online, in-person and home-visit psychiatry consultations in Jaipur, with what every consultation includes.',
   },
   adhd: {
     title: 'Adult ADHD Assessment in Jaipur & Online | Dr. Ashish Yadav',
-    description: 'A structured adult ADHD assessment by a DNB Neuro-psychiatrist, online across India or in person in Jaipur, with a written report.',
+    description: 'A structured adult ADHD assessment by a neuro-psychiatrist (DNB Psychiatry), online across India or in person in Jaipur, with a written report.',
   },
   cancellation: {
     title: 'Cancellation & Refund Policy | Dr. Ashish Yadav',
@@ -89,7 +95,7 @@ const META = {
   },
   jaipur: {
     title: 'Psychiatrist in Jaipur | Dr. Ashish Yadav, Jhotwara & Vaishali Nagar',
-    description: 'DNB Neuro-psychiatrist in Jaipur with clinics in Jhotwara and Vaishali Nagar, home visits and online consultations. English, Hindi and Gujarati.',
+    description: 'Neuro-psychiatrist (DNB Psychiatry) in Jaipur with clinics in Jhotwara and Vaishali Nagar, home visits and online consultations. English, Hindi and Gujarati.',
   },
   jhotwara: {
     title: 'Psychiatrist in Jhotwara, Jaipur | Dr. Ashish Yadav',
