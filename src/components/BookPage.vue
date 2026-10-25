@@ -172,9 +172,13 @@ const HOME_VISIT_MSG = "Hi Dr. Ashish, I'd like to book a home visit in Jaipur. 
 const SHALBY_MSG = "Hi Dr. Ashish, I'd like an evening appointment at Shalby Hospital, Vaishali Nagar."
 const QUESTION_MSG = "Hi Dr. Ashish, I'd like to book a consultation but I'm not sure which one I need."
 
-const type = ref('first')
-const mode = ref('online')
-const duration = ref(60)
+// A shared link can preselect the session, e.g. /book?type=adhd&mode=online
+const params = new URLSearchParams(window.location.search)
+const pick = (value, allowed, fallback) => (allowed.includes(value) ? value : fallback)
+
+const type = ref(pick(params.get('type'), SESSION_TYPES.map((t) => t.id), 'first'))
+const mode = ref(pick(params.get('mode'), MODES.map((m) => m.id), 'online'))
+const duration = ref(pick(Number(params.get('duration')), durationsFor(type.value), 60))
 
 const durations = computed(() => durationsFor(type.value))
 const price = computed(() => priceFor(type.value, mode.value, duration.value))
