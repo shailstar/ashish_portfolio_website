@@ -64,6 +64,7 @@
             <span class="bk-summary-label">Your session</span>
             <span class="bk-summary-text">{{ summary }}</span>
           </div>
+          <span class="bk-summary-price">{{ formatPrice(price) }}</span>
         </div>
       </div>
 
@@ -600,6 +601,14 @@ const copyUpi = async () => {
 .bk-summary-text {
   font-weight: 600;
   color: var(--text-strong);
+}
+
+.bk-summary-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 /* ---- Payment ---- */
