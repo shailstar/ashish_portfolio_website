@@ -70,18 +70,27 @@
       <nav v-show="mobileOpen" id="mobile-menu" class="nav-mobile" aria-label="Main">
         <template v-for="item in menu" :key="item.label">
           <div v-if="item.children" class="mobile-group">
-            <div class="mobile-group-title">{{ item.label }}</div>
-            <a
-              v-for="child in item.children"
-              :key="child.label"
-              :href="hrefFor(child)"
-              :target="child.url ? '_blank' : null"
-              :rel="child.url ? 'noopener noreferrer' : null"
-              :class="['mobile-link', 'mobile-sublink', { active: route === child.id }]"
-              @click="onLinkClick($event, child)"
+            <button
+              :class="['mobile-link', 'mobile-group-toggle', { active: isActive(item) }]"
+              :aria-expanded="mobileGroup === item.label"
+              @click="mobileGroup = mobileGroup === item.label ? null : item.label"
             >
-              {{ child.label }}
-            </a>
+              {{ item.label }}
+              <span class="plus" aria-hidden="true"></span>
+            </button>
+            <div v-show="mobileGroup === item.label">
+              <a
+                v-for="child in item.children"
+                :key="child.label"
+                :href="hrefFor(child)"
+                :target="child.url ? '_blank' : null"
+                :rel="child.url ? 'noopener noreferrer' : null"
+                :class="['mobile-link', 'mobile-sublink', { active: route === child.id }]"
+                @click="onLinkClick($event, child)"
+              >
+                {{ child.label }}
+              </a>
+            </div>
           </div>
           <a
             v-else
@@ -133,6 +142,8 @@ const menu = [
 
 const openMenu = ref(null)
 const mobileOpen = ref(false)
+// Which section of the mobile menu is expanded
+const mobileGroup = ref(null)
 const headerEl = ref(null)
 
 const hrefFor = (item) => item.url || item.path || '/'
@@ -159,6 +170,7 @@ const onLinkClick = (event, item) => {
 // Stop the page scrolling behind the open mobile menu
 watch(mobileOpen, (open) => {
   document.body.style.overflow = open ? 'hidden' : ''
+  if (!open) mobileGroup.value = null
 })
 
 const onKeydown = (event) => {
@@ -437,17 +449,45 @@ onBeforeUnmount(() => {
   color: var(--sage-700);
 }
 
-.mobile-group {
-  margin-top: 0.5rem;
+.mobile-group-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
 }
 
-.mobile-group-title {
-  padding: 8px 14px 4px;
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
-  color: var(--text-muted);
+/* Plus sign that turns into a minus when the section is open */
+.plus {
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+
+.plus::before,
+.plus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-fast) var(--ease-soft);
+}
+
+.plus::after {
+  transform: rotate(90deg);
+}
+
+.mobile-group-toggle[aria-expanded='true'] .plus::after {
+  transform: rotate(0deg);
 }
 
 .mobile-sublink {
