@@ -8,8 +8,8 @@
           <em>in three simple steps.</em>
         </h1>
         <p class="bk-lead">
-          Choose your session, pay securely, then pick your exact time on the calendar. Your appointment is confirmed
-          once your payment is verified.
+          Choose your session, pick your exact time on the calendar, then pay securely. Paying by Razorpay confirms
+          your appointment straight away.
         </p>
         <p class="bk-sameday">
           Need to be seen today? Please call or WhatsApp
@@ -24,39 +24,41 @@
           <h2 class="bk-step-title">Choose your session</h2>
         </div>
 
-        <fieldset class="bk-group">
-          <legend class="bk-legend">What do you need?</legend>
-          <div class="bk-options bk-options-3">
-            <label v-for="t in SESSION_TYPES" :key="t.id" :class="['bk-option', { selected: type === t.id }]">
-              <input v-model="type" type="radio" name="type" :value="t.id" />
-              <span class="bk-option-label">{{ t.label }}</span>
-              <span class="bk-option-hint">{{ t.hint }}</span>
-            </label>
-          </div>
-        </fieldset>
+        <template v-if="!held">
+          <fieldset class="bk-group">
+            <legend class="bk-legend">What do you need?</legend>
+            <div class="bk-options bk-options-3">
+              <label v-for="t in SESSION_TYPES" :key="t.id" :class="['bk-option', { selected: type === t.id }]">
+                <input v-model="type" type="radio" name="type" :value="t.id" />
+                <span class="bk-option-label">{{ t.label }}</span>
+                <span class="bk-option-hint">{{ t.hint }}</span>
+              </label>
+            </div>
+          </fieldset>
 
-        <fieldset class="bk-group">
-          <legend class="bk-legend">Where?</legend>
-          <div class="bk-options bk-options-3">
-            <label v-for="m in MODES" :key="m.id" :class="['bk-option', { selected: mode === m.id }]">
-              <input v-model="mode" type="radio" name="mode" :value="m.id" />
-              <span class="bk-option-label">{{ m.label }}</span>
-              <span class="bk-option-hint">{{ m.hint }}</span>
-            </label>
-          </div>
-        </fieldset>
+          <fieldset class="bk-group">
+            <legend class="bk-legend">Where?</legend>
+            <div class="bk-options bk-options-3">
+              <label v-for="m in MODES" :key="m.id" :class="['bk-option', { selected: mode === m.id }]">
+                <input v-model="mode" type="radio" name="mode" :value="m.id" />
+                <span class="bk-option-label">{{ m.label }}</span>
+                <span class="bk-option-hint">{{ m.hint }}</span>
+              </label>
+            </div>
+          </fieldset>
 
-        <fieldset v-if="durations.length" class="bk-group">
-          <legend class="bk-legend">How long?</legend>
-          <div class="bk-options bk-options-2">
-            <label v-for="d in durations" :key="d" :class="['bk-option', { selected: duration === d }]">
-              <input v-model="duration" type="radio" name="duration" :value="d" />
-              <span v-if="d === 60" class="bk-option-tag">Recommended</span>
-              <span class="bk-option-label">{{ d }} minutes</span>
-              <span class="bk-option-hint">{{ formatPrice(priceFor(type, mode, d)) }}</span>
-            </label>
-          </div>
-        </fieldset>
+          <fieldset v-if="durations.length" class="bk-group">
+            <legend class="bk-legend">How long?</legend>
+            <div class="bk-options bk-options-2">
+              <label v-for="d in durations" :key="d" :class="['bk-option', { selected: duration === d }]">
+                <input v-model="duration" type="radio" name="duration" :value="d" />
+                <span v-if="d === 60" class="bk-option-tag">Recommended</span>
+                <span class="bk-option-label">{{ d }} minutes</span>
+                <span class="bk-option-hint">{{ formatPrice(priceFor(type, mode, d)) }}</span>
+              </label>
+            </div>
+          </fieldset>
+        </template>
 
         <div class="bk-summary" aria-live="polite">
           <div>
@@ -71,65 +73,92 @@
       <div class="bk-step">
         <div class="bk-step-head">
           <span class="bk-step-number">2</span>
-          <h2 class="bk-step-title">Choose how to pay</h2>
-        </div>
-
-        <div class="bk-pay">
-          <!-- Razorpay -->
-          <div class="bk-pay-card">
-            <div class="bk-pay-tag">Cards, UPI &amp; net banking</div>
-            <h3 class="bk-pay-title">Pay with Razorpay</h3>
-            <ul class="bk-pay-points">
-              <li>Pay by card, UPI, wallet or net banking</li>
-              <li>A small convenience fee and taxes are added, shown before you pay</li>
-              <li>Receipt emailed to you automatically</li>
-            </ul>
-            <button v-if="razorpayLink" class="bk-button" @click="payWithRazorpay">
-              Pay {{ formatPrice(price) }} + fee &rarr;
-            </button>
-            <p v-else class="bk-placeholder">Razorpay link coming soon. Please use direct UPI for now.</p>
-          </div>
-
-          <!-- Direct UPI -->
-          <div class="bk-pay-card">
-            <div class="bk-pay-tag bk-pay-tag-green">No extra fee</div>
-            <h3 class="bk-pay-title">Pay directly by UPI</h3>
-            <div class="bk-upi">
-              <a v-if="qrImage" :href="qrImage" target="_blank" rel="noopener noreferrer" class="bk-qr" title="Open larger">
-                <img :src="qrImage" :alt="`UPI QR code to pay ${formatPrice(price)} to Dr. Ashish Yadav`" />
-              </a>
-              <div v-else class="bk-qr">
-                <span class="bk-qr-placeholder">QR code<br />coming soon</span>
-              </div>
-              <div class="bk-upi-info">
-                <span class="bk-upi-amount">Pay {{ formatPrice(price) }}</span>
-                <span class="bk-upi-label">UPI ID</span>
-                <span class="bk-upi-id">{{ UPI_ID }}</span>
-                <button class="bk-copy" @click="copyUpi">{{ copied ? 'Copied ✓' : 'Copy UPI ID' }}</button>
-                <a :href="upiLink(price, summary)" class="bk-upi-app">Open UPI app (on phone) &rarr;</a>
-              </div>
-            </div>
-            <p class="bk-pay-note">Keep the UTR or transaction number. No automatic receipt for direct UPI.</p>
-            <button class="bk-button" @click="continueAfterUpi">I've paid, continue &rarr;</button>
-          </div>
-        </div>
-
-        <p class="bk-policy-note">
-          After paying, you pick your time on the calendar, and the booking is confirmed once your payment is verified.
-          If no suitable time can be offered, you get a full refund.
-          <a href="/cancellation-policy" target="_blank" rel="noopener noreferrer">Cancellation &amp; extra time policy</a>
-        </p>
-      </div>
-
-      <!-- Step 3 preview -->
-      <div class="bk-step bk-step-muted">
-        <div class="bk-step-head">
-          <span class="bk-step-number">3</span>
           <h2 class="bk-step-title">Pick your time</h2>
         </div>
-        <p class="bk-step-text">
-          After paying, the calendar for your session opens. Pick a free slot and fill in a short form with your
-          contact details and payment reference.
+
+        <div v-if="held" class="bk-held" role="status">
+          <span class="bk-held-icon" aria-hidden="true">✓</span>
+          <div>
+            <span class="bk-held-title">Slot held{{ heldWhen ? `: ${heldWhen}` : '' }}</span>
+            <span class="bk-held-text">It is kept for you for {{ HOLD_HOURS }} hours while you pay.</span>
+          </div>
+        </div>
+
+        <template v-else>
+          <p class="bk-step-text bk-cal-intro">
+            Pick a free slot and fill in the short form. Your slot is held for {{ HOLD_HOURS }} hours while you pay in
+            the next step.
+          </p>
+          <div class="bk-cal">
+            <iframe :key="calUrl" :src="calEmbedSrc" :title="`Pick a time: ${summary}`" loading="lazy"></iframe>
+          </div>
+          <p class="bk-policy-note">
+            Calendar not loading?
+            <a :href="calUrl" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>, then send your
+            booking details on <a :href="waLink(QUESTION_MSG)" target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+          </p>
+        </template>
+      </div>
+
+      <!-- Step 3 -->
+      <div ref="payEl" :class="['bk-step', { 'bk-step-muted': !held }]">
+        <div class="bk-step-head">
+          <span class="bk-step-number">3</span>
+          <h2 class="bk-step-title">Pay to confirm</h2>
+        </div>
+
+        <p v-if="!held" class="bk-step-text">
+          Once you have picked a slot, pay here by Razorpay or direct UPI to confirm your appointment.
+        </p>
+
+        <template v-else>
+          <div class="bk-pay">
+            <!-- Razorpay -->
+            <div class="bk-pay-card">
+              <div class="bk-pay-tag">Confirmed instantly</div>
+              <h3 class="bk-pay-title">Pay with Razorpay</h3>
+              <ul class="bk-pay-points">
+                <li>Pay by card, UPI, wallet or net banking</li>
+                <li>A small convenience fee and taxes are added, shown before you pay</li>
+                <li>Your appointment is confirmed as soon as you pay</li>
+              </ul>
+              <p v-if="payError" class="bk-error" role="alert">{{ payError }}</p>
+              <button class="bk-button" :disabled="paying" @click="payWithRazorpay">
+                {{ paying ? 'Opening payment…' : `Pay ${formatPrice(price)} + fee →` }}
+              </button>
+            </div>
+
+            <!-- Direct UPI -->
+            <div class="bk-pay-card">
+              <div class="bk-pay-tag bk-pay-tag-green">No extra fee</div>
+              <h3 class="bk-pay-title">Pay directly by UPI</h3>
+              <div class="bk-upi">
+                <a v-if="qrImage" :href="qrImage" target="_blank" rel="noopener noreferrer" class="bk-qr" title="Open larger">
+                  <img :src="qrImage" :alt="`UPI QR code to pay ${formatPrice(price)} to Dr. Ashish Yadav`" />
+                </a>
+                <div v-else class="bk-qr">
+                  <span class="bk-qr-placeholder">QR code<br />coming soon</span>
+                </div>
+                <div class="bk-upi-info">
+                  <span class="bk-upi-amount">Pay {{ formatPrice(price) }}</span>
+                  <span class="bk-upi-label">UPI ID</span>
+                  <span class="bk-upi-id">{{ UPI_ID }}</span>
+                  <button class="bk-copy" @click="copyUpi">{{ copied ? 'Copied ✓' : 'Copy UPI ID' }}</button>
+                  <a :href="upiLink(price, summary)" class="bk-upi-app">Open UPI app (on phone) &rarr;</a>
+                </div>
+              </div>
+              <p class="bk-pay-note">
+                Keep the UTR or transaction number. Confirmed once your payment is checked, usually within
+                {{ CONFIRM_WINDOW }}.
+              </p>
+              <button class="bk-button" @click="continueAfterUpi">I've paid, continue &rarr;</button>
+            </div>
+          </div>
+        </template>
+
+        <p class="bk-policy-note">
+          Slots left unpaid for {{ HOLD_HOURS }} hours are released for others to book.
+          <a href="/cancellation-policy" target="_blank" rel="noopener noreferrer">Cancellation &amp; extra time policy</a>
         </p>
       </div>
 
@@ -159,10 +188,10 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import {
-  RAZORPAY_LINKS, UPI_ID, UPI_QR_IMAGES, SESSION_TYPES, MODES,
-  priceFor, durationsFor, minutesFor, formatPrice, upiLink, saveBooking,
+  UPI_ID, UPI_QR_IMAGES, SESSION_TYPES, MODES, CONFIRM_WINDOW, HOLD_HOURS,
+  priceFor, durationsFor, minutesFor, formatPrice, formatSlot, upiLink, calUrlFor, saveBooking, loadBooking,
 } from '../data/booking.js'
 import { PHONE_DISPLAY, PHONE_TEL, waLink } from '../data/clinics.js'
 
@@ -172,13 +201,17 @@ const HOME_VISIT_MSG = "Hi Dr. Ashish, I'd like to book a home visit in Jaipur. 
 const SHALBY_MSG = "Hi Dr. Ashish, I'd like an evening appointment at Shalby Hospital, Vaishali Nagar."
 const QUESTION_MSG = "Hi Dr. Ashish, I'd like to book a consultation but I'm not sure which one I need."
 
+// A slot booked earlier in this visit and not paid yet, so a page refresh goes straight back to payment
+const stored = loadBooking()
+const held = ref(stored?.uid && !stored.method && Date.now() - stored.at < HOLD_HOURS * 3600000 ? stored : null)
+
 // A shared link can preselect the session, e.g. /book?type=adhd&mode=online
 const params = new URLSearchParams(window.location.search)
 const pick = (value, allowed, fallback) => (allowed.includes(value) ? value : fallback)
 
-const type = ref(pick(params.get('type'), SESSION_TYPES.map((t) => t.id), 'first'))
-const mode = ref(pick(params.get('mode'), MODES.map((m) => m.id), 'online'))
-const duration = ref(pick(Number(params.get('duration')), durationsFor(type.value), 60))
+const type = ref(held.value?.type || pick(params.get('type'), SESSION_TYPES.map((t) => t.id), 'first'))
+const mode = ref(held.value?.mode || pick(params.get('mode'), MODES.map((m) => m.id), 'online'))
+const duration = ref(held.value?.duration || pick(Number(params.get('duration')), durationsFor(type.value), 60))
 
 const durations = computed(() => durationsFor(type.value))
 const price = computed(() => priceFor(type.value, mode.value, duration.value))
@@ -193,29 +226,117 @@ const summary = computed(() => {
   return [t, m, `${minutesFor(type.value, duration.value)} min`].join(' · ')
 })
 
-const razorpayLink = computed(() => RAZORPAY_LINKS[price.value])
 const qrImage = computed(() => UPI_QR_IMAGES[price.value])
+const heldWhen = computed(() => formatSlot(held.value?.start))
 
-const booking = (method) => ({
-  type: type.value,
-  mode: mode.value,
-  duration: duration.value,
-  price: price.value,
-  summary: summary.value,
-  method,
-  at: Date.now(),
-})
+// ---- Calendar ----
+const calUrl = computed(() => calUrlFor(type.value, mode.value, duration.value))
+const calEmbedSrc = computed(() => `${calUrl.value}?${new URLSearchParams({ embed: 'true', theme: 'light', layout: 'month_view' })}`)
 
-const payWithRazorpay = () => {
-  saveBooking(booking('razorpay'))
-  // Same tab, so Razorpay's redirect brings the patient back to the confirmation page
-  window.location.href = razorpayLink.value
+// The embedded calendar posts messages to this page; a "bookingSuccessful" one carries the new booking
+const payEl = ref(null)
+
+const onCalMessage = async (event) => {
+  let host = ''
+  try {
+    host = new URL(event.origin).hostname
+  } catch {
+    return
+  }
+  if (!/(^|\.)cal\.com$/.test(host) || held.value) return
+  const msg = event.data
+  const method = msg?.method || msg?.fullType || ''
+  if (typeof method !== 'string' || !method.includes('bookingSuccessful')) return
+  const data = msg.data || {}
+  const uid = data.uid || data.booking?.uid
+  if (!uid) return
+  held.value = {
+    uid,
+    start: data.startTime || data.booking?.startTime || data.date || null,
+    type: type.value,
+    mode: mode.value,
+    duration: duration.value,
+    price: price.value,
+    summary: summary.value,
+    at: Date.now(),
+  }
+  saveBooking(held.value)
+  await nextTick()
+  payEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
-const continueAfterUpi = () => {
-  saveBooking(booking('upi'))
+onMounted(() => window.addEventListener('message', onCalMessage))
+onBeforeUnmount(() => window.removeEventListener('message', onCalMessage))
+
+// ---- Payment ----
+const finish = (method, confirmed = false, paymentId = '') => {
+  saveBooking({ ...held.value, method, confirmed, paymentId })
   emit('navigate', 'confirmed')
 }
+
+const loadCheckout = () =>
+  window.Razorpay
+    ? Promise.resolve()
+    : new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+        script.onload = resolve
+        script.onerror = () => reject(new Error('Could not load Razorpay. Please check your connection and try again.'))
+        document.head.appendChild(script)
+      })
+
+const postJson = async (url, body) => {
+  const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+  return { ok: res.ok, status: res.status, data: await res.json().catch(() => ({})) }
+}
+
+const paying = ref(false)
+const payError = ref('')
+
+const payWithRazorpay = async () => {
+  paying.value = true
+  payError.value = ''
+  try {
+    const { ok, status, data } = await postJson('/api/booking-order', { uid: held.value.uid })
+    if (data.error === 'already-paid') return finish('razorpay', true)
+    if (status === 410) {
+      // The hold ran out: start again from the calendar
+      held.value = null
+      saveBooking(null)
+    }
+    if (!ok) throw new Error(data.error || 'Payment could not be started. Please try again, or pay by direct UPI.')
+    await loadCheckout()
+    const checkout = new window.Razorpay({
+      key: data.keyId,
+      order_id: data.orderId,
+      amount: data.amount,
+      currency: 'INR',
+      name: 'Dr. Ashish Yadav',
+      description: data.label,
+      prefill: { name: data.name, email: data.email },
+      theme: { color: getComputedStyle(document.documentElement).getPropertyValue('--brand').trim() || undefined },
+      handler: onPaid,
+      modal: { ondismiss: () => { paying.value = false } },
+    })
+    checkout.open()
+  } catch (e) {
+    payError.value = e.message
+    paying.value = false
+  }
+}
+
+const onPaid = async (response) => {
+  let confirmed = false
+  try {
+    const { data } = await postJson('/api/booking-verify', { uid: held.value.uid, ...response })
+    confirmed = !!data.confirmed
+  } catch {
+    // The payment went through; the server confirms the slot from Razorpay's webhook
+  }
+  finish('razorpay', confirmed, response.razorpay_payment_id)
+}
+
+const continueAfterUpi = () => finish('upi')
 
 const copied = ref(false)
 const copyUpi = async () => {
@@ -323,6 +444,58 @@ const copyUpi = async () => {
 .bk-step-text {
   margin: 0;
   font-size: 0.9375rem;
+}
+
+/* ---- Calendar ---- */
+.bk-cal-intro {
+  margin-bottom: 1rem;
+}
+
+.bk-cal {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.bk-cal iframe {
+  display: block;
+  width: 100%;
+  height: 820px;
+  border: 0;
+}
+
+.bk-held {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--sage-100);
+  border: 1.5px solid var(--brand);
+  border-radius: var(--radius-md);
+}
+
+.bk-held-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.bk-held-title {
+  display: block;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.bk-held-text {
+  font-size: var(--fs-sm);
 }
 
 /* ---- Options ---- */
@@ -501,6 +674,21 @@ const copyUpi = async () => {
   background: var(--brand-hover);
 }
 
+.bk-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.bk-error {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  background: #fdf0ee;
+  border: 1px solid #e8b4ab;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  color: #8a2b1d;
+}
+
 .bk-placeholder {
   margin: auto 0 0;
   padding: 0.9rem 1rem;
@@ -658,6 +846,10 @@ const copyUpi = async () => {
   .bk-pay,
   .bk-other-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bk-cal iframe {
+    height: 1000px;
   }
 }
 </style>

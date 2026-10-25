@@ -76,8 +76,8 @@ const meetingOptions = [
 
 const steps = [
   { title: 'Choose', text: 'Pick your session, online or at a Jaipur clinic.' },
-  { title: 'Pay', text: 'Securely by Razorpay or directly by UPI.' },
-  { title: 'Pick a time', text: 'Choose your slot on the calendar. Confirmed once payment is verified.' },
+  { title: 'Pick a time', text: 'Choose your slot on the calendar. It is held for you while you pay.' },
+  { title: 'Pay', text: 'By Razorpay, confirmed instantly, or directly by UPI, confirmed once checked.' },
 ]
 
 // Home visits are arranged on WhatsApp; everything else goes to the booking page

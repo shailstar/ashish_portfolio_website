@@ -1,77 +1,63 @@
 <template>
   <section class="bc">
     <div class="bc-container">
-      <!-- Opened directly, without paying -->
-      <div v-if="!allowed" class="bc-card bc-empty">
+      <!-- Opened directly, without booking -->
+      <div v-if="!booking" class="bc-card bc-empty">
         <h1 class="bc-title">No booking found</h1>
-        <p>This page opens after you pay for a consultation. To book, start here:</p>
+        <p>This page opens after you book and pay for a consultation. To book, start here:</p>
         <button class="bc-button" @click="$emit('navigate', 'book')">Book a consultation</button>
       </div>
 
       <template v-else>
         <header class="bc-header">
-          <div class="eyebrow">Step 3 of 3</div>
+          <div class="eyebrow">{{ state === 'confirmed' ? 'Booking confirmed' : 'Booking received' }}</div>
           <h1 class="bc-title">
-            Thank you for paying.
-            <em>Now pick your time.</em>
+            <template v-if="state === 'confirmed'">Thank you. <em>Your appointment is confirmed.</em></template>
+            <template v-else-if="state === 'confirming'">Payment received. <em>Confirming your slot.</em></template>
+            <template v-else>Thank you. <em>Your slot is held.</em></template>
           </h1>
           <p class="bc-lead">
-            Choose a slot below and fill in the short booking form. Your appointment is confirmed by email once your
-            payment is verified, usually within {{ CONFIRM_WINDOW }}.
+            <template v-if="state === 'confirmed'">
+              A confirmation email with all the details is on its way to you.
+            </template>
+            <template v-else-if="state === 'confirming'">
+              Your payment went through. You'll get a confirmation email in a few minutes. If it doesn't arrive, send
+              your payment ID on WhatsApp.
+            </template>
+            <template v-else>
+              Your appointment is confirmed by email once your UPI payment is checked, usually within
+              {{ CONFIRM_WINDOW }}. Send your UTR number on WhatsApp to speed this up. Slots left unpaid for
+              {{ HOLD_HOURS }} hours are released.
+            </template>
           </p>
         </header>
 
-        <!-- Session: prefilled from the booking page, editable if it didn't carry over -->
-        <div class="bc-session">
-          <span class="bc-session-label">Calendar for</span>
-          <select v-model="session.type" aria-label="Session type">
-            <option v-for="t in SESSION_TYPES" :key="t.id" :value="t.id">{{ t.label }}</option>
-          </select>
-          <select v-model="session.mode" aria-label="Where">
-            <option v-for="m in MODES" :key="m.id" :value="m.id">{{ m.label }}</option>
-          </select>
-          <select v-if="session.type === 'first'" v-model.number="session.duration" aria-label="Duration">
-            <option :value="30">30 minutes</option>
-            <option :value="60">60 minutes</option>
-          </select>
+        <div class="bc-booked">
+          <span class="bc-booked-icon" aria-hidden="true">✓</span>
+          <dl class="bc-details">
+            <div><dt>Session</dt><dd>{{ booking.summary }}</dd></div>
+            <div v-if="when"><dt>Time</dt><dd>{{ when }}</dd></div>
+            <div><dt>Fee</dt><dd>{{ formatPrice(booking.price) }}</dd></div>
+            <div><dt>Paid via</dt><dd>{{ paidVia }}</dd></div>
+            <div v-if="booking.paymentId"><dt>Payment ID</dt><dd>{{ booking.paymentId }}</dd></div>
+          </dl>
         </div>
 
         <ul class="bc-tips">
-          <li><strong>Paid via: {{ paidVia }}</strong> is already filled in for you in the booking form.</li>
+          <li v-if="state === 'upi'">Keep your UTR or transaction number until the appointment is confirmed.</li>
           <li>For anyone under 18, a parent or guardian must attend the consultation.</li>
+          <li>
+            Need to reschedule? See the
+            <a href="/cancellation-policy" target="_blank" rel="noopener noreferrer">cancellation policy</a>.
+          </li>
         </ul>
 
-        <!-- Shown once Cal.com reports the booking -->
-        <div v-if="booked" ref="bookedEl" class="bc-booked" role="status">
-          <span class="bc-booked-icon" aria-hidden="true">✓</span>
-          <div class="bc-booked-body">
-            <h2 class="bc-booked-title">Slot requested{{ bookedWhen ? ` for ${bookedWhen}` : '' }}.</h2>
-            <p>
-              One last tap: send your booking details to the clinic on WhatsApp. Your appointment is confirmed once
-              your payment is verified.
-            </p>
-            <a :href="whatsappHref" target="_blank" rel="noopener noreferrer" class="bc-wa-button">
-              Send details on WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <div class="bc-cal">
-          <iframe
-            :key="calUrl"
-            :src="calEmbedSrc"
-            :title="`Pick a time: ${sessionLabel}`"
-            loading="lazy"
-          ></iframe>
-        </div>
+        <a :href="whatsappHref" target="_blank" rel="noopener noreferrer" class="bc-wa-button">
+          {{ state === 'upi' ? 'Send UTR on WhatsApp' : 'Message the clinic on WhatsApp' }}
+        </a>
 
         <p class="bc-small">
-          Calendar not loading?
-          <a :href="calUrl" target="_blank" rel="noopener noreferrer">Open it in a new tab</a>.
-          Need a same-day appointment, or have a question? Call or WhatsApp
-          <a :href="PHONE_TEL">{{ PHONE_DISPLAY }}</a>
-          Already booked a slot?
-          <a :href="whatsappHref" target="_blank" rel="noopener noreferrer">Send your details on WhatsApp</a>.
+          Have a question? Call or WhatsApp <a :href="PHONE_TEL">{{ PHONE_DISPLAY }}</a>.
         </p>
       </template>
     </div>
@@ -79,101 +65,28 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, nextTick, onMounted, onBeforeUnmount } from 'vue'
-import {
-  BOOKING_REF, CONFIRM_WINDOW, SESSION_TYPES, MODES, priceFor, minutesFor, formatPrice, calUrlFor, loadBooking,
-} from '../data/booking.js'
+import { computed } from 'vue'
+import { CONFIRM_WINDOW, HOLD_HOURS, formatPrice, formatSlot, loadBooking } from '../data/booking.js'
 import { PHONE_DISPLAY, PHONE_TEL, waLink } from '../data/clinics.js'
 
 defineEmits(['navigate'])
 
+// Saved by the booking page once the patient has paid or chosen direct UPI
 const stored = loadBooking()
-const refParam = new URLSearchParams(window.location.search).get('ref')
+const booking = stored?.uid && stored.method ? stored : null
 
-// Razorpay redirects here with the private ref; direct UPI arrives from the booking page in the same visit
-const allowed = refParam === BOOKING_REF || stored?.method === 'upi'
-
-const session = reactive({
-  type: stored?.type || 'first',
-  mode: stored?.mode || 'online',
-  duration: stored?.duration || 60,
-})
-
-const paidVia = refParam === BOOKING_REF ? 'Razorpay' : stored?.method === 'upi' ? 'Direct UPI' : 'Razorpay'
-
-const calUrl = computed(() => calUrlFor(session.type, session.mode, session.duration))
-
-const sessionLabel = computed(() => {
-  const t = SESSION_TYPES.find((x) => x.id === session.type).label
-  const m = MODES.find((x) => x.id === session.mode).label
-  return `${t} · ${m} · ${minutesFor(session.type, session.duration)} min`
-})
-
-// Cal.com fills booking questions from matching URL parameters (by question identifier)
-const params = new URLSearchParams(window.location.search)
-const paymentRef = params.get('razorpay_payment_id') || params.get('payment_id') || ''
-
-const calEmbedSrc = computed(() => {
-  const query = new URLSearchParams({ embed: 'true', theme: 'light', layout: 'month_view', 'Paid-Via': paidVia })
-  // Used once a "Payment ID / UTR" question with identifier payment-ref exists in Cal.com
-  if (paymentRef) query.set('payment-ref', paymentRef)
-  return `${calUrl.value}?${query}`
-})
-
-// ---- Booking success from the Cal.com calendar ----
-// The embedded calendar posts messages to this page; a "bookingSuccessful" one means a slot was booked.
-const booked = ref(false)
-const bookedStart = ref(null)
-const bookedName = ref('')
-const bookedEl = ref(null)
-
-const bookedWhen = computed(() => {
-  if (!bookedStart.value) return ''
-  const d = new Date(bookedStart.value)
-  if (Number.isNaN(d.getTime())) return ''
-  return d.toLocaleString('en-IN', {
-    weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata',
-  })
-})
-
-const onCalMessage = async (event) => {
-  let host = ''
-  try {
-    host = new URL(event.origin).hostname
-  } catch {
-    return
-  }
-  if (!/(^|\.)cal\.com$/.test(host)) return
-  const msg = event.data
-  const method = msg?.method || msg?.fullType || ''
-  if (typeof method !== 'string' || !method.includes('bookingSuccessful')) return
-  const data = msg.data || {}
-  bookedStart.value = data.startTime || data.booking?.startTime || data.date || null
-  const name = data.booking?.attendees?.[0]?.name || data.booking?.responses?.name || ''
-  bookedName.value = typeof name === 'string' ? name : [name.firstName, name.lastName].filter(Boolean).join(' ')
-  if (!booked.value) {
-    booked.value = true
-    await nextTick()
-    bookedEl.value?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
-}
-
-onMounted(() => window.addEventListener('message', onCalMessage))
-onBeforeUnmount(() => window.removeEventListener('message', onCalMessage))
+const state = !booking ? '' : booking.method === 'upi' ? 'upi' : booking.confirmed ? 'confirmed' : 'confirming'
+const paidVia = booking?.method === 'upi' ? 'Direct UPI' : 'Razorpay'
+const when = formatSlot(booking?.start)
 
 const whatsappHref = computed(() => {
-  const price = formatPrice(priceFor(session.type, session.mode, session.duration))
-  return waLink(
-    [
-      "Hi Dr. Ashish, I've booked a consultation. Please confirm it.",
-      '',
-      `Session: ${sessionLabel.value} (${price})`,
-      `Slot: ${bookedWhen.value || '(as booked on Cal.com)'}`,
-      `Paid via: ${paidVia}`,
-      `Payment ref: ${paymentRef}`,
-      `Name: ${bookedName.value}`,
-    ].join('\n'),
-  )
+  if (!booking) return ''
+  const lines = state === 'upi'
+    ? ["Hi Dr. Ashish, I've booked a consultation and paid by UPI. Please confirm it.", '']
+    : ["Hi Dr. Ashish, I've booked and paid for a consultation.", '']
+  lines.push(`Session: ${booking.summary} (${formatPrice(booking.price)})`, `Slot: ${when || '(as booked on Cal.com)'}`)
+  lines.push(state === 'upi' ? 'UTR: ' : `Payment ID: ${booking.paymentId || ''}`)
+  return waLink(lines.join('\n'))
 })
 </script>
 
@@ -238,33 +151,6 @@ const whatsappHref = computed(() => {
   background: var(--brand-hover);
 }
 
-.bc-session {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.9rem 1rem;
-  background: var(--sage-50);
-  border: 1px solid var(--border-brand);
-  border-radius: var(--radius-md);
-}
-
-.bc-session-label {
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--brand-ink);
-}
-
-.bc-session select {
-  padding: 8px 10px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--white);
-  font-size: 0.9375rem;
-  font-family: var(--font-sans);
-  color: var(--text-strong);
-}
-
 .bc-tips {
   margin: 1rem 0;
   padding: 0.9rem 1.25rem 0.9rem 2.25rem;
@@ -302,16 +188,28 @@ const whatsappHref = computed(() => {
   font-size: 1.25rem;
 }
 
-.bc-booked-title {
-  font-family: var(--font-display);
-  font-size: 1.375rem;
-  font-weight: 700;
-  margin: 0 0 0.35rem;
+.bc-details {
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
 }
 
-.bc-booked-body p {
-  font-size: 0.9375rem;
-  margin: 0 0 1rem;
+.bc-details div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bc-details dt {
+  min-width: 6.5rem;
+  font-weight: 700;
+  color: var(--brand-ink);
+}
+
+.bc-details dd {
+  margin: 0;
+  color: var(--text-strong);
+  word-break: break-word;
 }
 
 .bc-wa-button {
@@ -328,21 +226,6 @@ const whatsappHref = computed(() => {
   color: var(--white);
 }
 
-.bc-cal {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-}
-
-.bc-cal iframe {
-  display: block;
-  width: 100%;
-  height: 820px;
-  border: 0;
-}
-
 .bc-small {
   font-size: var(--fs-sm);
   color: var(--text-muted);
@@ -353,9 +236,4 @@ const whatsappHref = computed(() => {
   font-weight: 600;
 }
 
-@media (max-width: 640px) {
-  .bc-cal iframe {
-    height: 1000px;
-  }
-}
 </style>

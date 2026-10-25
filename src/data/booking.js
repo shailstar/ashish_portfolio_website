@@ -1,18 +1,5 @@
-// Booking settings: prices, payment links and UPI details.
-
-// Razorpay payment page per price. Replace each placeholder with the real link.
-// In Razorpay, set every page to redirect after payment to:
-//   https://drashishyadav.com/booking-confirmed?ref=<BOOKING_REF>
-export const RAZORPAY_LINKS = {
-  799: 'https://rzp.io/rzp/Online-Consultation-30minutes',
-  1499: 'https://rzp.io/rzp/Online-Consultation-60minutes',
-  499: 'https://rzp.io/rzp/followup-Consultation-drashish',
-  3499: 'https://rzp.io/rzp/ADHD-Assessment-Online',
-  3999: 'https://rzp.io/rzp/ADHD-Assessment-Offline',
-}
-
-// Private code in the Razorpay redirect, so the confirmation page can't be opened by typing the address
-export const BOOKING_REF = 'rzp-k7m2q9'
+// Booking settings: prices, calendars and UPI details.
+// Razorpay payments go through the server functions in /netlify (see netlify/lib/payments.mjs).
 
 export const UPI_ID = 'ashishyadav0210-5@okhdfcbank'
 export const UPI_PAYEE = 'Dr Ashish Yadav'
@@ -25,7 +12,8 @@ export const UPI_QR_IMAGES = {
   3999: '/upi/upi-3999.png',
 }
 
-// Cal.com booking calendar for each session, shown after payment
+// Cal.com booking calendar for each session. Each event must have "Requires confirmation" on:
+// a new booking stays pending until it is paid, and unpaid ones are released after HOLD_HOURS.
 const CAL_BASE = 'https://cal.com/drashishyadav/'
 const CAL_EVENTS = {
   'first-online-30': 'online-consultation-30min',
@@ -48,6 +36,18 @@ export const calUrlFor = (type, mode, duration) => {
 }
 
 export const CONFIRM_WINDOW = 'a few hours'
+
+// How long a booked slot is held while the patient pays (matches HOLD_MS on the server)
+export const HOLD_HOURS = 2
+
+// A slot's start time in Jaipur time, e.g. "Sat, 1 Nov, 11:00 am"
+export const formatSlot = (iso) => {
+  const d = new Date(iso)
+  if (!iso || Number.isNaN(d.getTime())) return ''
+  return d.toLocaleString('en-IN', {
+    weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata',
+  })
+}
 
 export const SESSION_TYPES = [
   { id: 'first', label: 'First consultation', hint: 'Your first visit' },
