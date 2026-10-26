@@ -34,6 +34,8 @@
       <BookingConfirmed v-else-if="route === 'confirmed'" @navigate="handleNavigate" />
 
       <TalksPage v-else-if="route === 'talks'" />
+
+      <ServicePage v-else-if="SERVICES[route]" :key="route" :service-id="route" @navigate="handleNavigate" />
     </main>
 
     <Footer @navigate="handleNavigate" />
@@ -63,6 +65,8 @@ import AboutPage from './components/AboutPage.vue'
 import BookPage from './components/BookPage.vue'
 import BookingConfirmed from './components/BookingConfirmed.vue'
 import TalksPage from './components/TalksPage.vue'
+import ServicePage from './components/ServicePage.vue'
+import { SERVICES } from './data/services.js'
 import { SITE_URL, PATHS, DEFAULT_TITLE, META, routeFromPath } from './data/routes.js'
 
 // Set when prerendering at build time, where there is no browser URL to read

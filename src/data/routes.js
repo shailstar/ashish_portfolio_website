@@ -1,3 +1,5 @@
+import { SERVICES } from './services.js'
+
 // Pages that have their own URL. Other routes live at "/".
 // Each one is prerendered to dist/<path>.html at build time (scripts/prerender.mjs)
 // and needs a matching rewrite in public/_redirects and an entry in public/sitemap.xml.
@@ -17,6 +19,7 @@ export const PATHS = {
   book: '/book',
   confirmed: '/booking-confirmed',
   talks: '/talks-and-workshops',
+  ...Object.fromEntries(Object.entries(SERVICES).map(([id, service]) => [id, service.path])),
 }
 
 // Browser tab title and search-result description per page
@@ -72,6 +75,10 @@ export const META = {
     description: 'Psychiatrist at Asha Clinic, Sirsi Road, Vaishali Nagar, opposite DMart. Every day except Wednesday, 10 AM–1 PM. Evenings at Shalby Hospital.',
   },
 }
+
+Object.entries(SERVICES).forEach(([id, service]) => {
+  META[id] = service.meta
+})
 
 export const routeFromPath = (pathname) =>
   Object.keys(PATHS).find((id) => PATHS[id] === (pathname.replace(/\/$/, '') || '/')) || 'home'

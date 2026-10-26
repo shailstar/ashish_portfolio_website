@@ -76,7 +76,7 @@ export const HOME_VISIT_AREAS = ['Vaishali Nagar', 'Mansarovar', 'Raja Park', 'J
 export const mapEmbedUrl = (query) => `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`
 
 export const CARE_AREAS = [
-  { title: 'Anxiety and stress', text: 'Constant worry, panic episodes and work-related stress.' },
+  { title: 'Anxiety and stress', text: 'Constant worry, panic episodes and work-related stress.', target: 'anxiety' },
   { title: 'Depression and mood', text: 'Low mood, burnout, loss of motivation and emotional numbness.' },
   { title: 'Adult ADHD', text: 'Trouble with focus, time and follow-through, with a structured assessment.', target: 'adhd' },
   {

@@ -74,6 +74,7 @@ const columns = [
       { id: 'home', label: 'Home', path: '/' },
       { id: 'about', label: 'About', path: '/about' },
       { id: 'fees', label: 'Consultation fees', path: '/fees' },
+      { id: 'anxiety', label: 'Anxiety treatment', path: '/anxiety-treatment-jaipur' },
       { id: 'adhd', label: 'Adult ADHD assessment', path: '/adult-adhd-assessment' },
       { id: 'resources', label: 'Resources' },
       { id: 'talks', label: 'Talks & workshops', path: '/talks-and-workshops' },

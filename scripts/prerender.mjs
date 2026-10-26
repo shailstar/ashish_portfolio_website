@@ -10,6 +10,7 @@ const { render, schemaFor, SITE_URL, PATHS, DEFAULT_TITLE, META } = await import
 
 const template = readFileSync('dist/index.html', 'utf8')
 const redirects = readFileSync('public/_redirects', 'utf8')
+const sitemap = readFileSync('public/sitemap.xml', 'utf8')
 
 const escapeAttr = (text) =>
   text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -38,6 +39,9 @@ for (const [id, path] of Object.entries(PATHS)) {
   // Without this rewrite Netlify would serve the page only at /<path>.html
   if (path !== '/' && !redirects.includes(`${path}  /${file}  200`)) {
     throw new Error(`public/_redirects is missing the line: ${path}  /${file}  200`)
+  }
+  if (!META[id]?.noindex && !sitemap.includes(`<loc>${SITE_URL}${path}</loc>`)) {
+    throw new Error(`public/sitemap.xml is missing <loc>${SITE_URL}${path}</loc>`)
   }
 
   const { html: body, faqs } = await render(id)

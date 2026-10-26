@@ -5,6 +5,7 @@
 import { SITE_URL, PATHS } from './routes.js'
 import { LINKEDIN_URL, REGISTRATION, PROFILE_LINKS, SOCIAL_LINKS } from './about.js'
 import { PHONE_TEL, CLINICS, OPEN_DAYS } from './clinics.js'
+import { SERVICES } from './services.js'
 
 const PHYSICIAN_ID = `${SITE_URL}/#physician`
 const WEBSITE_ID = `${SITE_URL}/#website`
@@ -111,6 +112,28 @@ const website = {
   publisher: { '@id': PHYSICIAN_ID },
 }
 
+// A treatment page: what it is about, and who wrote and reviewed it
+const medicalWebPage = (service) => ({
+  '@type': 'MedicalWebPage',
+  '@id': `${SITE_URL}${service.path}#webpage`,
+  url: `${SITE_URL}${service.path}`,
+  name: service.meta.title,
+  description: service.meta.description,
+  inLanguage: 'en-IN',
+  isPartOf: { '@id': WEBSITE_ID },
+  specialty: 'https://schema.org/Psychiatric',
+  audience: { '@type': 'MedicalAudience', audienceType: 'Patient' },
+  author: { '@id': PHYSICIAN_ID },
+  reviewedBy: { '@id': PHYSICIAN_ID },
+  lastReviewed: service.lastReviewed,
+  about: {
+    '@type': 'MedicalCondition',
+    name: service.condition.name,
+    alternateName: service.condition.alternateName,
+    possibleTreatment: service.condition.treatments.map((name) => ({ '@type': 'MedicalTherapy', name })),
+  },
+})
+
 // The schema blocks for one page, keyed by route id
 const BY_ROUTE = {
   home: [website, physician],
@@ -126,6 +149,7 @@ const BY_ROUTE = {
   jaipur: [...Object.values(CLINICS).map(clinicSchema), physician],
   jhotwara: [clinicSchema(CLINICS.jhotwara), physician],
   vaishali: [clinicSchema(CLINICS.vaishali), physician],
+  ...Object.fromEntries(Object.entries(SERVICES).map(([id, service]) => [id, [medicalWebPage(service), physician]])),
 }
 
 // faqs: the { q, a } items the page shows, collected while prerendering

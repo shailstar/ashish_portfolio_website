@@ -109,6 +109,7 @@
 
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
+import { SERVICES } from '../data/services.js'
 
 const props = defineProps({
   route: String,
@@ -116,9 +117,13 @@ const props = defineProps({
 
 const emit = defineEmits(['navigate'])
 
-// Paths must match PATHS in App.vue
+// Paths must match PATHS in src/data/routes.js
 const menu = [
   { id: 'adhd', label: 'ADHD Assessment', path: '/adult-adhd-assessment' },
+  {
+    label: 'Treatments',
+    children: Object.entries(SERVICES).map(([id, service]) => ({ id, label: service.navLabel, hint: service.navHint, path: service.path })),
+  },
   {
     label: 'Resources',
     children: [
