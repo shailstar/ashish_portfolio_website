@@ -101,6 +101,22 @@ export const SERVICES = {
         q: 'Will anxiety come back after treatment?',
         a: '<p>It can, but complete treatment lowers the risk a great deal. Finishing the full course of any medicines, reducing them slowly, and keeping up the skills learned in CBT all make relapse less likely. If early signs return, an early follow-up usually settles them before they grow.</p>',
       },
+      {
+        q: 'What should I do during a panic attack?',
+        a: '<p>Stay where you are if it is safe, and slow your breathing: in through the nose for about 4 seconds, out through the mouth for 4 to 6 seconds. Tell yourself "This is panic, not danger. It will pass", focus on something around you, and let it peak and settle, which usually happens within minutes. The <a href="/guides/anxiety-guide">free anxiety guide</a> has the full steps and a reminder card.</p>',
+      },
+      {
+        q: 'How can I stop constantly googling my symptoms?',
+        a: '<p>Cut it down gradually rather than all at once. Keep a one-week diary of how often you check your body, search symptoms or ask for reassurance, then reduce it step by step. When the urge comes, wait 10 to 15 minutes and do something else. Each check brings short relief but keeps the worry alive. More in the <a href="/guides/anxiety-guide">anxiety guide</a>.</p>',
+      },
+      {
+        q: 'What helps social anxiety day to day?',
+        a: '<p>Face feared situations step by step with a fear ladder, focus outward on the other person rather than on how you look and sound, drop one safety behaviour at a time, and skip the detailed post-mortem afterwards. The <a href="/guides/social-anxiety-guide">social anxiety guide</a> explains each step.</p>',
+      },
+      {
+        q: 'Can anxiety cause stomach problems or IBS?',
+        a: '<p>Anxiety can trigger and worsen gut symptoms. The gut and brain talk constantly through nerves, hormones and immune signals, so stress and anxiety turn up gut sensations, and gut symptoms feed the anxiety back. Working on both ends helps, for example with daily slow diaphragmatic breathing and, if needed, gut-directed CBT. See the guides for <a href="/guides/ibs-d-guide">IBS-D</a> and <a href="/guides/ibs-c-guide">IBS-C</a>.</p>',
+      },
     ],
 
     // Practical questions, in the FAQ accordion
@@ -237,6 +253,18 @@ export const SERVICES = {
         q: 'What is the difference between sadness, burnout and depression?',
         a: '<p>Sadness is a normal reaction that eases with time. Burnout is exhaustion and detachment linked to ongoing stress, usually at work. Depression is a medical condition where low mood or loss of interest lasts most of the day for at least two weeks and affects sleep, energy, concentration and daily life. Burnout can turn into depression if it is not addressed.</p>',
       },
+      {
+        q: 'Can poor sleep cause depression?',
+        a: '<p>Sleep and mood affect each other in both directions. People with insomnia are about 10 times more likely to have depression, and sleep problems often appear before other symptoms. Fixing sleep, with a fixed wake time, morning light and less screen time before bed, very often lifts mood. Read <a href="/guides/how-to-sleep-better">How to sleep better</a>.</p>',
+      },
+      {
+        q: 'What daily habits help with low mood?',
+        a: '<p>Small, steady habits help most: the same wake time every day with daylight soon after, a brisk 10-minute walk, writing one line that names how you feel, and a short body scan or yoga nidra in the evening. Start with one, keep it for two weeks, then add the next. The <a href="/guides/daily-stress-toolkit">daily stress toolkit</a> explains each one.</p>',
+      },
+      {
+        q: 'Could mood changes before my period be PMDD?',
+        a: '<p>Possibly. If low mood, irritability or anxiety reliably appear in the days before your period and ease once it starts, it may be premenstrual dysphoric disorder (PMDD). Track your symptoms daily for two cycles to confirm the pattern, and seek help if they disrupt work, relationships or daily life. See the <a href="/guides/pmdd-guide">PMDD action plan</a>.</p>',
+      },
     ],
 
     faqs: [
@@ -361,6 +389,10 @@ export const SERVICES = {
       {
         q: 'How can family members help someone with OCD?',
         a: '<p>The kindest help is support without joining in the rituals. Repeatedly giving reassurance, checking things for the person or changing family routines to avoid triggers brings short relief but keeps OCD going. Family sessions can help everyone cut back on this gently, together with the person’s treatment plan.</p>',
+      },
+      {
+        q: 'Why does reassurance make OCD worse?',
+        a: '<p>Reassurance, checking and other safety behaviours bring quick relief, but each one tells your brain the danger was real, so the doubt comes back stronger. Cutting back gradually, for example delaying a check by 10 minutes, then 20, then skipping it once, teaches your brain that the anxiety passes on its own. This is the same principle ERP uses. The <a href="/guides/anxiety-guide">anxiety guide</a> shows how to reduce checking step by step.</p>',
       },
     ],
 
@@ -492,6 +524,14 @@ export const SERVICES = {
         q: 'Will my treatment be kept confidential?',
         a: '<p>Yes. What you share stays between you and your doctor, consultations are never recorded, and nothing is shared with your employer or family without your consent, except where the law requires it to keep someone safe.</p>',
       },
+      {
+        q: 'Does alcohol help you sleep?',
+        a: '<p>No. Alcohol may help you fall asleep, but it fragments the second half of the night and cuts the REM sleep your brain needs for emotional balance, so you wake less rested. Sleep often takes a few weeks to settle after stopping. <a href="/guides/how-to-sleep-better">How to sleep better</a> has practical steps.</p>',
+      },
+      {
+        q: 'How can I handle stress without going back to the habit?',
+        a: '<p>Have quick, healthy tools ready for the moments that used to trigger use: a one-minute cyclic sigh, a brisk 10-minute walk, writing one line that names the feeling, and a fixed daily slot for worries. Practise them every day so they come naturally under pressure. See the <a href="/guides/daily-stress-toolkit">daily stress toolkit</a>.</p>',
+      },
     ],
 
     faqs: [
@@ -612,6 +652,10 @@ export const SERVICES = {
         q: 'Will what I share be kept private?',
         a: '<p>Yes. Everything you share stays between you and your doctor, consultations are never recorded, and nothing is shared with anyone without your consent.</p>',
       },
+      {
+        q: 'How can I calm performance anxiety?',
+        a: '<p>Slow the body down and move your attention outward. Breathe in through the nose for 4, hold for 2 and out for 4 to 6, for a minute or two. Focus on your partner and on sensations rather than watching yourself, and question thoughts like "It will go wrong again." These skills come from the same CBT approach used for anxiety, explained in the <a href="/guides/social-anxiety-guide">social anxiety guide</a> and the <a href="/guides/anxiety-guide">anxiety guide</a>.</p>',
+      },
     ],
 
     faqs: [
@@ -727,6 +771,14 @@ export const SERVICES = {
       {
         q: 'Can therapy help with exam stress?',
         a: '<p>Yes. Exam stress responds well to practical skills: planning study in short blocks, steady sleep, breathing techniques for panic, and challenging all-or-nothing thoughts about results. If stress is causing panic attacks, low mood or sleep loss, a consultation helps.</p>',
+      },
+      {
+        q: 'How do screens affect my child’s sleep?',
+        a: '<p>Screens before bed delay and shorten sleep. One hour of screen time before bed is linked to about 24 minutes less sleep, because the light tells the brain the day is not over. Keep screens out of the bedroom at night and keep a steady wake time, even at weekends. More in <a href="/guides/how-to-sleep-better">How to sleep better</a>.</p>',
+      },
+      {
+        q: 'What helps a teenager with social anxiety?',
+        a: '<p>Gradual practice works best. Together, list feared situations from easiest to hardest and face them one step at a time, encourage your teenager to focus on the other person rather than on themselves, and avoid long post-mortems after a tough day. The <a href="/guides/social-anxiety-guide">social anxiety guide</a> has steps you can work through together.</p>',
       },
     ],
 
@@ -847,6 +899,14 @@ export const SERVICES = {
       {
         q: 'How can families cope with caring for someone with dementia?',
         a: '<p>Keep daily routines simple and predictable, speak calmly in short sentences, and avoid arguing about mistaken memories. Make the home safe, and share the care so no one person is worn out. Caregivers’ own sleep, health and mood matter too, and guidance from the treating doctor helps the whole family.</p>',
+      },
+      {
+        q: 'How can an older person sleep better?',
+        a: '<p>Keep the same wake time every day, get natural light in the first hour, keep the bedroom cool, dark and quiet, and cut caffeine after early afternoon. If sleep does not come, get up and read until sleepy rather than lying awake. Sleeping tablets should be used only on a doctor’s advice, as they can raise the risk of falls and confusion in older adults. See <a href="/guides/how-to-sleep-better">How to sleep better</a>.</p>',
+      },
+      {
+        q: 'How can caregivers manage their own stress?',
+        a: '<p>Build a few short daily habits that fit around caring: a one-minute cyclic sigh in tense moments, a brisk 10-minute walk, a fixed 15-minute slot to write down worries, and a short body scan before sleep. Share the care with others where you can. The <a href="/guides/daily-stress-toolkit">daily stress toolkit</a> explains each one.</p>',
       },
     ],
 

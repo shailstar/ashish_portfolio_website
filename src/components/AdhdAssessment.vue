@@ -294,6 +294,10 @@ const faqs = [
     a: '<p>No. Online tests, including the free <a href="/asrs.html" target="_blank" rel="noopener noreferrer">ASRS self-check</a> on this site, can only suggest whether a closer look is worthwhile. A diagnosis needs a clinician to review your full history and rule out other causes.</p>',
   },
   {
+    q: 'Why can an ADHD screening score be misleading?',
+    a: '<p>Distractibility, restlessness, forgetfulness and poor follow-through also show up in anxiety, depression, sleep problems, burnout, thyroid issues, substance use and past trauma. Two people can get the same score for completely different reasons, and a low score does not always rule ADHD out. The screening asks the question; a full assessment answers it. More in the <a href="/guides/adhd-guide">free ADHD guide</a>.</p>',
+  },
+  {
     q: 'Will I definitely get a diagnosis?',
     a: '<p>No result is promised in advance. The report will say whether the findings support ADHD, do not support it, or need further assessment before a clear answer is possible.</p>',
   },
