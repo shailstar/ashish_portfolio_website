@@ -6,4 +6,9 @@ import App from './App.vue'
 export { SITE_URL, PATHS, DEFAULT_TITLE, META } from './data/routes.js'
 export { schemaFor } from './data/schema.js'
 
-export const render = (route) => renderToString(createSSRApp(App, { initialRoute: route }))
+// Returns the page HTML and the FAQ items the page showed (see AppointmentFAQ.vue)
+export const render = async (route) => {
+  const context = {}
+  const html = await renderToString(createSSRApp(App, { initialRoute: route }), context)
+  return { html, faqs: context.faqs || [] }
+}

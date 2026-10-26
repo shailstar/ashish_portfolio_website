@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, useSSRContext } from 'vue'
 import { waLink } from '../data/clinics.js'
 
 // Only one answer is open at a time
@@ -94,6 +94,13 @@ const defaultFaqs = [
 ]
 
 const items = computed(() => props.faqs || defaultFaqs)
+
+// At build time, hand the questions to scripts/prerender.mjs for the FAQPage schema,
+// so the schema always matches what is on the page
+if (import.meta.env.SSR) {
+  const context = useSSRContext()
+  context.faqs = [...(context.faqs || []), ...items.value]
+}
 </script>
 
 <style scoped>

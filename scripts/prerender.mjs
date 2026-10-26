@@ -14,7 +14,7 @@ const redirects = readFileSync('public/_redirects', 'utf8')
 const escapeAttr = (text) =>
   text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-const headTags = (id) => {
+const headTags = (id, faqs) => {
   const meta = META[id] || {}
   const tags = [
     `<title>${escapeAttr(meta.title || DEFAULT_TITLE)}</title>`,
@@ -23,7 +23,7 @@ const headTags = (id) => {
   ]
   if (meta.noindex) tags.push('<meta name="robots" content="noindex, nofollow" />')
 
-  const schema = schemaFor(id)
+  const schema = schemaFor(id, faqs)
   if (schema) {
     // "<" escaped so text in the data can never close the script tag
     const json = JSON.stringify(schema).replace(/</g, '\\u003c')
@@ -40,9 +40,10 @@ for (const [id, path] of Object.entries(PATHS)) {
     throw new Error(`public/_redirects is missing the line: ${path}  /${file}  200`)
   }
 
+  const { html: body, faqs } = await render(id)
   const html = template
-    .replace(/<title>.*?<\/title>/, () => headTags(id))
-    .replace('<div id="app"></div>', `<div id="app">${await render(id)}</div>`)
+    .replace(/<title>.*?<\/title>/, () => headTags(id, faqs))
+    .replace('<div id="app"></div>', () => `<div id="app">${body}</div>`)
   writeFileSync(`dist/${file}`, html)
   console.log(`prerendered ${path} -> dist/${file}`)
 }

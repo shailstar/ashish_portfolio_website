@@ -128,5 +128,21 @@ const BY_ROUTE = {
   vaishali: [clinicSchema(CLINICS.vaishali), physician],
 }
 
-export const schemaFor = (route) =>
-  BY_ROUTE[route] ? { '@context': 'https://schema.org', '@graph': BY_ROUTE[route] } : null
+// faqs: the { q, a } items the page shows, collected while prerendering
+const faqPage = (route, faqs) => ({
+  '@type': 'FAQPage',
+  '@id': `${SITE_URL}${PATHS[route]}#faq`,
+  url: `${SITE_URL}${PATHS[route]}`,
+  isPartOf: { '@id': WEBSITE_ID },
+  author: { '@id': PHYSICIAN_ID },
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+})
+
+export const schemaFor = (route, faqs = []) => {
+  const graph = [...(BY_ROUTE[route] || []), ...(faqs.length ? [faqPage(route, faqs)] : [])]
+  return graph.length ? { '@context': 'https://schema.org', '@graph': graph } : null
+}
