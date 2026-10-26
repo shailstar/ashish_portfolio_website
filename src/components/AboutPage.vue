@@ -73,6 +73,13 @@
           <a :href="LINKEDIN_URL" target="_blank" rel="noopener noreferrer" class="ap-link">
             Full profile on LinkedIn &rarr;
           </a>
+          <p class="ap-profiles">
+            Also listed on
+            <template v-for="(item, index) in PROFILE_LINKS" :key="item.url">
+              <a :href="item.url" target="_blank" rel="noopener noreferrer">{{ item.label }}</a
+              >{{ index < PROFILE_LINKS.length - 1 ? ' · ' : '' }}
+            </template>
+          </p>
         </aside>
       </div>
 
@@ -163,7 +170,7 @@
 </template>
 
 <script setup>
-import { LINKEDIN_URL, CREDENTIALS, CARD_CREDENTIALS, HIGHLIGHTS, FEATURES } from '../data/about.js'
+import { LINKEDIN_URL, PROFILE_LINKS, CREDENTIALS, CARD_CREDENTIALS, HIGHLIGHTS, FEATURES } from '../data/about.js'
 import { WHATSAPP_URL } from '../data/clinics.js'
 
 defineEmits(['navigate'])
@@ -218,6 +225,16 @@ const values = [
 .ap-link {
   font-weight: 600;
   font-size: 0.9375rem;
+  color: var(--brand-ink);
+}
+
+.ap-profiles {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.ap-profiles a {
   color: var(--brand-ink);
 }
 

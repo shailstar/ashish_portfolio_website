@@ -4,5 +4,6 @@ import { renderToString } from 'vue/server-renderer'
 import App from './App.vue'
 
 export { SITE_URL, PATHS, DEFAULT_TITLE, META } from './data/routes.js'
+export { schemaFor } from './data/schema.js'
 
 export const render = (route) => renderToString(createSSRApp(App, { initialRoute: route }))

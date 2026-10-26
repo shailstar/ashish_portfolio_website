@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync, rmSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 
-const { render, SITE_URL, PATHS, DEFAULT_TITLE, META } = await import(
+const { render, schemaFor, SITE_URL, PATHS, DEFAULT_TITLE, META } = await import(
   pathToFileURL('dist-ssr/entry-server.js').href
 )
 
@@ -22,6 +22,13 @@ const headTags = (id) => {
     `<link rel="canonical" href="${SITE_URL}${PATHS[id]}" />`,
   ]
   if (meta.noindex) tags.push('<meta name="robots" content="noindex, nofollow" />')
+
+  const schema = schemaFor(id)
+  if (schema) {
+    // "<" escaped so text in the data can never close the script tag
+    const json = JSON.stringify(schema).replace(/</g, '\\u003c')
+    tags.push(`<script type="application/ld+json">${json}</script>`)
+  }
   return tags.join('\n    ')
 }
 
@@ -34,7 +41,7 @@ for (const [id, path] of Object.entries(PATHS)) {
   }
 
   const html = template
-    .replace(/<title>.*?<\/title>/, headTags(id))
+    .replace(/<title>.*?<\/title>/, () => headTags(id))
     .replace('<div id="app"></div>', `<div id="app">${await render(id)}</div>`)
   writeFileSync(`dist/${file}`, html)
   console.log(`prerendered ${path} -> dist/${file}`)

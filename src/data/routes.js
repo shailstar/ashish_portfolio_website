@@ -22,6 +22,10 @@ export const PATHS = {
 // Browser tab title and search-result description per page
 export const DEFAULT_TITLE = 'Dr. Ashish - Psychiatrist'
 export const META = {
+  home: {
+    title: 'Dr. Ashish Yadav | Neuro-psychiatrist in Jaipur & Online',
+    description: 'Neuro-psychiatrist (DNB Psychiatry) in Jaipur for anxiety, depression, adult ADHD, addiction and sleep problems. Clinics in Jhotwara and Vaishali Nagar, and online.',
+  },
   talks: {
     title: 'Mental Health Talks & Workshops in Jaipur | Dr. Ashish Yadav',
     description: 'Mental health talks, workshops and breathwork sessions for schools, colleges, corporates and yoga teacher trainings. In Jaipur, beyond and online.',

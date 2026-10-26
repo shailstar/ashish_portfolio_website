@@ -49,6 +49,7 @@
       <span>© {{ year }} Dr. Ashish Yadav. All rights reserved.</span>
       <span class="footer-bottom-links">
         <span>Jaipur, India · Private practice</span>
+        <span>{{ REGISTRATION.council }} Reg. No. {{ REGISTRATION.number }}</span>
         <a href="/cancellation-policy" class="footer-link" @click.prevent="$emit('navigate', 'cancellation')">
           Cancellation &amp; refunds
         </a>
@@ -60,6 +61,7 @@
 
 <script setup>
 import { WHATSAPP_URL } from '../data/clinics.js'
+import { REGISTRATION, SOCIAL_LINKS } from '../data/about.js'
 
 defineEmits(['navigate'])
 
@@ -98,8 +100,8 @@ const columns = [
     title: 'Connect',
     links: [
       { label: 'WhatsApp', url: WHATSAPP_URL, external: true },
-      { label: 'Instagram', url: 'https://www.instagram.com/drashishyadav/', external: true },
-      { label: 'YouTube', url: 'https://www.youtube.com/@drashish', external: true },
+      { label: 'Instagram', url: SOCIAL_LINKS.instagram, external: true },
+      { label: 'YouTube', url: SOCIAL_LINKS.youtube, external: true },
       { label: 'LinkedIn', url: 'https://www.linkedin.com/in/drashishyadav', external: true },
       { label: 'contact@drashishyadav.com', url: 'https://mail.google.com/mail/?view=cm&fs=1&to=contact@drashishyadav.com', external: true },
     ],
