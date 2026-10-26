@@ -2,12 +2,49 @@
 // scripts/prerender.mjs writes it into the <head> of each page at build time.
 // Check changes at https://validator.schema.org and https://search.google.com/test/rich-results
 
-import { SITE_URL } from './routes.js'
+import { SITE_URL, PATHS } from './routes.js'
 import { LINKEDIN_URL, REGISTRATION, PROFILE_LINKS, SOCIAL_LINKS } from './about.js'
-import { PHONE_TEL } from './clinics.js'
+import { PHONE_TEL, CLINICS, OPEN_DAYS } from './clinics.js'
 
 const PHYSICIAN_ID = `${SITE_URL}/#physician`
 const WEBSITE_ID = `${SITE_URL}/#website`
+const TELEPHONE = PHONE_TEL.replace('tel:', '')
+
+// Consultation fees at the clinics, from ₹499 follow-ups to ₹1,499 for 60 minutes (see the fees page)
+const CLINIC_PRICE_RANGE = '₹499–₹1,499'
+
+const clinicId = (clinic) => `${SITE_URL}${PATHS[clinic.page]}#clinic`
+
+const jaipurAddress = (streetAddress, postalCode) => ({
+  '@type': 'PostalAddress',
+  ...(streetAddress && { streetAddress }),
+  addressLocality: 'Jaipur',
+  addressRegion: 'Rajasthan',
+  ...(postalCode && { postalCode }),
+  addressCountry: 'IN',
+})
+
+const clinicSchema = (clinic) => ({
+  '@type': 'MedicalClinic',
+  '@id': clinicId(clinic),
+  name: clinic.listingName,
+  url: `${SITE_URL}${PATHS[clinic.page]}`,
+  image: `${SITE_URL}/profile_about.png`,
+  telephone: TELEPHONE,
+  priceRange: CLINIC_PRICE_RANGE,
+  medicalSpecialty: 'https://schema.org/Psychiatric',
+  isAcceptingNewPatients: true,
+  address: jaipurAddress(clinic.street, clinic.postalCode),
+  geo: { '@type': 'GeoCoordinates', ...clinic.geo },
+  hasMap: clinic.mapUrl,
+  openingHoursSpecification: clinic.openTimes.map(([opens, closes]) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: OPEN_DAYS,
+    opens,
+    closes,
+  })),
+  ...(clinic.listingUrl && { sameAs: [clinic.listingUrl] }),
+})
 
 const organization = (name, url) => ({ '@type': 'EducationalOrganization', name, ...(url && { url }) })
 
@@ -30,9 +67,16 @@ const physician = {
   medicalSpecialty: 'https://schema.org/Psychiatric',
   url: `${SITE_URL}/about`,
   image: `${SITE_URL}/profile_about.png`,
-  telephone: PHONE_TEL.replace('tel:', ''),
+  telephone: TELEPHONE,
   email: 'contact@drashishyadav.com',
-  address: { '@type': 'PostalAddress', addressLocality: 'Jaipur', addressRegion: 'Rajasthan', addressCountry: 'IN' },
+  address: jaipurAddress(),
+  workLocation: Object.values(CLINICS).map((clinic) => ({ '@id': clinicId(clinic) })),
+  // Visiting consultant, evenings by appointment only
+  hospitalAffiliation: {
+    '@type': 'Hospital',
+    name: 'Shalby Hospital, Vaishali Nagar',
+    address: jaipurAddress(),
+  },
   areaServed: [{ '@type': 'City', name: 'Jaipur' }, { '@type': 'Country', name: 'India' }],
   knowsLanguage: ['English', 'Hindi', 'Gujarati'],
   isAcceptingNewPatients: true,
@@ -79,6 +123,9 @@ const BY_ROUTE = {
     },
     physician,
   ],
+  jaipur: [...Object.values(CLINICS).map(clinicSchema), physician],
+  jhotwara: [clinicSchema(CLINICS.jhotwara), physician],
+  vaishali: [clinicSchema(CLINICS.vaishali), physician],
 }
 
 export const schemaFor = (route) =>

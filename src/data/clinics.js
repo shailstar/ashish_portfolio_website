@@ -14,6 +14,13 @@ export const CLINICS = {
     landmark: 'Near Ganesh Mandir, opposite Reliance Mart and Devbhog Restaurant',
     mapUrl: 'https://maps.app.goo.gl/CDCSPwMR3seGBLSo6',
     mapQuery: 'Shri Ram Hospital, Hanuman Road, Tara Nagar, Jhotwara, Jaipur 302012',
+    // For the schema markup. The name matches the Google Business Profile.
+    listingName: 'Dr Ashish Yadav - Psychiatrist & Mind Health Clinic',
+    listingUrl: 'https://share.google/5yCpL6Z1llYcjUScJ',
+    street: 'A-261, Shri Ram Hospital, Hanuman Road, Tara Nagar-A, Jhotwara',
+    postalCode: '302012',
+    geo: { latitude: 26.935103746297035, longitude: 75.74375839544902 },
+    openTimes: [['13:00', '14:00'], ['17:00', '19:00']],
     nearby: [
       'Tara Nagar', 'Murlipura', 'Vidhyadhar Nagar', 'Shastri Nagar', 'Kalwar Road', 'Niwaru Road',
       'Sikar Road', 'Khatipura', 'Govindpura', 'Benad Road', 'Harmada',
@@ -42,12 +49,21 @@ export const CLINICS = {
     landmark: 'Near the petrol pump, opposite DMart',
     mapUrl: mapsSearch('Asha Clinic, 69, Sirsi Road, Khatipura, Vaishali Nagar, Jaipur 302012'),
     mapQuery: 'Asha Clinic, 69, Sirsi Road, Khatipura, Vaishali Nagar, Jaipur 302012',
+    // For the schema markup
+    listingName: 'Dr. Ashish Yadav, Psychiatrist at Asha Clinic',
+    street: '69, Sirsi Road, Officers Campus Extension, Khatipura, Vaishali Nagar',
+    postalCode: '302012',
+    geo: { latitude: 26.92114203378947, longitude: 75.73222593777734 },
+    openTimes: [['10:00', '13:00']],
     nearby: [
       'Khatipura', 'Chitrakoot', 'Nirman Nagar', 'Gandhi Path', 'Queens Road', 'Sirsi Road', 'Hathoj',
       'Panchyawala', 'Ajmer Road', 'Shyam Nagar',
     ],
   },
 }
+
+// Both clinics: "Every day except Wednesday"
+export const OPEN_DAYS = ['Monday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 export const SHALBY = {
   name: 'Shalby Hospital, Vaishali Nagar',
