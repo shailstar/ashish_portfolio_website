@@ -59,7 +59,7 @@ export const SERVICES = {
       { title: 'Follow-ups and relapse prevention.', text: 'Regular reviews track progress and adjust the plan. When you are ready, medicines are tapered slowly and you leave with a plan for keeping anxiety away.' },
     ],
 
-    // Clinical questions, shown open on the page and included in the FAQ schema
+    // Clinical questions, in a click-to-open FAQ and included in the FAQ schema
     answersTitle: 'Anxiety treatment,',
     answersEmphasis: 'your questions answered.',
     answers: [
@@ -123,9 +123,9 @@ export const SERVICES = {
 
     // Free guides from /public/resources
     resources: [
-      { title: 'Anxiety guide', text: 'Understanding anxiety and what helps, as a free PDF.', url: '/resources/anxiety-guide.pdf' },
-      { title: 'Social anxiety: practical self-help', text: 'Steps you can start on your own.', url: '/resources/social-anxiety-guide.pdf' },
-      { title: 'Daily stress toolkit', text: 'Short daily practices for stress.', url: '/resources/daily-stress-toolkit.pdf' },
+      { title: 'Anxiety guide', text: 'Panic attacks and health worries: what helps, step by step.', url: '/guides/anxiety-guide' },
+      { title: 'Social anxiety: practical self-help', text: 'Steps you can start on your own.', url: '/guides/social-anxiety-guide' },
+      { title: 'Daily stress toolkit', text: 'Short daily practices for stress.', url: '/guides/daily-stress-toolkit' },
       { title: '2-minute self assessment', text: 'A quick check of how you are doing.', url: '/assessment.html' },
     ],
 

@@ -1,7 +1,8 @@
 // Writes a finished HTML file for every page in PATHS, so search engines and
 // AI crawlers that don't run JavaScript still see the content and head tags.
 // Runs after the client and server builds (see "build" in package.json).
-import { readFileSync, writeFileSync, rmSync } from 'node:fs'
+import { readFileSync, writeFileSync, rmSync, mkdirSync } from 'node:fs'
+import { dirname } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 const { render, schemaFor, SITE_URL, PATHS, DEFAULT_TITLE, META } = await import(
@@ -48,6 +49,7 @@ for (const [id, path] of Object.entries(PATHS)) {
   const html = template
     .replace(/<title>.*?<\/title>/, () => headTags(id, faqs))
     .replace('<div id="app"></div>', () => `<div id="app">${body}</div>`)
+  mkdirSync(dirname(`dist/${file}`), { recursive: true })
   writeFileSync(`dist/${file}`, html)
   console.log(`prerendered ${path} -> dist/${file}`)
 }

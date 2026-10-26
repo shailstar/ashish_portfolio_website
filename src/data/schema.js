@@ -6,6 +6,7 @@ import { SITE_URL, PATHS } from './routes.js'
 import { LINKEDIN_URL, REGISTRATION, PROFILE_LINKS, SOCIAL_LINKS } from './about.js'
 import { PHONE_TEL, CLINICS, OPEN_DAYS } from './clinics.js'
 import { SERVICES } from './services.js'
+import { GUIDES } from './guides.js'
 
 const PHYSICIAN_ID = `${SITE_URL}/#physician`
 const WEBSITE_ID = `${SITE_URL}/#website`
@@ -112,7 +113,7 @@ const website = {
   publisher: { '@id': PHYSICIAN_ID },
 }
 
-// A treatment page: what it is about, and who wrote and reviewed it
+// A treatment page or guide: what it is about, and who wrote and reviewed it
 const medicalWebPage = (service) => ({
   '@type': 'MedicalWebPage',
   '@id': `${SITE_URL}${service.path}#webpage`,
@@ -130,8 +131,19 @@ const medicalWebPage = (service) => ({
     '@type': 'MedicalCondition',
     name: service.condition.name,
     alternateName: service.condition.alternateName,
-    possibleTreatment: service.condition.treatments.map((name) => ({ '@type': 'MedicalTherapy', name })),
+    ...(service.condition.treatments && {
+      possibleTreatment: service.condition.treatments.map((name) => ({ '@type': 'MedicalTherapy', name })),
+    }),
   },
+  // A guide's downloadable PDF
+  ...(service.pdf && {
+    associatedMedia: {
+      '@type': 'MediaObject',
+      name: `${service.meta.title.split(' | ')[0]} (PDF)`,
+      contentUrl: `${SITE_URL}${service.pdf}`,
+      encodingFormat: 'application/pdf',
+    },
+  }),
 })
 
 // The schema blocks for one page, keyed by route id
@@ -149,7 +161,9 @@ const BY_ROUTE = {
   jaipur: [...Object.values(CLINICS).map(clinicSchema), physician],
   jhotwara: [clinicSchema(CLINICS.jhotwara), physician],
   vaishali: [clinicSchema(CLINICS.vaishali), physician],
-  ...Object.fromEntries(Object.entries(SERVICES).map(([id, service]) => [id, [medicalWebPage(service), physician]])),
+  ...Object.fromEntries(
+    Object.entries({ ...SERVICES, ...GUIDES }).map(([id, page]) => [id, [medicalWebPage(page), physician]]),
+  ),
 }
 
 // faqs: the { q, a } items the page shows, collected while prerendering

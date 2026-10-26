@@ -1,4 +1,5 @@
 import { SERVICES } from './services.js'
+import { GUIDES } from './guides.js'
 
 // Pages that have their own URL. Other routes live at "/".
 // Each one is prerendered to dist/<path>.html at build time (scripts/prerender.mjs)
@@ -20,6 +21,7 @@ export const PATHS = {
   confirmed: '/booking-confirmed',
   talks: '/talks-and-workshops',
   ...Object.fromEntries(Object.entries(SERVICES).map(([id, service]) => [id, service.path])),
+  ...Object.fromEntries(Object.entries(GUIDES).map(([id, guide]) => [id, guide.path])),
 }
 
 // Browser tab title and search-result description per page
@@ -76,8 +78,8 @@ export const META = {
   },
 }
 
-Object.entries(SERVICES).forEach(([id, service]) => {
-  META[id] = service.meta
+Object.entries({ ...SERVICES, ...GUIDES }).forEach(([id, page]) => {
+  META[id] = page.meta
 })
 
 export const routeFromPath = (pathname) =>

@@ -73,21 +73,14 @@
         </ol>
       </div>
 
-      <!-- Direct answers, kept open so readers and crawlers see them in full -->
-      <div class="loc-block">
-        <div class="eyebrow">Straight answers</div>
-        <h2 class="loc-h2">
-          {{ service.answersTitle }}
-          <em>{{ service.answersEmphasis }}</em>
-        </h2>
-        <div class="svc-answers">
-          <article v-for="item in service.answers" :key="item.q" class="svc-answer">
-            <h3 class="svc-answer-q">{{ item.q }}</h3>
-            <!-- Answers are fixed site copy, not user input -->
-            <div class="svc-answer-a" v-html="item.a"></div>
-          </article>
-        </div>
-      </div>
+      <!-- Clinical questions -->
+      <AppointmentFAQ
+        eyebrow="Straight answers"
+        :title="service.answersTitle"
+        :emphasis="service.answersEmphasis"
+        lead="Clear answers to what people ask most about treatment. Have another question?"
+        :faqs="service.answers"
+      />
 
       <!-- Free guides -->
       <div v-if="service.resources?.length" class="loc-block">
@@ -154,11 +147,7 @@
         </div>
       </div>
 
-      <p class="svc-disclaimer">
-        This page is for general education only and is not medical advice. It does not replace a consultation,
-        diagnosis or treatment by a qualified doctor. Do not start, stop or change any medicine without speaking to
-        your doctor.
-      </p>
+      <EducationNote />
     </div>
   </section>
 </template>
@@ -166,10 +155,10 @@
 <script setup>
 import { computed } from 'vue'
 import AppointmentFAQ from './AppointmentFAQ.vue'
+import EducationNote from './EducationNote.vue'
 import { SERVICES } from '../data/services.js'
 import { REGISTRATION } from '../data/about.js'
 import { LANGUAGES, WHATSAPP_URL } from '../data/clinics.js'
-import { useFaqSchema } from '../composables/useFaqSchema.js'
 
 const props = defineProps({ serviceId: { type: String, required: true } })
 defineEmits(['navigate'])
@@ -180,9 +169,6 @@ const service = computed(() => SERVICES[props.serviceId])
 const reviewedOn = computed(() =>
   new Date(service.value.lastReviewed).toLocaleDateString('en-IN', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
 )
-
-// The open answers join the accordion questions in the page's FAQ schema
-useFaqSchema(service.value.answers)
 </script>
 
 <style scoped src="../styles/location.css"></style>
@@ -202,36 +188,6 @@ useFaqSchema(service.value.answers)
 
 .svc-signs {
   margin-top: 1rem;
-}
-
-.svc-answers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.svc-answer {
-  background: var(--surface-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: clamp(1.1rem, 2.5vw, 1.5rem);
-}
-
-.svc-answer-q {
-  margin: 0 0 0.6rem;
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: var(--text-strong);
-}
-
-.svc-answer-a {
-  font-size: 0.9375rem;
-  color: var(--text-body);
-}
-
-.svc-answer-a :deep(p) {
-  margin: 0;
 }
 
 .svc-resources {
@@ -265,20 +221,7 @@ useFaqSchema(service.value.answers)
   color: var(--text-muted);
 }
 
-.svc-disclaimer {
-  margin: 2rem auto 0;
-  max-width: 46rem;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  text-align: center;
-  color: var(--text-muted);
-}
-
 @media (max-width: 900px) {
-  .svc-answers {
-    grid-template-columns: 1fr;
-  }
-
   .svc-resources {
     grid-template-columns: 1fr 1fr;
   }
