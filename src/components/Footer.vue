@@ -1,5 +1,24 @@
 <template>
   <footer class="footer">
+    <!-- Newsletter -->
+    <div class="footer-newsletter-wrap">
+      <div class="footer-newsletter">
+        <div class="footer-newsletter-text">
+          <div class="footer-newsletter-eyebrow">Weekly newsletter</div>
+          <h2 class="footer-newsletter-title">Svadhyaya</h2>
+          <p>One evidence-based idea about your mind and body, every Wednesday. A 2-minute read.</p>
+        </div>
+        <div class="footer-newsletter-actions">
+          <a :href="NEWSLETTER_URL" target="_blank" rel="noopener noreferrer" class="footer-newsletter-join">
+            Join free
+          </a>
+          <a href="/newsletter" class="footer-newsletter-more" @click.prevent="$emit('navigate', 'newsletter')">
+            About the newsletter
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-main">
       <!-- Brand -->
       <div class="footer-brand">
@@ -63,6 +82,7 @@
 import { WHATSAPP_URL } from '../data/clinics.js'
 import { REGISTRATION, SOCIAL_LINKS } from '../data/about.js'
 import { SERVICES } from '../data/services.js'
+import { NEWSLETTER_URL } from '../data/routes.js'
 
 defineEmits(['navigate'])
 
@@ -118,6 +138,77 @@ const columns = [
 .footer {
   background: var(--sage-800);
   color: var(--sage-100);
+}
+
+/* ---- Newsletter ---- */
+.footer-newsletter-wrap {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 5vw, 4rem) 0;
+}
+
+.footer-newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.25rem, 4vw, 2.5rem);
+  background: var(--camel-100);
+  color: var(--ink-900);
+  border-radius: var(--radius-lg);
+}
+
+.footer-newsletter-eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--brand-ink);
+}
+
+.footer-newsletter-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 700;
+  margin: 0.25rem 0 0.4rem;
+  color: var(--ink-900);
+}
+
+.footer-newsletter-text p {
+  margin: 0;
+  max-width: 520px;
+  font-size: 0.9375rem;
+}
+
+.footer-newsletter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.footer-newsletter-join {
+  padding: 11px 26px;
+  background: var(--sage-800);
+  color: var(--white);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+}
+
+.footer-newsletter-join:hover {
+  background: var(--brand);
+}
+
+.footer-newsletter-more {
+  color: var(--ink-900);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .footer-main {

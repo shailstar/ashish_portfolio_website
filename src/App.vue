@@ -35,6 +35,8 @@
 
       <TalksPage v-else-if="route === 'talks'" />
 
+      <NewsletterPage v-else-if="route === 'newsletter'" />
+
       <ServicePage v-else-if="SERVICES[route]" :key="route" :service-id="route" @navigate="handleNavigate" />
 
       <GuidePage v-else-if="GUIDES[route]" :key="route" :guide-id="route" @navigate="handleNavigate" />
@@ -67,6 +69,7 @@ import AboutPage from './components/AboutPage.vue'
 import BookPage from './components/BookPage.vue'
 import BookingConfirmed from './components/BookingConfirmed.vue'
 import TalksPage from './components/TalksPage.vue'
+import NewsletterPage from './components/NewsletterPage.vue'
 import ServicePage from './components/ServicePage.vue'
 import GuidePage from './components/GuidePage.vue'
 import { SERVICES } from './data/services.js'

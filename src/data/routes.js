@@ -7,6 +7,9 @@ import { GUIDES } from './guides.js'
 
 export const SITE_URL = 'https://drashishyadav.com'
 
+// Kit (ConvertKit) sign-up page for the Svadhyaya newsletter
+export const NEWSLETTER_URL = 'https://dr-ashish-yadav-neuro-psychiatrist-yoga-teacher.kit.com/ef948cd03c'
+
 export const PATHS = {
   home: '/',
   fees: '/fees',
@@ -20,6 +23,7 @@ export const PATHS = {
   book: '/book',
   confirmed: '/booking-confirmed',
   talks: '/talks-and-workshops',
+  newsletter: '/newsletter',
   ...Object.fromEntries(Object.entries(SERVICES).map(([id, service]) => [id, service.path])),
   ...Object.fromEntries(Object.entries(GUIDES).map(([id, guide]) => [id, guide.path])),
 }
@@ -34,6 +38,10 @@ export const META = {
   talks: {
     title: 'Mental Health Talks & Workshops in Jaipur | Dr. Ashish Yadav',
     description: 'Mental health talks, workshops and breathwork sessions for schools, colleges, corporates and yoga teacher trainings. In Jaipur, beyond and online.',
+  },
+  newsletter: {
+    title: 'Svadhyaya Newsletter | Dr. Ashish Yadav, Neuro-psychiatrist',
+    description: 'Svadhyaya: a free weekly email with one evidence-based idea about the mind, brain and body, from a neuro-psychiatrist and yoga teacher. Every Wednesday, 2-minute read.',
   },
   book: {
     title: 'Book a Consultation | Dr. Ashish Yadav, Psychiatrist in Jaipur',

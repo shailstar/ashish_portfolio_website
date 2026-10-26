@@ -159,6 +159,131 @@ export const SERVICES = {
     },
   },
 
+  stress: {
+    path: '/stress-management-jaipur',
+    lastReviewed: '2026-10-26',
+    meta: {
+      title: 'Stress Management in Jaipur | Psychiatrist & CBT | Dr. Ashish Yadav',
+      description: 'Help for long-term stress in Jaipur and online: a medical assessment, CBT-based stress skills, sleep care and breathwork, with medicines only if needed. By a DNB psychiatrist.',
+    },
+    navLabel: 'Stress management',
+    // Finishes "Looking for … in Jaipur?"
+    localPhrase: 'stress management',
+    navHint: 'Long-term stress, tension, overwhelm',
+
+    eyebrow: 'Stress management · Jaipur · In person & online',
+    title: 'Stress management in Jaipur,',
+    emphasis: 'for a calmer everyday.',
+    lead: 'Stress is the body’s normal response to pressure, but when it stays switched on for weeks or months it starts to affect sleep, health, mood and relationships. Dr. Ashish Yadav, a neuro-psychiatrist (DNB Psychiatry) and yoga teacher, helps people manage long-term stress with a medical assessment, CBT-based skills, sleep care and breathwork, with medicines only when an underlying condition needs them, at clinics in Jhotwara and Vaishali Nagar and online across India.',
+
+    conditionsTitle: 'Kinds of stress',
+    conditionsEmphasis: 'helped here.',
+    conditions: [
+      { title: 'Work and study pressure', text: 'Deadlines, targets and exams that leave you tense, distracted and unable to switch off.' },
+      { title: 'Chronic stress', text: 'Feeling on edge or overwhelmed most days for weeks or months, even when nothing big is happening.' },
+      { title: 'Stress in the body', text: 'Headaches, neck and shoulder tension, acidity, gut upset or palpitations that flare with stress.' },
+      { title: 'Stress and sleep', text: 'Lying awake with a racing mind, waking at night, or waking up already tired.' },
+      { title: 'Family and relationship stress', text: 'Ongoing conflict, caregiving or big changes at home that wear you down.' },
+      { title: 'After a difficult event', text: 'Stress that does not settle after an accident, illness, loss or other upsetting experience.' },
+    ],
+
+    signsTitle: 'When to see',
+    signsEmphasis: 'a psychiatrist.',
+    signsLead: 'See a psychiatrist when stress has lasted more than a few weeks and self-help has not been enough, or when it affects your sleep, health, work or relationships.',
+    signs: [
+      'You feel tense, irritable or overwhelmed most days',
+      'You cannot switch off, even on holidays or weekends',
+      'Your sleep has become poor or unrefreshing',
+      'You have physical symptoms such as headaches, acidity or palpitations that come with stress',
+      'You rely on alcohol, smoking, caffeine or sleeping pills to cope',
+      'You feel low, anxious or hopeless, or have lost interest in things',
+    ],
+
+    stepsTitle: 'How stress management',
+    stepsEmphasis: 'works.',
+    steps: [
+      { title: 'A detailed assessment.', text: 'Your first consultation covers what is causing your stress, how it shows up in your body, sleep and mood, and checks for conditions that often hide behind stress, such as anxiety, depression, burnout or thyroid problems.' },
+      { title: 'A clear picture and plan.', text: 'You leave knowing whether this is everyday stress that skills can fix, or an underlying condition that needs treatment, and with a written plan for the next few weeks.' },
+      { title: 'CBT-based stress skills.', text: 'Structured sessions help you notice stressful thinking patterns, solve problems step by step, set boundaries and manage time and worry. Sessions are available in person and online.' },
+      { title: 'Sleep and daily routine.', text: 'A fixed wake time, morning light, movement and less late-evening screen time steady the body’s stress system and protect sleep.' },
+      { title: 'Breathwork and yogic practices.', text: 'Slow breathing, pranayama and yoga nidra calm the body’s stress response. They are practical tools you can use every day, alongside treatment.' },
+      { title: 'Medicines, only when needed.', text: 'Stress on its own rarely needs medicines. If an anxiety disorder, depression or a serious sleep problem is found, treatment options are discussed and decided together with you.' },
+    ],
+
+    answersTitle: 'Stress management,',
+    answersEmphasis: 'your questions answered.',
+    answers: [
+      {
+        q: 'What is stress?',
+        a: '<p>Stress is the body’s natural response to pressure or threat, in which stress hormones raise your heart rate, sharpen attention and prepare you to act. In short bursts it is helpful. When it stays switched on for weeks or months, it starts to wear down sleep, mood, concentration and physical health.</p>',
+      },
+      {
+        q: 'When does stress become a problem?',
+        a: '<p>Stress becomes a problem when it lasts for weeks, does not ease when the pressure lifts, or starts to affect your sleep, health, work or relationships. Warning signs include constant tension, irritability, poor sleep, frequent headaches or acidity, and relying on alcohol, smoking or caffeine to cope.</p>',
+      },
+      {
+        q: 'What is the difference between stress and anxiety?',
+        a: '<p>Stress is a response to a clear pressure, such as a deadline or a family problem, and it usually eases once the pressure passes. Anxiety is worry or fear that continues even without a clear cause, or is far stronger than the situation calls for. Long-term stress can turn into an anxiety disorder, which is why a proper assessment helps.</p>',
+      },
+      {
+        q: 'Can stress cause physical symptoms?',
+        a: '<p>Yes. Long-term stress commonly causes headaches, muscle tension, acidity, gut upset, palpitations, tiredness and poor sleep, and can worsen conditions such as high blood pressure, IBS and skin problems. Physical causes are checked first, so nothing important is missed.</p>',
+      },
+      {
+        q: 'Does stress need medicines?',
+        a: '<p>Usually not. Everyday and work stress mostly improves with CBT-based skills, better sleep, regular movement and breathing practices. Medicines are considered only if stress has led to an anxiety disorder, depression or a serious sleep problem, and the decision is always made together with you.</p>',
+      },
+      {
+        q: 'How long does it take to manage stress better?',
+        a: '<p>Most people notice a difference within 2 to 4 weeks of practising stress skills daily, and a short course of 4 to 8 sessions is often enough. Stress that has lasted for years, or that comes with anxiety, depression or burnout, may need longer.</p>',
+      },
+      {
+        q: 'What can I do right now to calm stress?',
+        a: '<p>Try the cyclic sigh: breathe in through the nose, take a second short sip of air on top, then breathe out slowly through the mouth, longer than the inhale. Repeat for one minute. Slow breathing like this calms the body’s stress response within minutes. The <a href="/guides/daily-stress-toolkit">daily stress toolkit</a> has five more tools.</p>',
+      },
+      {
+        q: 'Do yoga and breathwork help with stress?',
+        a: '<p>Yes. Slow breathing, pranayama, yoga and yoga nidra have good evidence for lowering stress, and they are simple to practise daily. They work best as part of a wider plan that also looks at sleep, routine and the causes of stress, not as a replacement for treatment when it is needed.</p>',
+      },
+      {
+        q: 'Is it stress or burnout?',
+        a: '<p>Stress usually feels like too much: too much pressure, urgency and tension. Burnout feels like too little: exhaustion, detachment and a sense that nothing you do makes a difference, usually after long periods of work stress. Both are common, both are treatable, and they often overlap.</p>',
+      },
+    ],
+
+    faqs: [
+      {
+        q: 'What happens at the first consultation for stress?',
+        a: '<p>The first consultation covers what is causing your stress, how it affects your sleep, body and mood, and whether an underlying condition needs treatment. You leave with a clear explanation and a written plan. Bring any previous prescriptions and recent blood reports if you have them.</p>',
+      },
+      {
+        q: 'Are stress management sessions available online?',
+        a: '<p>Yes. Sessions work well over video for most people, and are held one-to-one on Google Meet. You can also mix clinic and online sessions.</p>',
+      },
+      {
+        q: 'How much does stress management cost?',
+        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT-based sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+      },
+      {
+        q: 'Do you run stress management workshops for organisations?',
+        a: '<p>Yes. Talks and workshops on stress, sleep and breathwork are offered for schools, colleges and workplaces, in person in Jaipur and online. See <a href="/talks-and-workshops">talks and workshops</a>.</p>',
+      },
+    ],
+
+    resources: [
+      { title: 'Daily stress toolkit', text: 'Six short, evidence-based daily practices for stress.', url: '/guides/daily-stress-toolkit' },
+      { title: 'How to sleep better', text: 'Why stress steals sleep, and what helps.', url: '/guides/how-to-sleep-better' },
+      { title: 'Anxiety guide', text: 'When stress turns into worry or panic.', url: '/guides/anxiety-guide' },
+      { title: '2-minute self assessment', text: 'A quick check of how you are doing.', url: '/assessment.html' },
+    ],
+
+    condition: {
+      name: 'Chronic stress',
+      alternateName: ['Work stress', 'Occupational stress', 'Psychological stress'],
+      treatments: ['CBT-based stress management', 'Sleep and lifestyle care', 'Breathwork and yogic practices'],
+    },
+  },
+
   depression: {
     path: '/depression-treatment-jaipur',
     lastReviewed: '2026-10-26',
