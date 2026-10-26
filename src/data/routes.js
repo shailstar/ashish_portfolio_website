@@ -55,6 +55,8 @@ export const META = {
   adhd: {
     title: 'Adult ADHD Assessment in Jaipur & Online | Dr. Ashish Yadav',
     description: 'A structured adult ADHD assessment by a neuro-psychiatrist (DNB Psychiatry), online across India or in person in Jaipur, with a written report.',
+    // Shown in the page's author line and the schema markup. Update when the page content is reviewed.
+    lastReviewed: '2026-10-26',
   },
   cancellation: {
     title: 'Cancellation & Refund Policy | Dr. Ashish Yadav',

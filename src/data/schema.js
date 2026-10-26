@@ -2,7 +2,7 @@
 // scripts/prerender.mjs writes it into the <head> of each page at build time.
 // Check changes at https://validator.schema.org and https://search.google.com/test/rich-results
 
-import { SITE_URL, PATHS } from './routes.js'
+import { SITE_URL, PATHS, META } from './routes.js'
 import { LINKEDIN_URL, REGISTRATION, PROFILE_LINKS, SOCIAL_LINKS } from './about.js'
 import { PHONE_TEL, CLINICS, OPEN_DAYS } from './clinics.js'
 import { SERVICES } from './services.js'
@@ -73,12 +73,19 @@ const physician = {
   email: 'contact@drashishyadav.com',
   address: jaipurAddress(),
   workLocation: Object.values(CLINICS).map((clinic) => ({ '@id': clinicId(clinic) })),
-  // Visiting consultant, evenings by appointment only
-  hospitalAffiliation: {
-    '@type': 'Hospital',
-    name: 'Shalby Hospital, Vaishali Nagar',
-    address: jaipurAddress(),
-  },
+  hospitalAffiliation: [
+    {
+      '@type': 'Hospital',
+      name: CLINICS.jhotwara.name,
+      address: jaipurAddress(CLINICS.jhotwara.street, CLINICS.jhotwara.postalCode),
+    },
+    // Visiting consultant, evenings by appointment only
+    {
+      '@type': 'Hospital',
+      name: 'Shalby Hospital, Vaishali Nagar',
+      address: jaipurAddress(),
+    },
+  ],
   areaServed: [{ '@type': 'City', name: 'Jaipur' }, { '@type': 'Country', name: 'India' }],
   knowsLanguage: ['English', 'Hindi', 'Gujarati'],
   isAcceptingNewPatients: true,
@@ -146,6 +153,17 @@ const medicalWebPage = (service) => ({
   }),
 })
 
+// The adult ADHD assessment has its own page component, so its details live here
+const ADHD_PAGE = {
+  path: PATHS.adhd,
+  meta: META.adhd,
+  lastReviewed: META.adhd.lastReviewed,
+  condition: {
+    name: 'Attention deficit hyperactivity disorder',
+    alternateName: 'Adult ADHD',
+  },
+}
+
 // The schema blocks for one page, keyed by route id
 const BY_ROUTE = {
   home: [website, physician],
@@ -161,6 +179,7 @@ const BY_ROUTE = {
   jaipur: [...Object.values(CLINICS).map(clinicSchema), physician],
   jhotwara: [clinicSchema(CLINICS.jhotwara), physician],
   vaishali: [clinicSchema(CLINICS.vaishali), physician],
+  adhd: [medicalWebPage(ADHD_PAGE), physician],
   ...Object.fromEntries(
     Object.entries({ ...SERVICES, ...GUIDES }).map(([id, page]) => [id, [medicalWebPage(page), physician]]),
   ),

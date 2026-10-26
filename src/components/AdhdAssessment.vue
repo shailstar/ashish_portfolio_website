@@ -26,6 +26,11 @@
         <p class="adhd-disclaimer">
           A diagnosis is a clinical decision made after the assessment. Booking does not guarantee a particular result.
         </p>
+        <p class="adhd-byline">
+          Written and medically reviewed by
+          <a href="/about" @click.prevent="$emit('navigate', 'about')">Dr. Ashish Yadav</a>, Neuro-psychiatrist (DNB
+          Psychiatry), {{ REGISTRATION.council }} Reg. No. {{ REGISTRATION.number }}. Last reviewed {{ reviewedOn }}.
+        </p>
       </header>
 
       <!-- At a glance -->
@@ -197,8 +202,16 @@
 <script setup>
 import AppointmentFAQ from './AppointmentFAQ.vue'
 import { waLink } from '../data/clinics.js'
+import { REGISTRATION } from '../data/about.js'
+import { META } from '../data/routes.js'
 
 defineEmits(['navigate'])
+
+const reviewedOn = new Date(META.adhd.lastReviewed).toLocaleDateString('en-IN', {
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+})
 
 const WHATSAPP = waLink("Hi Dr. Ashish, I'd like to take the adult ADHD assessment. Could you check if it's suitable for me?")
 
@@ -443,6 +456,17 @@ const faqs = [
   font-size: var(--fs-sm);
   color: var(--text-muted);
   margin: 0;
+}
+
+.adhd-byline {
+  margin: 1rem 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.adhd-byline a {
+  color: var(--brand-ink);
+  font-weight: 600;
 }
 
 /* ---- At a glance ---- */
