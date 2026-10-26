@@ -5,6 +5,8 @@
 // Write each answer so its first sentence answers the question on its own:
 // search engines and AI assistants often quote just that sentence.
 // Name medicine groups only (SSRIs, benzodiazepines), never individual medicines or brands.
+//
+// navGroup places the page under a heading in the Treatments menu: 'Mood & stress' or 'Other conditions'.
 
 export const SERVICES = {
   anxiety: {
@@ -18,6 +20,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'anxiety treatment',
     navHint: 'Worry, panic attacks, social anxiety',
+    navGroup: 'Mood & stress',
 
     eyebrow: 'Anxiety treatment · Jaipur · In person & online',
     title: 'Anxiety treatment in Jaipur,',
@@ -170,6 +173,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'stress management',
     navHint: 'Long-term stress, tension, overwhelm',
+    navGroup: 'Mood & stress',
 
     eyebrow: 'Stress management · Jaipur · In person & online',
     title: 'Stress management in Jaipur,',
@@ -284,6 +288,136 @@ export const SERVICES = {
     },
   },
 
+  burnout: {
+    path: '/burnout-treatment-jaipur',
+    lastReviewed: '2026-10-26',
+    meta: {
+      title: 'Burnout Treatment in Jaipur | Psychiatrist & CBT | Dr. Ashish Yadav',
+      description: 'Help for burnout and work exhaustion in Jaipur and online: a medical assessment, CBT, sleep and energy recovery, and a plan for work, with medicines only if needed. By a DNB psychiatrist.',
+    },
+    navLabel: 'Burnout',
+    // Finishes "Looking for … in Jaipur?"
+    localPhrase: 'burnout treatment',
+    navHint: 'Exhaustion, detachment, work fatigue',
+    navGroup: 'Mood & stress',
+
+    eyebrow: 'Burnout treatment · Jaipur · In person & online',
+    title: 'Burnout treatment in Jaipur,',
+    emphasis: 'to get your energy back.',
+    lead: 'Burnout is a state of physical and emotional exhaustion that builds up after long periods of stress, usually at work, and it is very possible to recover from it. Dr. Ashish Yadav, a neuro-psychiatrist (DNB Psychiatry) and yoga teacher, helps people recover from burnout with a medical assessment, CBT, sleep and energy recovery, and a practical plan for work, with medicines only when depression or anxiety needs treating, at clinics in Jhotwara and Vaishali Nagar and online across India.',
+
+    conditionsTitle: 'Signs of burnout',
+    conditionsEmphasis: 'helped here.',
+    conditions: [
+      { title: 'Exhaustion', text: 'Feeling drained most days, and waking up tired even after a full night’s sleep.' },
+      { title: 'Detachment and cynicism', text: 'Feeling distant, irritable or negative about work, colleagues or the people you care for.' },
+      { title: 'Doing less, achieving less', text: 'Struggling to focus, falling behind and feeling that nothing you do makes a difference.' },
+      { title: 'Caregiver burnout', text: 'Worn down after months or years of caring for a child, a parent or a family member who is unwell.' },
+      { title: 'Student and exam burnout', text: 'Running on empty after long stretches of studying, coaching and exam pressure.' },
+      { title: 'Burnout in health and care work', text: 'Doctors, nurses, teachers and others in caring roles who feel emotionally emptied by their work.' },
+    ],
+
+    signsTitle: 'When to see',
+    signsEmphasis: 'a psychiatrist.',
+    signsLead: 'See a psychiatrist when exhaustion has lasted more than a few weeks and rest has not helped, or when it affects your work, health or relationships.',
+    signs: [
+      'You feel exhausted most days, and weekends or holidays do not restore you',
+      'You dread work, or feel numb and detached about it',
+      'You find it hard to concentrate, remember things or make decisions',
+      'Your sleep has become poor, or you sleep a lot and still feel tired',
+      'You are more irritable with family, colleagues or friends',
+      'You feel low, hopeless or anxious much of the time. If you have thoughts that life is not worth living, please seek help today',
+    ],
+
+    stepsTitle: 'How burnout treatment',
+    stepsEmphasis: 'works.',
+    steps: [
+      { title: 'A detailed assessment.', text: 'Your first consultation covers your work, stresses, sleep, energy and mood, and checks for conditions that look like burnout or come with it, such as depression, anxiety, thyroid problems, anaemia or vitamin deficiencies.' },
+      { title: 'A clear picture and plan.', text: 'You leave knowing whether this is burnout, depression or both, what is draining you most, and a written plan for the first few weeks of recovery.' },
+      { title: 'Rest and energy recovery.', text: 'Recovery starts by protecting sleep, building in real breaks, and slowly rebuilding energy with movement and daylight, rather than pushing through.' },
+      { title: 'CBT and boundaries.', text: 'Structured sessions help you change patterns such as perfectionism and over-responsibility, set limits, and plan conversations about workload. Sessions are available in person and online.' },
+      { title: 'Breathwork and yogic practices.', text: 'Slow breathing, pranayama and yoga nidra help the body switch out of constant alert and into rest, alongside treatment.' },
+      { title: 'Medicines, only when needed.', text: 'Burnout itself is not treated with medicines. If depression, an anxiety disorder or a serious sleep problem is found, treatment options are discussed and decided together with you.' },
+    ],
+
+    answersTitle: 'Burnout treatment,',
+    answersEmphasis: 'your questions answered.',
+    answers: [
+      {
+        q: 'What is burnout?',
+        a: '<p>Burnout is a state of exhaustion, detachment and reduced effectiveness caused by long-term stress that has not been managed, most often at work. The World Health Organization describes it as an occupational phenomenon rather than a medical illness. It is real, it is common, and with the right changes people recover from it.</p>',
+      },
+      {
+        q: 'What are the three signs of burnout?',
+        a: '<p>Burnout has three main signs: exhaustion, feeling distant or cynical about your work, and feeling less effective at it. Many people also notice poor sleep, irritability, headaches, frequent illness and difficulty concentrating.</p>',
+      },
+      {
+        q: 'Is it burnout or depression?',
+        a: '<p>Burnout is mostly tied to work or a specific role, and often eases when you are away from it. Depression affects every part of life, including things you used to enjoy, and usually does not lift with a break. The two often overlap, and burnout can turn into depression if it is not addressed, which is why a proper assessment helps. See <a href="/depression-treatment-jaipur">depression treatment</a>.</p>',
+      },
+      {
+        q: 'What is the difference between stress and burnout?',
+        a: '<p>Stress usually feels like too much: too much pressure, urgency and tension. Burnout feels like too little: too little energy, motivation and hope that things will change. Long-term stress that is not managed is the most common path into burnout. See <a href="/stress-management-jaipur">stress management</a>.</p>',
+      },
+      {
+        q: 'How long does it take to recover from burnout?',
+        a: '<p>Mild burnout often improves within a few weeks of real changes to rest, sleep and workload. Moderate to severe burnout usually takes several months to recover from fully. Recovery is faster when the causes are addressed, not just the symptoms.</p>',
+      },
+      {
+        q: 'Do I need to quit my job to recover from burnout?',
+        a: '<p>Usually not. Many people recover while staying in their job by changing workload, boundaries, sleep and how they recover after work. Sometimes a short break from work helps, and occasionally a bigger change is the right choice, but this is decided carefully, not in the middle of exhaustion.</p>',
+      },
+      {
+        q: 'Does burnout need medicines?',
+        a: '<p>Burnout on its own is not treated with medicines. Treatment focuses on recovery, CBT, sleep and changes at work. If depression, an anxiety disorder or a sleep problem has developed alongside burnout, medicines may help, and this is always decided together with you.</p>',
+      },
+      {
+        q: 'Can burnout cause physical symptoms?',
+        a: '<p>Yes. Burnout commonly causes tiredness, headaches, muscle aches, stomach and gut problems, frequent colds and poor sleep. Physical causes such as thyroid problems, anaemia and vitamin deficiencies are checked, because they can cause similar tiredness.</p>',
+      },
+      {
+        q: 'What can I do today to start recovering from burnout?',
+        a: '<p>Start small: keep the same wake time every day, take one real break away from screens during work, walk for 10 minutes after lunch, and end the day with a short body scan or yoga nidra. Pick one, keep it for two weeks, then add the next. The <a href="/guides/daily-stress-toolkit">daily stress toolkit</a> explains each one.</p>',
+      },
+    ],
+
+    faqs: [
+      {
+        q: 'What happens at the first consultation for burnout?',
+        a: '<p>A 60-minute first consultation is recommended, so there is time to understand your work, energy, sleep and mood properly. You leave with a clear explanation and a written recovery plan. Bring any previous prescriptions and recent blood reports if you have them.</p>',
+      },
+      {
+        q: 'Can you give a medical certificate for time off work?',
+        a: '<p>If, after assessment, a period of rest is medically advised, a certificate can be provided. This is decided based on your health, not on request alone.</p>',
+      },
+      {
+        q: 'Are burnout sessions available online?',
+        a: '<p>Yes. Sessions work well over video for most people, and are held one-to-one on Google Meet. You can also mix clinic and online sessions.</p>',
+      },
+      {
+        q: 'How much does burnout treatment cost?',
+        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+      },
+      {
+        q: 'Do you run burnout workshops for organisations?',
+        a: '<p>Yes. Talks and workshops on burnout, stress and recovery are offered for workplaces, hospitals, schools and colleges, in person in Jaipur and online. See <a href="/talks-and-workshops">talks and workshops</a>.</p>',
+      },
+    ],
+
+    resources: [
+      { title: 'Daily stress toolkit', text: 'Six short, evidence-based daily practices for recovery.', url: '/guides/daily-stress-toolkit' },
+      { title: 'How to sleep better', text: 'Rebuilding sleep, the first step in recovery.', url: '/guides/how-to-sleep-better' },
+      { title: 'PHQ-9 mood check', text: 'Check whether low mood has become depression.', url: '/phq9.html' },
+      { title: '2-minute self assessment', text: 'A quick check of how you are doing.', url: '/assessment.html' },
+    ],
+
+    condition: {
+      name: 'Burnout',
+      alternateName: ['Occupational burnout', 'Work burnout', 'Caregiver burnout'],
+      treatments: ['Cognitive behavioural therapy (CBT)', 'Sleep and energy recovery', 'Breathwork and yogic practices'],
+    },
+  },
+
   depression: {
     path: '/depression-treatment-jaipur',
     lastReviewed: '2026-10-26',
@@ -295,6 +429,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'depression treatment',
     navHint: 'Low mood, burnout, loss of interest',
+    navGroup: 'Mood & stress',
 
     eyebrow: 'Depression treatment · Jaipur · In person & online',
     title: 'Depression treatment in Jaipur,',
@@ -429,6 +564,266 @@ export const SERVICES = {
     },
   },
 
+  bipolar: {
+    path: '/bipolar-disorder-treatment-jaipur',
+    lastReviewed: '2026-10-26',
+    meta: {
+      title: 'Bipolar Disorder Treatment in Jaipur | Psychiatrist | Dr. Ashish Yadav',
+      description: 'Diagnosis and long-term treatment for bipolar disorder in Jaipur and online: mood stabilising medicines, regular monitoring, psychoeducation and family support. By a DNB psychiatrist.',
+    },
+    navLabel: 'Bipolar disorder',
+    // Finishes "Looking for … in Jaipur?"
+    localPhrase: 'bipolar disorder treatment',
+    navHint: 'Mood swings, highs and lows',
+    navGroup: 'Mood & stress',
+
+    eyebrow: 'Bipolar disorder treatment · Jaipur · In person & online',
+    title: 'Bipolar disorder treatment in Jaipur,',
+    emphasis: 'for steadier days.',
+    lead: 'Bipolar disorder is a long-term medical condition with periods of very high or irritable mood and periods of depression, and with regular treatment most people stay well and live full lives. Dr. Ashish Yadav, a neuro-psychiatrist (DNB Psychiatry), diagnoses and treats bipolar disorder with mood stabilising medicines, regular monitoring, psychoeducation, sleep and routine care and family support, at clinics in Jhotwara and Vaishali Nagar and online across India.',
+
+    conditionsTitle: 'What is',
+    conditionsEmphasis: 'treated here.',
+    conditions: [
+      { title: 'Bipolar I disorder', text: 'Episodes of mania, with very high energy, little need for sleep and risky decisions, usually alongside episodes of depression.' },
+      { title: 'Bipolar II disorder', text: 'Milder highs, called hypomania, together with longer and often heavier periods of depression.' },
+      { title: 'Cyclothymia', text: 'Frequent ups and downs in mood over at least two years that are milder than full episodes but still disrupt life.' },
+      { title: 'Bipolar depression', text: 'The low phase of bipolar disorder, which needs a different treatment from ordinary depression.' },
+      { title: 'Mixed episodes', text: 'High energy and restlessness at the same time as low mood, which can feel especially distressing.' },
+      { title: 'Second opinions', text: 'A careful review if you are unsure of your diagnosis, or your current treatment is not working well.' },
+    ],
+
+    signsTitle: 'When to see',
+    signsEmphasis: 'a psychiatrist.',
+    signsLead: 'See a psychiatrist if you have had periods of unusually high or irritable mood, or if depression keeps coming back. If someone is in danger or out of control, go to the nearest emergency department.',
+    signs: [
+      'You have had days of very high energy, little need for sleep and racing thoughts',
+      'Others have noticed you talking fast, spending heavily or taking unusual risks',
+      'You have had periods of depression that came back several times',
+      'Your mood swings between highs and lows that affect work and relationships',
+      'Antidepressants made you feel wired, restless or unusually high',
+      'You or a family member has been diagnosed with bipolar disorder before',
+    ],
+
+    stepsTitle: 'How treatment',
+    stepsEmphasis: 'works.',
+    steps: [
+      { title: 'A careful assessment.', text: 'Your first consultation takes a detailed history of past highs and lows, often with a family member, and checks for physical causes such as thyroid problems, and for the effects of alcohol, drugs or other medicines.' },
+      { title: 'A clear diagnosis and plan.', text: 'You leave knowing your diagnosis, what it means, and the treatment options, with time to ask every question you have.' },
+      { title: 'Mood stabilising medicines.', text: 'Medicines are the foundation of bipolar treatment. Mood stabilisers and related medicines prevent new episodes and treat current ones. They are chosen with you and reviewed regularly.' },
+      { title: 'Regular monitoring.', text: 'Some medicines need blood tests to check levels, kidney, thyroid and other health markers. Regular follow-ups catch side effects early and keep the dose right.' },
+      { title: 'Psychoeducation and therapy.', text: 'Learning your early warning signs, tracking your mood, and building a relapse plan with your family make episodes less likely. Structured therapy helps alongside medicines.' },
+      { title: 'Sleep, routine and lifestyle.', text: 'Steady sleep, regular daily routines and avoiding alcohol and drugs protect against relapse. Gentle yoga and breathing practices can support wellbeing, alongside medicines, never instead of them.' },
+    ],
+
+    answersTitle: 'Bipolar disorder,',
+    answersEmphasis: 'your questions answered.',
+    answers: [
+      {
+        q: 'What is bipolar disorder?',
+        a: '<p>Bipolar disorder is a long-term medical condition in which mood moves between episodes of mania or hypomania, with very high energy, and episodes of depression, with periods of normal mood in between. It involves changes in how the brain regulates mood, energy and sleep. It is not a weakness or a personality flaw, and it is treatable.</p>',
+      },
+      {
+        q: 'What are the signs of mania?',
+        a: '<p>Signs of mania include very high or irritable mood, much less need for sleep, talking fast, racing thoughts, big plans, overspending and risky decisions, lasting at least a week or needing hospital care. Hypomania is a milder form that lasts at least four days. People often do not see the change in themselves, so family members usually notice first.</p>',
+      },
+      {
+        q: 'Is it bipolar disorder or just mood swings?',
+        a: '<p>Everyday mood swings last hours and follow events. In bipolar disorder, mood changes last days to weeks, come with changes in sleep, energy and behaviour, and are clearly different from your usual self. A careful history from a psychiatrist, ideally with a family member, is the only reliable way to tell the difference.</p>',
+      },
+      {
+        q: 'What is the best treatment for bipolar disorder?',
+        a: '<p>The most effective treatment for bipolar disorder is long-term mood stabilising medicine combined with psychoeducation, regular sleep and routine, and family support. Medicines treat episodes and prevent new ones. Therapy and lifestyle care make relapse less likely, but they do not replace medicines.</p>',
+      },
+      {
+        q: 'Will I need medicines for life?',
+        a: '<p>Most people with bipolar disorder benefit from long-term treatment, because stopping medicines greatly raises the risk of a new episode. The aim is the lowest effective dose with the fewest side effects. Any change, including stopping, should only be made slowly with your psychiatrist.</p>',
+      },
+      {
+        q: 'Why are blood tests needed in bipolar treatment?',
+        a: '<p>Some mood stabilising medicines need regular blood tests to keep the dose in a safe and effective range and to check the kidneys, thyroid, liver, blood sugar and weight. These checks are a routine part of safe treatment, and how often you need them depends on your medicines.</p>',
+      },
+      {
+        q: 'Why are antidepressants used carefully in bipolar disorder?',
+        a: '<p>Antidepressants taken on their own can trigger a high or speed up mood cycles in some people with bipolar disorder. That is why bipolar depression is treated differently from ordinary depression, usually with mood stabilising medicines, and why checking for past highs matters before starting treatment for depression.</p>',
+      },
+      {
+        q: 'Can people with bipolar disorder live a normal life?',
+        a: '<p>Yes. With regular treatment, many people with bipolar disorder work, study, marry, raise families and stay well for long periods. Taking medicines regularly, protecting sleep, avoiding alcohol and drugs and acting early on warning signs make the biggest difference.</p>',
+      },
+      {
+        q: 'Is bipolar disorder hereditary?',
+        a: '<p>Bipolar disorder runs in families, and having a parent or sibling with it raises the risk, but most relatives of people with bipolar disorder never develop it. Genes, sleep disruption, stress and substance use all play a part.</p>',
+      },
+      {
+        q: 'Can bipolar disorder be treated during pregnancy?',
+        a: '<p>Yes, with careful planning. Some medicines are safer than others in pregnancy, and stopping treatment suddenly raises the risk of relapse, especially after delivery. If you are planning a pregnancy, discuss it with your psychiatrist in advance so treatment can be adjusted safely.</p>',
+      },
+    ],
+
+    faqs: [
+      {
+        q: 'What happens at the first consultation for bipolar disorder?',
+        a: '<p>A 60-minute first consultation is recommended, so there is time for a detailed history of past highs and lows. It helps a great deal if a family member who knows you well can join. Bring all previous prescriptions, discharge summaries and blood reports.</p>',
+      },
+      {
+        q: 'I am already on treatment from another doctor. Can I consult?',
+        a: '<p>Yes. Bring your current prescriptions and recent blood reports, and do not stop or change any medicine before the consultation. Your treatment will be reviewed and any changes made gradually and safely.</p>',
+      },
+      {
+        q: 'Can follow-ups be online?',
+        a: '<p>Yes. Once you are stable, follow-ups work well online on Google Meet, with blood tests done at a lab near you. An in-person visit may be advised during an episode or when starting new medicines.</p>',
+      },
+      {
+        q: 'How much does bipolar treatment cost?',
+        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. Blood tests, when needed, are done at a lab of your choice and paid for separately.</p>',
+      },
+      {
+        q: 'What should my family do if a high or low episode starts?',
+        a: '<p>Contact your psychiatrist early, at the first warning signs, as treatment can often be adjusted before an episode becomes severe. If the person is at risk of harming themselves or others, or is out of control, take them to the nearest emergency department.</p>',
+      },
+    ],
+
+    resources: [
+      { title: 'PHQ-9 mood check', text: 'A standard 9-question check of low mood.', url: '/phq9.html' },
+      { title: 'How to sleep better', text: 'Steady sleep is one of the best protections against relapse.', url: '/guides/how-to-sleep-better' },
+      { title: 'Daily stress toolkit', text: 'Short daily practices for steadier days.', url: '/guides/daily-stress-toolkit' },
+      { title: '2-minute self assessment', text: 'A quick check of how you are doing.', url: '/assessment.html' },
+    ],
+
+    condition: {
+      name: 'Bipolar disorder',
+      alternateName: ['Bipolar I disorder', 'Bipolar II disorder', 'Cyclothymia', 'Manic depression', 'Bipolar affective disorder'],
+      treatments: ['Mood stabilising medicines', 'Psychoeducation and relapse prevention', 'Sleep, routine and family support'],
+    },
+  },
+
+  sleep: {
+    path: '/insomnia-treatment-jaipur',
+    lastReviewed: '2026-10-26',
+    meta: {
+      title: 'Insomnia & Sleep Problems Treatment in Jaipur | Dr. Ashish Yadav',
+      description: 'Treatment for insomnia and sleep problems in Jaipur and online: CBT for insomnia (CBT-I), treatment of the anxiety or low mood behind poor sleep, and short-term medicines only if needed.',
+    },
+    navLabel: 'Sleep problems',
+    // Finishes "Looking for … in Jaipur?"
+    localPhrase: 'insomnia treatment',
+    navHint: 'Insomnia, night waking, poor sleep',
+    navGroup: 'Mood & stress',
+
+    eyebrow: 'Insomnia & sleep problems · Jaipur · In person & online',
+    title: 'Insomnia treatment in Jaipur,',
+    emphasis: 'for nights that restore you.',
+    lead: 'Insomnia is one of the most common and most treatable sleep problems, and most people sleep clearly better within a few weeks of the right treatment. Dr. Ashish Yadav, a neuro-psychiatrist (DNB Psychiatry) and yoga teacher, treats insomnia and other sleep problems with CBT for insomnia (CBT-I), treatment of the anxiety, low mood or stress behind poor sleep, and medicines only for short periods when needed, at clinics in Jhotwara and Vaishali Nagar and online across India.',
+
+    conditionsTitle: 'Sleep problems',
+    conditionsEmphasis: 'treated here.',
+    conditions: [
+      { title: 'Trouble falling asleep', text: 'Lying awake for a long time with a busy mind, even when you feel tired.' },
+      { title: 'Waking at night or too early', text: 'Waking up in the night or before dawn and not being able to get back to sleep.' },
+      { title: 'Unrefreshing sleep', text: 'Sleeping enough hours but still waking up tired, foggy or irritable.' },
+      { title: 'Sleep with anxiety or depression', text: 'Poor sleep that comes with worry or low mood, where each makes the other worse.' },
+      { title: 'Body clock problems', text: 'Falling asleep and waking very late, often after shift work, travel or late-night screens.' },
+      { title: 'Depending on sleeping pills', text: 'Wanting to sleep well without relying on sleeping pills you have taken for months or years.' },
+    ],
+
+    signsTitle: 'When to see',
+    signsEmphasis: 'a psychiatrist.',
+    signsLead: 'See a psychiatrist when poor sleep happens three or more nights a week for more than a month, or when it affects your mood, work or health during the day.',
+    signs: [
+      'It takes you more than 30 minutes to fall asleep most nights',
+      'You wake in the night and lie awake for a long time',
+      'You feel tired, irritable or unfocused during the day',
+      'You worry about sleep, or dread going to bed',
+      'You need sleeping pills or alcohol to fall asleep',
+      'Poor sleep comes with low mood, anxiety or racing thoughts',
+    ],
+
+    stepsTitle: 'How insomnia treatment',
+    stepsEmphasis: 'works.',
+    steps: [
+      { title: 'A detailed sleep assessment.', text: 'Your first consultation covers your sleep pattern, routine, mood, stress, caffeine, screens and medicines, and checks for physical causes such as thyroid problems, pain or restless legs.' },
+      { title: 'A sleep diary.', text: 'Recording your sleep for one to two weeks shows the real pattern, which is often different from how it feels, and guides the treatment plan.' },
+      { title: 'CBT for insomnia (CBT-I).', text: 'CBT-I is the first-choice treatment for long-term insomnia. It resets your sleep pattern with a fixed wake time, better use of time in bed and calming the worry about sleep. Sessions are available in person and online.' },
+      { title: 'Treating what is behind poor sleep.', text: 'If anxiety, depression, stress or another condition is keeping you awake, treating it properly is often what finally fixes sleep.' },
+      { title: 'Breathwork and yoga nidra.', text: 'Slow breathing, a body scan or yoga nidra in the evening help the body switch from alert to rest, alongside treatment.' },
+      { title: 'Medicines, only when needed.', text: 'Sleeping pills are used only for short periods, if at all, because some can cause dependence. If you already take them, they can be reduced slowly and safely as your sleep improves.' },
+    ],
+
+    answersTitle: 'Insomnia treatment,',
+    answersEmphasis: 'your questions answered.',
+    answers: [
+      {
+        q: 'What is insomnia?',
+        a: '<p>Insomnia is difficulty falling asleep, staying asleep or waking too early, at least three nights a week, even when you have the chance to sleep, along with tiredness or poor functioning during the day. When it lasts three months or more, it is called chronic insomnia. It is very common and very treatable.</p>',
+      },
+      {
+        q: 'What is the best treatment for insomnia?',
+        a: '<p>CBT for insomnia (CBT-I) is the first-choice treatment for long-term insomnia and is recommended by international sleep guidelines ahead of sleeping pills. It works for most people within 4 to 8 sessions, and its benefits last after treatment ends, unlike sleeping pills, whose effect stops when you stop taking them.</p>',
+      },
+      {
+        q: 'What is CBT-I?',
+        a: '<p>CBT-I, or cognitive behavioural therapy for insomnia, is a structured, short treatment that retrains your sleep. It includes a fixed wake time, spending only as long in bed as you actually sleep, getting up when you cannot sleep, and changing the worries and habits that keep insomnia going.</p>',
+      },
+      {
+        q: 'Are sleeping pills safe?',
+        a: '<p>Some sleeping pills can cause dependence, tolerance and next-day drowsiness, especially sedatives such as benzodiazepines, so they are used only for short periods, if at all. Other medicines may be considered when insomnia comes with anxiety or depression. Never stop sleeping pills you have taken for a long time suddenly; reduce them slowly with your doctor.</p>',
+      },
+      {
+        q: 'Can anxiety or depression cause insomnia?',
+        a: '<p>Yes, and the link works both ways. People with insomnia are about 10 times more likely to have depression and about 17 times more likely to have anxiety, and poor sleep often appears before other symptoms. Treating the anxiety or low mood, together with sleep itself, usually works best.</p>',
+      },
+      {
+        q: 'What is the 20-minute rule for sleep?',
+        a: '<p>If you have been lying awake for about 20 minutes, get out of bed, go to another dim room and do something calm until you feel sleepy, then return to bed. This teaches your brain that bed is for sleeping, not for lying awake. The <a href="/guides/how-to-sleep-better">How to sleep better</a> guide explains it in full.</p>',
+      },
+      {
+        q: 'How many hours of sleep do I need?',
+        a: '<p>Most adults need 7 to 9 hours of sleep a night, though needs vary from person to person. How you feel during the day matters more than the exact number. Regular sleep and wake times are just as important as total hours.</p>',
+      },
+      {
+        q: 'Could my sleep problem be sleep apnoea?',
+        a: '<p>It could be, if you snore loudly, stop breathing or gasp during sleep, or feel very sleepy during the day despite enough hours in bed. Sleep apnoea needs a sleep study and different treatment, so you will be referred for testing if it is suspected.</p>',
+      },
+      {
+        q: 'Do yoga and breathing help with sleep?',
+        a: '<p>Yes. Slow breathing, gentle yoga and yoga nidra in the evening calm the body’s stress response and can make it easier to fall asleep. They work best together with a steady wake time and the other parts of CBT-I.</p>',
+      },
+    ],
+
+    faqs: [
+      {
+        q: 'What happens at the first consultation for sleep problems?',
+        a: '<p>The first consultation covers your sleep pattern, routine, mood, stress and medicines, and checks for physical causes. You leave with a clear explanation, a sleep diary to keep and a written plan. Bring any previous prescriptions, including sleeping pills, and recent blood reports.</p>',
+      },
+      {
+        q: 'I have been taking sleeping pills for years. Can you help me stop?',
+        a: '<p>Yes. Sleeping pills are reduced slowly and safely, usually alongside CBT-I, so that sleep improves as the dose comes down. Do not stop them suddenly on your own before the consultation.</p>',
+      },
+      {
+        q: 'Is CBT-I available online?',
+        a: '<p>Yes. CBT-I works very well over video and is held one-to-one on Google Meet, with a sleep diary you keep between sessions.</p>',
+      },
+      {
+        q: 'How much does insomnia treatment cost?',
+        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT-I sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+      },
+    ],
+
+    resources: [
+      { title: 'How to sleep better', text: 'Why sleep and mood are linked, and five strategies that help.', url: '/guides/how-to-sleep-better' },
+      { title: 'Daily stress toolkit', text: 'Evening practices that help the body wind down.', url: '/guides/daily-stress-toolkit' },
+      { title: 'PHQ-9 mood check', text: 'Check whether low mood is behind poor sleep.', url: '/phq9.html' },
+      { title: '2-minute self assessment', text: 'A quick check of how you are doing.', url: '/assessment.html' },
+    ],
+
+    condition: {
+      name: 'Insomnia',
+      alternateName: ['Chronic insomnia', 'Sleep problems', 'Sleeplessness', 'Sleep disorders'],
+      treatments: ['Cognitive behavioural therapy for insomnia (CBT-I)', 'Treatment of underlying anxiety or depression', 'Breathwork and yoga nidra'],
+    },
+  },
+
   ocd: {
     path: '/ocd-treatment-jaipur',
     lastReviewed: '2026-10-26',
@@ -440,6 +835,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'OCD treatment',
     navHint: 'Intrusive thoughts, checking, cleaning',
+    navGroup: 'Other conditions',
 
     eyebrow: 'OCD treatment · Jaipur · In person & online',
     title: 'OCD treatment in Jaipur,',
@@ -557,6 +953,132 @@ export const SERVICES = {
     },
   },
 
+  adhdTreatment: {
+    path: '/adhd-treatment-jaipur',
+    lastReviewed: '2026-10-26',
+    meta: {
+      title: 'ADHD Treatment in Jaipur | Adults & Children | Dr. Ashish Yadav',
+      description: 'ADHD treatment in Jaipur and online after a proper diagnosis: medicines when suitable, CBT for ADHD, practical strategies for work and study, and family guidance. By a DNB psychiatrist.',
+    },
+    navLabel: 'ADHD treatment',
+    // Finishes "Looking for … in Jaipur?"
+    localPhrase: 'ADHD treatment',
+    navHint: 'Focus, organisation, follow-through',
+    navGroup: 'Other conditions',
+
+    eyebrow: 'ADHD treatment · Jaipur · In person & online',
+    title: 'ADHD treatment in Jaipur,',
+    emphasis: 'built around how your brain works.',
+    lead: 'ADHD is a common, lifelong difference in how the brain manages attention, activity and impulses, and with the right treatment most people focus, organise and follow through far more easily. Dr. Ashish Yadav, a neuro-psychiatrist (DNB Psychiatry), treats ADHD in adults, teenagers and children with medicines when suitable, CBT for ADHD, practical strategies for work, study and home, and family guidance, at clinics in Jhotwara and Vaishali Nagar and online across India.',
+
+    conditionsTitle: 'What ADHD treatment',
+    conditionsEmphasis: 'helps with.',
+    conditions: [
+      { title: 'Focus and attention', text: 'Drifting off in meetings, classes or conversations, and losing track of tasks halfway through.' },
+      { title: 'Organisation and time', text: 'Missed deadlines, lateness, clutter, and starting many things but finishing few.' },
+      { title: 'Restlessness and impulsivity', text: 'Feeling driven, interrupting, impulsive spending, or making quick decisions you regret.' },
+      { title: 'Emotions and frustration', text: 'Quick frustration, mood swings and feeling overwhelmed by everyday demands.' },
+      { title: 'ADHD with anxiety or low mood', text: 'Years of struggling and self-criticism often bring anxiety or depression, which are treated together.' },
+      { title: 'ADHD in children and teens', text: 'Difficulties at school and home, treated together with parents and, where helpful, teachers.' },
+    ],
+
+    signsTitle: 'When to see',
+    signsEmphasis: 'a psychiatrist.',
+    signsLead: 'See a psychiatrist if attention, organisation or restlessness have caused problems since childhood and still affect your work, studies or relationships. If you have not been diagnosed yet, start with an assessment.',
+    signs: [
+      'You have always found it harder than others to stay focused or organised',
+      'You often miss deadlines, lose things or forget appointments',
+      'You start many tasks but struggle to finish them',
+      'You feel restless, act on impulse or find it hard to wait',
+      'You have been diagnosed with ADHD but your current treatment is not working well',
+      'Your child’s school has raised concerns about attention or behaviour',
+    ],
+
+    stepsTitle: 'How ADHD treatment',
+    stepsEmphasis: 'works.',
+    steps: [
+      { title: 'A confirmed diagnosis first.', text: 'Treatment starts with a proper diagnosis. If you have not been assessed, the adult ADHD assessment comes first. If you were diagnosed elsewhere, your reports are reviewed at the first consultation.' },
+      { title: 'A personal treatment plan.', text: 'You leave knowing which difficulties matter most to you, which treatments fit, and how progress will be measured, whether at work, in studies or at home.' },
+      { title: 'Medicines, when suitable.', text: 'Stimulant and non-stimulant medicines can greatly improve focus and self-control for many people. They are started at a low dose, adjusted carefully, and chosen together with you after checking your heart health and other conditions.' },
+      { title: 'CBT and practical strategies.', text: 'CBT for ADHD builds systems for planning, time and follow-through, and tackles procrastination and self-criticism. Sessions are available in person and online.' },
+      { title: 'Sleep, movement and routine.', text: 'Steady sleep, regular exercise and simple daily structure make a real difference to ADHD symptoms. Breathing and mindfulness practices can help with restlessness and emotions, alongside treatment.' },
+      { title: 'Regular follow-ups.', text: 'Follow-ups track what is working, check side effects and adjust the plan as your work, studies and life change.' },
+    ],
+
+    answersTitle: 'ADHD treatment,',
+    answersEmphasis: 'your questions answered.',
+    answers: [
+      {
+        q: 'What is the best treatment for ADHD?',
+        a: '<p>The most effective treatment for ADHD is usually a combination of medicines, when suitable, and practical skills such as CBT for ADHD and organisation strategies. Medicines reduce the core symptoms for most people, while skills help with habits and problems that medicines alone do not fix. For young children, parent training usually comes first.</p>',
+      },
+      {
+        q: 'Do I need a diagnosis before ADHD treatment?',
+        a: '<p>Yes. A proper diagnosis comes first, because problems with attention and restlessness can also come from anxiety, depression, sleep problems, thyroid issues or substance use, which need different treatment. If you have not been assessed, start with the <a href="/adult-adhd-assessment">adult ADHD assessment</a>.</p>',
+      },
+      {
+        q: 'Are ADHD medicines safe?',
+        a: '<p>ADHD medicines are among the most studied medicines in psychiatry and are safe for most people when prescribed and monitored by a doctor. Common side effects such as reduced appetite or trouble sleeping are usually mild and can be managed. Heart health, blood pressure and other conditions are checked before starting.</p>',
+      },
+      {
+        q: 'Are ADHD medicines addictive?',
+        a: '<p>When taken as prescribed for ADHD, these medicines do not usually lead to addiction, and treating ADHD may even lower the risk of substance problems. Stimulants can be misused if taken in higher doses or not as prescribed, which is why they are monitored carefully and never shared.</p>',
+      },
+      {
+        q: 'Can ADHD medicines be prescribed online?',
+        a: '<p>Some can and some cannot. Under India’s telemedicine rules, certain ADHD medicines, including stimulants, cannot be prescribed in an online consultation, so an in-person visit is needed to start them. Non-stimulant options, therapy and follow-ups can often be done online.</p>',
+      },
+      {
+        q: 'Can ADHD be treated without medicines?',
+        a: '<p>Yes, for some people. Mild ADHD, or ADHD where medicines are not suitable or wanted, can improve with CBT for ADHD, coaching-style strategies, exercise, good sleep and changes at work or school. For moderate to severe ADHD, medicines usually make the biggest difference, and the choice is always yours.</p>',
+      },
+      {
+        q: 'Does ADHD go away with age?',
+        a: '<p>ADHD often continues into adulthood, though it can look different. Hyperactivity often eases with age, while problems with attention, organisation and time management usually remain. Many adults are diagnosed only after years of struggling, and treatment still helps at any age.</p>',
+      },
+      {
+        q: 'What is CBT for ADHD?',
+        a: '<p>CBT for ADHD is a structured talking therapy that teaches practical skills for planning, prioritising, managing time and breaking down tasks, and helps change the negative thoughts that build up after years of struggling. It works well together with medicines.</p>',
+      },
+      {
+        q: 'What helps with ADHD at work?',
+        a: '<p>Practical changes help most: one written list for everything, breaking big tasks into small first steps, timers and reminders, working in short focused blocks, and reducing distractions such as notifications. Treating sleep problems, anxiety or low mood alongside ADHD also makes a big difference to work.</p>',
+      },
+    ],
+
+    faqs: [
+      {
+        q: 'I was diagnosed with ADHD elsewhere. Can I start treatment here?',
+        a: '<p>Yes. Bring your previous assessment reports and prescriptions. They are reviewed at the first consultation, and if anything is unclear, further assessment may be suggested before treatment starts.</p>',
+      },
+      {
+        q: 'Do you treat ADHD in children?',
+        a: '<p>Yes. Child and adolescent psychiatry was part of Dr. Ashish Yadav\'s specialist training. Children and teenagers are always seen together with a parent or guardian, after proper consent. See <a href="/child-psychiatry-jaipur">child and teen psychiatry</a>.</p>',
+      },
+      {
+        q: 'Are ADHD follow-ups available online?',
+        a: '<p>Yes. Follow-ups and CBT sessions work well on Google Meet. Starting some medicines, including stimulants, needs an in-person visit under India’s telemedicine rules.</p>',
+      },
+      {
+        q: 'How much does ADHD treatment cost?',
+        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. The adult ADHD assessment is a separate package. See <a href="/fees">fees</a> for details.</p>',
+      },
+    ],
+
+    resources: [
+      { title: 'ASRS ADHD self-check', text: 'A free adult ADHD screening questionnaire.', url: '/asrs.html' },
+      { title: 'Adult ADHD guide', text: 'What the screening can and cannot tell you.', url: '/guides/adhd-guide' },
+      { title: 'How to sleep better', text: 'Sleep problems are common with ADHD, and fixable.', url: '/guides/how-to-sleep-better' },
+      { title: 'Daily stress toolkit', text: 'Short daily practices for focus and calm.', url: '/guides/daily-stress-toolkit' },
+    ],
+
+    condition: {
+      name: 'Attention deficit hyperactivity disorder (ADHD)',
+      alternateName: ['ADHD', 'Adult ADHD', 'ADD', 'Attention deficit disorder'],
+      treatments: ['Stimulant and non-stimulant medicines', 'Cognitive behavioural therapy (CBT) for ADHD', 'Parent training and family guidance'],
+    },
+  },
+
   deaddiction: {
     path: '/de-addiction-treatment-jaipur',
     lastReviewed: '2026-10-26',
@@ -568,6 +1090,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'de-addiction treatment',
     navHint: 'Alcohol, tobacco, opioids, phone habits',
+    navGroup: 'Other conditions',
 
     eyebrow: 'De-addiction · Jaipur · In person & online',
     title: 'De-addiction treatment in Jaipur,',
@@ -702,6 +1225,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'help with a sexual health concern',
     navHint: 'Erection, ejaculation, desire, anxiety',
+    navGroup: 'Other conditions',
 
     eyebrow: 'Sexual health · Jaipur · In person & online',
     title: 'Sexual health treatment in Jaipur,',
@@ -826,6 +1350,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'a child or teen psychiatrist',
     navHint: 'ADHD, anxiety, behaviour, exam stress',
+    navGroup: 'Other conditions',
 
     eyebrow: 'Child & adolescent psychiatry · Jaipur · In person & online',
     title: 'Child and adolescent psychiatry in Jaipur,',
@@ -950,6 +1475,7 @@ export const SERVICES = {
     // Finishes "Looking for … in Jaipur?"
     localPhrase: 'a geriatric psychiatrist',
     navHint: 'Memory, dementia, mood in older age',
+    navGroup: 'Other conditions',
 
     eyebrow: 'Geriatric psychiatry · Jaipur · Clinic, home visits & online',
     title: 'Mental health care for older adults in Jaipur,',

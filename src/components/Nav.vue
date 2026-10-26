@@ -24,19 +24,25 @@
               <span class="chevron" aria-hidden="true"></span>
             </button>
             <transition name="drop">
-              <div v-show="openMenu === item.label" class="dropdown-panel">
-                <a
-                  v-for="child in item.children"
-                  :key="child.label"
-                  :href="hrefFor(child)"
-                  :target="child.url ? '_blank' : null"
-                  :rel="child.url ? 'noopener noreferrer' : null"
-                  :class="['dropdown-link', { active: route === child.id }]"
-                  @click="onLinkClick($event, child)"
-                >
-                  <span class="dropdown-label">{{ child.label }}</span>
-                  <span v-if="child.hint" class="dropdown-hint">{{ child.hint }}</span>
-                </a>
+              <div
+                v-show="openMenu === item.label"
+                :class="['dropdown-panel', { 'dropdown-panel-grouped': item.groups }]"
+              >
+                <div v-for="section in sectionsFor(item)" :key="section.heading" class="dropdown-section">
+                  <div v-if="section.heading" class="dropdown-heading">{{ section.heading }}</div>
+                  <a
+                    v-for="child in section.children"
+                    :key="child.label"
+                    :href="hrefFor(child)"
+                    :target="child.url ? '_blank' : null"
+                    :rel="child.url ? 'noopener noreferrer' : null"
+                    :class="['dropdown-link', { active: route === child.id }]"
+                    @click="onLinkClick($event, child)"
+                  >
+                    <span class="dropdown-label">{{ child.label }}</span>
+                    <span v-if="child.hint" class="dropdown-hint">{{ child.hint }}</span>
+                  </a>
+                </div>
               </div>
             </transition>
           </div>
@@ -79,17 +85,20 @@
               <span class="plus" aria-hidden="true"></span>
             </button>
             <div v-show="mobileGroup === item.label">
-              <a
-                v-for="child in item.children"
-                :key="child.label"
-                :href="hrefFor(child)"
-                :target="child.url ? '_blank' : null"
-                :rel="child.url ? 'noopener noreferrer' : null"
-                :class="['mobile-link', 'mobile-sublink', { active: route === child.id }]"
-                @click="onLinkClick($event, child)"
-              >
-                {{ child.label }}
-              </a>
+              <template v-for="section in sectionsFor(item)" :key="section.heading">
+                <div v-if="section.heading" class="mobile-heading">{{ section.heading }}</div>
+                <a
+                  v-for="child in section.children"
+                  :key="child.label"
+                  :href="hrefFor(child)"
+                  :target="child.url ? '_blank' : null"
+                  :rel="child.url ? 'noopener noreferrer' : null"
+                  :class="['mobile-link', 'mobile-sublink', { active: route === child.id }]"
+                  @click="onLinkClick($event, child)"
+                >
+                  {{ child.label }}
+                </a>
+              </template>
             </div>
           </div>
           <a
@@ -122,7 +131,15 @@ const menu = [
   { id: 'adhd', label: 'ADHD Assessment', path: '/adult-adhd-assessment' },
   {
     label: 'Treatments',
-    children: Object.entries(SERVICES).map(([id, service]) => ({ id, label: service.navLabel, hint: service.navHint, path: service.path })),
+    // Shown as side-by-side columns, using each service's navGroup
+    groups: ['Mood & stress', 'Other conditions'],
+    children: Object.entries(SERVICES).map(([id, service]) => ({
+      id,
+      label: service.navLabel,
+      hint: service.navHint,
+      path: service.path,
+      group: service.navGroup,
+    })),
   },
   {
     label: 'Resources',
@@ -152,6 +169,12 @@ const mobileGroup = ref(null)
 const headerEl = ref(null)
 
 const hrefFor = (item) => item.url || item.path || '/'
+
+// A menu's links under their headings, or as one untitled list
+const sectionsFor = (item) =>
+  item.groups
+    ? item.groups.map((heading) => ({ heading, children: item.children.filter((child) => child.group === heading) }))
+    : [{ heading: null, children: item.children }]
 
 const isActive = (item) => item.children?.some((child) => child.id && child.id === props.route)
 
@@ -311,6 +334,27 @@ onBeforeUnmount(() => {
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
+}
+
+.dropdown-panel-grouped {
+  flex-direction: row;
+  gap: 8px;
+  min-width: 560px;
+}
+
+.dropdown-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.dropdown-heading {
+  padding: 8px 14px 4px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--brand);
 }
 
 .dropdown-link {
@@ -498,6 +542,15 @@ onBeforeUnmount(() => {
 .mobile-sublink {
   font-weight: 500;
   padding-left: 24px;
+}
+
+.mobile-heading {
+  padding: 12px 24px 4px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--brand);
 }
 
 .mobile-cta {
