@@ -1,0 +1,5 @@
+# Build settings live here so they override the Netlify dashboard.
+# The build prerenders every page (scripts/prerender.mjs); plain "vite build" would skip that.
+[build]
+  command = "npm run build"
+  publish = "dist"

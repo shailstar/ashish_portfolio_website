@@ -11,8 +11,6 @@
         <Bookings @navigate="handleNavigate" />
       </template>
 
-      <WorkGrid v-else-if="route === 'work'" heading="Clinical Experience" blurb="Comprehensive mental health consultations and treatment across diverse presentations and complexities." />
-
       <AboutPage v-else-if="route === 'about'" @navigate="handleNavigate" />
 
       <Resources v-else-if="route === 'resources'" />
@@ -65,77 +63,12 @@ import AboutPage from './components/AboutPage.vue'
 import BookPage from './components/BookPage.vue'
 import BookingConfirmed from './components/BookingConfirmed.vue'
 import TalksPage from './components/TalksPage.vue'
+import { SITE_URL, PATHS, DEFAULT_TITLE, META, routeFromPath } from './data/routes.js'
 
-// Pages that have their own URL. Other routes live at "/".
-// New paths also need a rewrite in public/_redirects.
-const PATHS = {
-  fees: '/fees',
-  cancellation: '/cancellation-policy',
-  adhd: '/adult-adhd-assessment',
-  privacy: '/privacy',
-  jaipur: '/psychiatrist-in-jaipur',
-  jhotwara: '/psychiatrist-in-jhotwara',
-  vaishali: '/psychiatrist-in-vaishali-nagar',
-  about: '/about',
-  book: '/book',
-  confirmed: '/booking-confirmed',
-  talks: '/talks-and-workshops',
-}
+// Set when prerendering at build time, where there is no browser URL to read
+const props = defineProps({ initialRoute: { type: String, default: null } })
 
-// Browser tab title and search-result description per page
-const DEFAULT_TITLE = 'Dr. Ashish - Psychiatrist'
-const META = {
-  talks: {
-    title: 'Mental Health Talks & Workshops in Jaipur | Dr. Ashish Yadav',
-    description: 'Mental health talks, workshops and breathwork sessions for schools, colleges, corporates and yoga teacher trainings. In Jaipur, beyond and online.',
-  },
-  book: {
-    title: 'Book a Consultation | Dr. Ashish Yadav, Psychiatrist in Jaipur',
-    description: 'Book an online or in-clinic psychiatry consultation, follow-up or adult ADHD assessment in Jaipur. Pay by Razorpay or UPI.',
-  },
-  confirmed: {
-    title: 'Booking | Dr. Ashish Yadav',
-    description: '',
-    noindex: true,
-  },
-  about: {
-    title: 'About Dr. Ashish Yadav | Neuro-psychiatrist in Jaipur',
-    description: 'Neuro-psychiatrist in Jaipur trained at the Gujarat Institute of Mental Health, certified in psychotherapy by the WPA and a Yoga Alliance RYT-200 yoga teacher.',
-  },
-  fees: {
-    title: 'Psychiatrist Consultation Fees | Dr. Ashish Yadav',
-    description: 'Clear consultation fees for online, in-person and home-visit psychiatry consultations in Jaipur, with what every consultation includes.',
-  },
-  adhd: {
-    title: 'Adult ADHD Assessment in Jaipur & Online | Dr. Ashish Yadav',
-    description: 'A structured adult ADHD assessment by a neuro-psychiatrist (DNB Psychiatry), online across India or in person in Jaipur, with a written report.',
-  },
-  cancellation: {
-    title: 'Cancellation & Refund Policy | Dr. Ashish Yadav',
-    description: 'Rescheduling, cancellation and refund terms for consultations and the adult ADHD assessment.',
-  },
-  privacy: {
-    title: 'Privacy Policy | Dr. Ashish Yadav',
-    description: "How Dr. Ashish Yadav's practice collects, uses and protects your information.",
-  },
-  jaipur: {
-    title: 'Psychiatrist in Jaipur | Dr. Ashish Yadav, Jhotwara & Vaishali Nagar',
-    description: 'Neuro-psychiatrist (DNB Psychiatry) in Jaipur with clinics in Jhotwara and Vaishali Nagar, home visits and online consultations. English, Hindi and Gujarati.',
-  },
-  jhotwara: {
-    title: 'Psychiatrist in Jhotwara, Jaipur | Dr. Ashish Yadav',
-    description: 'Psychiatrist at Shri Ram Hospital, Hanuman Road, Tara Nagar, Jhotwara. Open every day except Wednesday, 1–2 PM and 5–7 PM. Also online.',
-  },
-  vaishali: {
-    title: 'Psychiatrist in Vaishali Nagar, Jaipur | Dr. Ashish Yadav',
-    description: 'Psychiatrist at Asha Clinic, Sirsi Road, Vaishali Nagar, opposite DMart. Every day except Wednesday, 10 AM–1 PM. Evenings at Shalby Hospital.',
-  },
-}
-
-const routeFromPath = (pathname) =>
-  Object.keys(PATHS).find((id) => PATHS[id] === pathname.replace(/\/$/, '')) || 'home'
-
-const route = ref(routeFromPath(window.location.pathname))
+const route = ref(props.initialRoute || routeFromPath(window.location.pathname))
 
 const syncUrl = (target) => {
   const path = PATHS[target] || '/'
@@ -167,13 +100,19 @@ const setMeta = (id) => {
   } else if (robots) {
     robots.remove()
   }
+
+  const canonical = document.querySelector('link[rel="canonical"]')
+  if (canonical) canonical.href = SITE_URL + (PATHS[id] || '/')
 }
 
-watch(route, setMeta, { immediate: true })
+// The prerender script writes the head tags itself
+if (!import.meta.env.SSR) {
+  watch(route, setMeta, { immediate: true })
 
-window.addEventListener('popstate', () => {
-  route.value = routeFromPath(window.location.pathname)
-})
+  window.addEventListener('popstate', () => {
+    route.value = routeFromPath(window.location.pathname)
+  })
+}
 
 const handleNavigate = async (target) => {
   // Every "Book a consultation" button leads to the booking page

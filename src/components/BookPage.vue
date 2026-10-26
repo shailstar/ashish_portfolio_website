@@ -205,7 +205,7 @@ const stored = loadBooking()
 const held = ref(stored?.uid && !stored.method && Date.now() - stored.at < HOLD_HOURS * 3600000 ? stored : null)
 
 // A shared link can preselect the session, e.g. /book?type=adhd&mode=online
-const params = new URLSearchParams(window.location.search)
+const params = new URLSearchParams(import.meta.env.SSR ? '' : window.location.search)
 const pick = (value, allowed, fallback) => (allowed.includes(value) ? value : fallback)
 
 const type = ref(held.value?.type || pick(params.get('type'), SESSION_TYPES.map((t) => t.id), 'first'))
