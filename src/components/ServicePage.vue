@@ -102,10 +102,13 @@
           <div class="eyebrow">Where to consult</div>
           <h2 class="loc-h3">In Jaipur, or online anywhere in India.</h2>
           <p>
-            Clinics in <a href="/psychiatrist-in-jhotwara" @click.prevent="$emit('navigate', 'jhotwara')">Jhotwara</a>
-            and <a href="/psychiatrist-in-vaishali-nagar" @click.prevent="$emit('navigate', 'vaishali')">Vaishali Nagar</a>,
-            evenings at Shalby Hospital by appointment, and one-to-one video consultations on Google Meet. Consultations
-            are in {{ LANGUAGES }}.
+            Looking for {{ service.localPhrase }} in Jaipur? See Dr. Ashish Yadav at
+            <a href="/psychiatrist-in-jhotwara" @click.prevent="$emit('navigate', 'jhotwara')">{{ CLINICS.jhotwara.name }}, Jhotwara</a>,
+            convenient for {{ CLINICS.jhotwara.nearby.slice(0, 3).join(', ') }}, or at
+            <a href="/psychiatrist-in-vaishali-nagar" @click.prevent="$emit('navigate', 'vaishali')">{{ CLINICS.vaishali.name }}, Vaishali Nagar</a>,
+            convenient for {{ CLINICS.vaishali.nearby.slice(0, 3).join(', ') }}. Evening appointments are available at
+            Shalby Hospital, and one-to-one video consultations on Google Meet anywhere in India. Consultations are in
+            {{ LANGUAGES }}.
           </p>
           <button class="loc-link" @click="$emit('navigate', 'jaipur')">All locations &rarr;</button>
         </div>
@@ -158,7 +161,7 @@ import AppointmentFAQ from './AppointmentFAQ.vue'
 import EducationNote from './EducationNote.vue'
 import { SERVICES } from '../data/services.js'
 import { REGISTRATION } from '../data/about.js'
-import { LANGUAGES, WHATSAPP_URL } from '../data/clinics.js'
+import { CLINICS, LANGUAGES, WHATSAPP_URL } from '../data/clinics.js'
 
 const props = defineProps({ serviceId: { type: String, required: true } })
 defineEmits(['navigate'])

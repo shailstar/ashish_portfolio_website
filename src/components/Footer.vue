@@ -62,6 +62,7 @@
 <script setup>
 import { WHATSAPP_URL } from '../data/clinics.js'
 import { REGISTRATION, SOCIAL_LINKS } from '../data/about.js'
+import { SERVICES } from '../data/services.js'
 
 defineEmits(['navigate'])
 
@@ -74,12 +75,15 @@ const columns = [
       { id: 'home', label: 'Home', path: '/' },
       { id: 'about', label: 'About', path: '/about' },
       { id: 'fees', label: 'Consultation fees', path: '/fees' },
-      { id: 'anxiety', label: 'Anxiety treatment', path: '/anxiety-treatment-jaipur' },
       { id: 'adhd', label: 'Adult ADHD assessment', path: '/adult-adhd-assessment' },
       { id: 'resources', label: 'Resources' },
       { id: 'talks', label: 'Talks & workshops', path: '/talks-and-workshops' },
       { id: 'book', label: 'Book a consultation', path: '/book' },
     ],
+  },
+  {
+    title: 'Treatments',
+    links: Object.entries(SERVICES).map(([id, service]) => ({ id, label: service.navLabel, path: service.path })),
   },
   {
     title: 'Locations',
@@ -121,7 +125,7 @@ const columns = [
   margin: 0 auto;
   padding: clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr 1.2fr;
   gap: clamp(2rem, 4vw, 3rem);
 }
 
@@ -247,7 +251,7 @@ const columns = [
 
 @media (max-width: 1024px) {
   .footer-main {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .footer-brand {
