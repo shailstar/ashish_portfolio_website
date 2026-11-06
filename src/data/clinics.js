@@ -91,7 +91,7 @@ export const CARE_AREAS = [
 
 export const LANGUAGES = 'English, Hindi and Gujarati'
 
-export const GOOGLE_REVIEWS_URL = 'https://g.page/r/Ce-0WPbw-7VYEBI/review'
+export const GOOGLE_REVIEWS_URL = 'https://search.google.com/local/writereview?placeid=ChIJ3ZdIeX3124sR77RY9vD7tVg'
 
 export const WHATSAPP_NUMBER = '917976304658'
 export const PHONE_DISPLAY = '+91 79763 04658'
