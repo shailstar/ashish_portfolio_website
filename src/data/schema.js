@@ -12,8 +12,8 @@ const PHYSICIAN_ID = `${SITE_URL}/#physician`
 const WEBSITE_ID = `${SITE_URL}/#website`
 const TELEPHONE = PHONE_TEL.replace('tel:', '')
 
-// Consultation fees at the clinics, from ₹499 follow-ups to ₹1,499 for 60 minutes (see the fees page)
-const CLINIC_PRICE_RANGE = '₹499–₹1,499'
+// Consultation fees at the clinics, from ₹500 follow-ups to ₹1,500 for 60 minutes (see the fees page)
+const CLINIC_PRICE_RANGE = '₹500–₹1,500'
 
 const clinicId = (clinic) => `${SITE_URL}${PATHS[clinic.page]}#clinic`
 

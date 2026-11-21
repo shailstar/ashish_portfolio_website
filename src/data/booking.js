@@ -3,13 +3,14 @@
 
 export const UPI_ID = 'ashishyadav0210-5@okhdfcbank'
 export const UPI_PAYEE = 'Dr Ashish Yadav'
-// UPI QR card per price, in /public/upi. Each QR has its amount built in.
+// UPI QR card per price, in /public/upi. Each QR has its amount built in (the older ₹…99 amounts,
+// kept on purpose). A price with no card here shows "QR code coming soon".
 export const UPI_QR_IMAGES = {
-  799: '/upi/upi-799.png',
-  1499: '/upi/upi-1499.png',
-  499: '/upi/upi-499.png',
-  3499: '/upi/upi-3499.png',
-  3999: '/upi/upi-3999.png',
+  800: '/upi/upi-799.png',
+  1500: '/upi/upi-1499.png',
+  500: '/upi/upi-499.png',
+  3500: '/upi/upi-3499.png',
+  4000: '/upi/upi-3999.png',
 }
 
 // Cal.com booking calendar for each session. Each event must have "Requires confirmation" on:
@@ -63,9 +64,9 @@ export const MODES = [
 
 // Price for a choice of type, mode and duration (minutes)
 export const priceFor = (type, mode, duration) => {
-  if (type === 'follow-up') return 499
-  if (type === 'adhd') return mode === 'online' ? 3499 : 3999
-  return duration === 60 ? 1499 : 799
+  if (type === 'follow-up') return 500
+  if (type === 'adhd') return mode === 'online' ? 3500 : 4000
+  return duration === 60 ? 1500 : 800
 }
 
 export const durationsFor = (type) => (type === 'first' ? [30, 60] : [])

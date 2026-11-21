@@ -116,9 +116,9 @@
           <div class="eyebrow">Fees</div>
           <h2 class="loc-h3">Clear fees, online or in person.</h2>
           <ul class="loc-fees">
-            <li><span>Consultation, 30 min</span><strong>₹799</strong></li>
-            <li><span>Consultation, 60 min</span><strong>₹1,499</strong></li>
-            <li><span>Follow-up, 30 min</span><strong>₹499</strong></li>
+            <li><span>Consultation, 30 min</span><strong>₹800</strong></li>
+            <li><span>Consultation, 60 min</span><strong>₹1,500</strong></li>
+            <li><span>Follow-up, 30 min</span><strong>₹500</strong></li>
           </ul>
           <button class="loc-link" @click="$emit('navigate', 'fees')">Full fee list &rarr;</button>
         </div>

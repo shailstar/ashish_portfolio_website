@@ -18,12 +18,7 @@
         </div>
 
         <div class="process-cta">
-          <a
-            href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cta-button"
-          >
+          <a href="/book" class="cta-button" @click.prevent="$emit('navigate', 'book')">
             Start Your Journey
           </a>
         </div>
@@ -33,6 +28,8 @@
 </template>
 
 <script setup>
+defineEmits(['navigate'])
+
 const steps = [
   {
     icon: '🔍',

@@ -9,12 +9,7 @@
       <ServicesFeatured :services="featuredServices" />
 
       <div class="services-cta">
-        <a
-          href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta-button primary"
-        >
+        <a href="/book" class="cta-button primary" @click.prevent="$emit('navigate', 'book')">
           Schedule a Consultation
         </a>
         <a href="/assessment.html" target="_blank" rel="noopener noreferrer" class="cta-button secondary">Begin Assessment</a>
@@ -25,6 +20,8 @@
 
 <script setup>
 import ServicesFeatured from './ServicesFeatured.vue'
+
+defineEmits(['navigate'])
 
 const featuredServices = [
   {

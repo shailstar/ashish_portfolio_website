@@ -74,7 +74,7 @@ const defaultFaqs = [
   },
   {
     q: 'Is the follow-up included in the first consultation fee?',
-    a: '<p>No, follow-ups are booked separately. A 30-minute follow-up consultation is ₹499. How often you need one depends on your treatment plan, and this is discussed at the end of each session.</p>',
+    a: '<p>No, follow-ups are booked separately. A 30-minute follow-up consultation is ₹500. How often you need one depends on your treatment plan, and this is discussed at the end of each session.</p>',
   },
   {
     q: 'Can a family member join the consultation?',

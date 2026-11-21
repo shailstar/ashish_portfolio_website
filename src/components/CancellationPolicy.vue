@@ -79,7 +79,7 @@ const effectiveDate = '24 October 2026'
 
 const summary = [
   'You can reschedule once, free, with at least 24 hours\' notice.',
-  'Sessions end at the booked time. Extra time is ₹399 per 15 minutes, only if the next slot is free.',
+  'Sessions end at the booked time. Extra time is ₹400 per 15 minutes, only if the next slot is free.',
   'Once an appointment is confirmed, the fee is not refunded, because that time is kept aside for you.',
   'If the clinic cancels, or the ADHD assessment turns out not to be suitable for you, you get a full refund.',
 ]
@@ -105,7 +105,7 @@ const sections = [
     title: 'Session time and extra time',
     rules: [
       "Each session ends at its booked time, even if the conversation is still going. This keeps every patient's appointment on time.",
-      'If more time is needed, a 15-minute extension can be added for ₹399, only if the next slot is free and it is agreed before the extra time begins.',
+      'If more time is needed, a 15-minute extension can be added for ₹400, only if the next slot is free and it is agreed before the extra time begins.',
       'If you join late, the session still ends at the booked time and the full fee applies.',
       'Anything that could not be covered can be taken up in a follow-up consultation.',
     ],

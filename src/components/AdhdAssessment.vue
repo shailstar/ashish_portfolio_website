@@ -16,8 +16,8 @@
           of what to do next.
         </p>
         <div class="adhd-prices">
-          <span class="adhd-price"><strong>₹3,499</strong> online</span>
-          <span class="adhd-price"><strong>₹3,999</strong> in person, Jaipur</span>
+          <span class="adhd-price"><strong>₹3,500</strong> online</span>
+          <span class="adhd-price"><strong>₹4,000</strong> in person, Jaipur</span>
         </div>
         <div class="adhd-hero-actions">
           <a :href="WHATSAPP" target="_blank" rel="noopener noreferrer" class="adhd-button">Book the assessment</a>
@@ -107,8 +107,8 @@
             </div>
             <div class="adhd-compare-row adhd-compare-total">
               <span class="adhd-compare-label">Total</span>
-              <span>₹3,499</span>
-              <span>₹3,999</span>
+              <span>₹3,500</span>
+              <span>₹4,000</span>
             </div>
           </div>
           <p class="adhd-text adhd-compare-note">
@@ -156,7 +156,7 @@
         </div>
         <div class="adhd-followup">
           <p v-for="para in followUps" :key="para" class="adhd-text">{{ para }}</p>
-          <p class="adhd-followup-fee">Follow-up consultation: <strong>₹499</strong> for 30 minutes</p>
+          <p class="adhd-followup-fee">Follow-up consultation: <strong>₹500</strong> for 30 minutes</p>
         </div>
       </div>
 
@@ -223,7 +223,7 @@ const glance = [
   { label: 'What it is', value: 'A structured ADHD assessment for adults, 18 and over' },
   { label: 'Who does it', value: 'Dr. Ashish Yadav, Neuro-psychiatrist (DNB Psychiatry)' },
   { label: 'Where', value: 'Online by Google Meet, or in person in Jaipur' },
-  { label: 'Fee', value: '₹3,499 online · ₹3,999 in person' },
+  { label: 'Fee', value: '₹3,500 online · ₹4,000 in person' },
   { label: 'You receive', value: 'A 60-minute evaluation and a written assessment report' },
   { label: 'What it is not', value: 'A quick online quiz, or a promise of a diagnosis or medicine' },
 ]

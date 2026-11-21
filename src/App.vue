@@ -6,8 +6,8 @@
       <template v-if="route === 'home'">
         <Hero @navigate="handleNavigate" />
         <AboutHero />
-        <TreatmentProcess />
-        <Services />
+        <TreatmentProcess @navigate="handleNavigate" />
+        <Services @navigate="handleNavigate" />
         <Bookings @navigate="handleNavigate" />
       </template>
 

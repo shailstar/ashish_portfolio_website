@@ -149,14 +149,14 @@ import AppointmentFAQ from './AppointmentFAQ.vue'
 
 defineEmits(['navigate'])
 
-const feesUpdated = '24 October 2026'
+const feesUpdated = '21 November 2026'
 
 const consultationTypes = [
   {
     id: 'first',
     number: '01',
     title: 'First consultation',
-    price: 'From ₹799',
+    price: 'From ₹800',
     description: 'Your first visit, for any mental health concern. We take time to understand what you are going through and plan the way forward together. Online, in person or at home.',
     cta: 'Book a consultation',
   },
@@ -164,7 +164,7 @@ const consultationTypes = [
     id: 'follow-up',
     number: '02',
     title: 'Follow-up consultation',
-    price: 'From ₹499',
+    price: 'From ₹500',
     description: 'For patients already under my care. A focused session to review your progress, fine-tune treatment and decide the next steps.',
     cta: 'Book a follow-up',
   },
@@ -172,7 +172,7 @@ const consultationTypes = [
     id: 'adhd',
     number: '03',
     title: 'Adult ADHD assessment',
-    price: '₹3,499 online · ₹3,999 in person',
+    price: '₹3,500 online · ₹4,000 in person',
     description: 'A structured, step-by-step assessment for adults who want a clear answer about ADHD.',
     includes: [
       'ASRS screening questionnaire',
@@ -215,13 +215,13 @@ const credentials = [
 ]
 
 const feeRows = [
-  { label: 'Online consultation', mode: 'Video call', duration: '30 min', price: '₹799' },
-  { label: 'Online consultation', mode: 'Video call', duration: '60 min', price: '₹1,499' },
-  { label: 'In-person consultation', mode: 'In Jaipur', duration: '30 min', price: '₹799' },
-  { label: 'In-person consultation', mode: 'In Jaipur', duration: '60 min', price: '₹1,499' },
-  { label: 'Follow-up consultation', mode: 'Online or in Jaipur', duration: '30 min', price: '₹499' },
-  { label: 'Home visit', mode: 'Within Jaipur', duration: '45–50 min', price: '₹4,499' },
-  { label: 'Session extension', mode: 'Subject to availability', duration: '15 min', price: '₹399' },
+  { label: 'Online consultation', mode: 'Video call', duration: '60 min', price: '₹1,500' },
+  { label: 'Online consultation', mode: 'Video call', duration: '30 min', price: '₹800' },
+  { label: 'In-person consultation', mode: 'In Jaipur', duration: '30 min', price: '₹800' },
+  { label: 'In-person consultation', mode: 'In Jaipur', duration: '60 min', price: '₹1,500' },
+  { label: 'Follow-up consultation', mode: 'Online or in Jaipur', duration: '30 min', price: '₹500' },
+  { label: 'Home visit', mode: 'Within Jaipur', duration: '45–50 min', price: '₹4,500' },
+  { label: 'Session extension', mode: 'Subject to availability', duration: '15 min', price: '₹400' },
 ]
 
 const feeNotes = [

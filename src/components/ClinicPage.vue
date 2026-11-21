@@ -45,7 +45,7 @@
           <div class="clinic-plan-card">
             <span class="clinic-plan-icon" aria-hidden="true">₹</span>
             <h3 class="clinic-plan-title">Clinic fees</h3>
-            <p>₹799 for 30 min · ₹1,499 for 60 min<br />Follow-up ₹499 for 30 min</p>
+            <p>₹800 for 30 min · ₹1,500 for 60 min<br />Follow-up ₹500 for 30 min</p>
           </div>
           <div class="clinic-plan-card">
             <span class="clinic-plan-icon" aria-hidden="true">💻</span>
@@ -262,7 +262,7 @@ const faqs = computed(() => {
     },
     {
       q: 'What is the fee for a clinic consultation?',
-      a: '<p>₹799 for 30 minutes and ₹1,499 for 60 minutes. Follow-ups are ₹499 for 30 minutes. The full list is on the fees page.</p>',
+      a: '<p>₹800 for 30 minutes and ₹1,500 for 60 minutes. Follow-ups are ₹500 for 30 minutes. The full list is on the fees page.</p>',
     },
     {
       q: `I live near ${c.nearby[0]} or ${c.nearby[1]}. Is this the closest clinic?`,

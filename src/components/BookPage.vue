@@ -167,7 +167,7 @@
         <div class="bk-other-grid">
           <a :href="waLink(HOME_VISIT_MSG)" target="_blank" rel="noopener noreferrer" class="bk-other-card">
             <span class="bk-other-label">Home visit</span>
-            <span class="bk-other-text">Within Jaipur, in selected cases. ₹4,499 for 45–50 min.</span>
+            <span class="bk-other-text">Within Jaipur, in selected cases. ₹4,500 for 45–50 min.</span>
             <span class="bk-other-link">Request on WhatsApp &rarr;</span>
           </a>
           <a :href="waLink(SHALBY_MSG)" target="_blank" rel="noopener noreferrer" class="bk-other-card">

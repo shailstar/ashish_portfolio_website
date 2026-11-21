@@ -21,9 +21,8 @@
             variant="primary"
             size="lg"
             as="a"
-            href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1EcWQqsrJaMU3HgByy-P5yos7efdrTzNc_PKIKgwktz3nRWU9tcQt2Fy07M65Y7qcRMr902o9j"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/book"
+            @click.prevent="$emit('navigate', 'book')"
           >
             Schedule a Consultation
           </Button>

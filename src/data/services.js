@@ -134,7 +134,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does anxiety treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
       {
         q: 'Do you treat anxiety in children and teenagers?',
@@ -266,7 +266,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does stress management cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT-based sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If CBT-based sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
       {
         q: 'Do you run stress management workshops for organisations?',
@@ -396,7 +396,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does burnout treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
       {
         q: 'Do you run burnout workshops for organisations?',
@@ -542,7 +542,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does depression treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If CBT sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
       {
         q: 'Can a family member join the consultation?',
@@ -676,7 +676,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does bipolar treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. Blood tests, when needed, are done at a lab of your choice and paid for separately.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. Blood tests, when needed, are done at a lab of your choice and paid for separately.</p>',
       },
       {
         q: 'What should my family do if a high or low episode starts?',
@@ -806,7 +806,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does insomnia treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If CBT-I sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If CBT-I sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
     ],
 
@@ -932,7 +932,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does OCD treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If ERP sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If ERP sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
       {
         q: 'Can a family member join the consultation?',
@@ -1061,7 +1061,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does ADHD treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. The adult ADHD assessment is a separate package. See <a href="/fees">fees</a> for details.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. The adult ADHD assessment is a separate package. See <a href="/fees">fees</a> for details.</p>',
       },
     ],
 
@@ -1193,7 +1193,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does de-addiction treatment cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. If counselling sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. If counselling sessions suit you, the number of sessions and their fees are discussed with you after the first consultation.</p>',
       },
       {
         q: 'Can a family member come with me?',
@@ -1318,7 +1318,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does a consultation cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500.</p>',
       },
       {
         q: 'Do you see women and couples for sexual health concerns?',
@@ -1443,7 +1443,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does a consultation cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500.</p>',
       },
       {
         q: 'Does a parent have to be present?',
@@ -1568,7 +1568,7 @@ export const SERVICES = {
       },
       {
         q: 'Do you offer home visits for elderly patients?',
-        a: '<p>Yes, in selected cases, around Vaishali Nagar, Mansarovar, Raja Park, Jhotwara, Shastri Nagar and nearby areas. A home visit is a 45–50 minute consultation for ₹4,499, booked and confirmed on WhatsApp.</p>',
+        a: '<p>Yes, in selected cases, around Vaishali Nagar, Mansarovar, Raja Park, Jhotwara, Shastri Nagar and nearby areas. A home visit is a 45–50 minute consultation for ₹4,500, booked and confirmed on WhatsApp.</p>',
       },
       {
         q: 'Can an older person consult online?',
@@ -1576,7 +1576,7 @@ export const SERVICES = {
       },
       {
         q: 'How much does a consultation cost?',
-        a: '<p>The first consultation is ₹799 for 30 minutes or ₹1,499 for 60 minutes, online or in person, and follow-ups are ₹499. Home visits are ₹4,499.</p>',
+        a: '<p>The first consultation is ₹800 for 30 minutes or ₹1,500 for 60 minutes, online or in person, and follow-ups are ₹500. Home visits are ₹4,500.</p>',
       },
     ],
 
